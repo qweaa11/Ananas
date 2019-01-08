@@ -9,7 +9,8 @@ public class BookController {
 	
 	@RequestMapping(value="/bookList.ana",method= {RequestMethod.GET})
 	public String bookList() {
-		
+		System.out.println("push pull 제발 제대로 나와라");
+
 		return "bookList.tiles1";
 	}// end of bookList
 }
