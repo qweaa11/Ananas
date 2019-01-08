@@ -1,7 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!doctype html>
+<html>
 
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="resources/img/favicon.png" type="image/png">
+	<title>SteakShop Restaurant</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="resources/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/vendors/linericon/style.css">
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resources/css/magnific-popup.css">
+	<link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="resources/vendors/lightbox/simpleLightbox.css">
+	<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="resources/vendors/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" href="resources/vendors/animate-css/animate.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="resources/css/style.css">
+</head>
 
+<body>
 
 	<!--================ Start Header Menu Area =================-->
 	<div class="menu-trigger">
@@ -30,16 +52,25 @@
 					</li>
 					<li class="nav-item submenu dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
-						 aria-expanded="false"><img src="resources/img/header/nav-icon2.png" alt="">도서관리</a>
+						 aria-expanded="false"><img src="resources/img/header/nav-icon3.png" alt="">도서관리</a>
 						<ul class="dropdown-menu">
 							<li class="nav-item"><a class="nav-link" href="#">도서목록</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">도서등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">삭제기록</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="resources/menu.html"><img src="resources/img/header/nav-icon3.png" alt="">menu</a></li>
-					<li class="nav-item"><a class="nav-link" href="resources/book-table.html"><img src="resources/img/header/nav-icon4.png" alt="">Book
-							Table</a></li>
-					<li class="nav-item"><a class="nav-link" href="resources/Chefs.html"><img src="resources/img/header/nav-icon5.png" alt="">Chefs</a></li>
+					<li class="nav-item submenu dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
+						 aria-expanded="false"><img src="resources/img/header/nav-icon6.png" alt="">대출/반납/예약</a> 
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="#">대출</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">반납</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">예약</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/chart.png" height="20px" alt="">통계</a></li> 
+					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/library.png" alt="">도서관관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/nav-icon5.png" alt="">Chefs</a></li>
 					<li class="nav-item submenu dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
 						 aria-expanded="false"><img src="resources/img/header/nav-icon6.png" alt="">Pages</a>
