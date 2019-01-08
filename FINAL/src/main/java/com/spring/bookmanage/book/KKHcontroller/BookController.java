@@ -12,6 +12,6 @@ public class BookController {
 	public String bookList() {
 		
 		return "bookList.tiles1";
-	}// end of bookList  dsfsdf
+	}// end of bookList
 }
 
