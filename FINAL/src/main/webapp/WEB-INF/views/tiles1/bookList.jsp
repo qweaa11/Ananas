@@ -5,12 +5,12 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>제목</th>
-				<th>도서번호</th>
-				<th>ISBN</th>
-				<th>저자</th>
-				<th>출판사</th>
-				<th>등록날짜</th>
+				<th>웃대의 몰락</th>
+				<th>ABCD</th>
+				<th>가나다라</th>
+				<th>김국하</th>
+				<th>웃긴대학</th>
+				<th>2019-01-08</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -81,8 +81,5 @@
 			
 		</tbody>
 	</table>
-	
-	<div>나는 지금 푸시를 테스트할 것이다.</div>
-	<div>푸시 풀 극혐이니까 ㅁ니ㅏ어묀ㅇ뭌ㄴ,ㅊㅋ트,추매냐어민</div>
 
 </div>
