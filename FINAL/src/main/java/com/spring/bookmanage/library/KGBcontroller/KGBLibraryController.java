@@ -1,4 +1,4 @@
-package com.spring.bookmanage.library.controller;
+package com.spring.bookmanage.library.KGBcontroller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
