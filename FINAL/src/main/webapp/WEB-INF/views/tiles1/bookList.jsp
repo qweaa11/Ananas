@@ -5,12 +5,12 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>제목</th>
-				<th>도서번호</th>
-				<th>ISBN</th>
-				<th>저자</th>
-				<th>출판사</th>
-				<th>등록날짜</th>
+				<th>웃대의 몰락</th>
+				<th>ABCD</th>
+				<th>가나다라</th>
+				<th>김국하</th>
+				<th>웃긴대학</th>
+				<th>2019-01-08</th>
 			</tr>
 		</thead>
 		<tbody>
