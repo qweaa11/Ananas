@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class BookController {
+public class KKHController {
 	
 	@RequestMapping(value="/bookList.ana",method= {RequestMethod.GET})
 	public String bookList() {
 		
 		return "bookList.tiles1";
-	}// end of bookList
+	}// end of bookList  dsfsdf
 }
 
