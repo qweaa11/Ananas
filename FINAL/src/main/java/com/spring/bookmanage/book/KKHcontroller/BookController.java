@@ -1,4 +1,4 @@
-package com.spring.bookmanage.book.controller;
+package com.spring.bookmanage.book.KKHcontroller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
