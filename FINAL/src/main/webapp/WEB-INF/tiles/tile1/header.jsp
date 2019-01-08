@@ -75,6 +75,7 @@
 						<ul class="dropdown-menu">
 							<li class="nav-item"><a class="nav-link" href="#">도서관 목록</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">도서관 등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">예약</a></li>
 						</ul>
 					</li> 
 				</ul>
