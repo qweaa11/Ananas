@@ -81,7 +81,5 @@
 			
 		</tbody>
 	</table>
-	<div>테스트임</div>
-
 
 </div>
