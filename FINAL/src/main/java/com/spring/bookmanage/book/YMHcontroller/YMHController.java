@@ -6,15 +6,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class BookController 
+public class YMHController 
 {
 	
-
 	@RequestMapping(value="/bookRegister.ana",method= {RequestMethod.GET})
 	public String bookRegister() {
 		
-		return "bookRegister.tiles1";
+		return "book/bookRegister.tiles1";
 	}// end of bookRegister
-
+	
+	
+	
+	
+	
+	
 }
 
