@@ -318,5 +318,7 @@
 			</div>
 		</section>
 		<!--================ End Brands Area =================-->
+		<div>nine9ash가 푸쉬를 합니다. ㅁㄴ엄ㄴ어ㅣㅏㅁ너이만엄,ㅡ춬ㅌ,ㅡ츄ㅜ크,ㅊㅁ니어미어ㅣ마너이ㅏㅁㄴ어ㅣㅏㅁㄴ어</div>
+		<div>HomeController를 삭제한 것을 테스트</div>
 
 <%-- <jsp:include page="footer.jsp"/> --%>
