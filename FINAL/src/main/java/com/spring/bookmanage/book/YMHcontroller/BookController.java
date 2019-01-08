@@ -1,4 +1,4 @@
-package com.spring.bookmanage.book.controller;
+package com.spring.bookmanage.book.YMHcontroller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,4 +13,5 @@ public class BookController {
 
 		return "bookList.tiles1";
 	}// end of bookList
+
 }
