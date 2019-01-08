@@ -1,9 +1,8 @@
-package com.spring.bookmanage.book.KKHcontroller;
+package com.spring.bookmanage.book.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 
 @Controller
 public class BookController {
@@ -12,6 +11,5 @@ public class BookController {
 	public String bookList() {
 		
 		return "bookList.tiles1";
-	}// end of bookList  dsfsdf
+	}// end of bookList
 }
-
