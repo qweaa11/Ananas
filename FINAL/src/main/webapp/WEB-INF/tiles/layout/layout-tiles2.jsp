@@ -25,18 +25,19 @@
 			<tiles:insertAttribute name="header"/>
 		</div>
 		      
-	<div class="container">
+	<div class="container-fluid" style="margin-top:50px; margin-left:120px;"> 
 	<div class="row">
 
-					<div id="mysideinfo" class="col-lg-2 sideinfo">
-						<tiles:insertAttribute name="sideinfo" />
-					</div>
+					
 
-
-					<div id="mycontent" class="col-lg-10 col-lg-offset-1"
-						style="margin-top: 30px;">
+					<div id="mycontent" class="col-lg-9"
+						style="margin-top: 60px;">
 						<tiles:insertAttribute name="content" />
 					</div>
+					<div id="mysideinfo" class="col-lg-offset-1 col-lg-2">
+						<tiles:insertAttribute name="sideinfo" />
+					</div>
+					
 
 				</div>
 			</div>
