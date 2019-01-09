@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.spring.bookmanage.JDSmodel.MemberVO;
 
+
+@Repository
 public class LoginDAO implements InterLoginDAO{
 	//=====#32.DAO 선언 =====
 

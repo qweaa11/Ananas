@@ -33,6 +33,7 @@ import com.spring.bookmanage.common.SHA256;
 		@Autowired
 		private AES256 aes;
 
+
 		
 		// =====#40. 로그인 폼 페이지 요청 =====
 		@RequestMapping(value="/login.ana", method= {RequestMethod.GET})

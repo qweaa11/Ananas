@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.bookmanage.JDSmodel.InterLoginDAO;
 import com.spring.bookmanage.JDSmodel.MemberVO;
 import com.spring.bookmanage.common.AES256;
 
+@Service
 public class LoginService implements InterLoginService{
 	
 	// =====#31.Service 선언 =====
