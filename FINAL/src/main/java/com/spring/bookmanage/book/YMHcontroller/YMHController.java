@@ -13,10 +13,14 @@ public class YMHController
 	public String bookRegister() {
 		
 		return "book/bookRegister.tiles1";
-	}// end of bookRegister
+	}// end of bookRegister------------------------------------------------
 	
 	
-	
+	@RequestMapping(value="/findPublisher.ana",method= {RequestMethod.GET})
+	public String findPublisher() {
+		
+		return "findPublisher.notiles";
+	}// end of findPublisher()----------------------------------------------
 	
 	
 	
