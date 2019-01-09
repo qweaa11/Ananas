@@ -152,20 +152,20 @@
           <div class="form-group">
           <label class="control-label col-sm-3">무게 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
-            <input type="text" class="form-control" name="weight" id="weight" placeholder="도서소개" value="">
+            <input type="text" class="form-control" name="weight" id="weight" placeholder="도서무게" value="">
           </div>
         </div>
           <div class="form-group">
           <label class="control-label col-sm-3">쪽수 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
-            <input type="text" class="form-control" name="totalpage" id="totalpage" placeholder="도서소개" value="">
+            <input type="text" class="form-control" name="totalpage" id="totalpage" placeholder="도서총페이지수" value="">
           </div>
         </div>
         
          <div class="form-group">
           <label class="control-label col-sm-3">발행일자 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
-            <input type="text" class="form-control" name="pDate" id="pDate" placeholder="도서소개" value="">
+            <input type="text" class="form-control" name="pDate" id="pDate" placeholder="도서발행일자" value="">
           </div>
         </div>
         
@@ -179,7 +179,7 @@
          <div class="form-group">
           <label class="control-label col-sm-3">도서관명 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
-            <input type="text" class="form-control" name="libCode" id="libCode" placeholder="도서소개" value="">
+            <input type="text" class="form-control" name="libCode" id="libCode" placeholder="소유 도서관명" value="">
           </div>
         </div>
         
