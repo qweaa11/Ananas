@@ -33,17 +33,7 @@ import com.spring.bookmanage.common.SHA256;
 		@Autowired
 		private AES256 aes;
 
-		// =====#36. 메인페이지 요청 =====
-		@RequestMapping(value="/index.ana", method= {RequestMethod.GET})
-		public String index(HttpServletRequest req) {
-			
-			List<String> imgfilenameList = service.getImgfilenameList();
-			
-			req.setAttribute("imgfilenameList", imgfilenameList);
-			
-			return "main/index.tiles1";
-			// /book/src/main/webapp/WEB-INF/views/tiles1/main/index.jsp 파일을 생성한다.
-		}
+		
 		
 		// =====#40. 로그인 폼 페이지 요청 =====
 		@RequestMapping(value="/login.ana", method= {RequestMethod.GET})
