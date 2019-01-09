@@ -7,7 +7,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <style>
-ul {
+ul.sideinfo {
 	list-style: none;
 	font-size: 10pt;
 }
@@ -16,75 +16,94 @@ h4 {
 	background-color: #d9d9d9;
 }
 
-li:hover {
+li.sideli:hover {
 	text-decoration: underline;
 }
+.multiselect:hover{
+	color:navy;
+}
+
 </style>
 <script>
-	
+	$(document).ready(function(){
+		         
+		
+		
+	});
 </script>
-
-<br style="clear: both;" />
-<div>
-	<h3>조회 조건</h3>
+<div class="container">
+<div >
+	<h3 style="font-weight:bold;">조회 조건</h3>
 	<div style="float: left; border: 1px solid gray; margin-left: 8px;">
-		<div>
+		<div style="width:200px;">
 			<div>
 				<h4>도서관</h4>
 			</div>
-			<ul>
+			<ul class="sideinfo">
+				<li><input type="checkbox" id="library1" class="library sideli"/><a href="#">종로</a></li>
 				
-				<li><input type="checkbox" id="library1" /><label for="libarary1"><a href="#">IPhone 3</a></label></li>
+				<li><input type="checkbox" id="library2" class="library sideli"/><a href="#">마포</a></li>
 				
-				<li><input type="checkbox" id="library2" /><label for="libarary2"><a href="#">IPhone 3</a></label></li>
+				<li><input type="checkbox" id="library3" class="library sideli"/><a href="#">구리</a></li>
 				
-				<li><input type="checkbox" id="library3" /><label for="libarary3"><a href="#">IPhone 3</a></label></li>
+				<li><input type="checkbox" id="library4" class="library sideli"/><a href="#">화정</a></li>
 				
-				<li><input type="checkbox" id="library4" /><label for="libarary4"><a href="#">IPhone 3</a></label></li>
-				
-				<li><input type="checkbox" id="library5" /><label for="libarary5"><a href="#">IPhone 3</a></label></li>
+				<li><input type="checkbox" id="library5" class="library sideli"/><a href="#">수유</a></li>
 			</ul>
-			<div>다중선택</div>
+			
 		</div>
 		<div>
 			<div>
 				<h4>언어</h4>
 			</div>
-			<ul>
-
-				<li><a href="#">Samsung Galaxy S5</a></li>
-				<li><a href="#">Samsung Galaxy S6</a></li>
-				<li><a href="#">Samsung Galaxy mini S4</a></li>
-				<li><a href="#">Samsung Note 3</a></li>
-				<li><a href="#">Samsung Tools</a></li>
-				<li><a href="#">iPad 1</a></li>
+				<ul class="sideinfo">
+				<li><input type="checkbox" id="language1" class="language sideli"/><a href="#">종로</a></li>
+				
+				<li><input type="checkbox" id="language2" class="language sideli"/><a href="#">마포</a></li>
+				
+				<li><input type="checkbox" id="language3" class="language sideli"/><a href="#">구리</a></li>
+				
+				<li><input type="checkbox" id="language4" class="language sideli"/><a href="#">화정</a></li>
+				
+				<li><input type="checkbox" id="language5" class="language sideli"/><a href="#">수유</a></li>
 			</ul>
 		</div>
 		<div>
 			<div>
 				<h4>종류</h4>
 			</div>
-			<ul>
-				<li><a href="#">IPhone 3</a></li>
-				<li><a href="#">IPhone 4</a></li>
-				<li><a href="#">IPhone 5</a></li>
-				<li><a href="#">IPhone 6</a></li>
-				<li><a href="#">IPhone Tools</a></li>
+				<ul class="sideinfo">
+				<li><input type="checkbox" id="category1" class="category"/><a href="#">종로</a></li>
+				
+				<li><input type="checkbox" id="category2" class="category"/><a href="#">마포</a></li>
+				
+				<li><input type="checkbox" id="category3" class="category"/><a href="#">구리</a></li>
+				
+				<li><input type="checkbox" id="category4" class="category"/><a href="#">화정</a></li>
+				
+				<li><input type="checkbox" id="category5" class="category"/><a href="#">수유</a></li>
 			</ul>
 		</div>
 		<div>
 			<div>
 				<h4>분야</h4>
 			</div>
-			<ul>
-				<li><a href="#">Samsung M930</a></li>
-				<li><a href="#">Samsung Nexus s</a></li>
-				<li><a href="#">Samsung Startosphere</a></li>
-				<li><a href="#">Samsung Galaxy S</a></li>
-				<li><a href="#">Samsung Galaxy S2</a></li>
-				<li><a href="#">Samsung Galaxy S4</a></li>
+				<ul class="sideinfo">
+				<li><input type="checkbox" id="field1" class="field"/><a href="#">종로</a></li>
+				
+				<li><input type="checkbox" id="field2" class="field"/><a href="#">마포</a></li>
+				
+				<li><input type="checkbox" id="field3" class="field"/><a href="#">구리</a></li>
+				
+				<li><input type="checkbox" id="field4" class="field"/><a href="#">화정</a></li>
+				
+				<li><input type="checkbox" id="field5" class="field"/><a href="#">수유</a></li>
 			</ul>
 		</div>
 
 	</div>
 </div>
+<<<<<<< HEAD
+</div>
+=======
+>>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git

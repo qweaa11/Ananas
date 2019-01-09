@@ -28,6 +28,7 @@
 		<div id="mysideinfo" class="col-lg-2 sideinfo">         
 			<tiles:insertAttribute name="sideinfo" />
 		</div>
+		<div id="mycontent" class="container" style="margin-bottom: 100px;">
 		
 		<div id="mycontent" class="col-lg-10" style="margin-top: 30px; float: left;">
 			<tiles:insertAttribute name="content"/>
