@@ -14,7 +14,7 @@
 	</select>
 
 	<!--  =====#47. 로그인 여부 알아보기 및 마지막으로 로그인한 날짜 기록하기===== -->
-	<select id="getLoginMember" parameterType="HashMap" resultType="com.spring.member.model.MemberVO">
+	<select id="getLoginMember" parameterType="HashMap" resultType="com.spring.bookmanage.JDSmodel.MemberVO">
 		select idx, userid, name, email, gradelevel
 	        , trunc(months_between(sysdate, lastlogindate)) AS lastlogindategap
 	        , trunc(months_between(sysdate, lastpwdchangedate)) AS pwdchangegap
