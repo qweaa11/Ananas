@@ -30,7 +30,7 @@
 		<div id="mysideinfo" style="margin-top:170px; margin-left:50px;">         
 			<tiles:insertAttribute name="sideinfo" />
 		</div>
-		<div id="mycontent" class="container"  style="margin-bottom: 100px;">
+		<div id="mycontent" class="container" style="margin-bottom: 100px;">
 			<tiles:insertAttribute name="content"/>
 		</div>
 		
