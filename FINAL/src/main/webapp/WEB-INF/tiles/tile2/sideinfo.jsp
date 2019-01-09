@@ -31,8 +31,6 @@ li.sideli:hover {
 		
 	});
 </script>
-<div class="container">
-<div >
 	<h3 style="font-weight:bold;">조회 조건</h3>
 	<div style="float: left; border: 1px solid gray; margin-left: 8px;">
 		<div style="width:200px;">
@@ -102,8 +100,3 @@ li.sideli:hover {
 		</div>
 
 	</div>
-</div>
-<<<<<<< HEAD
-</div>
-=======
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
