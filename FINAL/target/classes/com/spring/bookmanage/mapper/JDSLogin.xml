@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===== #28. mapper 기본 설정 ===== -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!-- ===== #29. 루트 엘리먼트 및 네임스페이스 설정하기(이 네임스페이스의 이름은 프로젝트 전체 내에서 반드시 고유해야만 한다.) ===== --> 
+<mapper namespace="JDS">
+
+	<!--  =====#39. 이미지 파일명 가져오기 ===== -->
+	<select id="getImgfilenameList" resultType="String">
+		select imgfilename
+		from MEMBER
+		order by imgno desc
+	</select>
+
+	<!--  =====#47. 로그인 여부 알아보기 및 마지막으로 로그인한 날짜 기록하기===== -->
+	<select id="getLoginMember" parameterType="HashMap" resultType="com.spring.bookmanage.JDSmodel.MemberVO">
+		select idx, userid, name, email, gradelevel
+	        , trunc(months_between(sysdate, lastlogindate)) AS lastlogindategap
+	        , trunc(months_between(sysdate, lastpwdchangedate)) AS pwdchangegap
+		from MEMBER
+		where status = 1 and
+		    userid = #{USERID} and
+		    pwd = #{PWD}
+	</select>
+	<!-- 마지막으로 로그인한 날짜시간 기로고하기 -->
+	<update id="setLastLoginDate" parameterType="HashMap">
+		update MEMBER set lastlogindate = sysDate
+		where userid = #{USERID}
+	</update>
+	
+	
+	
+
+
+
+</mapper>

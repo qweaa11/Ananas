@@ -46,16 +46,16 @@
 						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
 						 aria-expanded="false"><img src="resources/img/header/nav-icon2.png" alt="">회원관리</a>
 						<ul class="dropdown-menu">
-							<li class="nav-item"><a class="nav-link" href="#">회원목록</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">회원등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">회원 목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">회원 등록</a></li>
 						</ul>
 					</li>
 					<li class="nav-item submenu dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
 						 aria-expanded="false"><img src="resources/img/header/nav-icon3.png" alt="">도서관리</a>
 						<ul class="dropdown-menu">
-							<li class="nav-item"><a class="nav-link" href="#">도서목록</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">도서등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">도서 목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">도서 등록</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">삭제기록</a></li>
 						</ul>
 					</li>
@@ -68,25 +68,16 @@
 							<li class="nav-item"><a class="nav-link" href="#">예약</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/chart.png" height="20px" alt="">통계</a></li> 
-					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/library.png" alt="">도서관관리</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/nav-icon5.png" alt="">Chefs</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/chart.png" height="20px" alt="">통계</a></li>
 					<li class="nav-item submenu dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
-						 aria-expanded="false"><img src="resources/img/header/nav-icon6.png" alt="">Pages</a>
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
+						 aria-expanded="false"><img src="resources/img/header/library.png" alt="">도서관관리</a> 
 						<ul class="dropdown-menu">
-							<li class="nav-item"><a class="nav-link" href="resources/elements.html">element</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">도서관 목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">도서관 등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">예약</a></li>
 						</ul>
-					</li>
-					<li class="nav-item submenu dropdown">
-						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-						 aria-expanded="false"><img src="resources/img/header/nav-icon7.png" alt="">Blog</a>
-						<ul class="dropdown-menu">
-							<li class="nav-item"><a class="nav-link" href="resources/blog.html">Blog</a></li>
-							<li class="nav-item"><a class="nav-link" href="resources/single-blog.html">Blog Details</a></li>
-						</ul>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="resources/contact.html"><img src="resources/img/header/nav-icon8.png" alt="">contact</a></li>
+					</li> 
 				</ul>
 			</div>
 		</div>
