@@ -13,6 +13,6 @@ public class PMGController {
 	public String member(HttpServletRequest req) {
 		
 		return "member/memberDetail.tiles1";
-	}
+	}// end of member
 	
 }

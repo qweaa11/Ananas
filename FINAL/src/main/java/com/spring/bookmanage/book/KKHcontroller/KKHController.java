@@ -11,7 +11,6 @@ public class KKHController {
 	@RequestMapping(value="/bookList.ana",method= {RequestMethod.GET})
 	public String bookList() {
 		
-		return "bookList.tiles1";
-	}// end of bookList  dsfsdf
+		return "book/bookList.tiles1";
+	}// end of bookList
 }
-
