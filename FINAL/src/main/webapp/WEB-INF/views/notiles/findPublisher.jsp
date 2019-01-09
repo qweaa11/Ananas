@@ -44,7 +44,7 @@
 		
 		$.ajax({
 			url:"http://openapi.sdm.go.kr:8088/73664e51596462613931546f536775/json/SeodaemunPublisherPrintBiz/1/1000",
-		//	data:form_data,
+		// 	data:form_data,
 			type:"GET",
 			dataType:"JSON",
 			success:function(json){

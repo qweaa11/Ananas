@@ -10,9 +10,7 @@ public class KGBLibraryController {
 	@RequestMapping(value="/index.ana", method= {RequestMethod.GET})
 	public String index() {
 
-		
 		return "library/index.tiles1";
-		
-	}// end of index()---------------------
+	}// end of index
 
 }
