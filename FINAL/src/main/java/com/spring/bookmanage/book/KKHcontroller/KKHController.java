@@ -10,7 +10,7 @@ public class KKHController {
 	
 	@RequestMapping(value="/bookList.ana",method= {RequestMethod.GET})
 	public String bookList() {
-		
-		return "book/bookList.tiles1";
+
+		return "bookList.tiles2";
 	}// end of bookList
 }
