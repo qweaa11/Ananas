@@ -6,8 +6,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <style type="text/css">
-	.detail table, th, td {border: 1px solid lightgrey;}
-	.detail th {background-color: #f2f2f2}
+	table, th, td {border: 1px solid lightgrey;}
+	th {background-color: #f2f2f2}
 	
 	.btn3d {
     position:relative;
@@ -48,125 +48,17 @@
 	}
 	
 	
-	.table-responsive {height:180px;}
 </style>
 
 
 <script type="text/javascript">
-$.fn.pageMe = function(opts){
-    var $this = this,
-        defaults = {
-            perPage: 7,
-            showPrevNext: false,
-            hidePageNumbers: false
-        },
-        settings = $.extend(defaults, opts);
-    
-    var listElement = $this;
-    var perPage = settings.perPage; 
-    var children = listElement.children();
-    var pager = $('.pager');
-    
-    if (typeof settings.childSelector!="undefined") {
-        children = listElement.find(settings.childSelector);
-    }
-    
-    if (typeof settings.pagerSelector!="undefined") {
-        pager = $(settings.pagerSelector);
-    }
-    
-    var numItems = children.size();
-    var numPages = Math.ceil(numItems/perPage);
-
-    pager.data("curr",0);
-    
-    if (settings.showPrevNext){
-        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
-    }
-    
-    var curr = 0;
-    while(numPages > curr && (settings.hidePageNumbers==false)){
-        $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
-        curr++;
-    }
-    
-    if (settings.showPrevNext){
-        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
-    }
-    
-    pager.find('.page_link:first').addClass('active');
-    pager.find('.prev_link').hide();
-    if (numPages<=1) {
-        pager.find('.next_link').hide();
-    }
-      pager.children().eq(1).addClass("active");
-    
-    children.hide();
-    children.slice(0, perPage).show();
-    
-    pager.find('li .page_link').click(function(){
-        var clickedPage = $(this).html().valueOf()-1;
-        goTo(clickedPage,perPage);
-        return false;
-    });
-    pager.find('li .prev_link').click(function(){
-        previous();
-        return false;
-    });
-    pager.find('li .next_link').click(function(){
-        next();
-        return false;
-    });
-    
-    function previous(){
-        var goToPage = parseInt(pager.data("curr")) - 1;
-        goTo(goToPage);
-    }
-     
-    function next(){
-        goToPage = parseInt(pager.data("curr")) + 1;
-        goTo(goToPage);
-    }
-    
-    function goTo(page){
-        var startAt = page * perPage,
-            endOn = startAt + perPage;
-        
-        children.css('display','none').slice(startAt, endOn).show();
-        
-        if (page>=1) {
-            pager.find('.prev_link').show();
-        }
-        else {
-            pager.find('.prev_link').hide();
-        }
-        
-        if (page<(numPages-1)) {
-            pager.find('.next_link').show();
-        }
-        else {
-            pager.find('.next_link').hide();
-        }
-        
-        pager.data("curr",page);
-      	pager.children().removeClass("active");
-        pager.children().eq(page+1).addClass("active");
-    
-    }
-};
-
-$(document).ready(function(){
-    
-  $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:4});
-    
-});
 
 </script>
 
 
 <div class="container">
 	<h1>회원 기본정보</h1>
-	<table class="table detail">
+	<table class="table">
 	    <tbody>
 	        <tr>
 	          <th>회원번호</th>
@@ -219,7 +111,7 @@ $(document).ready(function(){
 <br/>
 <div class="container">
 	<h1>회원 대여정보</h1>
-	<table class="table detail">
+	<table class="table">
 	    <tbody>
 	        <tr>
 	          <th>총 대여권수</th>
@@ -280,122 +172,89 @@ $(document).ready(function(){
 
 
 <div class="container">
- <div class="table-responsive">
-   <table class="table table-hover">
-     <thead>
-       <tr>
-         <th>번호</th>
-         <th>대여일</th>
-         <th>반납일</th>
-         <th>반납연장일</th>
-         <th>연체일</th>
-         <th>도서번호</th>
-         <th>도서명</th>
-         <th>저자</th>
-         <th>출판사</th>
-         <th>구분</th>
-         <th>상태</th>
-         <th>연체료</th>
-       </tr>
-     </thead>
-     <tbody id="myTable">
-       <tr>
-         <td>1</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>2</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>3</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>4</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr class="success">
-         <td>5</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>6</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>7</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-        <tr>
-         <td>8</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>9</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-       <tr>
-         <td>10</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-         <td>Table cell</td>
-       </tr>
-     </tbody>
-   </table>   
- </div>
- <div class="col-md-12 text-center">
- <ul class="pagination pagination-lg pager" id="myPager"></ul>
- </div>
+	<table class="table">
+		<thead>	    
+		<tr>
+			<th>번호</th>
+			<th>대여일</th>
+			<th>반납일</th>
+			<th>반납연장일</th>
+			<th>연체일</th>
+			<th>도서번호</th>
+			<th>도서명</th>
+			<th>저자</th>
+			<th>출판사</th>
+			<th>구분</th>
+			<th>상태</th>
+			<th>연체료</th>
+		</tr>
+		</thead>		
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+
+<div class="container" style="text-align: center;">
+	<ul class="pagination">
+              <li class="disabled"><a href="#">«</a></li>
+              <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">»</a></li>
+	</ul>
+</div>
+
+<br/>
+<br/>
+
+
+
+
+
 
 
 
