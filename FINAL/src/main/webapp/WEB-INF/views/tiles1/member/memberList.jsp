@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div id="container">
+<div class="container border" style="height: 50%; width: 80%; align-content: center;">
 	<table class="table table-striped">
 		<thead>
 			<tr>
