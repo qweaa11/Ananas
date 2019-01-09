@@ -13,5 +13,5 @@ public class KGBLibraryController {
 		return "index.tiles1";
 		
 	}// end of index()---------------------
-	
+
 }

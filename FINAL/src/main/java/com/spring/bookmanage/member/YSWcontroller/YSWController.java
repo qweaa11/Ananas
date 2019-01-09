@@ -54,7 +54,46 @@ public class YSWController {
 	@RequestMapping(value="/memberRegistEnd.ana", method= {RequestMethod.POST})
 	public int memberRegistEnd(HttpServletRequest req) {
 		
+		String memberid = req.getParameter("memberid");
+		String pwd = req.getParameter("pwd");
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String phone = req.getParameter("phone");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+		String post = req.getParameter("post");
+		String yyyy = req.getParameter("yyyy");
+		String mm = req.getParameter("mm");
+		String dd = req.getParameter("dd");
+		String gender = req.getParameter("gender");
+		
+		System.out.println("memberid :"+memberid);
+		System.out.println("pwd :"+pwd);
+		System.out.println("name :"+name);
+		System.out.println("email :"+email);
+		System.out.println("phone :"+phone);
+		System.out.println("addr1 :"+addr1);
+		System.out.println("addr2 :"+addr2);
+		System.out.println("post :"+post);
+		System.out.println("yyyy :"+yyyy);
+		System.out.println("mm :"+mm);
+		System.out.println("dd :"+dd);
+		System.out.println("gender :"+gender);
+		
 		YSWMemberVO membervo = null;
+		
+		membervo.setMemberid(memberid);
+		membervo.setPwd(pwd);
+		membervo.setName(name);
+		membervo.setEmail(email);
+		membervo.setPhone(phone);
+		membervo.setAddr1(addr1);
+		membervo.setAddr2(addr2);
+		membervo.setPost(post);
+		membervo.setYyyy(yyyy);
+		membervo.setMm(mm);
+		membervo.setDd(dd);
+		membervo.setGender(Integer.parseInt(gender));
 		
 		int result = 0;
 		

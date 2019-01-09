@@ -18,24 +18,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/style2.css" />
   
 </head>
 
 <body>
 	<div id="mycontainer">
 		<div id="myheader">
-			<tiles:insertAttribute name="header" />
-		</div>
-	
-		<div id="mycontent">
-			<tiles:insertAttribute name="content" />
+			<tiles:insertAttribute name="header"/>
 		</div>
 		
-		<div id="mysideinfo">
+		<div id="mysideinfo" style="margin-top:170px; margin-left:50px;">         
 			<tiles:insertAttribute name="sideinfo" />
 		</div>
-	
+		<div id="mycontent" class="container"  style="margin-bottom: 100px;">
+			<tiles:insertAttribute name="content"/>
+		</div>
+		
+		
+		</div>
 		<div id="myfooter">
 			<tiles:insertAttribute name="footer" />
 		</div>

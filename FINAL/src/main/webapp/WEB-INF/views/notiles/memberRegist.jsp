@@ -200,7 +200,7 @@
 			var form_data = {"memberid":memberid}
 			
 			$.ajax({
-				url:"<%=request.getContextPath()%>/idDuplicate.ana",
+				url:"idDuplicate.ana",
 				data:form_data,
 				type:"POST",
 				dataType:"JSON",
@@ -231,7 +231,7 @@
 	function memberRegist() {
 			
 		var frm = document.signupFrm;
-		frm.action = "<%=request.getContextPath()%>/memberRegistEnd.ana";
+		frm.action = "memberRegistEnd.ana";
 		frm.method = "POST";
 		frm.submit();
 		
