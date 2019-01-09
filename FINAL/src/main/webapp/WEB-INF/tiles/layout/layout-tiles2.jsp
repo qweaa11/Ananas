@@ -27,29 +27,25 @@
 		      
 	<div class="container">
 	<div class="row">
-		<div id="mysideinfo" class="col-lg-2 " style="margin-top:170px; margin-left:20px;">         
-		
-		<div id="mysideinfo" class="col-lg-2 sideinfo">         
-			<tiles:insertAttribute name="sideinfo" />
-		</div>
-		
-		<div id="mycontent" class="container" style="margin-bottom: 100px;">
-		
-		<div id="mycontent" class="col-lg-10" style="margin-top: 30px; float: left;">
-			<tiles:insertAttribute name="content"/>
-		</div>
-		<br style="clear: both;" />
-		<div id="mycontent" class="col-lg-8 "  style="margin-top:170px;  margin-bottom: 100px;">
-			<tiles:insertAttribute name="content"/>
-		</div>
+
+					<div id="mysideinfo" class="col-lg-2 sideinfo">
+						<tiles:insertAttribute name="sideinfo" />
+					</div>
+
+
+					<div id="mycontent" class="col-lg-10 col-lg-offset-1"
+						style="margin-top: 30px;">
+						<tiles:insertAttribute name="content" />
+					</div>
+
+				</div>
 			</div>
-	</div>
 		
 		<br style="clear: both;" />
 	</div>	
 		<div id="myfooter">
 			<tiles:insertAttribute name="footer" />
 		</div>
-	
+	</div>
 </body>
 </html>

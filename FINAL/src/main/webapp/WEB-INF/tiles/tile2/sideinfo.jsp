@@ -31,7 +31,7 @@ li.sideli:hover {
 		
 	});
 </script>
-	<h3 style="font-weight:bold;">조회 조건</h3>
+	<h3 style="font-weight:bold; font-family: serif;">조회 조건</h3>
 	<div style="float: left; border: 1px solid gray; margin-left: 8px;">
 		<div style="width:200px;">
 			<div>
