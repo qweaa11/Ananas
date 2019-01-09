@@ -2736,13 +2736,12 @@ h6 {
 /*----------------------------------------------------*/
 /*============== footer-area css ===============*/
 .footer-area {
-  background: url(../img/footer-bg.jpg) center no-repeat;
   background-size: cover;
-  z-index: 1;
-  padding: 100px 0; }
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px; }
   .footer-area.overlay:after {
-    background: #000000;
-    opacity: .75; }
+    background: #000000; }
   .footer-area h6 {
     color: #fff;
     margin-bottom: 25px;
@@ -2755,8 +2754,7 @@ h6 {
     .footer-area .col-lg-2.col-md-4.col-sm-6 {
       width: 50%; } }
 
-.footer-bottom {
-  margin-top: 60px; }
+
   @media (max-width: 991px) {
     .footer-bottom {
       text-align: center; } }
