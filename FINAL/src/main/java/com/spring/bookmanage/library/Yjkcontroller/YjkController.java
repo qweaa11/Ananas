@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.bookmanage.common.AES256;
-import com.spring.bookmanage.library.Yjkmodel.YjkDAO;
+import com.spring.bookmanage.common.FileManager;
 import com.spring.bookmanage.library.Yjkmodel.YjkVO;
 import com.spring.bookmanage.library.Yjkservice.InterYjkService;
 
@@ -26,7 +26,11 @@ public class YjkController {
 	@Autowired
 	private AES256 aes;
 	
-	// ==== 관리자 등록하기 ==== //
+	// ==== 파일업로드 및 파일 다운로드를 해주는 FileManager 클래스 의존객체 주입하기 ====
+	@Autowired
+	private FileManager fileManger;
+	
+	// ==== 관리자 등록 페이지 보여주기 ==== //
 	@RequestMapping(value="/adminRegist.ana",method= {RequestMethod.GET})
 	public String adminRegistEnd() {
 		
@@ -34,7 +38,7 @@ public class YjkController {
 	}
 	
 	// ==== 관리자 등록하기 ==== //
-	@RequestMapping(value="/adminRegistEnd.ana",method= {RequestMethod.GET})
+	@RequestMapping(value="/adminRegistEnd.ana",method= {RequestMethod.POST})
 	public String adminRegistEnd(HttpServletRequest req) {
 		
 		YjkVO adminvo = new YjkVO();
@@ -58,7 +62,7 @@ public class YjkController {
 		if(n == 1) {
 			
 			String msg = "회원가입 되었습니다.";
-			String loc = "javascript:history.back()";
+			String loc = "index.ana";
 			
 			req.setAttribute("msg", msg);
 			req.setAttribute("loc", loc);
@@ -80,21 +84,17 @@ public class YjkController {
 	}
 	
 	// ==== 아이디 중복체크 ==== //
-	@RequestMapping(value="/idDuplicateCheck.ana",method= {RequestMethod.POST})
+	@RequestMapping(value="/idDuplicateCheck.ana",method= {RequestMethod.GET})
 	@ResponseBody
-	public HashMap<String, String> idDuplicateCheck(YjkVO yjkvo) {
+	public HashMap<String, Integer> idDuplicateCheck(HttpServletRequest req) {
 		
-		HashMap<String, String> returnMap = new HashMap<String, String>();
+		String libid = req.getParameter("libid");
 		
-		int n = service.idDuplicateCheck(yjkvo);
+		int n = service.idDuplicateCheck(libid);
+
+		HashMap<String, Integer> returnMap = new HashMap<String, Integer>();
 		
-		String libid = yjkvo.getLibid();
-		
-	//	System.out.println(libid);
-		
-		if(n == 1) {
-			returnMap.put("LIBID", yjkvo.getLibid());
-		}
+		returnMap.put("n", n);
 		
 		return returnMap;
 	}
