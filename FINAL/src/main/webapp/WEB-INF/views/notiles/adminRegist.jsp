@@ -14,7 +14,8 @@
 		
 		$("#error_id").empty();
 	    $("#good_id").empty();
-	      
+	    
+	    // ==== 아이디 중복체크 ==== //
         $("#idcheck").click(function(){
     	  
     	  if($("#libid").val().trim() == "") {
@@ -22,7 +23,8 @@
     		  return;
     	  }
     	  
-    	  var form_data = {userid:$("#libid").val()};
+    	  var form_data = {libid:$("#libid").val()};
+    	
 			$.ajax({
 				url:"<%=request.getContextPath() %>/idDuplicateCheck.ana",
 				type:"GET",
@@ -67,7 +69,38 @@
 	          else $(this).parent().parent().find(".error").hide();
 	       });// end of $("#pwdcheck").blur(function())------------------------------------------------
 		
+	      // ==== 관리자 등록하기 ==== //
+	      var flag = false;
+	      $("#Submit").click(function(){
+	    	  alert("왔니?")
+	          $(".requiredInfo").each(function(){
+	             var data = $(".requiredInfo").val().trim(); 
+	             if(data==""){
+	                flag=true;
+	                return false;
+	             }
+	          });
+	          if(flag==true){
+	             alert("필수 정보를 입력해 주세요.");
+	             $(this).parent().find(".error").show();
+	             return;
+	          }
+	          else{
+	             $(this).parent().find(".error").hide();
+	             goRegister();
+	          }
+	      });
+	       
 	});// end of $(document).ready(function())--------------------
+	
+	function goRegister() {  
+	      
+         var frm = document.adimFrm;
+         frm.method = "POST";
+         frm.action = "adminRegistEnd.ana";
+         frm.submit();
+	      
+	   }
 
 </script>
 
@@ -89,7 +122,7 @@
 		<div class="col-md-8 col-sm-9">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-					<input style="width: 260px" type="text" class="form-control" name="libid" id="libid" placeholder="아이디를 입력해주세요" value="" required>
+					<input style="width: 260px" type="text" class="form-control requiredInfo" name="libid" id="libid" placeholder="아이디를 입력해주세요" value="" required>
 			</div>
 			<a id="idcheck" style="cursor: pointer;"><img src="resources/img/idcheck.gif"></a>
 			<span id="error_id" style="color: red; font-weight: bold;"></span>
@@ -104,7 +137,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input style="width: 260px" type="password" class="form-control" name="pwd" id="pwd" placeholder="비밀번호 (5-15 글자)" value="">
+					<input style="width: 260px" type="password" class="form-control requiredInfo" name="pwd" id="pwd" placeholder="비밀번호 (5-15 글자)" value="">
 			</div>
 			<span id="error_passwd" style="color: red">영문자,숫자,특수기호가 혼합된 8~15 글자로만 입력가능합니다.</span>   
 		</div>
@@ -116,7 +149,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input style="width: 260px" type="password" class="form-control" name="pwdcheck" id="pwdcheck" placeholder="비밀번호 재확인" value="">
+					<input style="width: 260px" type="password" class="form-control requiredInfo" name="pwdcheck" id="pwdcheck" placeholder="비밀번호 재확인" value="">
 			</div>
 			<span class="error" style="color: red">암호가 일치하지 않습니다.</span>  
 		</div>
@@ -126,7 +159,7 @@
 <div class="form-group">
 	<label class="control-label col-sm-3">이름 <span class="text-danger">*</span></label>
 		<div class="col-md-8 col-sm-9">
-			<input style="width: 299px" type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요" value="">
+			<input style="width: 299px" type="text" class="form-control requiredInfo" name="name" id="name" placeholder="이름을 입력해주세요" value="">
 		</div>
 </div>
 
@@ -134,7 +167,7 @@
 <div class="form-group">
 	<label class="control-label col-sm-3">도서관 번호 <span class="text-danger">*</span></label>
 		<div class="col-md-8 col-sm-9">
-			<select class="form-control"  name="libcode" style="width: 130px" >
+			<select class="form-control requiredInfo"  name="libcode" style="width: 130px" >
 				<c:forEach items="libcode">
 					<option value="">도서관 번호</option>
 					<option value="1">도서관 번호</option>
@@ -149,7 +182,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-					<input style="width: 260px" type="text" class="form-control" name="contactnum" id="contactnum" placeholder="휴대전화 번호를 입력해주세요" value="">
+					<input style="width: 260px" type="text" class="form-control requiredInfo" name="contactnum" id="contactnum" placeholder="휴대전화 번호를 입력해주세요" value="">
 			</div>
 		</div>
 </div>

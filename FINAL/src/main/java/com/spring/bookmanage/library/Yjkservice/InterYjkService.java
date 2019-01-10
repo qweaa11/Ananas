@@ -11,7 +11,7 @@ public interface InterYjkService {
 
 	int adminRegistEnd(YjkVO adminvo);// 관리자 등록하기
 
-	int idDuplicateCheck(YjkVO yjkvo);// 아이디 중복체크
+	int idDuplicateCheck(String libid);// 아이디 중복체크
 
 	
 

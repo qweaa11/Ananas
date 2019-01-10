@@ -23,8 +23,8 @@ public class YjkDAO implements InterYjkDAO {
 
 	// ==== 아이디 중복확인 ==== //
 	@Override
-	public int idDuplicateCheck(YjkVO yjkvo) {
-		int n = sqlsession.selectOne("bookmanage.idDuplicateCheck", yjkvo);
+	public int idDuplicateCheck(String libid) {
+		int n = sqlsession.selectOne("bookmanage.idDuplicateCheck", libid);
 		
 		return n;
 	}
