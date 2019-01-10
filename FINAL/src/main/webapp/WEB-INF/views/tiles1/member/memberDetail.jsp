@@ -6,8 +6,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <style type="text/css">
-	.detail table, th, td {border: 1px solid lightgrey;}
-	.detail th {background-color: #0099ff}
+	table, th, td {border: 1px solid lightgrey;}
+	th {background-color: #f2f2f2}
 	
 	.btn3d {
     position:relative;
@@ -47,11 +47,18 @@
 	    background-color: #D73814;
 	}
 	
+	
 </style>
+
+
+<script type="text/javascript">
+
+</script>
+
 
 <div class="container">
 	<h1>회원 기본정보</h1>
-	<table class="table detail">
+	<table class="table">
 	    <tbody>
 	        <tr>
 	          <th>회원번호</th>
@@ -103,46 +110,151 @@
 <br/>
 <br/>
 <div class="container">
-	<h1>회원 기본상태</h1>
-	<table class="table detail">
+	<h1>회원 대여정보</h1>
+	<table class="table">
 	    <tbody>
 	        <tr>
-	          <th>회원번호</th>
-	            <td>12345</td>
-	          <th>회원명</th>
-	          	<td>박민규</td>
+	          <th>총 대여권수</th>
+	            <td>100권</td>
+	          <th>총 반납권수</th>
+	          	<td>100권</td>
+	          <th>총 미반납권수</th>
+	          	<td>0권</td>
+	          <th>총 분실권수</th>
+	          	<td>0권</td>
+	        </tr>	        
+	        <tr>
+	          <th>총 연체일</th>
+	            <td>80일</td>
+	          <th>총 연체료</th>
+	          	<td>10,000원</td>
+	          <th>연체료 납액</th>
+	          	<td>7,000원</td>
+	          <th>연체료 미납액</th>
+	          	<td>3,000</td>
 	        </tr>
 	        <tr>
-	          <th>ID</th>
-	            <td>pmk7257</td>
-	          <th>E-mail</th>
-	          	<td>pmk7257@naver.com</td>
-	        </tr>
-	        <tr>
-	          <th>주민번호</th>
-	            <td>910704-1xxxxxx</td>
-	          <th>나이</th>
-	            <td>18살(전체,아동,청소년,성인)</td>
-	        </tr>
-	      	<tr>
-	          <th>연락처</th>
-	          	<td>010-3432-2323</td>
-	          <th>주소</th>
-	            <td>서울시 광진구 중곡동 30-14 1층</td>
-	        </tr>
-	        <tr>
-	          <th>성별</th>
-	          	<td>남자</td>	          
-	          <th>회원상태</th>
-	            <td>휴면 or 탈퇴</td>
-	        </tr>
-	        <tr>
-	          <th>가입일자</th>
-	          	<td>2018-01-01</td>
-	          <th>로그인 기록</th>
-	          	<td>마지막 로그인(2018-10-10 23:00:00) 로그아웃(2018-10-10 23:10:50)</td>	          
+	          <th>현재 상태</th>
+	            <td>대여,연체,분실</td>
+	          <th>현재 대여권수</th>
+	          	<td>4권</td>	          
 	        </tr>
 	    </tbody>
 	</table>
 </div>
+
+
+<br/>
+<br/>
+<br/>
+<div class="container">
+	<h1>도서 대여정보</h1>
+	<div class="col-sm-12 pull-center well">
+		<form class="form-inline" action="#" method="POST">				
+			<select class="form-control">
+				<option>도서명</option>
+				<option>저자</option>
+				<option>출판사</option>
+				<option>도서번호</option>
+			</select>
+	                  
+			<div class="input-group custom-search-form">
+				<input type="text" class="form-control" placeholder="Search..." />
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i>search</i>
+						</button>
+					</span>
+			</div>				
+		</form>
+	</div>
+</div>
+
+
+<div class="container">
+	<table class="table">
+		<thead>	    
+		<tr>
+			<th>번호</th>
+			<th>대여일</th>
+			<th>반납일</th>
+			<th>반납연장일</th>
+			<th>연체일</th>
+			<th>도서번호</th>
+			<th>도서명</th>
+			<th>저자</th>
+			<th>출판사</th>
+			<th>구분</th>
+			<th>상태</th>
+			<th>연체료</th>
+		</tr>
+		</thead>		
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+				<td>1</td>
+				<td>a</td>
+				<td>A</td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="container" style="text-align: center;">
+	<ul class="pagination">
+              <li class="disabled"><a href="#">«</a></li>
+              <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">»</a></li>
+	</ul>
+</div>
+
+<br/>
+<br/>
+
+
+
+
+
+
+
 
