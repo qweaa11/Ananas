@@ -38,18 +38,18 @@ public class YSWDAO implements InterYSWDAO {
 	
 	//===== 조건을 이용해서 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findLibrarianListWithOption(HashMap<String, String> paraMap) {
+	public List<YjkVO> findListWithOption(HashMap<String, String> paraMap) {
 		
-		List<YjkVO> librarianList = sqlsession.selectList("YSW.findLibrarianListWithOption", paraMap);
+		List<YjkVO> librarianList = sqlsession.selectList("YSW.findListWithOption", paraMap);
 		return librarianList;
 	}
 
 	
 	//===== 조건이 없을 때 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findLibrarianListWithoutOption() {
+	public List<YjkVO> findListNoneOption() {
 
-		List<YjkVO> librarianList = sqlsession.selectList("YSW.findLibrarianListWithoutOption");
+		List<YjkVO> librarianList = sqlsession.selectList("YSW.findListNoneOption");
 		return librarianList;
 	}
 

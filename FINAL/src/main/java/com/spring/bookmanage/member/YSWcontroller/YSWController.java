@@ -227,13 +227,15 @@ public class YSWController {
 			paraMap.put("sort", sort);
 			paraMap.put("searchWord", searchWord);
 			
-			librarianList = service.findLibrarianListWithOption(paraMap);
+			librarianList = service.findListWithOption(paraMap);
+			System.out.println("librarianList : " + librarianList);
 			
 			list.put("librarianList", librarianList);
 		}
 		else {
 			
-			librarianList = service.findLibrarianListWithoutOption();
+			librarianList = service.findListNoneOption();
+			System.out.println("librarianList : " + librarianList);
 			
 			list.put("librarianList", librarianList);
 		}

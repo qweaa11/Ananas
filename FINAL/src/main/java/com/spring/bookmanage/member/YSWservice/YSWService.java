@@ -37,18 +37,18 @@ public class YSWService implements InterYSWService {
 	
 	//===== 조건을 이용해서 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findLibrarianListWithOption(HashMap<String, String> paraMap) {
+	public List<YjkVO> findListWithOption(HashMap<String, String> paraMap) {
 
-		List<YjkVO> librarianList = dao.findLibrarianListWithOption(paraMap);
+		List<YjkVO> librarianList = dao.findListWithOption(paraMap);
 		return librarianList;
 	}
 
 	
 	//===== 조건이 없을 때 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findLibrarianListWithoutOption() {
+	public List<YjkVO> findListNoneOption() {
 
-		List<YjkVO> librarianList = dao.findLibrarianListWithoutOption();
+		List<YjkVO> librarianList = dao.findListNoneOption();
 		return librarianList;
 	}
 

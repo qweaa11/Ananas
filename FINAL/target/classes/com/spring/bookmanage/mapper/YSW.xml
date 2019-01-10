@@ -24,7 +24,7 @@
 	
 	
 	<!--  ===== 조건을 이용해서 사서 목록 가져오기. ===== -->
-	<select id="findLibrarianListWithOption" parameterType="HashMap" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
+	<select id="findListWithOption" parameterType="HashMap" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
 	
 		select idx, libid, libcode_fk, name, tel
 		from librarian
@@ -36,7 +36,7 @@
 
 
 	<!--  ===== 조건이 없을 때 사서 목록 가져오기. ===== -->
-	<select id="findLibrarianListWithoutOption" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
+	<select id="findListNoneOption" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
 	
 		select idx, libid, libcode_fk, name, tel
 		from librarian

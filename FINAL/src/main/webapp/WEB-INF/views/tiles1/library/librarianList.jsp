@@ -69,17 +69,22 @@ p{margin:3px;}
 
 	$(document).ready(function(){
 		
+		console.log("1234");
+		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
 		librarianList(sort, searchWord);
 	});
 	
 	function librarianList(sort, searchWord) {
+		
+		console.log("1234");
+		
 		var form_data = {"searchWord":searchWord,
 						 "sort":sort}
 		
 		$.ajax({
-			url:"librarianList.ana",
+			url:"librarianListEnd.ana",
 			data:form_data,
 			type:GET,
 			dataType:"JSON",
