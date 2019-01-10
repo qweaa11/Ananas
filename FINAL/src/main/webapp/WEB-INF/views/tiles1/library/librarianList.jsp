@@ -85,8 +85,28 @@ p{margin:3px;}
 			dataType:"JSON",
 			success:function(json){
 				
+				var result = ""
 				
+				$.each(json, function(entryIndex, entry) {
+					
+					result += "<div class='col-lg-12'>"+
+		                    	"<span class='glyphicon glyphicon-credit-card'></span>"+
+		                    		"<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
+		                	  "</div>"+
+		                	  "<div class='col-lg-12 well well-add-card'>"+
+		                 	  	"<h4>"+${entry.name}+"</h4>"+
+		                	  "</div>"+
+		                	  "<div class='col-lg-12'>"+
+		                      "<p>"+${entry.libid}+"</p>"+
+		                      "<p class='text-muted'>"+${entry.tel}+"</p>"+
+		                	  "</div>"+
+		                	  "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card'>Update</button>"+
+		                	  "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card'>Vrify Now</button>"+
+		                	  "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>";
+							
+				}
 				
+				$("#resultList").html(result);
 			},
 			error: function(request, status, error){
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
@@ -116,118 +136,8 @@ p{margin:3px;}
         
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <div class="thumbnail">
-              <div class="caption">
-                <div class='col-lg-12'>
-                    <span class="glyphicon glyphicon-credit-card"></span>
-                    <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                </div>
-                <div class='col-lg-12 well well-add-card'>
-                    <h4>John Deo Mobilel</h4>
-                </div>
-                <div class='col-lg-12'>
-                    <p>4111xxxxxxxx3265</p>
-                    <p class"text-muted">Exp: 12-08</p>
-                </div>
-                <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">Update</button>
-                <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card">Vrify Now</button>
-                <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div class="thumbnail">
-              <div class="caption">
-                <div class='col-lg-12'>
-                    <span class="glyphicon glyphicon-credit-card"></span>
-                    <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                </div>
-                <div class='col-lg-12 well well-add-card'>
-                    <h4>John Deo Mobilel</h4>
-                </div>
-                <div class='col-lg-12'>
-                    <p>4111xxxxxxxx3265</p>
-                    <p class"text-muted">Exp: 12-08</p>
-                </div>
-                <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">Update</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div class="thumbnail">
-              <div class="caption">
-                <div class='col-lg-12'>
-                    <span class="glyphicon glyphicon-credit-card"></span>
-                    <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                </div>
-                <div class='col-lg-12 well well-add-card'>
-                    <h4>John Deo Mobilel</h4>
-                </div>
-                <div class='col-lg-12'>
-                    <p>4111xxxxxxxx3265</p>
-                    <p class"text-muted">Exp: 12-08</p>
-                </div>
-                <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">Update</button>
-            </div>
-          </div>
-        </div>
-
-      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div class="thumbnail">
-              <div class="caption">
-                <div class='col-lg-12'>
-                    <span class="glyphicon glyphicon-credit-card"></span>
-                    <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                </div>
-                <div class='col-lg-12 well well-add-card'>
-                    <h4>John Deo Mobilel</h4>
-                </div>
-                <div class='col-lg-12'>
-                    <p>4111xxxxxxxx3265</p>
-                    <p class"text-muted">Exp: 12-08</p>
-                </div>
-                <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">Update</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div class="thumbnail">
-              <div class="caption">
-                <div class='col-lg-12'>
-                    <span class="glyphicon glyphicon-credit-card"></span>
-                    <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                </div>
-                <div class='col-lg-12 well well-add-card'>
-                    <h4>John Deo Mobilel</h4>
-                </div>
-                <div class='col-lg-12'>
-                    <p>4111xxxxxxxx3265</p>
-                    <p class"text-muted">Exp: 12-08</p>
-                </div>
-                <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">Update</button>
-                 <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card">Vrify Now</button>
-                 <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div class="thumbnail">
-              <div class="caption">
-                <div class='col-lg-12'>
-                    <span class="glyphicon glyphicon-credit-card"></span>
-                    <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                </div>
-                <div class='col-lg-12 well well-add-card'>
-                    <h4>John Deo Mobilel</h4>
-                </div>
-                <div class='col-lg-12'>
-                    <p>4111xxxxxxxx3265</p>
-                    <p class"text-muted">Exp: 12-08</p>
-                </div>
-                <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">Update</button>
+              <div class="caption" id="resultList">
+                
             </div>
           </div>
         </div>
