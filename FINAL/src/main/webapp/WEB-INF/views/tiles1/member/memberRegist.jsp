@@ -3,15 +3,7 @@
     
 <% String ctxPath = request.getContextPath(); %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원 가입</title>
-</head>
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -181,8 +173,8 @@
 				
 			new daum.Postcode({
 				oncomplete: function(data) {
-					$("#post").val(data.zonecode); 
-					$("#addr1").val(data.addr1);
+					$("#post").val(data.zonecode);
+					$("#addr1").val(data.address);
 					$("#addr2").focus();
 					$("#addr2").attr("disable", false).removeClass("hold");
 				}
@@ -310,7 +302,7 @@
          <div class="col-xs-8">
            <div class="form-inline">
              <div class="form-group" >
-               <select name="yyyy" class="form-control">
+               <select name="yyyy" class="form-control" style="margin-right: 30px;">
                  <option value="0">Year</option>
                  <option value="1955" >1955 </option><option value="1956" >1956 </option><option value="1957" >1957 </option>
                  <option value="1958" >1958 </option><option value="1959" >1959 </option><option value="1960" >1960 </option>
@@ -335,15 +327,23 @@
              <div class="form-group">
                <select name="mm" class="form-control">
                  <option value="">Month</option>
-                 <option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option>
-                 <option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option>
-                 <option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>                
+                 <option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option>
+                 <option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option>
+                 <option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>                
                 </select>
              </div>
              <div class="form-group">
                <select name="dd" class="form-control">
                  <option value="">Date</option>
-                 <option value="1" >1 </option><option value="2" >2 </option><option value="3" >3 </option><option value="4" >4 </option><option value="5" >5 </option><option value="6" >6 </option><option value="7" >7 </option><option value="8" >8 </option><option value="9" >9 </option><option value="10" >10 </option><option value="11" >11 </option><option value="12" >12 </option><option value="13" >13 </option><option value="14" >14 </option><option value="15" >15 </option><option value="16" >16 </option><option value="17" >17 </option><option value="18" >18 </option><option value="19" >19 </option><option value="20" >20 </option><option value="21" >21 </option><option value="22" >22 </option><option value="23" >23 </option><option value="24" >24 </option><option value="25" >25 </option><option value="26" >26 </option><option value="27" >27 </option><option value="28" >28 </option><option value="29" >29 </option><option value="30" >30 </option><option value="31" >31 </option>                </select>
+                 <option value="01" >01 </option><option value="02" >02 </option><option value="03" >03 </option><option value="04" >04 </option>
+                 <option value="05" >05 </option><option value="06" >06 </option><option value="07" >07 </option><option value="08" >08 </option>
+                 <option value="09" >09 </option><option value="10" >10 </option><option value="11" >11 </option><option value="12" >12 </option>
+                 <option value="13" >13 </option><option value="14" >14 </option><option value="15" >15 </option><option value="16" >16 </option>
+                 <option value="17" >17 </option><option value="18" >18 </option><option value="19" >19 </option><option value="20" >20 </option>
+                 <option value="21" >21 </option><option value="22" >22 </option><option value="23" >23 </option><option value="24" >24 </option>
+                 <option value="25" >25 </option><option value="26" >26 </option><option value="27" >27 </option><option value="28" >28 </option>
+                 <option value="29" >29 </option><option value="30" >30 </option><option value="31" >31 </option>                
+                </select>
              </div>
            </div>
          </div>
@@ -352,8 +352,8 @@
        <div class="form-group">
          <label class="control-label col-sm-3"><span class="text-danger">*</span>성별</label>
          <div class="col-md-8 col-sm-9">
-           <label><input name="gender" type="radio" value="남성" checked>남성 </label>
-           <label><input name="gender" type="radio" value="여성" >여성 </label>
+           <label><input name="gender" type="radio" value="0" checked>남성 </label>
+           <label><input name="gender" type="radio" value="1" >여성 </label>
          </div>
        </div>
        
@@ -399,7 +399,7 @@
           <small>(선택사항)</small></label>
           <div class="col-md-5 col-sm-8">  
             <div class="input-group"> <span class="input-group-addon" id="file_upload"><i class="glyphicon glyphicon-upload"></i></span>
-              <input type="file" name="fileName" id="fileName" class="form-control upload" placeholder="" aria-describedby="file_upload">
+              <input type="file" name="attach" id="attachs" class="form-control upload" value="" aria-describedby="file_upload">
             </div>
           </div>
         </div>
@@ -417,6 +417,3 @@
     </div>
 </div>
 </div>
-
-</body>
-</html>

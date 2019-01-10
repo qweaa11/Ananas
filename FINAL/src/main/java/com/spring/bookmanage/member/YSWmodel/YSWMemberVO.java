@@ -1,5 +1,7 @@
 package com.spring.bookmanage.member.YSWmodel;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class YSWMemberVO {
 	
 	private String memberid; // 아이디
@@ -20,6 +22,9 @@ public class YSWMemberVO {
 	private String lastDate; // 최근접속일자
 	private String pwDate; // 비밀번호변경일자
 	private int status; // 상태(회원,휴면,탈퇴 등)
+	private long fileSize; // 업로드시 사진 이름
+	private String recordPicName;	// 저장시 만들어진 사진이름
+	private MultipartFile attach;
 	
 	
 	public YSWMemberVO() {}
@@ -27,7 +32,7 @@ public class YSWMemberVO {
 	
 	public YSWMemberVO(String memberid, int idx, String pwd, String name, String email, String phone, String addr1,
 					   String addr2, String post, String yyyy, String mm, String dd, String birth, int gender, String regDate,
-					   String lastDate, String pwDate, int status) 
+					   String lastDate, String pwDate, int status, String profilePicture, String recordPicName, long fileSize) 
 	{
 		this.memberid = memberid;
 		this.idx = idx;
@@ -38,12 +43,17 @@ public class YSWMemberVO {
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.post = post;
+		this.yyyy = yyyy;
+		this.mm = mm;
+		this.dd = dd;
 		this.birth = birth;
 		this.gender = gender;
 		this.regDate = regDate;
 		this.lastDate = lastDate;
 		this.pwDate = pwDate;
 		this.status = status;
+		this.fileSize = fileSize;
+		this.recordPicName = recordPicName;
 	}
 
 
@@ -138,13 +148,16 @@ public class YSWMemberVO {
 
 
 	public String getBirth() {
+		
+		birth = yyyy+mm+dd;
+		
 		return birth;
 	}
 
 
 	public void setBirth(String birth) {
 		
-		birth = yyyy+"/"+mm+"/"+dd;
+		birth = yyyy+mm+dd;
 		
 		this.birth = birth;
 	}
@@ -228,5 +241,38 @@ public class YSWMemberVO {
 	public void setDd(String dd) {
 		this.dd = dd;
 	}
+
+
+	public long getProFileSize() {
+		return fileSize;
+	}
+
+
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+
+
+	public String getRecordPicName() {
+		return recordPicName;
+	}
+
+
+	public void setRecordPicName(String recordPicName) {
+		this.recordPicName = recordPicName;
+	}
+
+
+	public MultipartFile getAttach() {
+		return attach;
+	}
+
+
+	public void setAttach(MultipartFile attach) {
+		this.attach = attach;
+	}
+	
+	
+	
 
 }
