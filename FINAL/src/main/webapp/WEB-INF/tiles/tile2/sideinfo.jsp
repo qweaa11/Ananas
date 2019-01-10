@@ -134,6 +134,9 @@ input[type="checkbox"].sideli{
 		</div>
 
 	</div>
+</div>
+</div>
+	</div>
 
 <form name="sidebar">
 	<input type="hidden" name="library" value=""/>
