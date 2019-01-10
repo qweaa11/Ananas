@@ -45,7 +45,7 @@
 		
 	</div>
 	
-	<div class="container" style="margin-top: 50px;">
+	<div class="container" style="margin-top: 40px;">
 		<div id="wrapper" style="clear: both;" class="toggled">      
 		        
 		    
