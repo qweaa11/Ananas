@@ -10,7 +10,7 @@
 	<!-- ==== #15. myBatis(JDBC)설정 연결문자열 설정하기  ==== -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@192.168.50.34:1521:xe" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="username" value="final1" />
 		<property name="password" value="eclass" />
 	</bean>
@@ -18,7 +18,7 @@
 	<!-- ==== #15. myBatis(JDBC)설정 mapper 파일 위치 지정하기  ==== -->
 	<!-- mapper 파일이란 sql 문을 가지고 있는 xml 파일을 말한다. -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="mapperLocations" value="classpath*:com/spring/bookmanage/mapper/*.xml" /><!-- 만드는사람 이름으로 xml파일 만들기  -->
+		<property name="mapperLocations" value="classpath*:com/spring/bookmanage/mapper/*.xml" />
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 		

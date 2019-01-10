@@ -13,33 +13,37 @@
 <meta charset="UTF-8">
 <title>도서 관리 시스템</title>
 
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link href="resources/css/headerStyles.css" rel="stylesheet">  
   
-  
-  
+
 </head>
 
 <body>
 	<div id="mycontainer">
+	
 		<div id="myheader">
 			<tiles:insertAttribute name="header"/>
 		</div>
-		
-		<div id="mysideinfo" style="margin-top:170px; margin-left:50px;">         
+	
+		<div id="mysideinfo" class="col-lg-2 sideinfo" style="padding-left: 50px;">         
 			<tiles:insertAttribute name="sideinfo" />
 		</div>
-		<div id="mycontent" class="container" style="margin-bottom: 100px;">
 		
-		
-		
-		<div id="mycontent" class="container"  style="margin-bottom: 100px;">
+		<div id="mycontent" class="col-lg-10" style="margin-top: 30px; float: left;">
 			<tiles:insertAttribute name="content"/>
 		</div>
-		
 		<br style="clear: both;" />
-		
+	</div>	
 		<div id="myfooter">
 			<tiles:insertAttribute name="footer" />
 		</div>
 	</div>
+	
 </body>
 </html>
