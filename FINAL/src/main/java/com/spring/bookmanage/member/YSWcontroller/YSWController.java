@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.common.FileManager;
 import com.spring.bookmanage.common.SHA256;
+import com.spring.bookmanage.library.Yjkmodel.YjkVO;
 import com.spring.bookmanage.member.YSWmodel.YSWMemberVO;
 import com.spring.bookmanage.member.YSWservice.InterYSWService;
 
@@ -37,7 +39,7 @@ public class YSWController {
 	@Autowired
 	private FileManager fileManager;
 	
-	//===== È¸¿øµî·Ï ÆäÀÌÁö ¿äÃ». =====
+	//===== íšŒì›ë“±ë¡ í˜ì´ì§€ ìš”ì²­. =====
 	@RequestMapping(value="/memberRegist.ana", method= {RequestMethod.GET})
 	public String registUser(HttpServletRequest req) {
 				
@@ -45,7 +47,7 @@ public class YSWController {
 	}
 	
 	
-	//===== ¾ÆÀÌµğ Áßº¹ Ã¼Å© ¿äÃ». =====
+	//===== ì•„ì´ë”” ì¤‘ë³µ ì²´í¬ ìš”ì²­. =====
 	@RequestMapping(value="/idDuplicate.ana", method= {RequestMethod.POST})
 	@ResponseBody
 	public HashMap<String,Integer> idDuplicate(HttpServletRequest req) {
@@ -65,7 +67,7 @@ public class YSWController {
 	}
 	
 	
-	//===== È¸¿øµî·Ï =====
+	//===== íšŒì›ë“±ë¡ =====
 	@RequestMapping(value="/memberRegistEnd.ana", method= {RequestMethod.POST})
 	public String memberRegistEnd(MultipartHttpServletRequest req, YSWMemberVO membervo) {
 		
@@ -104,7 +106,7 @@ public class YSWController {
 			MultipartFile attach = membervo.getAttach();
 			
 			if(attach.isEmpty()) {
-				membervo.setRecordPicName("NONE");
+				membervo.setImgFileName("NONE");
 			}
 			else {
 				
@@ -112,7 +114,7 @@ public class YSWController {
 				
 				if(fileSize > 10485760) { //10485760 == 10mb
 					
-					String msg = "ÇÁ·ÎÇÊ »çÁøÀº 10mb º¸´Ù ÀÛÀº ÆÄÀÏÀ» ¿Ã·ÁÁÖ¼¼¿ä";
+					String msg = "í”„ë¡œí•„ ì‚¬ì§„ì€ 10mb ë³´ë‹¤ ì‘ì€ íŒŒì¼ì„ ì˜¬ë ¤ì£¼ì„¸ìš”";
 					String loc = "javascript:history.back()";
 					
 					req.setAttribute("msg", msg);
@@ -124,7 +126,7 @@ public class YSWController {
 				else {
 					
 					byte[] bytes = null;
-					String recordPicName = "";
+					String imgFileName = "";
 					
 					HttpSession session = req.getSession();
 					String root = session.getServletContext().getRealPath("/");
@@ -137,13 +139,13 @@ public class YSWController {
 					bytes = attach.getBytes();
 					
 					System.out.println("fileSize : " + fileSize);
-					recordPicName = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
+					imgFileName = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
 					
 					
 					
-					System.out.println("recordPicName : " + recordPicName);
+					System.out.println("recordPicName : " + imgFileName);
 					
-					membervo.setRecordPicName(recordPicName);
+					membervo.setImgFileName(imgFileName);
 					membervo.setFileSize(fileSize);
 					
 				}
@@ -173,7 +175,7 @@ public class YSWController {
 		
 		if(result == 0) {
 			
-			String msg = "È¸¿ø °¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä.";
+			String msg = "íšŒì› ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ ì£¼ì„¸ìš”.";
 			String loc = "javascript:history.back()";
 			
 			req.setAttribute("msg", msg);
@@ -183,7 +185,7 @@ public class YSWController {
 		}
 		else {
 			
-			String msg = "È¸¿ø°¡ÀÔ µÇ¾ú½À´Ï´Ù.";
+			String msg = "íšŒì›ê°€ì… ë˜ì—ˆìŠµë‹ˆë‹¤.";
 			String loc = "Login/loginform.ana";
 			
 			req.setAttribute("msg", msg);
@@ -198,13 +200,26 @@ public class YSWController {
 	
 	
 	
-	//===== »ç¼­ ¸ñ·Ï ÆäÀÌÁö ¿äÃ». =====
-		@RequestMapping(value="/librarianList.ana", method= {RequestMethod.GET})
-		public String librarianList(HttpServletRequest req) {
+	//===== ì‚¬ì„œ ëª©ë¡ í˜ì´ì§€ ìš”ì²­. =====
+	@RequestMapping(value="/librarianList.ana", method= {RequestMethod.GET})
+	public String librarianList(HttpServletRequest req) {
 					
-			return "library/librarianList.tiles1";  
+		return "library/librarianList.tiles1";  
 	}
 	
+	
+	//===== ì‚¬ì„œ ëª©ë¡ í˜ì´ì§€ ìš”ì²­. =====
+	@RequestMapping(value="/librarianListEnd.ana", method= {RequestMethod.GET})
+	public String librarianListEnd(HttpServletRequest req, YjkVO yjkvo) {
+		
+		List<YjkVO> librarianList = null;
+		HashMap<String, String> paraMap = new HashMap<String, String>();
+		
+		String sort = req.getParameter("sort");
+		String searchWord = req.getParameter("searchWord");
+		
+		return "";  
+	}
 
 
 }

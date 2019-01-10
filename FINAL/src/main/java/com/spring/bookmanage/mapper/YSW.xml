@@ -14,8 +14,8 @@
 
 	<insert id="memberRegistEnd" parameterType="com.spring.bookmanage.member.YSWmodel.YSWMemberVO">
 	
-		insert into member (memberid, idx, pwd, name, email, phone, addr1, addr2, post, birth, gender, fileSize, recordPicName, regDate, lastDate, pwDate, status)
-		values(#{memberid}, member_seq.nextval, #{pwd}, #{name}, #{email}, #{phone}, #{addr1}, #{addr2}, #{post}, #{birth}, #{gender}, #{fileSize}, #{recordPicName}, sysdate, sysdate, sysdate, default)
+		insert into member (memberid, idx, pwd, name, email, phone, addr1, addr2, post, birth, gender, fileSize, imgFileName, regDate, lastDate, pwDate, status)
+		values(#{memberid}, member_seq.nextval, #{pwd}, #{name}, #{email}, #{phone}, #{addr1}, #{addr2}, #{post}, #{birth}, #{gender}, #{fileSize}, #{imgFileName}, sysdate, sysdate, sysdate, default)
 		
 	</insert>
 

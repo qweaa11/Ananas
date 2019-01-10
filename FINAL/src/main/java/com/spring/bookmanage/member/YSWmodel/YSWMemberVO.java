@@ -4,26 +4,26 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class YSWMemberVO {
 	
-	private String memberid; // ¾ÆÀÌµð
-	private int idx; // ÀÎµ¦½º
-	private String pwd; // ºñ¹Ð¹øÈ£
-	private String name; // ÀÌ¸§
-	private String email; // ÀÌ¸ÞÀÏ
-	private String phone; // ¿¬¶ôÃ³
-	private String addr1; // ÁÖ¼Ò
-	private String addr2; // »ó¼¼ÁÖ¼Ò
-	private String post; // ¿ìÆí¹øÈ£
+	private String memberid; // ï¿½ï¿½ï¿½Ìµï¿½
+	private int idx; // ï¿½Îµï¿½ï¿½ï¿½
+	private String pwd; // ï¿½ï¿½Ð¹ï¿½È£
+	private String name; // ï¿½Ì¸ï¿½
+	private String email; // ï¿½Ì¸ï¿½ï¿½ï¿½
+	private String phone; // ï¿½ï¿½ï¿½ï¿½Ã³
+	private String addr1; // ï¿½Ö¼ï¿½
+	private String addr2; // ï¿½ï¿½ï¿½Ö¼ï¿½
+	private String post; // ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private String yyyy;
 	private String mm;
 	private String dd;
-	private String birth; // »ý³â¿ùÀÏ
-	private int gender; // ¼ºº°
-	private String regDate; // µî·ÏÀÏÀÚ(°¡ÀÔÀÏÀÚ)
-	private String lastDate; // ÃÖ±ÙÁ¢¼ÓÀÏÀÚ
-	private String pwDate; // ºñ¹Ð¹øÈ£º¯°æÀÏÀÚ
-	private int status; // »óÅÂ(È¸¿ø,ÈÞ¸é,Å»Åð µî)
-	private long fileSize; // ¾÷·Îµå½Ã »çÁø ÀÌ¸§
-	private String recordPicName;	// ÀúÀå½Ã ¸¸µé¾îÁø »çÁøÀÌ¸§
+	private String birth; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int gender; // ï¿½ï¿½ï¿½ï¿½
+	private String regDate; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	private String lastDate; // ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String pwDate; // ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int status; // ï¿½ï¿½ï¿½ï¿½(È¸ï¿½ï¿½,ï¿½Þ¸ï¿½,Å»ï¿½ï¿½ ï¿½ï¿½)
+	private long fileSize; // ï¿½ï¿½ï¿½Îµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	private String imgFileName;	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
 	private MultipartFile attach;	
 	
 	public YSWMemberVO() {}
@@ -31,7 +31,7 @@ public class YSWMemberVO {
 
 	public YSWMemberVO(String memberid, int idx, String pwd, String name, String email, String phone, String addr1,
 					   String addr2, String post, String yyyy, String mm, String dd, String birth, int gender, String regDate,
-					   String lastDate, String pwDate, int status, String profilePicture, String recordPicName, long fileSize) 
+					   String lastDate, String pwDate, int status, String profilePicture, String imgFileName, long fileSize) 
 	{
 		this.memberid = memberid;
 		this.idx = idx;
@@ -52,7 +52,7 @@ public class YSWMemberVO {
 		this.pwDate = pwDate;
 		this.status = status;
 		this.fileSize = fileSize;
-		this.recordPicName = recordPicName;
+		this.imgFileName = imgFileName;
 	}
 
 
@@ -252,13 +252,13 @@ public class YSWMemberVO {
 	}
 
 
-	public String getRecordPicName() {
-		return recordPicName;
+	public String getImgFileName() {
+		return imgFileName;
 	}
 
 
-	public void setRecordPicName(String recordPicName) {
-		this.recordPicName = recordPicName;
+	public void setImgFileName(String imgFileName) {
+		this.imgFileName = imgFileName;
 	}
 
 

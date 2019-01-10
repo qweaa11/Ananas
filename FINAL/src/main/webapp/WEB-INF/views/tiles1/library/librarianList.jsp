@@ -70,13 +70,28 @@ p{margin:3px;}
 	$(document).ready(function(){
 		
 		var searchWord = $("#searchWord").val();
-		librarianList(searchWord);
+		var sort = $("#sort").val();
+		librarianList(sort, searchWord);
 	});
 	
-	function librarianList(searchWord) {
-		var form_data = {"searchWord":searchWord}
+	function librarianList(sort, searchWord) {
+		var form_data = {"searchWord":searchWord,
+						 "sort":sort}
 		
-		ajax
+		$.ajax({
+			url:"librarianList.ana",
+			data:form_data,
+			type:GET,
+			dataType:"JSON",
+			success:function(json){
+				
+				
+				
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+			}
+		});
 		
 	}
 
@@ -88,7 +103,7 @@ p{margin:3px;}
       <div class="row">
         <div class="col-lg-12" class="">
         	<h3>등록 사서 카드</h3>
-        		<select>
+        		<select id="sort" name="sort">
         			<option value="name">사서명</option>
         			<option value="tel">전화번호</option>
         		</select>
