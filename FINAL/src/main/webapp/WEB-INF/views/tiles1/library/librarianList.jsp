@@ -86,7 +86,19 @@ p{margin:3px;}
 <body>
 	<div class="container" id="tourpackages-carousel">
       <div class="row">
-        <div class="col-lg-12"><h3>등록 사서 카드<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" /></h3><a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록</a></div>
+        <div class="col-lg-12" class="">
+        	<h3>등록 사서 카드</h3>
+        		<select>
+        			<option value="name">사서명</option>
+        			<option value="tel">전화번호</option>
+        		</select>
+        		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
+
+        	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="#">
+        		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록
+        	</a>
+        </div>
+        
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <div class="thumbnail">
               <div class="caption">
