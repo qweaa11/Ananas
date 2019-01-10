@@ -25,6 +25,7 @@ h4 {
 .multiselect:hover{
 	color:navy;
 }
+
 input[type="checkbox"].sideli{
 	width:14pt;
 	height:14pt;           
