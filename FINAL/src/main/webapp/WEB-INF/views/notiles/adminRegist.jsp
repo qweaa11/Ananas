@@ -69,31 +69,10 @@
 	          else $(this).parent().parent().find(".error").hide();
 	       });// end of $("#pwdcheck").blur(function())------------------------------------------------
 		
-	      // ==== 관리자 등록하기 ==== //
-	      var flag = false;
-	      $("#Submit").click(function(){
-	    	  alert("왔니?")
-	          $(".requiredInfo").each(function(){
-	             var data = $(".requiredInfo").val().trim(); 
-	             if(data==""){
-	                flag=true;
-	                return false;
-	             }
-	          });
-	          if(flag==true){
-	             alert("필수 정보를 입력해 주세요.");
-	             $(this).parent().find(".error").show();
-	             return;
-	          }
-	          else{
-	             $(this).parent().find(".error").hide();
-	             goRegister();
-	          }
-	      });
 	       
 	});// end of $(document).ready(function())--------------------
 	
-	function goRegister() {  
+	function adminRegist() {  
 	      
          var frm = document.adimFrm;
          frm.method = "POST";
@@ -204,7 +183,7 @@
 <!-- 등록하기 버튼 -->
 <div class="form-group">
 	<div class="col-xs-offset-3 col-xs-10">
-		<input name="Submit" type="submit" value="등록하기" class="btn btn-primary">
+		<button id="registUser" type="button" class="btn btn-primary" onClick="adminRegist()">등록하기</button> 
 	</div>
 </div>
 </form>
