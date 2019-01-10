@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="YSW">
+
+	<!-- ===== 아이디 중복 체크 요청. ===== -->
+	<select id="idDuplicate" parameterType="String" resultType="int">
+	
+		select count(*)
+		from member
+		where memberid = #{memberid}
+	
+	</select>
+
+
+	<!-- ===== 회원등록 ===== -->
+	<insert id="memberRegistEnd" parameterType="com.spring.bookmanage.member.YSWmodel.YSWMemberVO">
+	
+		insert into member (memberid, idx, pwd, name, email, phone, addr1, addr2, post, birth, gender, fileSize, imgFileName, regDate, lastDate, pwDate, status)
+		values(#{memberid}, member_seq.nextval, #{pwd}, #{name}, #{email}, #{phone}, #{addr1}, #{addr2}, #{post}, #{birth}, #{gender}, #{fileSize}, #{imgFileName}, sysdate, sysdate, sysdate, default)
+		
+	</insert>
+	
+	
+	<!--  ===== 조건을 이용해서 사서 목록 가져오기. ===== -->
+	<select id="findLibrarianListWithOption" parameterType="HashMap" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
+	
+		select idx, libid, libcode_fk, name, tel
+		from librarian
+		where status = 0 and 
+		${sort} like '%'||#{searchWord}||'%'
+	
+	
+	</select>
+
+
+	<!--  ===== 조건이 없을 때 사서 목록 가져오기. ===== -->
+	<select id="findLibrarianListWithoutOption" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
+	
+		select idx, libid, libcode_fk, name, tel
+		from librarian
+		where status = 0
+	
+	</select>
+
+
+</mapper>

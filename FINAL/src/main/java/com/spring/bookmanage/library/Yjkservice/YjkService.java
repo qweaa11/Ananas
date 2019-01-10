@@ -30,9 +30,9 @@ public class YjkService implements InterYjkService {
 	
 	// ==== 아이디 중복체크 ====
 	@Override
-	public int idDuplicateCheck(YjkVO yjkvo) {
+	public int idDuplicateCheck(String libid) {
 		
-		int n = dao.idDuplicateCheck(yjkvo);
+		int n = dao.idDuplicateCheck(libid);
 		
 		return n;
 	}
