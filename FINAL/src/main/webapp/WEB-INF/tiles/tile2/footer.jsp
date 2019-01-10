@@ -7,7 +7,7 @@
 			<div class="container">
 				<div class="row footer-bottom justify-content-between">
 					<div class="col-lg-12" style="vertical-align: middle;">
-						<p class="footer-text m-0" style="color: #ffffff;">우리들의 정보를 넣는 풋터</p>
+						<p class="footer-text m-0" style="color: #ffffff;">GODBOKS FOOTER</p>
 					</div>
 				</div>
 
