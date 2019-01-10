@@ -141,4 +141,3 @@ input[type="checkbox"].sideli{
 	<input type="hidden" name="category" value=""/>
 	<input type="hidden" name="field" value=""/>
 </form>
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
