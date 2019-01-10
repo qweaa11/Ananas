@@ -24,12 +24,11 @@ public class YSWMemberVO {
 	private int status; // 상태(회원,휴면,탈퇴 등)
 	private long fileSize; // 업로드시 사진 이름
 	private String recordPicName;	// 저장시 만들어진 사진이름
-	private MultipartFile attach;
-	
+	private MultipartFile attach;	
 	
 	public YSWMemberVO() {}
 	
-	
+
 	public YSWMemberVO(String memberid, int idx, String pwd, String name, String email, String phone, String addr1,
 					   String addr2, String post, String yyyy, String mm, String dd, String birth, int gender, String regDate,
 					   String lastDate, String pwDate, int status, String profilePicture, String recordPicName, long fileSize) 

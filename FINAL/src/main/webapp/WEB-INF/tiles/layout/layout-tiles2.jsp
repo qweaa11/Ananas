@@ -30,13 +30,11 @@
 		<div id="myheader">
 			<tiles:insertAttribute name="header"/>
 		</div>
-	
-		<div id="mysideinfo" class="col-lg-2 sideinfo" style="padding-left: 50px;">         
-			<tiles:insertAttribute name="sideinfo" />
-		</div>
-		
 		<div id="mycontent" class="col-lg-10" style="margin-top: 30px; float: left;">
 			<tiles:insertAttribute name="content"/>
+		</div>
+		<div id="mysideinfo" class="col-lg-2 sideinfo" style="">         
+			<tiles:insertAttribute name="sideinfo" />
 		</div>
 		<br style="clear: both;" />
 	</div>	

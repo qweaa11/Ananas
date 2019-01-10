@@ -5,12 +5,16 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>번호</th>
+				<th>번호(RNO)</th>
 				<th>이름</th>
 				<th>아이디</th>
+				<th>구분(연령대)</th>
 				<th>이메일</th>
 				<th>연락처</th>
 				<th>대여상태</th>
+				<th>대여일자</th>
+				<th>반납일자</th>
+				<th>연체일</th>
 			</tr>
 		</thead>
 		<tbody>
