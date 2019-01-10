@@ -102,7 +102,7 @@ input[type="checkbox"].sideli{
 				<li><input type="checkbox" id="category5" class="category sideli" value="A03"/><a onClick="" class="sideText">에세이</a></li>				
 				<li><input type="checkbox" id="category3" class="category sideli" value="A04"/><a onClick="" class="sideText">시</a></li>
 				
-				<li><input type="checkbox" id="category4" class="category sideli" value="A05"/><a onClick="" class="sideText">사전</a></li>
+				<li><input type="checkbox" id="category4" class="category sideli" value="A05"/><a onClick="" class="sideText">사전/논문</a></li>
 				
 				<li><input type="checkbox" id="category5" class="category sideli" value="A06"/><a onClick="" class="sideText">동화책</a></li>
 				<li><input type="checkbox" id="category5" class="category sideli" value="A07"/><a onClick="" class="sideText">잡지</a></li>
@@ -133,12 +133,8 @@ input[type="checkbox"].sideli{
 			</ul>
 		</div>
 
-<<<<<<< HEAD
 	</div>
-</div>
-</div>
-=======
-	</div>
+
 <form name="sidebar">
 	<input type="hidden" name="library" value=""/>
 	<input type="hidden" name="language" value=""/>
