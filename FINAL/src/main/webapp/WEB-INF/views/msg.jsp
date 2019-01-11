@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<script type="text/javascript">
 <<<<<<< HEAD
+<script type="text/javascript">
+
 	if(${msg != ""}) {
-		
 		alert("${msg}");
 	}
 	
 	location.href="${loc}";
 =======
+<script type="text/javascript">
 	if(${msg != ""}){
 		alert("${msg}");
 	}
