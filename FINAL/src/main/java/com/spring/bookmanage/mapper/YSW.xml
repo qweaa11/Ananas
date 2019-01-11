@@ -40,7 +40,6 @@
 	
 		select idx, libid, pwd, libcode_fk, name, tel, status
 		from librarian
-		where status = 0
 	
 	</select>
 

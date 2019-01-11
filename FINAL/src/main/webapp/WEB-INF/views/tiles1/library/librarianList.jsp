@@ -3,6 +3,8 @@
     
 <% String ctxPath = request.getContextPath(); %>
 
+
+
 <style type="text/css">
 
 .well {
@@ -61,16 +63,26 @@ p{margin:3px;}
 
 	$(document).ready(function(){
 		
-		console.log("1234");
+		//console.log("1234");
 		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
 		
+		librarianList(sort, searchWord);
+		
 	});
 	
-	function librarianList() {
+	function searchList(){
 		
-		console.log("으아");
+		var searchWord = $("#searchWord").val();
+		var sort = $("#sort").val();
+		
+		librarianList(sort, searchWord);
+	}
+	
+	function librarianList(sort, searchWord) {
+		
+		//console.log("으아");
 		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
@@ -128,7 +140,7 @@ p{margin:3px;}
         			<option value="tel">전화번호</option>
         		</select>
         		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
-        		<button type="button" onClick="librarianList()">검색</button>
+        		<button type="button" onClick="searchList()">검색</button>
 
         	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="#">
         		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록
