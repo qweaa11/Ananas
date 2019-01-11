@@ -18,9 +18,9 @@ public interface InterYSWService {
 	int memberRegistEnd(YSWMemberVO membervo);
 
 	//===== 조건을 이용해서 사서 목록 가져오기. =====
-	List<YjkVO> findLibrarianListWithOption(HashMap<String, String> paraMap);
+	List<YjkVO> findListWithOption(HashMap<String, String> paraMap);
 
 	//===== 조건이 없을 때 사서 목록 가져오기. =====
-	List<YjkVO> findLibrarianListWithoutOption();
+	List<YjkVO> findListNoneOption();
 	
 }

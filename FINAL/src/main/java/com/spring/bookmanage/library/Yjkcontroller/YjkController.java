@@ -1,17 +1,23 @@
 package com.spring.bookmanage.library.Yjkcontroller;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.common.FileManager;
+import com.spring.bookmanage.library.Yjkmodel.LibraryVO;
 import com.spring.bookmanage.library.Yjkmodel.YjkVO;
 import com.spring.bookmanage.library.Yjkservice.InterYjkService;
 
@@ -32,9 +38,13 @@ public class YjkController {
 	
 	// ==== 관리자 등록 페이지 보여주기 ==== //
 	@RequestMapping(value="/adminRegist.ana",method= {RequestMethod.GET})
-	public String adminRegistEnd() {
+	public String adminRegist(HttpServletRequest req) {
+
+		List<LibraryVO> libInfo = service.getliblibrary();
 		
-		return "adminRegist.notiles";
+		req.setAttribute("libInfo", libInfo);
+		
+		return "library/adminRegist.tiles1";
 	}
 	
 	// ==== 관리자 등록하기 ==== //
@@ -47,14 +57,21 @@ public class YjkController {
 		String pwd = req.getParameter("pwd");
 		String name = req.getParameter("name");
 		String tel = req.getParameter("tel");
-		String libcode_fk = req.getParameter("libcode_fk");
+		String libcode = req.getParameter("libcode");
 		String status = req.getParameter("status");
+
+		System.out.println(libid);
+		System.out.println(pwd);
+		System.out.println(name);
+		System.out.println(tel);
+		System.out.println(libcode);
+		System.out.println(status);
 		
 		adminvo.setLibid(libid);
 		adminvo.setPwd(pwd);
 		adminvo.setName(name);
 		adminvo.setTel(tel);
-		adminvo.setLibcode_fk(libcode_fk);
+		adminvo.setLibcode_fk(libcode);
 		adminvo.setStatus(status);
 		
 		int n = service.adminRegistEnd(adminvo);
@@ -81,7 +98,7 @@ public class YjkController {
 			return "msg";
 		}
 
-	}
+	}// end of public String adminRegistEnd()--------------
 	
 	// ==== 아이디 중복체크 ==== //
 	@RequestMapping(value="/idDuplicateCheck.ana",method= {RequestMethod.GET})

@@ -259,4 +259,5 @@
 
 		</tbody>
 	</table>
+	
 </div>

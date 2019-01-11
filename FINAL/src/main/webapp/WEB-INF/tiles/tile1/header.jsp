@@ -34,7 +34,7 @@
 				
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-						<li><a href="./">로그아웃</a></li>
+						<li><a href="logout.ana">로그아웃</a></li>
 					</ul>
 				</div>
 				
@@ -45,7 +45,7 @@
 		
 	</div>
 	
-	<div class="container" style="margin-top: 50px;">
+	<div class="container" style="margin-top: 40px;">
 		<div id="wrapper" style="clear: both;" class="toggled">      
 		        
 		    

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    // 인코딩
+    request.setCharacterEncoding("UTF-8");
+%>
+
 
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -72,12 +77,12 @@
 	       
 	});// end of $(document).ready(function())--------------------
 	
-	function adminRegist() {  
+	function adminRegistEnd() {  
 	      
-         var frm = document.adimFrm;
-         frm.method = "POST";
-         frm.action = "adminRegistEnd.ana";
-         frm.submit();
+        var frm = document.adimFrm;
+        frm.action = "adminRegistEnd.ana";
+        frm.method = "POST";
+        frm.submit();
 	      
 	   }
 
@@ -144,12 +149,12 @@
 
 <!-- 도서관 번호 입력 -->
 <div class="form-group">
-	<label class="control-label col-sm-3">도서관 번호 <span class="text-danger">*</span></label>
+	<label class="control-label col-sm-3">도서관 이름 <span class="text-danger">*</span></label>
 		<div class="col-md-8 col-sm-9">
 			<select class="form-control requiredInfo"  name="libcode" style="width: 130px" >
-				<c:forEach items="libcode">
-					<option value="">도서관 번호</option>
-					<option value="1">도서관 번호</option>
+					<option value="">도서관 이름</option>
+				<c:forEach var="lib" items="${libInfo}">
+					<option value="${lib.libcode}">${lib.name}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -161,7 +166,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-					<input style="width: 260px" type="text" class="form-control requiredInfo" name="contactnum" id="contactnum" placeholder="휴대전화 번호를 입력해주세요" value="">
+					<input style="width: 260px" type="text" class="form-control requiredInfo" name="tel" id="tel" placeholder="휴대전화 번호를 입력해주세요" value="">
 			</div>
 		</div>
 </div>
@@ -171,7 +176,7 @@
 	<label class="control-label col-sm-3">관리자 등급<span class="text-danger">*</span></label>
 		<div style="margin-left: 0%" class="col-xs-8">
 			<div class="form-group" style="margin-left: 0%">
-				<select class="form-control"  name="grade" style="width: 78px" >
+				<select class="form-control"  name="status" style="width: 78px" >
 					<option value="">등급</option>
 					<option value="1">사서</option>
 					<option value="2">도서관장</option>
@@ -183,7 +188,7 @@
 <!-- 등록하기 버튼 -->
 <div class="form-group">
 	<div class="col-xs-offset-3 col-xs-10">
-		<button id="registUser" type="button" class="btn btn-primary" onClick="adminRegist()">등록하기</button> 
+		<button id="registUser" type="button" class="btn btn-primary" onClick="adminRegistEnd()">등록하기</button> 
 	</div>
 </div>
 </form>
