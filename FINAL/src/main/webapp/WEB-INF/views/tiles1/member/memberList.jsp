@@ -11,7 +11,7 @@
 				<th style="text-align: center;">구분(연령대)</th>
 				<th style="text-align: center;">이메일</th>
 				<th style="text-align: center;">연락처</th>
-				<th style="text-align: center;">대여상태</th>
+				<th style="text-align: center;">회원상태</th>
 				<th style="text-align: center;">대여일자</th>
 				<th style="text-align: center;">반납일자</th>
 			</tr>

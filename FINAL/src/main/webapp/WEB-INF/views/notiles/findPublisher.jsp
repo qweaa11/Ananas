@@ -30,6 +30,7 @@
 		// 검색 버튼을 눌렀을때.
 		$("#searchPublisher").click(function(){
 			$("#publisherDisplay").empty();
+			resultHTML = "";
 			count = 0;
 			
 			var searchWord = $("#searchWord").val();	// 검색어를 searchWord변수에 넣는다.
@@ -57,16 +58,16 @@
 		
 		
 		$.ajax({
-			url:"http://openapi.sdm.go.kr:8088/73664e51596462613931546f536775/json/SeodaemunPublisherPrintBiz/"+startNo+"/"+endNo,
+			url:"http://openapi.sdm.go.kr:8088/73664e51596462613931546f536775/xml/SeodaemunPublisherPrintBiz/"+startNo+"/"+endNo,
 		// 	data:form_data,
 			type:"GET",
-			dataType:"JSON",
-			success:function(json){
-			    
+			dataType:"XML",
+			success:function(XML){
+				
+				var size = 0;
 				console.log("검색어확인용2: "+searchWord);
 				
-				$.each(json, function(entryIndex, entry){
-					
+				$(XML).find('row').each(function(){
 					
 					
 					if(searchWord == "" || searchWord == null)
@@ -80,51 +81,41 @@
 					{// 검색어가 있을시 
 						console.log("검색어확인용3: "+searchWord);
 						
-						var str_json = JSON.stringify(entry.row);
+						var COMPANY = $(this).find('COMPANY').text();
+						var ADDR = $(this).find('ADDR').text();
+						var TEL = $(this).find('TEL').text();
+						var BIZ_GUBUN = $(this).find('BIZ_GUBUN').text();
 						
-					
-						console.log("typeof str_json : "+ typeof str_json);
-						
-						console.log("str_json : "+ str_json);
-						/* for(var i=0; i < str_json.length;i++){
-							<!--console.log(str_json[i].COMPANY); -->
-						} */
-							if(str_json.COMPANY.indexOf(str_json.COMPANY, searchWord) != -1)
+							if(COMPANY.indexOf(searchWord) != -1)
 							{
-								console.log("확인용~~~~~~~~~~~~~~~: ");			  
+								cnt++;
+								
+								
+								
 								resultHTML += "<tr>" +
 												  "<td>"+cnt+"</td>"+
-												  "<td><a onClick='sendBack(\""+entry.COMPANY+"\");'>"+entry.COMPANY+"</a></td>"+
+												  "<td><a onClick='sendBack(\""+COMPANY+"\");'>"+COMPANY+"</a></td>"+
 												  				  // sendBack()함수에 출판사 이름을 담아 넘김
-												  "<td>"+entry.ADDR+"</td>"+
-												  "<td>"+entry.TEL+"</td>"+
-												  "<td style='text-align: center;'>"+entry.BIZ_GUBUN+"</td>"+
-											  "</tr>" ;
-											  
-								console.log("resultHTML: "+ resultHTML);			  
-											  
+												  "<td>"+ADDR+"</td>"+
+												  "<td>"+TEL+"</td>"+
+												  "<td style='text-align: center;'>"+BIZ_GUBUN+"</td>"+
+											  "</tr>" ;	  
+								size++;			  
 							}
 							else{
 								console.log("확인용###############: ");	
 							}
 						
-						
-						
 					} 
-					
-					
-					
+					 
 				});
 				
-				
 				$("#publisherDisplay").append(resultHTML); 
-				
-				console.log("json.SeodaemunPublisherPrintBiz.row.length : "+ json.SeodaemunPublisherPrintBiz.row.length);
 				
 				
 				count++;
 			 	console.log("count"+count);
-				if( json.SeodaemunPublisherPrintBiz.row.length % 1000 == 0){
+			 	if(size % 1000 == 0){
 					showPublisher(1000*count+1, 1000*count+1000);
 				}
 				
@@ -160,43 +151,42 @@
 	{
 		
 		$.ajax({
-			url:"http://openapi.sdm.go.kr:8088/73664e51596462613931546f536775/json/SeodaemunPublisherPrintBiz/"+startNo+"/"+endNo,
+			url:"http://openapi.sdm.go.kr:8088/73664e51596462613931546f536775/xml/SeodaemunPublisherPrintBiz/"+startNo+"/"+endNo,
 		// 	data:form_data,
 			type:"GET",
-			dataType:"JSON",
-			success:function(json){
+			dataType:"XML",
+			success:function(XML){
 				var resultHTML = "";
 				
+				var size = 0;
 				
-				
-				$.each(json.SeodaemunPublisherPrintBiz.row, function(entryIndex, entry){
+				$(XML).find('row').each(function(){
 					cnt++;
 					
-					
-					
+					var COMPANY = $(this).find('COMPANY').text();
+					var ADDR = $(this).find('ADDR').text();
+					var TEL = $(this).find('TEL').text();
+					var BIZ_GUBUN = $(this).find('BIZ_GUBUN').text();
 					
 					resultHTML += "<tr>" +
 									  "<td>"+cnt+"</td>"+
-									  "<td><a onClick='sendBack(\""+entry.COMPANY+"\");'>"+entry.COMPANY+"</a></td>"+
+									  "<td><a onClick='sendBack(\""+COMPANY+"\");'>"+COMPANY+"</a></td>"+
 									  				  // sendBack()함수에 출판사 이름을 담아 넘김
-									  "<td>"+entry.ADDR+"</td>"+
-									  "<td>"+entry.TEL+"</td>"+
-									  "<td style='text-align: center;'>"+entry.BIZ_GUBUN+"</td>"+
+									  "<td>"+ADDR+"</td>"+
+									  "<td>"+TEL+"</td>"+
+									  "<td style='text-align: center;'>"+BIZ_GUBUN+"</td>"+
 								  "</tr>" ;
-					
-						  
+					 
+					size++;	  
 				});
 				
 				
 				$("#publisherDisplay").append(resultHTML); 
 				
 				
-				console.log("json.SeodaemunPublisherPrintBiz.row.length : "+ json.SeodaemunPublisherPrintBiz.row.length);
-				
-				
 			 	count++;
-			 	console.log("count"+count);
-				if(json.SeodaemunPublisherPrintBiz.row.length % 1000 == 0){
+			 	console.log("count: "+count);
+				if(size % 1000 == 0){
 					showPublisher(1000*count+1, 1000*count+1000);
 				}
 				

@@ -11,10 +11,10 @@
  	<select id="getLoginMember" parameterType="HashMap" resultType="com.spring.bookmanage.login.BSBmodel.BSBMemberVO">
  	
 	
-		select libid, name, tel
-		from librarian
+		select memberid, name
+		from member
 		where status = 0 and
-			  libid = #{LIBID} and
+			  memberid = #{MEMBERID} and
 			  pwd = #{PWD}
 		 	
  	</select> 
