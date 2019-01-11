@@ -163,11 +163,12 @@ public class MemberVO {
 	
 	
 	public String getShowGender() {
-		if("1".equals(gender))
+		if(1 == gender)
 			return "남자";
 		else
 			return "여자";
 	}
+	
 	
 	
 	
