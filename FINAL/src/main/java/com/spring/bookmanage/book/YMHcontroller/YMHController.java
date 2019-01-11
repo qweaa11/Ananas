@@ -22,7 +22,5 @@ public class YMHController
 		return "findPublisher.notiles";
 	}// end of findPublisher()----------------------------------------------
 	
-	
-	
 }
 

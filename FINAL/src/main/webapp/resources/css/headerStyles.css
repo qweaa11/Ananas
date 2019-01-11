@@ -130,7 +130,7 @@
         visibility:hidden;
         
     }
-  #wrapper.toggled   i {
+  #wrapper.toggled   img {
  float:right;
  } 
 
@@ -182,7 +182,7 @@
     #wrapper.toggled span {
         visibility:visible;
         position:relative;
-        left:70px;
+        left:10px;
         bottom:13px;
         
     }
@@ -191,11 +191,11 @@
         visibility:hidden;
         
     }
-  #wrapper.toggled   i {
+  #wrapper.toggled   img {
  float:right;
  } 
  
-  #wrapper   i {
+  #wrapper   img {
  float:right;
  
  } 
