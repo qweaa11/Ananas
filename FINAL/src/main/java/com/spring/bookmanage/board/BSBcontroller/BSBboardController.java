@@ -27,6 +27,8 @@ public class BSBboardController {
 	
 	@RequestMapping(value="/board.ana",method= {RequestMethod.GET})
 	public String adminLogin(HttpServletRequest req) {
+		
+		
 
 		return "board/board.tiles1";
 	}
