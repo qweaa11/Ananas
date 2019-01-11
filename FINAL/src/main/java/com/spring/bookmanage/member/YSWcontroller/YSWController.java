@@ -3,6 +3,7 @@ package com.spring.bookmanage.member.YSWcontroller;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -203,16 +204,17 @@ public class YSWController {
 	//===== 사서 목록 페이지 요청. =====
 	@RequestMapping(value="/librarianList.ana", method= {RequestMethod.GET})
 	public String librarianList(HttpServletRequest req) {
-					
+		
 		return "library/librarianList.tiles1";  
 	}
 	
 	
 	//===== 사서 목록 가져오기. =====
 	@RequestMapping(value="/librarianListEnd.ana", method= {RequestMethod.GET})
-	public HashMap<String,Object> librarianListEnd(HttpServletRequest req, YjkVO yjkvo) {
+	@ResponseBody
+	public List<HashMap<String,Object>> librarianListEnd(HttpServletRequest req) {
 		
-		HashMap<String,Object> list = new HashMap<String,Object>();
+		List<HashMap<String,Object>> listMap = new ArrayList<HashMap<String,Object>>();
 		List<YjkVO> librarianList = null;
 
 		String sort = req.getParameter("sort");
@@ -221,24 +223,46 @@ public class YSWController {
 		System.out.println("sort : " + sort);
 		System.out.println("searchWord : " + searchWord);
 		
-		if(sort != null && !sort.equals("") && !sort.equalsIgnoreCase("null")) {
+		if(sort != null && !sort.trim().equals("") && !sort.equalsIgnoreCase("null")) {
 				
 			HashMap<String, String> paraMap = new HashMap<String, String>();
 			paraMap.put("sort", sort);
 			paraMap.put("searchWord", searchWord);
 			
-			librarianList = service.findLibrarianListWithOption(paraMap);
+			librarianList = service.findListWithOption(paraMap);
 			
-			list.put("librarianList", librarianList);
+			for (YjkVO yjkvo : librarianList) {
+				
+				 HashMap<String, Object> map = new HashMap<String, Object>();
+				 
+				 map.put("LIBID", yjkvo.getLibid());
+				 map.put("LIBCODE_FK", yjkvo.getLibcode_fk());
+				 map.put("IDX", yjkvo.getIdx());
+				 map.put("NAME", yjkvo.getName());
+				 map.put("TEL", yjkvo.getTel());
+				 
+				 listMap.add(map);
+			}
 		}
 		else {
 			
-			librarianList = service.findLibrarianListWithoutOption();
+			librarianList = service.findListNoneOption();
 			
-			list.put("librarianList", librarianList);
+			for (YjkVO yjkvo : librarianList) {
+				
+				 HashMap<String, Object> map = new HashMap<String, Object>();
+				 
+				 map.put("LIBID", yjkvo.getLibid());
+				 map.put("LIBCODE_FK", yjkvo.getLibcode_fk());
+				 map.put("IDX", yjkvo.getIdx());
+				 map.put("NAME", yjkvo.getName());
+				 map.put("TEL", yjkvo.getTel());
+				 
+				 listMap.add(map);
+			}
 		}
 		
-		return list;  
+		return listMap;  
 	}
 
 

@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>사서 목록</title>
-</head>
+    
+<% String ctxPath = request.getContextPath(); %>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 
 <style type="text/css">
 
@@ -69,19 +63,37 @@ p{margin:3px;}
 
 	$(document).ready(function(){
 		
+		//console.log("1234");
+		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
+		
 		librarianList(sort, searchWord);
+		
 	});
 	
+	function searchList(){
+		
+		var searchWord = $("#searchWord").val();
+		var sort = $("#sort").val();
+		
+		librarianList(sort, searchWord);
+	}
+	
 	function librarianList(sort, searchWord) {
+		
+		//console.log("으아");
+		
+		var searchWord = $("#searchWord").val();
+		var sort = $("#sort").val();
+		
 		var form_data = {"searchWord":searchWord,
 						 "sort":sort}
 		
 		$.ajax({
-			url:"librarianList.ana",
+			url:"librarianListEnd.ana",
 			data:form_data,
-			type:GET,
+			type:"GET",
 			dataType:"JSON",
 			success:function(json){
 				
@@ -104,7 +116,7 @@ p{margin:3px;}
 		                	  "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card'>Vrify Now</button>"+
 		                	  "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>";
 							
-				}
+				});
 				
 				$("#resultList").html(result);
 			},
@@ -128,6 +140,7 @@ p{margin:3px;}
         			<option value="tel">전화번호</option>
         		</select>
         		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
+        		<button type="button" onClick="searchList()">검색</button>
 
         	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="#">
         		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록
