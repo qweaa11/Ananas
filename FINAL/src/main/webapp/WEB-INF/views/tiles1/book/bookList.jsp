@@ -5,7 +5,7 @@
 <style>
 ul.sideinfo {
 	list-style: none;
-	font-size: 10pt;
+	font-size: 8pt;
 	font-family:'NanumGothic';
 }
 
@@ -27,9 +27,10 @@ div.sideHeader {
 	color:navy;
 }
 
+
 input[type="checkbox"].sideli{
-	width:14pt;
-	height:14pt;           
+	width:11pt;
+	height:11pt;           
 }
 #btnFindBook{padding: .2em .4em;
 	font-size:13pt;
@@ -77,6 +78,9 @@ input[type="checkbox"].sideli{
 		
 	}
 </script>	
+<div class="container">
+<div class="row">
+	<div class="col-lg-8">
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -156,12 +160,13 @@ input[type="checkbox"].sideli{
 			
 		</tbody>
 	</table>
-
-	<div style="font-weight:bold; font-family: 'NanumGothicBold'; border: 0px solid red; color:#0088cc; font-size:15pt;">조회 조건 
+</div>
+<div class="col-lg-offset-1 col-lg-3">
+	<div style="font-weight:bold; font-family: 'NanumGothicBold'; border: 0px solid red; color:#0088cc; font-size: 12pt;">조회 조건 
 		<button type="button" id="btnFindBook" style="margin-left:10px;" onClick="findBookListBysidebar();">검색</button>  </div>
 	         
-	<div style="float: left; border: 1px solid gray; margin-top:5pt;">        
-		<div style="width: 230px;">
+	<div style="float: left; border: 1px solid gray; margin-top:5pt;" class="sidebar">        
+		<div style="width: 200px;" >
 			<div>
 				<div class="sideHeader" style="">도서관</div>
 			</div>    
