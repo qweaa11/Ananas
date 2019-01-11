@@ -8,57 +8,82 @@
 		<div class="row">
 			<div class="col">
 				<div class="blog_posts d-flex flex-row align-items-start justify-content-between">
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">   
-						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='prodList.do'">
-							<div class="blog_image" style="background-image:url(images/blog_1.jpg)"></div>
-							<div class="blog_text" style="text-align: center;">도서목록</div>
-							<div class="blog_button"><a href="prodList.do">이동하기</a></div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
-						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='prodList.do'">
-							<div class="blog_image" style="background-image:url(images/blog_1.jpg)"></div>
-							<div class="blog_text" style="text-align: center;">회원목록</div>
-							<div class="blog_button"><a href="prodList.do">이동하기</a></div>
-						</div>
-					</div>
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;"> 
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
 						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='prodList.do'" align="center">
-							<div class="blog_image" style="background-image:url(images/blog_1.jpg)"></div>
-							<div class="blog_text" style="text-align: center;">대출/예약/반납</div>
-							<div class="blog_button"><a href="prodList.do">이동하기</a></div>
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='bookList.ana'">
+							<div class="blog_image" style="padding: 15px;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
+									<img src="resources/img/home-logo/home-logo2.png" style="width: 200px; margin: auto;"/>
+								</div> 
+							</div>
+							<div class="blog_text" style="text-align: center;">도서목록</div>
+							<div class="blog_button"><a href="bookList.ana">이동하기</a></div> 
 						</div>
 					</div>
 					
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
 						<!-- Blog post -->
 						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='prodList.do'">
-							<div class="blog_image" style="background-image:url(resources/img/home-logo/home-logo1.png)"></div>
-							<div class="blog_text" style="text-align: center;">도서관 목록</div>
-							<div class="blog_button"><a href="prodList.do">이동하기</a></div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
-						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='prodList.do'">
-							<div class="blog_image" style="background-image:url(images/blog_1.jpg)"></div>
-							<div class="blog_text" style="text-align: center;">통계</div>
-							<div class="blog_button"><a href="prodList.do">이동하기</a></div>
+							<div class="blog_image" style="padding: 15px;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
+									<img src="resources/img/home-logo/home-logo3.png" style="width: 200px; margin: auto;"/>
+								</div> 
+							</div>
+							<div class="blog_text" style="text-align: center;">회원목록</div> 
+							<div class="blog_button"><a href="memberLsit.ana">이동하기</a></div>
 						</div>
 					</div>
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;"> 
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
 						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='prodList.do'" align="center">
-							<div class="blog_image" style="background-image:url(images/blog_1.jpg)"></div>
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
+							<div class="blog_image" style="padding: 15px;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
+									<img src="resources/img/home-logo/home-logo4.png" style="width: 200px; margin: auto;"/>
+								</div> 
+							</div>
+							<div class="blog_text" style="text-align: center;">대출</div> 
+							<div class="blog_button"><a href="#">이동하기</a></div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+						<!-- Blog post -->
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
+							<div class="blog_image" style="padding: 15px;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
+									<img src="resources/img/home-logo/home-logo1.png" style="width: 200px; margin: auto;"/>
+								</div>
+							</div>
+							<div class="blog_text" style="text-align: center;">도서관 목록</div>
+							<div class="blog_button"><a href="#">이동하기</a></div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+						<!-- Blog post -->
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
+							<div class="blog_image" style="padding: 15px;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
+									<img src="resources/img/home-logo/home-logo6.png" style="width: 200px; margin: auto;"/>
+								</div>
+							</div>
+							<div class="blog_text" style="text-align: center;">통계</div>
+							<div class="blog_button"><a href="#">이동하기</a></div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+						<!-- Blog post -->
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
+							<div class="blog_image" style="padding: 15px;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
+									<img src="resources/img/home-logo/home-logo5.png" style="width: 200px; margin: auto;"/>
+								</div>
+							</div>
 							<div class="blog_text" style="text-align: center;">사서 게시판</div>
-							<div class="blog_button"><a href="prodList.do">이동하기</a></div>
+							<div class="blog_button"><a href="#">이동하기</a></div>
 						</div>
 					</div>
 					
