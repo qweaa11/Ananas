@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    // 인코딩
+    request.setCharacterEncoding("UTF-8");
+%>
+
 
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,7 +19,8 @@
 		
 		$("#error_id").empty();
 	    $("#good_id").empty();
-	      
+	    
+	    // ==== 아이디 중복체크 ==== //
         $("#idcheck").click(function(){
     	  
     	  if($("#libid").val().trim() == "") {
@@ -22,7 +28,8 @@
     		  return;
     	  }
     	  
-    	  var form_data = {userid:$("#libid").val()};
+    	  var form_data = {libid:$("#libid").val()};
+    	
 			$.ajax({
 				url:"<%=request.getContextPath() %>/idDuplicateCheck.ana",
 				type:"GET",
@@ -67,7 +74,17 @@
 	          else $(this).parent().parent().find(".error").hide();
 	       });// end of $("#pwdcheck").blur(function())------------------------------------------------
 		
+	       
 	});// end of $(document).ready(function())--------------------
+	
+	function adminRegistEnd() {  
+	      
+        var frm = document.adimFrm;
+        frm.action = "adminRegistEnd.ana";
+        frm.method = "POST";
+        frm.submit();
+	      
+	   }
 
 </script>
 
@@ -89,7 +106,7 @@
 		<div class="col-md-8 col-sm-9">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-					<input style="width: 260px" type="text" class="form-control" name="libid" id="libid" placeholder="아이디를 입력해주세요" value="" required>
+					<input style="width: 260px" type="text" class="form-control requiredInfo" name="libid" id="libid" placeholder="아이디를 입력해주세요" value="" required>
 			</div>
 			<a id="idcheck" style="cursor: pointer;"><img src="resources/img/idcheck.gif"></a>
 			<span id="error_id" style="color: red; font-weight: bold;"></span>
@@ -104,7 +121,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input style="width: 260px" type="password" class="form-control" name="pwd" id="pwd" placeholder="비밀번호 (5-15 글자)" value="">
+					<input style="width: 260px" type="password" class="form-control requiredInfo" name="pwd" id="pwd" placeholder="비밀번호 (5-15 글자)" value="">
 			</div>
 			<span id="error_passwd" style="color: red">영문자,숫자,특수기호가 혼합된 8~15 글자로만 입력가능합니다.</span>   
 		</div>
@@ -116,7 +133,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input style="width: 260px" type="password" class="form-control" name="pwdcheck" id="pwdcheck" placeholder="비밀번호 재확인" value="">
+					<input style="width: 260px" type="password" class="form-control requiredInfo" name="pwdcheck" id="pwdcheck" placeholder="비밀번호 재확인" value="">
 			</div>
 			<span class="error" style="color: red">암호가 일치하지 않습니다.</span>  
 		</div>
@@ -126,18 +143,18 @@
 <div class="form-group">
 	<label class="control-label col-sm-3">이름 <span class="text-danger">*</span></label>
 		<div class="col-md-8 col-sm-9">
-			<input style="width: 299px" type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요" value="">
+			<input style="width: 299px" type="text" class="form-control requiredInfo" name="name" id="name" placeholder="이름을 입력해주세요" value="">
 		</div>
 </div>
 
 <!-- 도서관 번호 입력 -->
 <div class="form-group">
-	<label class="control-label col-sm-3">도서관 번호 <span class="text-danger">*</span></label>
+	<label class="control-label col-sm-3">도서관 이름 <span class="text-danger">*</span></label>
 		<div class="col-md-8 col-sm-9">
-			<select class="form-control"  name="libcode" style="width: 130px" >
-				<c:forEach items="libcode">
-					<option value="">도서관 번호</option>
-					<option value="1">도서관 번호</option>
+			<select class="form-control requiredInfo"  name="libcode" style="width: 130px" >
+					<option value="">도서관 이름</option>
+				<c:forEach var="lib" items="${libInfo}">
+					<option value="${lib.libcode}">${lib.name}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -149,7 +166,7 @@
 		<div class="col-md-5 col-sm-8">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-					<input style="width: 260px" type="text" class="form-control" name="contactnum" id="contactnum" placeholder="휴대전화 번호를 입력해주세요" value="">
+					<input style="width: 260px" type="text" class="form-control requiredInfo" name="tel" id="tel" placeholder="휴대전화 번호를 입력해주세요" value="">
 			</div>
 		</div>
 </div>
@@ -159,7 +176,7 @@
 	<label class="control-label col-sm-3">관리자 등급<span class="text-danger">*</span></label>
 		<div style="margin-left: 0%" class="col-xs-8">
 			<div class="form-group" style="margin-left: 0%">
-				<select class="form-control"  name="grade" style="width: 78px" >
+				<select class="form-control"  name="status" style="width: 78px" >
 					<option value="">등급</option>
 					<option value="1">사서</option>
 					<option value="2">도서관장</option>
@@ -171,7 +188,7 @@
 <!-- 등록하기 버튼 -->
 <div class="form-group">
 	<div class="col-xs-offset-3 col-xs-10">
-		<input name="Submit" type="submit" value="등록하기" class="btn btn-primary">
+		<button id="registUser" type="button" class="btn btn-primary" onClick="adminRegistEnd()">등록하기</button> 
 	</div>
 </div>
 </form>

@@ -38,6 +38,22 @@
 	    box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,.1);
 	    background-color:#fff;
 	}
+	.btn3d.btn-primary {
+	    box-shadow:0 0 0 1px #417fbd inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #4D5BBE, 0 8px 8px 1px rgba(0,0,0,0.5);
+	    background-color:#4274D7;
+	}
+	.btn3d.btn-primary:active, .btn3d.btn-primary.active {
+	    box-shadow:0 0 0 1px #417fbd inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
+	    background-color:#4274D7;
+	}
+	.btn3d.btn-success {
+	    box-shadow:0 0 0 1px #31c300 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #5eb924, 0 8px 8px 1px rgba(0,0,0,0.5);
+	    background-color:#78d739;
+	}
+	.btn3d.btn-success:active, .btn3d.btn-success.active {
+	    box-shadow:0 0 0 1px #30cd00 inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
+	    background-color: #78d739;
+	}
 	.btn3d.btn-danger {
 	    box-shadow:0 0 0 1px #b93802 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #AA0000, 0 8px 8px 1px rgba(0,0,0,0.5);
 	    background-color:#D73814;
@@ -74,7 +90,7 @@
 	        </tr>
 	        <tr>
 	          <th>주민번호</th>
-	            <td>910704-1xxxxxx</td>
+	            <td>19910704</td>
 	          <th>나이</th>
 	            <td>18살(전체,아동,청소년,성인)</td>
 	        </tr>
@@ -88,7 +104,7 @@
 	          <th>성별</th>
 	          	<td>남자</td>	          
 	          <th>회원상태</th>
-	            <td>휴면 or 탈퇴</td>
+	            <td>활동, 휴면, 정지, 탈퇴</td>
 	        </tr>
 	        <tr>
 	          <th>가입일자</th>
@@ -101,47 +117,12 @@
 </div>
 
 <div class="container">	        
-	<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 휴면(ON)</button>
-	<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 휴면(OFF)</button>        
+	<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 활동</button>
+	<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>
+	<button type="button" class="btn btn-success btn-lg btn3d"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
 	<button type="button" class="btn btn-danger btn-lg btn3d"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>       	
 </div>
 
-<br/>
-<br/>
-<br/>
-<div class="container">
-	<h1>회원 대여정보</h1>
-	<table class="table">
-	    <tbody>
-	        <tr>
-	          <th>총 대여권수</th>
-	            <td>100권</td>
-	          <th>총 반납권수</th>
-	          	<td>100권</td>
-	          <th>총 미반납권수</th>
-	          	<td>0권</td>
-	          <th>총 분실권수</th>
-	          	<td>0권</td>
-	        </tr>	        
-	        <tr>
-	          <th>총 연체일</th>
-	            <td>80일</td>
-	          <th>총 연체료</th>
-	          	<td>10,000원</td>
-	          <th>연체료 납액</th>
-	          	<td>7,000원</td>
-	          <th>연체료 미납액</th>
-	          	<td>3,000</td>
-	        </tr>
-	        <tr>
-	          <th>현재 상태</th>
-	            <td>대여,연체,분실</td>
-	          <th>현재 대여권수</th>
-	          	<td>4권</td>	          
-	        </tr>
-	    </tbody>
-	</table>
-</div>
 
 
 <br/>
@@ -170,6 +151,54 @@
 	</div>
 </div>
 
+<div class="container">
+  <div class="row">
+   <div class="col-md-4">
+	<table class="table">
+	    <tbody>
+	        <tr>
+	          <th>총 도서대여</th>
+	            <td>10권</td>
+	    	</tr>
+	    	<tr>        
+	          <th>총 도서반납</th>
+	          	<td style="color: blue;">8권</td>
+	        </tr>
+	        <tr> 	
+	          <th>총 도서미반납</th>
+	          <td style="color: red;">2권</td>
+	        </tr>
+	        <tr>  	          	
+	          <th>총 도서분실</th>
+	          	<td>0권</td>
+	        </tr>	        	     	        	       
+	    </tbody>
+	</table>
+   </div>
+   <div class="col-md-4 col-md-offset-4">
+	<table class="table">
+	    <tbody>
+	        <tr>
+	          <th>도서대여</th>
+	            <td>2권</td>
+	    	</tr>
+	    	<tr>        
+	          <th>도서연장신청</th>
+	          	<td>1권</td>
+	        </tr>
+	        <tr> 	
+	          <th>예약</th>
+	          <td>2019-01-14 월요일</td>
+	        </tr>
+	        <tr>  	          	
+	          <th>대여유무</th>
+	          	<td style="color: red;">가능 or 불가</td>
+	        </tr>	        	     	        	       
+	    </tbody>
+	</table>
+   </div>
+  </div>	
+</div>
 
 <div class="container">
 	<table class="table">
@@ -192,31 +221,31 @@
 		<tbody>
 			<tr>
 				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
+				<td>2018-12-24</td>
+				<td>2018-12-31</td>
+				<td>0</td>
+				<td>0</td>
+				<td>12345</td>
+				<td>자바의 정석</td>
+				<td>박민규</td>
+				<td>민후당</td>
+				<td>자기개발</td>
+				<td>대출</td>
+				<td>0원</td>
 			</tr>
 			<tr>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
+				<td>2</td>
+				<td>2018-12-24</td>
+				<td>2018-12-31</td>
+				<td>0</td>
+				<td>0</td>
+				<td>23125</td>
+				<td>해리포터와 마법사의 돌</td>
+				<td>민후</td>
+				<td>서림</td>
+				<td>소설</td>
+				<td>대출</td>
+				<td>0원</td>
 			</tr>
 			<tr>
 				<td>1</td>

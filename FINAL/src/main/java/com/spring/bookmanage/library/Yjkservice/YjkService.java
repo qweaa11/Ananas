@@ -1,10 +1,14 @@
 package com.spring.bookmanage.library.Yjkservice;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.library.Yjkmodel.InterYjkDAO;
+import com.spring.bookmanage.library.Yjkmodel.LibraryVO;
 import com.spring.bookmanage.library.Yjkmodel.YjkVO;
 
 //Service단 선언
@@ -30,11 +34,21 @@ public class YjkService implements InterYjkService {
 	
 	// ==== 아이디 중복체크 ====
 	@Override
-	public int idDuplicateCheck(YjkVO yjkvo) {
+	public int idDuplicateCheck(String libid) {
 		
-		int n = dao.idDuplicateCheck(yjkvo);
+		int n = dao.idDuplicateCheck(libid);
 		
 		return n;
 	}
+
+	// ==== 도서관 정보 가져오기 ==== //
+	@Override
+	public List<LibraryVO> getliblibrary() {
+		
+		List<LibraryVO> libInfo = dao.getliblibrary();
+		
+		return libInfo;
+	}
+
 
 }
