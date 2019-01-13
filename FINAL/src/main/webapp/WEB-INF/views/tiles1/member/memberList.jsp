@@ -40,13 +40,13 @@
 				<td>2018-12-30</td>
 				<td>2018-01-20</td>
 			</tr>
-			
+
 			<tr>
 				<td>3</td>
 				<td>정구현</td>
 				<td>jeonggh</td>
 				<td>성인</td>
-				<td>nine9ash@naver.com</td>       
+				<td>nine9ash@gmail.com</td>       
 				<td>01012345678</td>
 				<td>예약상태</td>
 				<td>2018-12-30</td>
