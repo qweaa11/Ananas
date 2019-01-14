@@ -85,6 +85,7 @@
 						var ADDR = $(this).find('ADDR').text();
 						var TEL = $(this).find('TEL').text();
 						var BIZ_GUBUN = $(this).find('BIZ_GUBUN').text();
+						var REG_NUM = $(this).find('REG_NUM').text();
 						
 							if(COMPANY.indexOf(searchWord) != -1)
 							{
@@ -94,13 +95,16 @@
 								
 								resultHTML += "<tr>" +
 												  "<td>"+cnt+"</td>"+
-												  "<td><a onClick='sendBack(\""+COMPANY+"\");'>"+COMPANY+"</a></td>"+
-												  				  // sendBack()함수에 출판사 이름을 담아 넘김
+												  "<td><a onClick='sendBack(\""+COMPANY+"\",\""+ADDR+"\",\""+TEL+"\",\""+REG_NUM+"\");'>"+COMPANY+"</a></td>"+
+								  				  				// sendBack()함수에 출판사 이름을 담아 넘김
 												  "<td>"+ADDR+"</td>"+
 												  "<td>"+TEL+"</td>"+
 												  "<td style='text-align: center;'>"+BIZ_GUBUN+"</td>"+
 											  "</tr>" ;	  
 								size++;			  
+								
+								
+								
 							}
 							else{
 								console.log("확인용###############: ");	
@@ -122,7 +126,7 @@
 				
 			},// end of sucess---------------------------------------------------------
 			error: function(request, status, error){
-				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
+			//	alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
 			}// end of error---------------------------------------------------------
 			
 			
@@ -136,10 +140,23 @@
 	
 	
 	
-	function sendBack(publisher)
+	function sendBack(COMPANY, ADDR, TEL, REG_NUM)
 	{	// 담아온 publisher를 부모페이지에 넘기는 함수
-		$(opener.document).find("#publisher").val(publisher);
+		
+		
+		$(opener.document).find("#publisher").val(COMPANY);
 		// 부모페이지에서 id값이 publisher인 것을 찾아 publisher값을 넘긴다.
+		
+		$(opener.document).find("#addr").val(ADDR);
+		$(opener.document).find("#tel").val(TEL);
+		$(opener.document).find("#reg_num").val(REG_NUM);
+		// 부모페이지에서 id값이 publisher인 것을 찾아 publisher값을 넘긴다.
+		
+		alert("ADDR: "+ ADDR);
+		
+		
+		
+		
 		self.close();
 		// 넘긴후에 창 닫는 메소드
 	}// end of function sendBack(publisher)-----------------------------------------------
@@ -167,18 +184,30 @@
 					var ADDR = $(this).find('ADDR').text();
 					var TEL = $(this).find('TEL').text();
 					var BIZ_GUBUN = $(this).find('BIZ_GUBUN').text();
+					var REG_NUM = $(this).find('REG_NUM').text();
 					
 					resultHTML += "<tr>" +
 									  "<td>"+cnt+"</td>"+
-									  "<td><a onClick='sendBack(\""+COMPANY+"\");'>"+COMPANY+"</a></td>"+
-									  				  // sendBack()함수에 출판사 이름을 담아 넘김
+									  "<td><a onClick='sendBack(\""+COMPANY+"\",\""+ADDR+"\",\""+TEL+"\",\""+REG_NUM+"\");'>"+COMPANY+"</a></td>"+
+					  				   				  // sendBack()함수에 출판사 이름을 담아 넘김
 									  "<td>"+ADDR+"</td>"+
 									  "<td>"+TEL+"</td>"+
 									  "<td style='text-align: center;'>"+BIZ_GUBUN+"</td>"+
 								  "</tr>" ;
 					 
 					size++;	  
+					
+					
+					console.log("COMPANY: "+ COMPANY);
+				//	console.log("ADDR: "+ADDR);
+				//	console.log("TEL: "+TEL);
+				//	console.log("REG_NUM: "+REG_NUM);
+					
+					
 				});
+				
+				
+				
 				
 				
 				$("#publisherDisplay").append(resultHTML); 
@@ -193,7 +222,7 @@
 				
 			},// end of sucess---------------------------------------------------------
 			error: function(request, status, error){
-				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
+			//	alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
 			}// end of error---------------------------------------------------------
 			
 			
@@ -212,7 +241,7 @@
 
 	<div id="search">
 		<input type="text" id="searchWord" name="searchWord" placeholder="출판사 이름을 적어주세요" style="width: 300px;"/>
-		<button id="searchPublisher">검색</button>
+		<button id="searchPublisher">검색</button><img style="width: 20px; height: 20px;" src="resources/img/loadingProgressive.gif"/>
 	</div>
 
 	<div>
