@@ -10,6 +10,18 @@
 		    when func_age(birth)<![CDATA[<]]>20 then '청소년'
 		    else '성인' end as ages, gender
 		    , email, phone, status
+		    , to_char(regDate,'yyyy-mm-dd') as regDate
 		from member
+	</select>
+	
+	<select id="findAllMemberBySearchWord" parameterType="HashMap" resultType="com.spring.bookmanage.member.JGHmodel.MemberVO">
+		select name, memberid
+		    , case when func_age(birth)<![CDATA[<]]>14 then '아동'
+		    when func_age(birth)<![CDATA[<]]>20 then '청소년'
+		    else '성인' end as ages, gender
+		    , email, phone, status
+		    , , to_char(regDate,'yyyy-mm-dd') as regDate
+		from member
+		where ${colname} like '%'||#{searchWord}||'%'
 	</select>
 </mapper>
