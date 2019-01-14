@@ -8,7 +8,7 @@
 		select name, memberid
 		    , case when func_age(birth)<![CDATA[<]]>14 then '아동'
 		    when func_age(birth)<![CDATA[<]]>20 then '청소년'
-		    else '성인' end as ages
+		    else '성인' end as ages, gender
 		    , email, phone, status
 		from member
 	</select>

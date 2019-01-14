@@ -178,6 +178,10 @@
         <link href="Styles/bootstrap-4.1.0.min.css" rel="stylesheet" type="text/css"/>
         <link href="Styles/MainStyle.css" rel="stylesheet" type="text/css"/>  --%>
       
+        <link href="Styles/MainStyle.css" rel="stylesheet" type="text/css"/>
+        <title></title>
+    </head> 
+    <body>
         <div class="container register">
             <div class="row">
                 <div class="col-md-12">

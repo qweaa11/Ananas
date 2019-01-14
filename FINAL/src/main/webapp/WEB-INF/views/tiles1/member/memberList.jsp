@@ -25,6 +25,13 @@
 		
 	});
 	
+	function btnSearch() {
+		var searchFrm = document.searchFrm;
+		searchFrm.method = "GET";
+		searchFrm.action = "searchEnd.ana";
+		searchFrm.submit();
+	}
+	
 	function findAllMemberByName(name) {
 		
 	}// end of findAllMemberByName
@@ -39,12 +46,12 @@
 
 		<div class="container border" style="height: 50%; width: 80%; align-content: center;">
 			<form name="searchFrm">
-				<select id="searchSelect">
+				<select id="colname" name="colname">
 					<option value="name">이름</option>
-					<option value="bookid">아이디</option>
+					<option value="memberid">아이디</option>
 				</select>
 				<input type="text" />
-				<button type="button" id="search" onclick="btnSearch">검색</button>
+				<button type="button" id="search" onclick="btnSearch();">검색</button>
 			</form>
 			<table class="table table-striped">
 				<thead>
@@ -53,6 +60,7 @@
 						<th style="text-align: center;">이름</th>
 						<th style="text-align: center;">아이디</th>
 						<th style="text-align: center;">구분(연령대)</th>
+						<th style="text-align: center;">성별</th>
 						<th style="text-align: center;">이메일</th>
 						<th style="text-align: center;">연락처</th>
 						<th style="text-align: center;">회원상태</th>
@@ -72,6 +80,7 @@
 						<td>${memberVO.name}</td>
 						<td>${memberVO.memberid}</td>
 						<td>${memberVO.ages}</td>
+						<td>${memberVO.gender}</td>
 						<td>${memberVO.email}</td>
 						<td>${memberVO.phone}</td>
 						<td>${memberVO.status}</td>
