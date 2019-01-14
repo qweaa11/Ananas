@@ -2,7 +2,7 @@ package com.spring.bookmanage.login.BSBmodel;
 
 public class BSBMemberVO {
 	private int idx;				// 인덱스
-	private String libid;		// 아이디
+	private String memberid;		// 아이디
 	private String pwd;				// 비밀번호(암호화)
 	private String name;			// 이름
 	private String email;			// 이메일(암호화, 복호화)
@@ -19,12 +19,12 @@ public class BSBMemberVO {
 
 	public BSBMemberVO() { }// end of default constructor
 
-	public BSBMemberVO(int idx, String libid, String pwd, String name, String email, String phone, String addr1,
+	public BSBMemberVO(int idx, String memberid, String pwd, String name, String email, String phone, String addr1,
 			String addr2, String post, String birth, int gender, String regDate, String lastDate, String pwDate,
 			int status) {
 		super();
 		this.idx = idx;
-		this.libid = libid;
+		this.memberid = memberid;
 		this.pwd = pwd;
 		this.name = name;
 		this.email = email;
@@ -48,12 +48,12 @@ public class BSBMemberVO {
 		this.idx = idx;
 	}
 
-	public String getlibid() {
-		return libid;
+	public String getmemberid() {
+		return memberid;
 	}
 
-	public void setlibid(String libid) {
-		this.libid = libid;
+	public void setmemberid(String memberid) {
+		this.memberid = memberid;
 	}
 
 	public String getPwd() {

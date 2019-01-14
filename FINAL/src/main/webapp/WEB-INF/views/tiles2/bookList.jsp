@@ -76,11 +76,10 @@ input[type="checkbox"].sideli{
 	function findBookListbyField(fcode){
 		
 	}
-</script><div class="container">
-<div class="row">
+</script>	
 
-<div class="col-md-8">	
 	<table class="table table-striped">
+	<a style="width:50px;" href="<%=request.getContextPath() %>/logout.ana">로그아웃</a>
 		<thead>
 			<tr>
 				<th>웃대의 몰락</th>
@@ -159,13 +158,11 @@ input[type="checkbox"].sideli{
 			
 		</tbody>
 	</table>
-	</div>
-	<div class="col-md-offset-1 col-md-3">
 
 	<div style="font-weight:bold; font-family: 'NanumGothicBold'; border: 0px solid red; color:#0088cc; font-size:15pt;">조회 조건 
 		<button type="button" id="btnFindBook" style="margin-left:10px;" onClick="findBookListBysidebar();">검색</button>  </div>
 	         
-	<!-- <div style="border: 1px solid gray; margin-top:5pt;">    -->     
+	<div style="float: left; border: 1px solid gray; margin-top:5pt;">        
 		<div style="width: 230px;">
 			<div>
 				<div class="sideHeader" style="">도서관</div>
@@ -241,7 +238,10 @@ input[type="checkbox"].sideli{
 			</ul>
 		</div>
 
-
+	</div>
+</div>
+</div>
+	</div>
 
 <form name="sidebar">
 	<input type="hidden" name="library" id="library" value=""/>
@@ -249,6 +249,3 @@ input[type="checkbox"].sideli{
 	<input type="hidden" name="category" id="category" value=""/>
 	<input type="hidden" name="field" id="field" value=""/>
 </form>
-</div>
-</div>
-</div>
