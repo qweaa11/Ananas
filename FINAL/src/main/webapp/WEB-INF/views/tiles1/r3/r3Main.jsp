@@ -7,12 +7,20 @@
 <script type="text/javascript">
 
 	$(document).ready(function(e){
-	    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+	    $('.search-member').find('a').click(function(e) {
 			e.preventDefault();
 			var param = $(this).attr("href").replace("#","");
 			var concept = $(this).text();
-			$('.search-panel span#search_concept').text(concept);
-			$('.input-group #search_param').val(param);
+			$('.search-member span#search_concept').text(concept);
+			$('.input-member #search_param').val(param);
+		});
+	    
+	    $('.search-book').find('a').click(function(e) {
+			e.preventDefault();
+			var param = $(this).attr("href").replace("#","");
+			var concept = $(this).text();
+			$('.search-book span#search_concept').text(concept);
+			$('.input-book #search_param').val(param);
 		});
 	    
 	    $(".hover").hover(function (e) {
@@ -55,8 +63,8 @@
 								    <hr>
 	                        		
 	                        		<!-- 검색 -->
-								    <div class="input-group" style="margin-bottom: 30px;">
-						                <div class="input-group-btn search-panel">
+								    <div class="input-group input-member" style="margin-bottom: 30px;">
+						                <div class="input-group-btn search-panel search-member">
 						                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 						                    	<span id="search_concept">아이디</span> <span class="caret"></span>
 						                    </button>
@@ -66,13 +74,13 @@
 						                    </ul>
 						                </div>
 						                <input type="hidden" name="search_param" value="memberid" id="search_param">      
-						                <input type="text" class="form-control" name="x" placeholder="Search term...">
+						                <input type="text" class="form-control" name="x" placeholder="검색어를 입력해주세요.">
 						                <span class="input-group-btn">
 						                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /검색 -->
-						            
+						             
 								    <!-- 회원 목록 -->
 								    <div class="row">
 								        <div class="col-xs-12">
@@ -166,24 +174,24 @@
 						        <!-- /회원 부분 -->
 						        
 						        <!-- 도서 부분 -->
-						        <div class="col-lg-offset-1 col-lg-5 col-md-offset-1 col-md-5 col-sm-12 col-xs-12" style="margin-top: 30px; margin-bottom: 30px;">  
+						        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="margin-top: 30px; margin-bottom: 30px;">
 						        	
 						            <h2>도서 목록</h2>  
 								    <hr>
 								    
 								    <!-- 도서 검색 -->
-								    <div class="input-group" style="margin-bottom: 30px;">
-						                <div class="input-group-btn search-panel">
+								    <div class="input-group input-book" style="margin-bottom: 30px;">
+						                <div class="input-group-btn search-panel search-book">
 						                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						                    	<span id="search_concept">아이디</span> <span class="caret"></span>
+						                    	<span id="search_concept">일련번호</span> <span class="caret"></span>
 						                    </button>
 						                    <ul class="dropdown-menu" role="menu">
-						                      <li><a href="#memberid">아이디</a></li>
-						                      <li><a href="#name">이름</a></li>
+						                      <li><a href="#bcode">일련번호</a></li>
+						                      <li><a href="#bookname">제목</a></li>
 						                    </ul>
 						                </div>
-						                <input type="hidden" name="search_param" value="memberid" id="search_param">      
-						                <input type="text" class="form-control" name="x" placeholder="Search term...">
+						                <input type="hidden" name="search_param" value="bcode" id="search_param">      
+						                <input type="text" class="form-control" name="x" placeholder="검색어를 입력해주세요.">
 						                <span class="input-group-btn">
 						                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
@@ -241,7 +249,7 @@
 								                            <div class="row">
 								                                <div class="col-xs-2 text-left">아이디</div>
 								                                <div class="col-xs-2">이름</div> 
-								                                <div class="col-xs-3">제목</div> 
+								                                <div class="col-xs-4">제목</div> 
 								                                <div class="col-xs-2">대여기간</div> 
 								                                <div class="col-xs-2">반납일자</div> 
 								                            </div>
@@ -253,16 +261,16 @@
 								                            <div class="row">
 								                                <div class="col-xs-2 text-left">아이디</div>
 								                                <div class="col-xs-2">이름</div> 
-								                                <div class="col-xs-3">제목</div> 
+								                                <div class="col-xs-4">제목</div> 
 								                                <div class="col-xs-2">대여기간</div> 
 								                                <div class="col-xs-2">반납일자</div> 
 								                            </div>
 								                        </li>
-								                        <li class="list-group-item hover">
+								                        <li class="list-group-item hover"> 
 								                            <div class="row">
 								                                <div class="col-xs-2 text-left">아이디</div>
 								                                <div class="col-xs-2">이름</div> 
-								                                <div class="col-xs-3">제목ㅁㄴㅇㅁㄴㅇㄴㅁㄴㅁㄴㅁㅇㄴㅁㅁㄴㅇㅁㄴㅇㅇㄴㅁㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㅇㄴㄴㅁㅇ  </div> 
+								                                <div class="col-xs-4">제목</div> 
 								                                <div class="col-xs-2">대여기간</div> 
 								                                <div class="col-xs-2">반납일자</div> 
 								                            </div>
@@ -272,7 +280,12 @@
 								                </div>
 								            </div>
 								        </div>
-								    </div> 
+								    </div>
+								    <div style="float: right;">
+								    	<button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+										<button type="button" class="btn btn-warning btn-circle btn-lg"><i class="glyphicon glyphicon-remove"></i></button>
+								    </div>
+									
 								    
 						        </div>
 						        <!-- /도서 부분 -->
