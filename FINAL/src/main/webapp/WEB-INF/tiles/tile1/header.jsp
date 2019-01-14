@@ -172,6 +172,5 @@
 				</ul>
 			</div>
 		</div>
-	</header>
 	<!--================ End Header Menu Area =================-->
 	</div> 
