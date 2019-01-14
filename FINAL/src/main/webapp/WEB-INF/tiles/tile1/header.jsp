@@ -78,8 +78,8 @@
 						<img src="resources/img/home-logo/home-logo3-mini.png">
 						<span style="margin-left: 10px;">회원관리</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
-							<li><a href="#">회원목록</a></li>
-							<li><a href="#">회원등록</a></li> 
+							<li><a href="memberList.ana">회원목록</a></li>
+							<li><a href="">회원등록</a></li> 
 						</ul>
 					</li>
 					<li class="dropdown" style="margin-left: 15px;"> 
@@ -87,8 +87,7 @@
 						<img src="resources/img/home-logo/home-logo4-mini.png">
 						<span style="margin-left: 10px;">대출/예약/반납</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
-							<li><a href="#">대출</a></li>
-							<li><a href="#">반납</a></li> 
+							<li><a href="#">대출/반납</a></li>
 							<li><a href="#">예약</a></li> 
 						</ul>
 					</li>
