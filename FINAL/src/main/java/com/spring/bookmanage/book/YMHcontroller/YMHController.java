@@ -4,6 +4,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.spring.bookmanage.book.YMHmodel.YMHBookVO;
 
 
 @Controller
@@ -26,7 +30,21 @@ public class YMHController
 	
 	
 	
-	
+	// 도서등록 완효 요청
+	@RequestMapping(value="/bookRegisterEnd.ana",method= {RequestMethod.POST})
+	public String bookRegisterEnd(YMHBookVO bookvo, MultipartHttpServletRequest req) 
+	{
+	//	MultipartFile attach = bookvo.getAttach();
+		
+		
+		
+		
+		
+		
+		
+		return "findPublisher.notiles";
+	}// end of findPublisher()----------------------------------------------
+		
 	
 	
 	
