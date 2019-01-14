@@ -46,9 +46,9 @@
 
 		<div class="container border" style="height: 50%; width: 80%; align-content: center;">
 			<form name="searchFrm">
-				<select id="searchSelect">
+				<select id="colname" name="colname">
 					<option value="name">이름</option>
-					<option value="bookid">아이디</option>
+					<option value="memberid">아이디</option>
 				</select>
 				<input type="text" />
 				<button type="button" id="search" onclick="btnSearch();">검색</button>
