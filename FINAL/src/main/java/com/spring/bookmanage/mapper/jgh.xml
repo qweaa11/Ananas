@@ -10,6 +10,7 @@
 		    when func_age(birth)<![CDATA[<]]>20 then '청소년'
 		    else '성인' end as ages, gender
 		    , email, phone, status
+		    , to_char(regDate,'yyyy-mm-dd') as regDate
 		from member
 	</select>
 	
@@ -19,6 +20,7 @@
 		    when func_age(birth)<![CDATA[<]]>20 then '청소년'
 		    else '성인' end as ages, gender
 		    , email, phone, status
+		    , , to_char(regDate,'yyyy-mm-dd') as regDate
 		from member
 		where ${colname} like '%'||#{searchWord}||'%'
 	</select>

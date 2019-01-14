@@ -46,12 +46,12 @@
 
 		<div class="container border" style="height: 50%; width: 80%; align-content: center;">
 			<form name="searchFrm">
-				<select id="colname" name="colname">
+				<select id="colname" name="colname" style="height: 25px;" >
 					<option value="name">이름</option>
 					<option value="memberid">아이디</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" />
-				<button type="button" onclick="search();">검색</button>
+				<button type="button" class="btn btn-info" onclick="search();">검색</button>
 			</form>
 			<table class="table table-striped">
 				<thead>
