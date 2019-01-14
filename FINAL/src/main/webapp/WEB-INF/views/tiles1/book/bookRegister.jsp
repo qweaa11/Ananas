@@ -22,6 +22,19 @@
 
 	$(document).ready(function(){
 		
+		
+		// 출판사 조회 버튼을 누르기 전엔 바꾸지 못하게 하는 것
+		$(".publisher").blur(function(){
+			var publisher = $(this).val().trim();
+			if(publisher == "")
+			{
+				$(":input").arrt(":disabled", true).addClass("bgcol");
+				
+			}
+			
+			
+		});
+		
 		// 출판사 조회 버튼을 누룰때 새창으로 출판사 조회하기
 		$("#searchPublisher").click(function(){
 			
@@ -70,8 +83,12 @@
 	        	<label class="control-label col-sm-3">출판사 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
 	            	<span class=""><i class=""></i></span>
-	              	<input type="text" class=""  id="publisher" placeholder="API에 올라가있는 출판사만 조회됩니다." value="" style="width: 300px;">
-	            <button type="button" id="searchPublisher" name="publisher">조회</button> 
+	              	<input type="text" class="publisher"  id="publisher" placeholder="API에 올라가있는 출판사만 조회됩니다." value="" style="width: 300px;">
+	            	<input type="text" class="addr"  id="addr" value="" style="width: 300px;">
+	            	<input type="text" class="tel"  id="tel" value="" style="width: 300px;">
+	            	<input type="text" class="reg_num"  id="reg_num" value="" style="width: 300px;">
+	            	
+	            <button type="button" id="searchPublisher" name="searchPublisher">조회</button> 
 	          	</div>
 	        </div>
 	        
