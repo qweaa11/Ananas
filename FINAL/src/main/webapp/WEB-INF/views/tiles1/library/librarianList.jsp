@@ -118,8 +118,8 @@ p{margin:3px;}
 					                    "<p><span style='color: blue; font-weight: bold;'>휴대폰 : </span>"+ entry.TEL+"</p>"+
 					                    "<p class'text-muted'><span style='color: blue; font-weight: bold;'>아이디 : </span>"+entry.LIBID+"</p>"+
 					                "</div>"+
-					                "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card' data-toggle='modal' data-target='#updateInfo'>Update Info.</button>"+
-					                "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card' data-toggle='modal' data-target='#detailInfo'>Detail Info.</button>"+
+					                "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal'>Update Info.</button>"+
+					                "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal'>Detail Info.</button>"+
 					                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
 					            "</div>"+
 					          "</div>"+
