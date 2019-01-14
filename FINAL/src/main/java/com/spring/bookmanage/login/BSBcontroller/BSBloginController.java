@@ -25,20 +25,20 @@ public class BSBloginController {
 			
 			
 	
-	@RequestMapping(value="/adminLogin.ana",method= {RequestMethod.GET})
+	@RequestMapping(value="/memberLogin.ana",method= {RequestMethod.GET})
 	public String adminLogin(HttpServletRequest req) {
 
-		return "adminLoginform.notiles";
+		return "memberLoginform.notiles";
 	}
 	
-	@RequestMapping(value="/adminLoginEnd.ana",method= {RequestMethod.POST})
+	@RequestMapping(value="/memberLoginEnd.ana",method= {RequestMethod.POST})
 	public String adminLoginEnd(HttpServletRequest req) {
 		
-			String libid = req.getParameter("libid");
+			String memberid = req.getParameter("memberid");
 			String pwd = req.getParameter("pwd");
 			
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("LIBID", libid);
+			map.put("MEMBERID", memberid);
 			map.put("PWD", SHA256.encrypt(pwd));
 			
 			BSBMemberVO loginuser = service.getLoginMember(map);
@@ -70,8 +70,26 @@ public class BSBloginController {
 				
 				
 		
-			return "adminLoginEnd.notiles";
+			return "memberLoginEnd.notiles";
 		}
 	
 	}
+	
+	// ===== #50. 로그아웃 완료 요청. =====
+			@RequestMapping(value="/memberLogout.ana", method={RequestMethod.GET})
+			public String logout(HttpServletRequest req, HttpSession session) {
+				
+				 session.invalidate();
+			  	
+				 String msg = "로그아웃 되었습니다."; 
+				 String ctxPath = req.getContextPath();
+				 String loc = ctxPath+"/memberLogin.ana";
+					
+				 req.setAttribute("msg", msg);
+				 req.setAttribute("loc", loc);
+					
+				 return "msg";
+			}
+	
+	
 }

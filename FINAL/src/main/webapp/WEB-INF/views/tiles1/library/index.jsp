@@ -43,7 +43,7 @@
 									<img src="resources/img/home-logo/home-logo4.png" style="width: 200px; margin: auto;"/>
 								</div> 
 							</div>
-							<div class="blog_text" style="text-align: center;">대출</div> 
+							<div class="blog_text" style="text-align: center;">대여</div> 
 							<div class="blog_button"><a href="#">이동하기</a></div>
 						</div>
 					</div>
