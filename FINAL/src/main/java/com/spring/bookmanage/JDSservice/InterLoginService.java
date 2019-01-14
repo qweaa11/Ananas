@@ -1,14 +1,15 @@
 package com.spring.bookmanage.JDSservice;
 
 import java.util.HashMap;
-import java.util.List;
 
-import com.spring.bookmanage.JDSmodel.MemberVO;
+import com.spring.bookmanage.JDSmodel.AdminVO;
+import com.spring.bookmanage.JDSmodel.LibrarianVO;
 
 public interface InterLoginService {
 
-	List<String> getImgfilenameList();// 이미지 파일명 가져오기
 
-	MemberVO getLoginMember(HashMap<String, String> map);// 로그인 여부 알아보기 및 마지막으로 로그인한 날짜 기록하기
+	LibrarianVO getLoginLibrarian(HashMap<String, String> map);// 사서 로그인 여부 알아보기 
+
+	AdminVO getLoginAdmin(HashMap<String, String> map);// 관리자 로그인 여부 알아보기 
 	
 }

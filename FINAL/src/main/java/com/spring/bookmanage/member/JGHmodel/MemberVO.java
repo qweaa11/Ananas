@@ -11,20 +11,22 @@ public class MemberVO {
 	private String addr2;			// 상세주소
 	private String post;			// 신우편번호
 	private String birth;			// 생년월일
-	private int gender;				// 성별코드
+	private String gender;			// 성별코드
 	private int stopDate;			// 정지기간
 	private String regDate;			// 가입일자
 	private String lastDate;		// 최근접속일자=마지막접속일자
 	private String pwDate;			// 최근 비밀번호변경일자=마지막 비밀번호 변경일자
-	private int status;				// 회원상태(기본=0, 휴면=1, 탈퇴=2, 정지=3 등)
+	private String status;			// 회원상태(기본=0, 휴면=1, 정지=2, 탈퇴=3 등)
 	private String imgFileName;		// 서버에 업로드되는 이미지파일명
 	private int fileSize;			// 파일크기
+
+	private String ages;			// 연령대
 
 	public MemberVO() { }// end of default constructor
 
 	public MemberVO(int idx, String memberid, String pwd, String name, String email, String phone, String addr1,
-			String addr2, String post, String birth, int gender, String regDate, String lastDate, String pwDate,
-			int status) {
+			String addr2, String post, String birth, String gender, String regDate, String lastDate, String pwDate,
+			String status) {
 		this.idx = idx;
 		this.memberid = memberid;
 		this.pwd = pwd;
@@ -122,12 +124,15 @@ public class MemberVO {
 		this.birth = birth;
 	}
 
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
 
 	public void setGender(int gender) {
-		this.gender = gender;
+		if(gender == 0)
+			this.gender = "남자";
+		else
+			this.gender = "여자";
 	}
 
 	public int getStopDate() {
@@ -162,12 +167,25 @@ public class MemberVO {
 		this.pwDate = pwDate;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(int status) {
-		this.status = status;
+		switch (status) {
+		case 0:
+			this.status="일반";
+			break;
+		case 1:
+			this.status="휴면";
+			break;
+		case 2:
+			this.status="이용정지";
+			break;
+		case 3:
+			this.status="탈퇴";
+			break;
+		}
 	}
 
 	public String getImgFileName() {
@@ -184,5 +202,13 @@ public class MemberVO {
 
 	public void setFileSize(int fileSize) {
 		this.fileSize = fileSize;
+	}
+
+	public String getAges() {
+		return ages;
+	}
+
+	public void setAges(String ages) {
+		this.ages = ages;
 	}
 }
