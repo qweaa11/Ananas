@@ -20,7 +20,7 @@
 	}
 </style>
 
-<script>
+<script type="text/javascript">
 	$(document).ready(function() {
 		
 	});
@@ -38,13 +38,13 @@
 	<div class="row">
 
 		<div class="container border" style="height: 50%; width: 80%; align-content: center;">
-			<form name="searchFrm" method="GET" action="">
+			<form name="searchFrm">
 				<select id="searchSelect">
 					<option value="name">이름</option>
 					<option value="bookid">아이디</option>
 				</select>
 				<input type="text" />
-				<button type="button" id="search">검색</button>
+				<button type="button" id="search" onclick="btnSearch">검색</button>
 			</form>
 			<table class="table table-striped">
 				<thead>
@@ -66,9 +66,9 @@
 					</c:if>
 					
 					<c:if test="${not empty memberList}">
-						<c:forEach var="memberVO" items="${memberList}" varStatus="sta">
+						<c:forEach var="memberVO" items="${memberList}" varStatus="status">
 					<tr>
-						<td>${sta.count}</td>
+						<td>${status.count}</td>
 						<td>${memberVO.name}</td>
 						<td>${memberVO.memberid}</td>
 						<td>${memberVO.ages}</td>
