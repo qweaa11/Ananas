@@ -1,5 +1,37 @@
 package com.spring.bookmanage.book.YMHmodel;
 
-public class YMHBookDAO implements InterYMHBookDAO {
-
+public class YMHBookDAO implements InterYMHBookDAO 
+{
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -23,25 +23,30 @@
 	$(document).ready(function(){
 		
 		
-		// 출판사 조회 버튼을 누르기 전엔 바꾸지 못하게 하는 것
-		$(".publisher").blur(function(){
-			var publisher = $(this).val().trim();
-			if(publisher == "")
-			{
-				$(":input").arrt(":disabled", true).addClass("bgcol");
-				
-			}
 			
+	
+		
+		// 출판사 조회 버튼을 누룰때 새창으로 출판사 조회하기
+		$("#Submit").click(function(){
+			
+			var signup = document.signup;
+			signup.action = "<%= ctxPath%>/bookRegisterEnd.ana";
+			signup.method="POST";
+			signup.submit();
 			
 		});
 		
-		// 출판사 조회 버튼을 누룰때 새창으로 출판사 조회하기
+		
+		
+		// 출판사 등록 버튼을 누룰때 
 		$("#searchPublisher").click(function(){
 			
 			var url="findPublisher.ana";
 			window.open(url, "publisher", "left=500px, top=100px, width=1100px, height=600px");
 			
 		});
+		
+		
 		
 		
 	});  // end of $(document).ready(function(){});-------------------------------------------------------------------
@@ -294,7 +299,7 @@
         
         	<div class="form-group">
 	          	<div class="col-xs-offset-3 col-xs-10">
-	            	<button id="Submit" class="btn btn-primary">등록</button>  
+	            	<button type="button" id="Submit" class="btn btn-primary">등록</button>  
 	          	</div>
 	        </div>
          

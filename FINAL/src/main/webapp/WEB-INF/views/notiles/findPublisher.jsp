@@ -166,7 +166,7 @@
 	
 	function showPublisher(startNo, endNo)
 	{
-		
+		$(".loading").show();
 		$.ajax({
 			url:"http://openapi.sdm.go.kr:8088/73664e51596462613931546f536775/xml/SeodaemunPublisherPrintBiz/"+startNo+"/"+endNo,
 		// 	data:form_data,
@@ -174,6 +174,8 @@
 			dataType:"XML",
 			success:function(XML){
 				var resultHTML = "";
+				
+				
 				
 				var size = 0;
 				
@@ -198,7 +200,7 @@
 					size++;	  
 					
 					
-					console.log("COMPANY: "+ COMPANY);
+				//	console.log("COMPANY: "+ COMPANY);
 				//	console.log("ADDR: "+ADDR);
 				//	console.log("TEL: "+TEL);
 				//	console.log("REG_NUM: "+REG_NUM);
@@ -218,7 +220,7 @@
 				if(size % 1000 == 0){
 					showPublisher(1000*count+1, 1000*count+1000);
 				}
-				
+				$(".loading").hide();
 				
 			},// end of sucess---------------------------------------------------------
 			error: function(request, status, error){
@@ -241,7 +243,7 @@
 
 	<div id="search">
 		<input type="text" id="searchWord" name="searchWord" placeholder="출판사 이름을 적어주세요" style="width: 300px;"/>
-		<button id="searchPublisher">검색</button><img style="width: 20px; height: 20px;" src="resources/img/loadingProgressive.gif"/>
+		<button id="searchPublisher">검색</button><img class="loading" style="width: 20px; height: 20px;" src="resources/img/loadingProgressive.gif"/>
 	</div>
 
 	<div>
