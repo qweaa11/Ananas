@@ -25,7 +25,6 @@ public class MemberVO {
 	public MemberVO(int idx, String memberid, String pwd, String name, String email, String phone, String addr1,
 			String addr2, String post, String birth, int gender, String regDate, String lastDate, String pwDate,
 			int status) {
-		super();
 		this.idx = idx;
 		this.memberid = memberid;
 		this.pwd = pwd;
