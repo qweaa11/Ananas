@@ -3,10 +3,6 @@
 
 <% String ctxPath = request.getContextPath(); %>
 
-<%-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   --%>
-<!------ Include the above in your HEAD tag ---------->
 <style type="text/css">
 
 .btnContactSubmit
@@ -173,11 +169,13 @@
 
        <!--  <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-      <%--    <script src="Styles/jquery-3.3.1.min.js" type="text/javascript"></script>
+   <!--      <script src="Styles/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="Styles/bootstrap-4.1.0.min.js" type="text/javascript"></script>
         <link href="Styles/bootstrap-4.1.0.min.css" rel="stylesheet" type="text/css"/>
-        <link href="Styles/MainStyle.css" rel="stylesheet" type="text/css"/>  --%>
-      
+        <link href="Styles/MainStyle.css" rel="stylesheet" type="text/css"/> -->
+        <?php
+        session_start();
+        ?>
         <div class="container register">
             <div class="row">
                 <div class="col-md-12">

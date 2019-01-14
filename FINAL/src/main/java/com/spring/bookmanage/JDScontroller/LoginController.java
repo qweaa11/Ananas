@@ -80,7 +80,7 @@ import com.spring.bookmanage.common.SHA256;
 				req.removeAttribute("saveid2");
 			}
 
-			return "Login/loginform.tiles1";
+			return "loginform.notiles";
 			
 		}
 	

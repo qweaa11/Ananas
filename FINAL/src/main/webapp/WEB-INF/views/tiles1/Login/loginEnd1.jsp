@@ -9,7 +9,7 @@
 	
 	if(loginLibrarian != null && loginLibrarian != "" && (gobackURL == null || gobackURL == "") ) {
 		alert("로그인 성공 !!");
-		location.href="<%=ctxPath%>/bookList.ana";
+		location.href="<%=ctxPath%>/index.ana";
 	}
 	
 	if(loginLibrarian != null && loginLibrarian != "" && (gobackURL != null && gobackURL != "")) {
