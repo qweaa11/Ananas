@@ -71,18 +71,6 @@ p{margin:3px;}
 		
 		librarianList(sort, searchWord);
 		
-		
-		$('#updateInfo').on('show.bs.modal', function(e) {
-		    var librarianName = $(e.relatedTarget).data('librarianName');
-		    $(e.currentTarget).find('input[name="librarianName"]').val(librarianName);
-		});
-		
-		
-		$('#detailInfo').on('show.bs.modal', function(e) {
-		    var librarianName = $(e.relatedTarget).data('librarianName');
-		    $(e.currentTarget).find('input[name="librarianName"]').val(librarianName);
-		});
-		
 	});
 	
 	function searchList(){
@@ -130,8 +118,8 @@ p{margin:3px;}
 					                    "<p><span style='color: blue; font-weight: bold;'>휴대폰 : </span>"+ entry.TEL+"</p>"+
 					                    "<p class'text-muted'><span style='color: blue; font-weight: bold;'>아이디 : </span>"+entry.LIBID+"</p>"+
 					                "</div>"+
-					                "<a href='#updateInfo' class='btn btn-primary btn-xs btn-update btn-add-card' data-toggle='modal' data-librarianName='"+enrty.NAME+"' id='updateInfo'>Update Info.</a>"+
-					                "<a href='#detailInfo' class='btn btn-primary btn-xs btn-update btn-add-card' data-toggle='modal' data-librarianName='"+enrty.NAME+"' id='detailInfo'>Detail Info.</a>"+
+					                "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal'>Update Info.</button>"+
+					                "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal'>Detail Info.</button>"+
 					                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
 					            "</div>"+
 					          "</div>"+
@@ -189,7 +177,7 @@ p{margin:3px;}
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <input type="text" name="librarianName" value=""/>
+          <p>Some text in the modal.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -211,7 +199,7 @@ p{margin:3px;}
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <input type="text" name="librarianName" value=""/>
+          <p>Some text in the modal.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
