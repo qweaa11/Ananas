@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -78,39 +80,39 @@
 	    <tbody>
 	        <tr>
 	          <th>회원번호</th>
-	            <td>12345</td>
+	            <td>${pmgMemberVO.idx }</td>
 	          <th>회원명</th>
-	          	<td>박민규</td>
+	          	<td>${pmgMemberVO.name }</td>
 	        </tr>
 	        <tr>
 	          <th>ID</th>
-	            <td>pmk7257</td>
+	            <td>${pmgMemberVO.memberid }</td>
 	          <th>E-mail</th>
-	          	<td>pmk7257@naver.com</td>
+	          	<td>${pmgMemberVO.email }</td>
 	        </tr>
 	        <tr>
-	          <th>주민번호</th>
-	            <td>19910704</td>
+	          <th>생년월일</th>
+	            <td>${pmgMemberVO.birth }</td>
 	          <th>나이</th>
-	            <td>18살(전체,아동,청소년,성인)</td>
+	            <td>${pmgMemberVO.age }살(전체,아동,청소년,성인)</td>
 	        </tr>
 	      	<tr>
 	          <th>연락처</th>
-	          	<td>010-3432-2323</td>
+	          	<td>${pmgMemberVO.phone }</td>
 	          <th>주소</th>
-	            <td>서울시 광진구 중곡동 30-14 1층</td>
+	            <td>${pmgMemberVO.address }</td>
 	        </tr>
 	        <tr>
 	          <th>성별</th>
-	          	<td>남자</td>	          
+	          	<td>${pmgMemberVO.gender }</td>	          
 	          <th>회원상태</th>
-	            <td>활동, 휴면, 정지, 탈퇴</td>
+	            <td>${pmgMemberVO.status }</td>
 	        </tr>
 	        <tr>
 	          <th>가입일자</th>
-	          	<td>2018-01-01</td>
+	          	<td>${pmgMemberVO.regDate }</td>
 	          <th>로그인 기록</th>
-	          	<td>마지막 로그인(2018-10-10 23:00:00) 로그아웃(2018-10-10 23:10:50)</td>	          
+	          	<td>마지막 로그인(${pmgMemberVO.lastDate }), 마지막 암호 변경일(${pmgMemberVO.pwDate })</td>	          
 	        </tr>
 	    </tbody>
 	</table>

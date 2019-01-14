@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===== mapper 기본 설정 ===== -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!-- ===== 루트 엘리먼트 및 네임스페이스 설정하기(이 네임스페이스의 이름은 프로젝트 전체 내에서 반드시 고유해야만 한다.) ===== --> 
+<mapper namespace="PMG">
+
+	<!-- 회원 상세 정보 -->
+	<select id="findOneMemberByIdx" parameterType="String" resultType="com.spring.bookmanage.member.PMGmodel.PMGMemberVO">
+	
+		select idx, memberid, pwd, name, email, phone, addr1, addr2, post
+		     , '(우)'|| post ||' '|| addr1 ||' '|| addr2 AS address
+		     , substr(birth,1,4) ||'년'|| substr(birth,5,2) ||'월'|| substr(birth,7,2) ||'일' AS birth
+		     , extract(year from sysdate) - substr(birth,1,4) + 1 AS age
+		     , case gender when 0 then '남' else '여' end AS gender
+		     , to_char(regdate, 'yyyy-mm-dd hh24:mi:ss') AS regDate
+		     , to_char(lastdate, 'yyyy-mm-dd hh24:mi:ss') AS lastDate
+		     , to_char(pwdate, 'yyyy-mm-dd hh24:mi:ss') AS pwDate
+		     , case status when 0 then '활동'
+		                   when 1 then '휴면'
+		                   when 2 then '정지'
+		                   when 3 then '탈퇴'
+		                   else '' end AS status
+		from member
+		where idx = #{idx}
+	
+	</select>
+
+</mapper>
+
