@@ -24,6 +24,24 @@ public class PMGService implements InterPMGService {
 		return pmgMemberVO;
 	}
 
+	@Override
+	public int EditActivityOneMemberByIdx(String idx) {
+		int n = dao.EditActivityOneMemberByIdx(idx);
+		return n;
+	}
+
+	@Override
+	public int EditInactivityOneMemberByIdx(String idx) {
+		int n = dao.EditInactivityOneMemberByIdx(idx);
+		return n;
+	}
+
+	@Override
+	public int EditStopOneMemberByIdx(String idx) {
+		int n = dao.EditStopOneMemberByIdx(idx);
+		return n;
+	}
+
 	
 	
 }

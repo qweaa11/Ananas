@@ -7,8 +7,7 @@
 <mapper namespace="PMG">
 
 	<!-- 회원 상세 정보 -->
-	<select id="findOneMemberByIdx" parameterType="String" resultType="com.spring.bookmanage.member.PMGmodel.PMGMemberVO">
-	
+	<select id="findOneMemberByIdx" parameterType="String" resultType="com.spring.bookmanage.member.PMGmodel.PMGMemberVO">	
 		select idx, memberid, pwd, name, email, phone, addr1, addr2, post
 		     , '(우)'|| post ||' '|| addr1 ||' '|| addr2 AS address
 		     , substr(birth,1,4) ||'년'|| substr(birth,5,2) ||'월'|| substr(birth,7,2) ||'일' AS birth
@@ -23,9 +22,24 @@
 		                   when 3 then '탈퇴'
 		                   else '' end AS status
 		from member
-		where idx = #{idx}
-	
+		where idx = #{idx}	
 	</select>
+
+	<update id="EditActivityOneMemberByIdx" parameterType="String">
+		update member set status = 0
+		where idx = #{idx}
+	</update>
+	
+	<update id="EditInactivityOneMemberByIdx" parameterType="String">
+		update member set status = 0
+		where idx = #{idx}
+	</update>
+	
+	<update id="EditStopOneMemberByIdx" parameterType="String">
+		update member set status = 2
+		where idx = #{idx}
+	</update>
+
 
 </mapper>
 

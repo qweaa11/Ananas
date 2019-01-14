@@ -34,11 +34,18 @@ public class PMGController {
 		try {
 			pmgMemberVO.setEmail(aes.decrypt(pmgMemberVO.getEmail()));
 			
+			String phone = aes.decrypt(pmgMemberVO.getPhone());			
+			if(phone.length() == 10 || phone.length() == 11) {
+				if(phone.length() == 10) {
+					phone = phone.substring(0, 3) +"-"+ phone.substring(3, 6) +"-"+ phone.substring(6, 10);
+				}else {
+					phone = phone.substring(0, 3) +"-"+ phone.substring(3, 7) +"-"+ phone.substring(7, 11);
+				}
+			}else {
+				System.out.println("핸드폰이 아니라면?");
+			}			
+			pmgMemberVO.setPhone(phone);
 			
-			
-			
-			
-			pmgMemberVO.setPhone(aes.decrypt(pmgMemberVO.getPhone()));
 		} catch (UnsupportedEncodingException | GeneralSecurityException e) {			
 			e.printStackTrace();
 		}
@@ -48,4 +55,72 @@ public class PMGController {
 		return "member/memberDetail.tiles1";
 	}// end of member
 	
+	@RequestMapping(value="/goStatusEdit0.ana", method= {RequestMethod.POST})
+	public String goStatusEdit0(HttpServletRequest req) {
+		
+		String idx = req.getParameter("idx");
+		String msg = "";
+		String loc = "";
+		
+		int n = service.EditActivityOneMemberByIdx(idx);
+		
+		if(n == 1) {
+			msg = "회원번호 " +idx+ "번 활동으로 변경이 성공 되었습니다.";
+			loc = "memberDetail.ana?idx="+idx;
+		}else {
+			msg = "회원번호 " +idx+ "의 활동으로 변경이 실패 되었습니다.";
+			loc = "javascript:history.back();";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("loc", loc);
+		
+		return "msg";
+	}
+	
+	@RequestMapping(value="/goStatusEdit1.ana", method= {RequestMethod.POST})
+	public String goStatusEdit1(HttpServletRequest req) {
+		
+		String idx = req.getParameter("idx");
+		String msg = "";
+		String loc = "";
+		
+		int n = service.EditInactivityOneMemberByIdx(idx);
+		
+		if(n == 1) {
+			msg = "회원번호 " +idx+ "번 휴면해제(활동)으로 변경이 성공 되었습니다.";
+			loc = "memberDetail.ana?idx="+idx;
+		}else {
+			msg = "회원번호 " +idx+ "의 휴면해제(활동)으로 변경이 실패 되었습니다.";
+			loc = "javascript:history.back();";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("loc", loc);
+		
+		return "msg";
+	}
+	
+	@RequestMapping(value="/goStatusEdit2.ana", method= {RequestMethod.POST})
+	public String goStatusEdit2(HttpServletRequest req) {
+		
+		String idx = req.getParameter("idx");
+		String msg = "";
+		String loc = "";
+		
+		int n = service.EditStopOneMemberByIdx(idx);
+		
+		if(n == 1) {
+			msg = "회원번호 " +idx+ "번 정지로 변경이 성공 되었습니다.";
+			loc = "memberDetail.ana?idx="+idx;
+		}else {
+			msg = "회원번호 " +idx+ "의 정지로 변경이 실패 되었습니다.";
+			loc = "javascript:history.back();";
+		}
+		
+		req.setAttribute("msg", msg);
+		req.setAttribute("loc", loc);
+		
+		return "msg";
+	}
 }

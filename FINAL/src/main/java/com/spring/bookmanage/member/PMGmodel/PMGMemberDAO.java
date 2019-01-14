@@ -17,6 +17,25 @@ public class PMGMemberDAO implements InterPMGMemberDAO {
 		return pmgMemberVO;
 	}
 
+	@Override
+	public int EditActivityOneMemberByIdx(String idx) {
+		int n = sqlsession.update("PMG.EditActivityOneMemberByIdx", idx);
+		return n;
+	}
+
+	@Override
+	public int EditInactivityOneMemberByIdx(String idx) {
+		int n = sqlsession.update("PMG.EditInactivityOneMemberByIdx", idx);
+		return n;
+	}
+
+	@Override
+	public int EditStopOneMemberByIdx(String idx) {
+		int n = sqlsession.update("PMG.EditStopOneMemberByIdx", idx);
+		return n;
+	}
+
+	
 	
 	
 }
