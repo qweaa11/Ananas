@@ -11,7 +11,7 @@ public class MemberVO {
 	private String addr2;			// 상세주소
 	private String post;			// 신우편번호
 	private String birth;			// 생년월일
-	private int gender;				// 성별코드
+	private String gender;			// 성별코드
 	private int stopDate;			// 정지기간
 	private String regDate;			// 가입일자
 	private String lastDate;		// 최근접속일자=마지막접속일자
@@ -25,7 +25,7 @@ public class MemberVO {
 	public MemberVO() { }// end of default constructor
 
 	public MemberVO(int idx, String memberid, String pwd, String name, String email, String phone, String addr1,
-			String addr2, String post, String birth, int gender, String regDate, String lastDate, String pwDate,
+			String addr2, String post, String birth, String gender, String regDate, String lastDate, String pwDate,
 			String status) {
 		this.idx = idx;
 		this.memberid = memberid;
@@ -124,12 +124,15 @@ public class MemberVO {
 		this.birth = birth;
 	}
 
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
 
 	public void setGender(int gender) {
-		this.gender = gender;
+		if(gender == 0)
+			this.gender = "남자";
+		else
+			this.gender = "여자";
 	}
 
 	public int getStopDate() {

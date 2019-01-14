@@ -21,9 +21,11 @@ public class JGHController {
 	@Autowired private JGHService service;
 	@Autowired AES256 aes;
 
-	@RequestMapping(value="memberList.ana", method = {RequestMethod.GET})
+	@RequestMapping(value = "memberList.ana", method = {RequestMethod.GET})
 	public String list(HttpServletRequest request)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+		String colname = request.getParameter("colname");
+		String search = request.getParameter("search");
 		List<MemberVO> memberList = service.listService();
 		for(MemberVO memberVO : memberList) {
 			memberVO.setEmail(aes.decrypt(memberVO.getEmail()));
@@ -34,4 +36,10 @@ public class JGHController {
 
 		return "member/memberList.tiles1";
 	}// end of list
+
+	@RequestMapping(value = "searchEnd.ana", method = {RequestMethod.GET})
+	public String search(HttpServletRequest request) {
+
+		return "member/searchEnd.tiles1";
+	}// end of search
 }
