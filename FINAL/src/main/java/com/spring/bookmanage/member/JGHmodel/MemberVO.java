@@ -16,8 +16,6 @@ public class MemberVO {
 	private String lastDate;		// 최근접속일자=마지막접속일자
 	private String pwDate;			// 최근 비밀번호변경일자=마지막 비밀번호 변경일자
 	private int status;				// 회원상태(기본=0, 휴면=1, 탈퇴=2, 정지=3 등)
-	private String imgFileName;		// 파일명 - 서버에 업로드될 때 변환되는 이름이며 사용자가 업로드할 당시에 이름과는 다르다.
-	private String fileSize;		// 파일크기
 
 	public MemberVO() { }// end of default constructor
 
@@ -160,21 +158,5 @@ public class MemberVO {
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public String getImgFileName() {
-		return imgFileName;
-	}
-
-	public void setImgFileName(String imgFileName) {
-		this.imgFileName = imgFileName;
-	}
-
-	public String getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(String fileSize) {
-		this.fileSize = fileSize;
 	}
 }
