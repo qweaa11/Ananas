@@ -79,7 +79,7 @@
 						<span style="margin-left: 10px;">회원관리</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
 							<li><a href="memberList.ana">회원목록</a></li>
-							<li><a href="">회원등록</a></li> 
+							<li><a href="memberRegist.ana">회원등록</a></li> 
 						</ul>
 					</li>
 					<li class="dropdown" style="margin-left: 15px;"> 
