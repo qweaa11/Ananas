@@ -11,7 +11,7 @@
 				<th style="text-align: center;">구분(연령대)</th>
 				<th style="text-align: center;">이메일</th>
 				<th style="text-align: center;">연락처</th>
-				<th style="text-align: center;">대여상태</th>
+				<th style="text-align: center;">회원상태</th>
 				<th style="text-align: center;">대여일자</th>
 				<th style="text-align: center;">반납일자</th>
 			</tr>
@@ -24,7 +24,7 @@
 				<td>성인</td>
 				<td>kimkh@naver.com</td>       
 				<td>01012345678</td>
-				<td>대여중(연장)</td>
+				<td>일반</td>
 				<td>2018-12-30</td>
 				<td>2018-01-20</td>
 			</tr>
@@ -36,17 +36,17 @@
 				<td>성인</td>
 				<td>cancho?@gmail.com</td>       
 				<td>01012345678</td>
-				<td>대여중</td>
+				<td>일반</td>
 				<td>2018-12-30</td>
 				<td>2018-01-20</td>
 			</tr>
-			
+
 			<tr>
 				<td>3</td>
 				<td>정구현</td>
 				<td>jeonggh</td>
-				<td>성인</td>
-				<td>nine9ash@naver.com</td>       
+				<td>일반</td>
+				<td>nine9ash@gmail.com</td>       
 				<td>01012345678</td>
 				<td>예약상태</td>
 				<td>2018-12-30</td>
@@ -60,7 +60,7 @@
 				<td>성인</td>
 				<td>ryumh@naver.com</td>       
 				<td>01012345678</td>
-				<td>대여중(연체)</td>
+				<td>일반</td>
 				<td>2017-12-30</td>
 				<td>?!?!?!?!!</td>
 			</tr>
@@ -72,7 +72,7 @@
 				<td>성인</td>
 				<td>yousw@naver.com</td>       
 				<td>01012345678</td>
-				<td>대여중</td>
+				<td>휴면</td>
 				<td>2018-12-30</td>
 				<td>2018-01-13</td>
 			</tr>
@@ -84,7 +84,7 @@
 				<td>성인</td>
 				<td>nohsy@naver.com</td>       
 				<td>01012345678</td>
-				<td>반납완료</td>
+				<td>이용정지(7일)</td>
 				<td>2018-12-30</td>
 				<td>2018-01-13</td>
 			</tr>
@@ -96,7 +96,7 @@
 				<td>성인</td>
 				<td>yangjg@naver.com</td>       
 				<td>01012345678</td>
-				<td>대여중(연체)</td>
+				<td>휴면</td>
 				<td>2018-12-30</td>
 				<td>2018-01-13</td>
 			</tr>
@@ -108,7 +108,7 @@
 				<td>성인</td>
 				<td>becksb@naver.com</td>       
 				<td>01012345678</td>
-				<td>분실신고</td>
+				<td>이용정지(20일)</td>
 				<td>2018-12-30</td>
 				<td>?@!#?#!$?!$</td>
 			</tr>
@@ -120,7 +120,7 @@
 				<td>성인</td>
 				<td>parkmg@naver.com</td>       
 				<td>01012345678</td>
-				<td>대여중(연체)</td>
+				<td>탈퇴</td>
 				<td>2018-12-30</td>
 				<td>2018-01-13</td>
 			</tr>
@@ -132,7 +132,7 @@
 				<td>성인</td>
 				<td>jangds@naver.com</td>       
 				<td>01012345678</td>
-				<td>대여중(연장)</td>
+				<td>휴면</td>
 				<td>2018-12-30</td>
 				<td>2018-01-20</td>
 			</tr>
