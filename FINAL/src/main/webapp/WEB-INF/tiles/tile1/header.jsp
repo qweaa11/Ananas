@@ -29,7 +29,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">ANANAS</a> 
+					<a class="navbar-brand" href="index.ana">ANANAS</a> 
 				</div>  
 				
 				<div class="navbar-collapse collapse">
@@ -66,35 +66,34 @@
 	                
 					<li class="dropdown" style="margin-left: 15px;"> 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/nav-icon3.png">
+						<img src="resources/img/home-logo/home-logo2-mini.png">
 						<span style="margin-left: 10px;">도서관리</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
-							<li><a href="#">도서목록</a></li>
-							<li><a href="#">도서등록</a></li> 
+							<li><a href="bookList.ana">도서목록</a></li>
+							<li><a href="bookRegister.ana">도서등록</a></li> 
 						</ul>
 					</li>
 					<li class="dropdown" style="margin-left: 15px;"> 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/nav-icon2.png">
+						<img src="resources/img/home-logo/home-logo3-mini.png">
 						<span style="margin-left: 10px;">회원관리</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
-							<li><a href="#">회원목록</a></li>
-							<li><a href="#">회원등록</a></li> 
+							<li><a href="memberList.ana">회원목록</a></li>
+							<li><a href="">회원등록</a></li> 
 						</ul>
 					</li>
 					<li class="dropdown" style="margin-left: 15px;"> 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/nav-icon6.png">
+						<img src="resources/img/home-logo/home-logo4-mini.png">
 						<span style="margin-left: 10px;">대출/예약/반납</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
-							<li><a href="#">대출</a></li>
-							<li><a href="#">반납</a></li> 
+							<li><a href="#">대출/반납</a></li>
 							<li><a href="#">예약</a></li> 
 						</ul>
 					</li>
 					<li class="dropdown" style="margin-left: 15px;"> 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/library.png">
+						<img src="resources/img/home-logo/home-logo1-mini.png">
 						<span style="margin-left: 10px;">도서관 관리</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
 							<li><a href="#">도서관 목록</a></li>
@@ -103,7 +102,7 @@
 					</li>
 					<li class="dropdown" style="margin-left: 15px;"> 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/chart.png">
+						<img src="resources/img/home-logo/home-logo6-mini.png">
 						<span style="margin-left: 10px;">통계</span><span class="caret" style="margin-left: 3px; margin-right: 20px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
 							<li><a href="#">통계</a></li>
@@ -112,7 +111,7 @@
 					
 					<li class="dropdown" style="margin-left: 15px;"> 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/nav-icon2.png">
+						<img src="resources/img/home-logo/home-logo5-mini.png">
 						<span style="margin-left: 10px;">사서게시판</span><span class="caret" style="margin-left: 3px;"></span></a>  
 						<ul class="dropdown-menu forAnimate drop" role="menu" style="margin-bottom: 20px;">
 							<li><a href="#">공지 게시판</a></li>
@@ -130,4 +129,49 @@
 	   		<!-- /#wrapper --> 
 				
 		</div>
+		<div class="nav-wraper">
+			<div class="navbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/bookmanage/login.ana"><img src="resources/img/header/nav-icon1.png" alt="">home</a></li>
+					<li class="nav-item submenu dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
+						 aria-expanded="false"><img src="resources/img/header/nav-icon2.png" alt="">회원관리</a>
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="#">회원 목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">회원 등록</a></li>
+						</ul>
+					</li>
+					<li class="nav-item submenu dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
+						 aria-expanded="false"><img src="resources/img/header/nav-icon3.png" alt="">도서관리</a>
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="#">도서 목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">도서 등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">삭제기록</a></li>
+						</ul>
+					</li>
+					<li class="nav-item submenu dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
+						 aria-expanded="false"><img src="resources/img/header/nav-icon6.png" alt="">대출/반납/예약</a> 
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="#">대출</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">반납</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">예약</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#"><img src="resources/img/header/chart.png" height="20px" alt="">통계</a></li>
+					<li class="nav-item submenu dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
+						 aria-expanded="false"><img src="resources/img/header/library.png" alt="">도서관관리</a> 
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="#">도서관 목록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">도서관 등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">예약</a></li>
+						</ul>
+					</li> 
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!--================ End Header Menu Area =================-->
 	</div> 

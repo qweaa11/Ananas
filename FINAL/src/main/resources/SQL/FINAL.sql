@@ -12,3 +12,28 @@ update member set birth = '19860904'
 where idx = 2;
 
 commit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

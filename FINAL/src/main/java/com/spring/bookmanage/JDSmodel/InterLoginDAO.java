@@ -1,19 +1,15 @@
 package com.spring.bookmanage.JDSmodel;
 
 import java.util.HashMap;
-import java.util.List;
 
-import com.spring.bookmanage.JDSmodel.MemberVO;
+import com.spring.bookmanage.JDSmodel.LibrarianVO;
+
+//model단(DAO)의 인터페이스 선언
 
 public interface InterLoginDAO {
-	// model단(DAO)의 인터페이스 선언
 
+			LibrarianVO getLoginLibrarian(HashMap<String, String> map);//사서 로그인 여부 알아보기
 
-			List<String> getImgfilenameList();//이미지 파일명 가져오기
-
-			MemberVO getLoginMember(HashMap<String, String> map);//로그인 여부 알아보기 및 마지막으로 로그인한 날짜 기록하기
-
-			void setLastLoginDate(HashMap<String, String> map);//마지막으로 로그인한 날짜시간 기로고하기
-
+			AdminVO getLoginAdmin(HashMap<String, String> map);//관리자 로그인 여부 알아보기
 
 }
