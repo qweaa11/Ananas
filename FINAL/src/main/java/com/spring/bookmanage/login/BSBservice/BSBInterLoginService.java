@@ -3,7 +3,6 @@ package com.spring.bookmanage.login.BSBservice;
 import java.util.HashMap;
 import java.util.List;
 
-import com.spring.bookmanage.JDSmodel.MemberVO;
 import com.spring.bookmanage.login.BSBmodel.BSBMemberVO;
 
 public interface BSBInterLoginService {

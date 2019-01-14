@@ -4,15 +4,15 @@
 <% String ctxPath = request.getContextPath(); %>
 
 <script type="text/javascript">
-	var loginuser = "${sessionScope.loginuser.userid}";
+	var loginLibrarian = "${sessionScope.loginLibrarian.libid}";
 	var gobackURL = "${requestScope.gobackURL}";
 	
-	if(loginuser != null && loginuser != "" && (gobackURL == null || gobackURL == "") ) {
+	if(loginLibrarian != null && loginLibrarian != "" && (gobackURL == null || gobackURL == "") ) {
 		alert("로그인 성공 !!");
-		location.href="<%=ctxPath%>/index.ana";
+		location.href="<%=ctxPath%>/bookList.ana";
 	}
 	
-	if(loginuser != null && loginuser != "" && (gobackURL != null && gobackURL != "")) {
+	if(loginLibrarian != null && loginLibrarian != "" && (gobackURL != null && gobackURL != "")) {
 		alert("로그인 성공 !!");
 		location.href=gobackURL;
 	}
