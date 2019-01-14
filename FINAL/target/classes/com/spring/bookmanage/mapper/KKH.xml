@@ -3,11 +3,7 @@
 
 <mapper namespace="KKH">
 
-	<!--  -->
- 	<select id="findBookBysidebar" parameterType="HashMap" resultType="com.spring.bookmanage.book.KKHmode.KKHBookVO">
- 		
-		 	
- 	</select> 
+	
  	
 	
 	
