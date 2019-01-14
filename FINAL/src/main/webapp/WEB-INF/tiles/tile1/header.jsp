@@ -41,7 +41,7 @@
 		<div class="nav-wraper">
 			<div class="navbar">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="resources/index.html"><img src="resources/img/header/nav-icon1.png" alt="">home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/bookmanage/login.ana"><img src="resources/img/header/nav-icon1.png" alt="">home</a></li>
 					<li class="nav-item submenu dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" 
 						 aria-expanded="false"><img src="resources/img/header/nav-icon2.png" alt="">회원관리</a>

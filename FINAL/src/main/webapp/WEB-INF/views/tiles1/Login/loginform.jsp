@@ -7,7 +7,7 @@
 
 .btnContactSubmit
 {
-    width: 30%;
+    width: 50%;
     border-radius: 1rem;
     padding: 1.5%;
     color: #fff;
@@ -16,11 +16,13 @@
     cursor: pointer;
     margin-right: 6%;
     background-color: white;
-    color: blue;
+    color: #8c8c8c;
     margin-top: 4%;
+    font-size: 12pt;
 }
 .register .nav-tabs .nav-link:hover{
     border: none;
+    
 }
 .text-align{
     margin-top: -3%;
@@ -34,8 +36,9 @@
     margin-left: 20%;
 }
 .register-heading{
-    margin-left: 21%;
+    margin-left: 40%;
     margin-bottom: 10%;
+    align-content: center;
     color: #e9ecef;
 }
 .register-heading h1{
@@ -62,8 +65,9 @@
     color: #f8f9fa;
 }
 .register{
-    background: #99ccff;
+    background: #cccccc;
     margin-top: 3%;
+    margin-bottom: 10%;
     padding: 3%;
     border-radius: 2.5rem;
 }
@@ -72,46 +76,52 @@
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
     color: white;
+    font-size: 14pt;
+    font-weight: bold;
 }	
 
-
-	
 </style>
-
- <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->
-<!------ Include the above in your HEAD tag ---------->
-
-
 
 <script type="text/javascript">
  
      $(document).ready(function(){
     	 
-    	 $("#btnLOGIN").click(function() {
-    		 func_Login();
-    	 }); // end of $("#btnLOGIN").click();-----------------------
+    	 $("#btnLOGIN1").click(function() {
+    		 func_Login1();
+    	 }); // end of $("#btnLOGIN1").click();-----------------------
     	 
-    	 $("#pwd").keydown(function(event){
+    	 $("#btnLOGIN2").click(function() {
+    		 func_Login2();
+    	 }); // end of $("#btnLOGIN2").click();-----------------------
+    	 
+    	$("#pwd").keydown(function(event){
   			
   			if(event.keyCode == 13) { // 엔터를 했을 경우
   				func_Login();
   			}
-    	 }); // end of $("#pwd").keydown();-----------------------	
+    	 }); // end of $("#pwd1").keydown();-----------------------	 
+    	 
+    	 if(${flag1 == true}){
+    		 $("#saveid1").prop("checked", true);
+    	 } 
+    	 
+    	 if(${flag2 == true}){
+    		 $("#saveid2").prop("checked", true);
+    	 }
+    	
     	 
     }); // end of $(document).ready()---------------------------	 
 
     
-    function func_Login() {
-    			 
-		 var userid = $("#userid").val(); 
+    function func_Login1() {
+    	
+		 var libid = $("#libid").val(); 
 		 var pwd = $("#pwd").val(); 
 		
-		 if(userid.trim()=="") {
+		 if(libid.trim()=="") {
 		 	 alert("아이디를 입력하세요!!");
-			 $("#userid").val(""); 
-			 $("#userid").focus();
+			 $("#libid").val(""); 
+			 $("#libid").focus();
 			 return;
 		 }
 		
@@ -122,13 +132,38 @@
 			 return;
 		 }
 
-		 var frm = document.loginFrm;
-		 
-		 frm.action = "<%=ctxPath%>/loginEnd.ana";
-		 frm.method = "POST";
-		 frm.submit();
-		 
+			 var frm = document.loginFrm1;
+			 frm.action = "<%=ctxPath%>/loginEnd1.ana";
+			 frm.submit();
+		
     } // end of function func_Login(event)-----------------------------
+    
+    
+    function func_Login2() {
+    	
+		 var adminid = $("#adminid").val(); 
+		 var pwd2 = $("#pwd2").val(); 
+		
+		 if(adminid.trim()=="") {
+		 	 alert("아이디를 입력하세요!!");
+			 $("#adminid").val(""); 
+			 $("#adminid").focus();
+			 return;
+		 }
+		
+		 if(pwd2.trim()=="") {
+			 alert("비밀번호를 입력하세요!!");
+			 $("#pwd2").val(""); 
+			 $("#pwd2").focus();
+			 return;
+		 }
+
+			 var frm = document.loginFrm2;
+			 frm.action = "<%=ctxPath%>/loginEnd2.ana";
+			 frm.submit();
+		
+    } // end of function func_Login(event)-----------------------------
+ 
      
 </script>
 
@@ -151,48 +186,53 @@
                 <div class="col-md-12">
                     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login Form 1</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">사서/관장</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Login Form 2</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">총관리자</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <h3 class="register-heading">Login Form 1</h3>
+                            <h3  class="register-heading">Login</h3>
                             <div class="row register-form">
                                 <div class="col-md-12">
-                                    <form method="post">
+                                    <form name="loginFrm1" class="loginFrm1" method="POST">
                                         <div class="form-group">
-                                            <input type="text" name="LGform1_user" class="form-control" placeholder="Your Userid *" value="" required=""/>
+                                            <input type="text" name="libid" id="libid" class="form-control" placeholder="Your Userid *" value="${saveid1}" required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="LGform1_pwd" class="form-control" placeholder="Your Password *" value="" required=""/>
+                                            <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Your Password *" value="" required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" name="LGform1" class="btnContactSubmit" id="btnLOGIN" value="Login" />
-                                            <a href="ForgetUserid.php" name="userid" id="userid" class="btnForgetUserid" value="Login">Forget Userid?</a>
-                                            <a href="ForgetPassword.php" name="pwd" id="pwd" class="btnForgetPwd" value="Login">Forget Password?</a>
+                                            <input type="button" name="LGform1" class="btnContactSubmit" id="btnLOGIN1" value="Login" />
+								            <input type="checkbox" id="saveid1" name="saveid1" value="saveid1"><label for="idcheck">아이디 저장</label>
+								            
+                                            <%-- <a href="<%=ctxPath%>/idFind.ana" name="libid" id="libid" class="btnForgetUserid" value="Login">Forget Userid?</a>
+                                            <a href="/Login/pwdFind.jsp" name="pwd" id="pwd" class="btnForgetPwd" value="Login">Forget Password?</a> --%>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade show text-align form-new" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <h3  class="register-heading">Login Form 2</h3>
+                            <h3 class="register-heading" style="color:#8c8c8c; ">Login</h3>
                             <div class="row register-form">
                                 <div class="col-md-12">
-                                    <form method="post">
+                                    <form name="loginFrm2" class="loginFrm2" method="POST">
                                         <div class="form-group">
-                                            <input type="text" name="LGform2_user" class="form-control" placeholder="Your Userid *" value="" required="" />
+                                            <input type="text" name="adminid" id="adminid" class="form-control" placeholder="Your Userid *" value="${saveid2}" required="" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="LGform2_pwd" class="form-control" placeholder="Your Password *" value="" required=""/>
+                                            <input type="password" name="pwd" id="pwd2" class="form-control" placeholder="Your Password *" value="" required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" name="LGform2" class="btnContactSubmit" id="btnLOGIN" value="Login" />
-                                            <a href="ForgetUserid.php" name="userid" id="userid" class="btnForgetUserid" value="Login">Forget Userid?</a>
-                                            <a href="ForgetPassword.php" name="pwd" id="pwd" class="btnForgetPwd" value="Login">Forget Password?</a>
+                                            <input type="submit" name="LGform2" class="btnContactSubmit" id="btnLOGIN2" value="Login" />
+
+                                            <input type="checkbox" id="saveid2" name="saveid2" value="saveid2"><label for="idcheck">아이디 저장</label> 
+                                            
+                                           <!--  <a href="ForgetUserid.php" name="adminid" id="adminid" class="btnForgetUserid" value="Login">Forget Userid?</a>
+                                            <a href="ForgetPassword.php" name="pwd" id="pwd" class="btnForgetPwd" value="Login">Forget Password?</a> -->
                                         </div>
                                     </form>
                                 </div>

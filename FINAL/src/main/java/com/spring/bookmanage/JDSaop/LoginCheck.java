@@ -37,7 +37,29 @@ public class LoginCheck {
 		
 		HttpServletResponse response = (HttpServletResponse)joinPoint.getArgs()[1];
 		
-		if(session.getAttribute("loginuser") == null) {
+		if(session.getAttribute("loginLibrarian") == null) {
+			// 해당 요청자가 로그인을 하지 않은 상태이라면 로그인 하는 페이지로 이동시키겠다.
+			try {
+				String msg ="먼저 로그인 하세요~~!";
+				String loc = request.getContextPath()+"/FINAL/login.ana";
+				request.setAttribute("msg", msg);
+				request.setAttribute("loc", loc);
+				
+				// >>> 로그인 성공 후 로그인 하기전 페이지로 돌아가는 작업하기 <<<
+				// ===>>> 현재 페이지 주소(URL) 알아내기 <<<===
+				String url = MyUtil.getCurrentURL(request);
+				
+				session.setAttribute("gobackURL", url);
+				// 세션에 url 값을 저장해준다.
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/msg.jsp");
+				dispatcher.forward(request, response);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		else if(session.getAttribute("loginAdmin") == null) {
 			// 해당 요청자가 로그인을 하지 않은 상태이라면 로그인 하는 페이지로 이동시키겠다.
 			try {
 				String msg ="먼저 로그인 하세요~~!";

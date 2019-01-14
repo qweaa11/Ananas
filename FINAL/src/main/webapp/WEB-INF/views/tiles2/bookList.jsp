@@ -3,6 +3,7 @@
 <div class="container">
 	
 	<table class="table table-striped">
+	<a style="width:50px;" href="<%=request.getContextPath() %>/logout.ana">로그아웃</a>
 		<thead>
 			<tr>
 				<th>웃대의 몰락</th>
