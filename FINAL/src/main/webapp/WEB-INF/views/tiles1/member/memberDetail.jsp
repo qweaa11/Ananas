@@ -90,7 +90,7 @@
 	        </tr>
 	        <tr>
 	          <th>주민번호</th>
-	            <td>910704-1xxxxxx</td>
+	            <td>19910704</td>
 	          <th>나이</th>
 	            <td>18살(전체,아동,청소년,성인)</td>
 	        </tr>
@@ -157,7 +157,7 @@
 	<table class="table">
 	    <tbody>
 	        <tr>
-	          <th>총 도서대출</th>
+	          <th>총 도서대여</th>
 	            <td>10권</td>
 	    	</tr>
 	    	<tr>        
@@ -179,7 +179,7 @@
 	<table class="table">
 	    <tbody>
 	        <tr>
-	          <th>도서대출</th>
+	          <th>도서대여</th>
 	            <td>2권</td>
 	    	</tr>
 	    	<tr>        
@@ -191,7 +191,7 @@
 	          <td>2019-01-14 월요일</td>
 	        </tr>
 	        <tr>  	          	
-	          <th>대출유무</th>
+	          <th>대여유무</th>
 	          	<td style="color: red;">가능 or 불가</td>
 	        </tr>	        	     	        	       
 	    </tbody>
@@ -205,7 +205,7 @@
 		<thead>	    
 		<tr>
 			<th>번호</th>
-			<th>대출일</th>
+			<th>대여일</th>
 			<th>반납일</th>
 			<th>반납연장일</th>
 			<th>연체일</th>

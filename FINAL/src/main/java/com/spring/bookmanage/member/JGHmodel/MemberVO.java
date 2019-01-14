@@ -12,19 +12,19 @@ public class MemberVO {
 	private String post;			// 신우편번호
 	private String birth;			// 생년월일
 	private int gender;				// 성별코드
+	private int stopDate;			// 정지기간
 	private String regDate;			// 가입일자
 	private String lastDate;		// 최근접속일자=마지막접속일자
 	private String pwDate;			// 최근 비밀번호변경일자=마지막 비밀번호 변경일자
 	private int status;				// 회원상태(기본=0, 휴면=1, 탈퇴=2, 정지=3 등)
-	private String imgFileName;		// 파일명 - 서버에 업로드될 때 변환되는 이름이며 사용자가 업로드할 당시에 이름과는 다르다.
-	private String fileSize;		// 파일크기
+	private String imgFileName;		// 서버에 업로드되는 이미지파일명
+	private int fileSize;			// 파일크기
 
 	public MemberVO() { }// end of default constructor
 
 	public MemberVO(int idx, String memberid, String pwd, String name, String email, String phone, String addr1,
 			String addr2, String post, String birth, int gender, String regDate, String lastDate, String pwDate,
 			int status) {
-		super();
 		this.idx = idx;
 		this.memberid = memberid;
 		this.pwd = pwd;
@@ -130,6 +130,14 @@ public class MemberVO {
 		this.gender = gender;
 	}
 
+	public int getStopDate() {
+		return stopDate;
+	}
+
+	public void setStopDate(int stopDate) {
+		this.stopDate = stopDate;
+	}
+
 	public String getRegDate() {
 		return regDate;
 	}
@@ -170,11 +178,11 @@ public class MemberVO {
 		this.imgFileName = imgFileName;
 	}
 
-	public String getFileSize() {
+	public int getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(String fileSize) {
+	public void setFileSize(int fileSize) {
 		this.fileSize = fileSize;
 	}
 }
