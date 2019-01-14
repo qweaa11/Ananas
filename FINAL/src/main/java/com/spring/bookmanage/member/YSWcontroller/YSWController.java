@@ -201,68 +201,65 @@ public class YSWController {
 	
 	
 	
-	//===== 사서 목록 페이지 요청. =====
-	@RequestMapping(value="/librarianList.ana", method= {RequestMethod.GET})
-	public String librarianList(HttpServletRequest req) {
+	@RequestMapping(value="/librarianList.ana", method={RequestMethod.GET})
+	public String librarianList() {
+
 		
-		return "library/librarianList.tiles1";  
+		return "library/librarianList.tiles1";
 	}
 	
 	
-	//===== 사서 목록 가져오기. =====
-	@RequestMapping(value="/librarianListEnd.ana", method= {RequestMethod.GET})
+	
+	@RequestMapping(value="/findLibrarianList.ana", method={RequestMethod.GET})
 	@ResponseBody
-	public List<HashMap<String,Object>> librarianListEnd(HttpServletRequest req) {
+	public List<HashMap <String, Object>> findLibrarianList(HttpServletRequest req) {
 		
-		List<HashMap<String,Object>> listMap = new ArrayList<HashMap<String,Object>>();
-		List<YjkVO> librarianList = null;
-
 		String sort = req.getParameter("sort");
 		String searchWord = req.getParameter("searchWord");
 		
-		System.out.println("sort : " + sort);
-		System.out.println("searchWord : " + searchWord);
+		List<HashMap <String, Object>> librarianList = new ArrayList<HashMap<String, Object>>();
 		
-		if(sort != null && !sort.trim().equals("") && !sort.equalsIgnoreCase("null")) {
-				
+		if(searchWord != null && !searchWord.trim().equals("") && !searchWord.equalsIgnoreCase("null")) {
+			
 			HashMap<String, String> paraMap = new HashMap<String, String>();
 			paraMap.put("sort", sort);
 			paraMap.put("searchWord", searchWord);
 			
-			librarianList = service.findListWithOption(paraMap);
+			List<YjkVO> yjkvo = service.findListWithOption(paraMap);
 			
-			for (YjkVO yjkvo : librarianList) {
+			for (YjkVO yjk : yjkvo) {
 				
 				 HashMap<String, Object> map = new HashMap<String, Object>();
 				 
-				 map.put("LIBID", yjkvo.getLibid());
-				 map.put("LIBCODE_FK", yjkvo.getLibcode_fk());
-				 map.put("IDX", yjkvo.getIdx());
-				 map.put("NAME", yjkvo.getName());
-				 map.put("TEL", yjkvo.getTel());
+				 map.put("LIBID", yjk.getLibid());
+				 map.put("LIBCODE_FK", yjk.getLibcode_fk());
+				 map.put("IDX", yjk.getIdx());
+				 map.put("NAME", yjk.getName());
+				 map.put("TEL", yjk.getTel());
 				 
-				 listMap.add(map);
+				 librarianList.add(map);
 			}
 		}
 		else {
 			
-			librarianList = service.findListNoneOption();
+			List<YjkVO> yjkvo = service.findListNoneOption();
 			
-			for (YjkVO yjkvo : librarianList) {
+			for(YjkVO yjk : yjkvo) {
 				
-				 HashMap<String, Object> map = new HashMap<String, Object>();
-				 
-				 map.put("LIBID", yjkvo.getLibid());
-				 map.put("LIBCODE_FK", yjkvo.getLibcode_fk());
-				 map.put("IDX", yjkvo.getIdx());
-				 map.put("NAME", yjkvo.getName());
-				 map.put("TEL", yjkvo.getTel());
-				 
-				 listMap.add(map);
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				
+				 map.put("LIBID", yjk.getLibid());
+				 map.put("LIBCODE_FK", yjk.getLibcode_fk());
+				 map.put("IDX", yjk.getIdx());
+				 map.put("NAME", yjk.getName());
+				 map.put("TEL", yjk.getTel());
+				
+				librarianList.add(map);
 			}
+			
 		}
 		
-		return listMap;  
+		return librarianList;
 	}
 
 

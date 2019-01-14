@@ -3,7 +3,8 @@
     
 <% String ctxPath = request.getContextPath(); %>
 
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style type="text/css">
 
@@ -91,34 +92,44 @@ p{margin:3px;}
 						 "sort":sort}
 		
 		$.ajax({
-			url:"librarianListEnd.ana",
+			url:"<%=request.getContextPath()%>/findLibrarianList.ana",
 			data:form_data,
 			type:"GET",
 			dataType:"JSON",
 			success:function(json){
 				
-				var result = ""
+				var result = "";
 				
-				$.each(json, function(entryIndex, entry) {
-					
-					result += "<div class='col-lg-12'>"+
-		                    	"<span class='glyphicon glyphicon-credit-card'></span>"+
-		                    		"<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
-		                	  "</div>"+
-		                	  "<div class='col-lg-12 well well-add-card'>"+
-		                 	  	"<h4>"+${entry.name}+"</h4>"+
-		                	  "</div>"+
-		                	  "<div class='col-lg-12'>"+
-		                      "<p>"+${entry.libid}+"</p>"+
-		                      "<p class='text-muted'>"+${entry.tel}+"</p>"+
-		                	  "</div>"+
-		                	  "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card'>Update</button>"+
-		                	  "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card'>Vrify Now</button>"+
-		                	  "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>";
-							
-				});
+				//console.log("xxxxxx");
+
+				$.each(json, function(entryIndex, entry){
+   
+					result += "<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>"+
+						        "<div class='thumbnail'>"+
+					              "<div class='caption'>"+
+					                "<div class='col-lg-12'>"+
+					                    "<span class='glyphicon glyphicon-credit-card'></span>"+
+					                    "<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
+					                "</div>"+
+					                "<div class='col-lg-12 well well-add-card'>"+
+					                    "<h4> <span style='color: blue; font-weight: bold;'>사서명 : </span>"+entry.NAME+"</h4>"+
+					                "</div>"+
+					                "<div class='col-lg-12'>"+
+					                    "<p><span style='color: blue; font-weight: bold;'>휴대폰 : </span>"+ entry.TEL+"</p>"+
+					                    "<p class'text-muted'><span style='color: blue; font-weight: bold;'>아이디 : </span>"+entry.LIBID+"</p>"+
+					                "</div>"+
+					                "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card' data-toggle='modal' data-target='#updateInfo'>Update Info.</button>"+
+					                "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card' data-toggle='modal' data-target='#detailInfo'>Detail Info.</button>"+
+					                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
+					            "</div>"+
+					          "</div>"+
+					        "</div>" 
+						
 				
+				});	
+			
 				$("#resultList").html(result);
+				
 			},
 			error: function(request, status, error){
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
@@ -142,21 +153,66 @@ p{margin:3px;}
         		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
         		<button type="button" onClick="searchList()">검색</button>
 
-        	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="#">
+        	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="adminRegist.ana">
         		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록
         	</a>
         </div>
-        
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div class="thumbnail">
-              <div class="caption" id="resultList">
-                
-            </div>
-          </div>
+       	
+         
+        <div id="resultList">
         </div>
         
-        <div class="col-lg-12"><a href="#">삭제 된 사서카드</a></div>
+        <br/><div class="col-lg-12"><a href="#">삭제 된 사서카드</a></div>
       </div><!-- End row -->
     </div><!-- End container -->
+    
+      <!-- Modal -->
+  <div class="modal fade" id="detailInfo" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal fade" id="updateInfo" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+  
 </body>
+
+
+
 </html>
