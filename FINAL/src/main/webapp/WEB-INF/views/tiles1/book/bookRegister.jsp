@@ -56,6 +56,8 @@
     	      
 	        <h1 class="entry-title"><span>자료 등록</span> <img src="<%= ctxPath%>/resources/img/BWFile.jpg">  <small> 자료관리 > 자료등록</small> </h1>
 	        <hr>
+	        
+	    <!-- 도서 등록시 필요한 도서 등록 폼 추가 -->    
         <form class="form-horizontal" name="signup" id="signup" enctype="multipart/form-data" >        
 	        <div class="form-group">
 	          <label class="control-label col-sm-3">도서명 <span class="text-danger">*</span></label>
@@ -68,6 +70,7 @@
 	          </div>
 	        </div>
         
+        	<!-- 도서 등록시 도서 작가 추가 -->
 			<div class="form-group">
 				<label class="control-label col-sm-3">저자명 <span class="text-danger">*</span></label>
 				<div class="col-md-8 col-sm-9">
@@ -79,6 +82,7 @@
 				</div>
 			</div>
 		
+			<!-- 도서 등록시 도서 출판사  추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">출판사 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -87,11 +91,12 @@
 	            	<input type="text" class="addr"  id="addr" value="" style="width: 300px;">
 	            	<input type="text" class="tel"  id="tel" value="" style="width: 300px;">
 	            	<input type="text" class="reg_num"  id="reg_num" value="" style="width: 300px;">
-	            	
+	            	<!-- 출판사 등록을 위한 정보들을 담아오는 히든 타입 인풋 -->
 	            <button type="button" id="searchPublisher" name="searchPublisher">조회</button> 
 	          	</div>
 	        </div>
 	        
+	        <!-- 도서 등록시 ISBN 추가 -->
 	        <div class="form-group">
 	          	<label class="control-label col-sm-3">ISBN <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -102,6 +107,7 @@
 	          	</div>
 	        </div>
         
+        	<!-- 도서 등록시 도서 언어 추가 -->
 	        <div class="form-group">
 	          	<label class="control-label col-sm-3">언어 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -113,6 +119,7 @@
 	        </div>
 	        
 	        
+	        <!-- 도서 등록시 도서 국가분류 추가 -->
 	        <div class="form-group">
 	          	<label class="control-label col-sm-3">국가분류 <span class="text-danger">*</span></label>
 	          
@@ -122,6 +129,7 @@
 	          	</div>
 	        </div>
 	        
+	        <!-- 도서 등록시 도서 종류 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">  종류  <span class="text-danger">*</span></label>
 					<div class="col-md-8 col-sm-9">
@@ -146,6 +154,7 @@
 					</div>
 	        </div>
         
+        	<!-- 도서 등록시 도서 주제 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">  주제   <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -167,6 +176,7 @@
 	          	</div>
 	        </div>
         
+        	<!-- 도서 등록시 도서 장르 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3"> 장르  <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -184,6 +194,7 @@
 	          	</div>
 	        </div>
         
+        	<!-- 도서 등록시 추천 연령대 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">연령대 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -197,6 +208,7 @@
 	          	</div>
 	        </div>
         
+        	<!-- 도서 등록시 도서가격 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">가격 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -207,6 +219,7 @@
 	          	</div>
 	        </div>
         
+        	<!-- 도서 등록시 도서 무게 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">무게 <span class="text-danger">*</span></label>
           		<div class="col-md-8 col-sm-9">
@@ -217,6 +230,7 @@
 	          	</div>
 	        </div>
         
+        	<!-- 도서 등록시 도서 페이지수 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">쪽수 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -226,7 +240,8 @@
 		            </div>  
 	          	</div>
 	        </div>
-          
+          	
+          	<!-- 도서 등록시 도서 발행일자 추가 -->
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">발행일자 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -236,7 +251,8 @@
 	            	</div>  
 	          	</div>
 	        </div>
-        
+        	
+        	<!-- 도서 등록시 도서 소개 추가 -->
 	        <div class="form-group">
 	          	<label class="control-label col-sm-3">도서 소개 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -247,7 +263,7 @@
 	          	</div>
 	        </div>
         
-      
+      		<!-- 도서 등록시 도서관명 추가 -->
 	       	<div class="form-group">
 	       		<label class="control-label col-sm-3">도서관명 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
@@ -260,25 +276,29 @@
 					</select>
 	          	</div>
 	        </div>
-        
+        	
+        	<!-- 도서 등록시 이미지 파일 추가 -->
 			<div class="form-group">
 				<label class="control-label col-sm-3">도서 이미지 <span class="text-danger">*</span> <br> </label>
 				<div class="col-md-5 col-sm-8">
 					<input type="file" name="image" id="image" class="upload" aria-describedby="file_upload">
 				</div>
 			</div>
-        
+			
+        	</form>
+        	
+        	
         	<div class="form-group">
 	          	<div class="col-xs-offset-3 col-md-8 col-sm-9"><span class="text-muted"><span class="label label-danger">Note:</span><span class=""> 모든 항목이 채워져야 등록이 가능합니다.</span> </div>
 	        </div>
         
         	<div class="form-group">
 	          	<div class="col-xs-offset-3 col-xs-10">
-	            	<input name="Submit" type="submit" value="등록" class="btn btn-primary">
+	            	<button id="Submit" class="btn btn-primary">등록</button>  
 	          	</div>
 	        </div>
          
-      	</form>
+      	
    	 	</div>
 	</div>
 	
