@@ -26,7 +26,7 @@ public class KKHController {
 	 * 
 	 * @return
 	 */
-	public String bookList() {
+	public String bookList(HttpServletRequest request, HttpServletResponse response) {
 
 		return "book/bookList.tiles1";
 	}// end of bookList
@@ -60,5 +60,11 @@ public class KKHController {
 		
 		
 		return bookList;
+	}
+	
+	@RequestMapping(value="/bookDetail.ana",method= {RequestMethod.GET})
+	public String bookDetail(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "book/bookDetail.tiles1";
 	}
 }

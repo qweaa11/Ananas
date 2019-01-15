@@ -244,7 +244,7 @@ div.search button:hover {
 </script>	
 <div class="container-fluid" style="padding-left:200px;">      
 <div class="row">
-<div class="col-lg-12 col-sm-12 "><span style="font-weight:bold; font-size: 22pt; margin-bottom:15px;">도서관리 > 도서목록</span></div>
+<div class="col-lg-12 col-sm-12 "><span style="font-weight:bold; font-size: 24pt; margin-bottom:15px;">도서관리 > 도서목록</span></div>
 		<div class="col-lg-8 col-sm-8">
 			<div class="search col-lg-12"
 				style="margin-left: 20px; margin-top: 5px; float: left;">
