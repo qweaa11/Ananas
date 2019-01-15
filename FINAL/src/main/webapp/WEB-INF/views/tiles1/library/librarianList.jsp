@@ -13,8 +13,8 @@
     padding: 0px;
     margin-bottom: 20px;
     background-color: #D9D9D9;
-    border: 1px solid #D9D9D9;
-    border-radius: 0px;
+    border: 5px solid #0d0d0d;   
+    border-radius: 2px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
     padding-left: 15px;
@@ -26,7 +26,7 @@
     color: #333;
     padding-left: 0px;
     padding-right: 0px;
-	}
+	}   
 
 .icon-style{
     margin-right:15px;
@@ -46,7 +46,7 @@ p{margin:3px;}
 	margin-bottom: 20px;
 	line-height: 1.42857143;
 	background-color: #fff;
-	border: 6px solid #D9D9D9;
+	border: 5px solid #666666;   
 	border-radius: 15px;
 	-webkit-transition: border .2s ease-in-out;
 	-o-transition: border .2s ease-in-out;
@@ -58,6 +58,24 @@ p{margin:3px;}
 .btn{border-radius:0px;}
 	 
 .btn-update {margin-left:15px;}
+
+.modal-dialog {
+  width: 45%;
+  height: 55%;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+}
+
+li {
+	list-style:none;
+	padding:2%;
+
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -71,8 +89,12 @@ p{margin:3px;}
 		
 		librarianList(sort, searchWord);
 		
+		var faceImg = $("#personalInfo6").val();
+		$("#faceImg").attr('src',faceImg);
+		
 	});
 	
+	  
 	function searchList(){
 		
 		var searchWord = $("#searchWord").val();
@@ -80,6 +102,7 @@ p{margin:3px;}
 		
 		librarianList(sort, searchWord);
 	}
+	
 	
 	function librarianList(sort, searchWord) {
 		
@@ -105,21 +128,21 @@ p{margin:3px;}
 				$.each(json, function(entryIndex, entry){
    
 					result += "<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>"+
-						        "<div class='thumbnail'>"+
+						        "<div class='thumbnail' style='background-color: #ffffff;'>"+
 					              "<div class='caption'>"+
-					                "<div class='col-lg-12'>"+
+					                "<div class='col-lg-12' style='background-color: #ffffff;'>"+
 					                    "<span class='glyphicon glyphicon-credit-card'></span>"+
 					                    "<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
 					                "</div>"+
 					                "<div class='col-lg-12 well well-add-card'>"+
-					                    "<h4> <span style='color: blue; font-weight: bold;'>사서명 : </span>"+entry.NAME+"</h4>"+
+					                    "<h4> <span style='color: #004080; font-weight: bold;'>사서명 : "+entry.LIBRARIANNAME+"</span></h4>"+
 					                "</div>"+
 					                "<div class='col-lg-12'>"+
-					                    "<p><span style='color: blue; font-weight: bold;'>휴대폰 : </span>"+ entry.TEL+"</p>"+
-					                    "<p class'text-muted'><span style='color: blue; font-weight: bold;'>아이디 : </span>"+entry.LIBID+"</p>"+
+					                    "<p><span style='color: #004080; font-weight: bold;'>휴대폰 : "+ entry.LIBRARIANTEL+"</span></p>"+
+					                    "<p class'text-muted'><span style='color: #004080; font-weight: bold;'>아이디 : "+entry.LIBID+"</span></p>"+
 					                "</div>"+
-					                "<button type='button' class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal'>Update Info.</button>"+
-					                "<button type='button' class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal'>Detail Info.</button>"+
+					                "<a class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#updateInfo'>Update Info.</a>"+
+					                "<a class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#detailInfo'>Detail Info.</a>"+
 					                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
 					            "</div>"+
 					          "</div>"+
@@ -137,18 +160,43 @@ p{margin:3px;}
 		});
 		
 	}
+	
+	
+	$(document).on("click", ".updateInfo", function () {
+		
+	     var personalInfo = $(this).data('personal');
+	     
+	     var infoSpliter = personalInfo.split(',');
+	     
+	     for(var i in infoSpliter){
+	     	$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
+	     }
+	     
+	});
+	
+	
+	$(document).on("click", ".detailInfo", function () {
+		
+	     var personalInfo = $(this).data('personal');
+
+		 var infoSpliter = personalInfo.split(',');
+	     
+	     for(var i in infoSpliter){
+	     	$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
+	     }
+	});
 
 </script>
+     
 
-
-<body>
+<body style="background-color: #ffffff;">
 	<div class="container" id="tourpackages-carousel">
       <div class="row">
         <div class="col-lg-12" class="">
         	<h3>등록 사서 카드</h3>
         		<select id="sort" name="sort">
-        			<option value="name">사서명</option>
-        			<option value="tel">전화번호</option>
+        			<option value="a.name">사서명</option>
+        			<option value="a.tel">전화번호</option>
         		</select>
         		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
         		<button type="button" onClick="searchList()">검색</button>
@@ -168,20 +216,54 @@ p{margin:3px;}
     
       <!-- Modal -->
   <div class="modal fade" id="detailInfo" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h2 class="modal-title">사서 정보 수정</h2>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+        	<div class="modal-body">
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
+        			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
+	        	<div class="col-xs-6 col-sm-6 col-lg-4">
+	        		<ul>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 아이디</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 코드</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 성명</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 연락처</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 직책</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 이름</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 전화번호</span></li>
+						<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 주소</span></li>
+	          		</ul>
+	          	</div>
+	          	<div class="col-xs-6 col-sm-6 col-lg-4">
+	          		<ul>
+	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value=""/></li>
+	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value=""/></li>
+	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value=""/></li>
+	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value=""/></li>
+	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value=""/></li>
+	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value=""/></li>
+	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value=""/></li>
+	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value=""/></li>
+	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value=""/></li>
+	          		</ul>
+	          	</div>
+        	</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
+        
+       	<div>
+          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">확인</button>
+          <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>
+     	</div>
       </div>
       
     </div>
@@ -190,22 +272,56 @@ p{margin:3px;}
   
   
   <div class="modal fade" id="updateInfo" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h2 class="modal-title">사서 정보 수정</h2>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+        	<div class="modal-body">
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
+        			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
+	        	<div class="col-xs-6 col-sm-6 col-lg-4">
+	        		<ul>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 아이디</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 코드</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 성명</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 연락처</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 직책</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 이름</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 전화번호</span></li>
+						<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 주소</span></li>
+	          		</ul>
+	          	</div>
+	          	<div class="col-xs-6 col-sm-6 col-lg-4">
+	          		<ul>
+	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value=""/></li>
+	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value=""/></li>
+	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value=""/></li>
+	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value=""/></li>
+	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value=""/></li>
+	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value=""/></li>
+	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value=""/></li>
+	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value=""/></li>
+	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value=""/></li>
+	          		</ul>
+	          	</div>
+        	</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
+        
+       	<div>
+          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">확인</button>
+          <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>
+     	</div>
       </div>
-      
+    
     </div>  
   </div>
   
