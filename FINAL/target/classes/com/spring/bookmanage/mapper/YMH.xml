@@ -3,10 +3,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
 <mapper namespace="YMH">
+<!-- 	<insert id="addOneNewBook" parameterType="com.spring.bookmanage.book.YMHmodel.YMHBookVO">
+	
+		insert into book(bookId, idx, title, author, pubCode_fk, status, ageCode, ncode_fk,
+						,lcode_fk, fcode_fk, ccode_fk, gcode_fk, libcode_fk, ISBN)
+		values(   , book_seq.nextval, #{title}, #{author}, #{pubCode_fk},default, #{author}, #{author},
+			   #{lcode_fk}, #{fcode_fk}, #{ccode_fk}, #{gcode_fk}, #{libcode_fk}, #{ISBN})				
+		
+	</insert> -->
 
 
-
-
+	<select id="filedCodeList" parameterType="String" resultType="com.spring.bookmanage.book.YMHmodel.YMHBookVO">
+	
+		select fcode as fcode_fk, fname
+		from field
+		where substr(fcode, 0,1) = #{initFcode}
+	
+	</select>
 
 
 </mapper>
