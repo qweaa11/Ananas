@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.bookmanage.library.Yjkmodel.YjkVO;
 import com.spring.bookmanage.member.YSWmodel.InterYSWDAO;
+import com.spring.bookmanage.member.YSWmodel.YSWLibrarianVO;
 import com.spring.bookmanage.member.YSWmodel.YSWMemberVO;
 
 @Service
@@ -37,19 +38,19 @@ public class YSWService implements InterYSWService {
 	
 	//===== 조건을 이용해서 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findListWithOption(HashMap<String, String> paraMap) {
+	public List<YSWLibrarianVO> findListWithOption(HashMap<String, String> paraMap) {
 
-		List<YjkVO> librarianList = dao.findListWithOption(paraMap);
-		return librarianList;
+		List<YSWLibrarianVO> yswlibvoList = dao.findListWithOption(paraMap);
+		return yswlibvoList;
 	}
 
 	
 	//===== 조건이 없을 때 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findListNoneOption() {
+	public List<YSWLibrarianVO> findListNoneOption() {
 
-		List<YjkVO> librarianList = dao.findListNoneOption();
-		return librarianList;
+		List<YSWLibrarianVO> yswlibvoList = dao.findListNoneOption();
+		return yswlibvoList;
 	}
 
 }
