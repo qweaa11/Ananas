@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <% String ctxPath = request.getContextPath(); %>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		
-		
+
 <style type="text/css">
 
 .btnContactSubmit
@@ -98,17 +94,11 @@
     		 func_Login2();
     	 }); // end of $("#btnLOGIN2").click();-----------------------
     	 
-    	$("#pwd1").keydown(function(event){
+    	$("#pwd").keydown(function(event){
   			
   			if(event.keyCode == 13) { // 엔터를 했을 경우
-  				func_Login1();
+  				func_Login();
   			}
-  			
-  			$("#pwd2").keydown(function(event){
-  	  			
-  	  			if(event.keyCode == 13) { // 엔터를 했을 경우
-  	  				func_Login2();
-  	  			}
     	 }); // end of $("#pwd1").keydown();-----------------------	 
     	 
     	 if(${flag1 == true}){
@@ -137,8 +127,8 @@
 		
 		 if(pwd.trim()=="") {
 			 alert("비밀번호를 입력하세요!!");
-			 $("#pwd1").val(""); 
-			 $("#pwd1").focus();
+			 $("#pwd").val(""); 
+			 $("#pwd").focus();
 			 return;
 		 }
 
@@ -204,10 +194,10 @@
                                 <div class="col-md-12">
                                     <form name="loginFrm1" class="loginFrm1" method="POST">
                                         <div class="form-group">
-                                            <input type="text" name="libid" id="libid1" class="form-control" placeholder="Your Userid *" value="${saveid1}" required=""/>
+                                            <input type="text" name="libid" id="libid" class="form-control" placeholder="Your Userid *" value="${saveid1}" required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="pwd" id="pwd1" class="form-control" placeholder="Your Password *" value="" required=""/>
+                                            <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Your Password *" value="" required=""/>
                                         </div>
                                         <div class="form-group">
                                             <input type="button" name="LGform1" class="btnContactSubmit" id="btnLOGIN1" value="Login" />

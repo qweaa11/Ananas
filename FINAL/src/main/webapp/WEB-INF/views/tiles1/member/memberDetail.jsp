@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <style type="text/css">
 	table, th, td {border: 1px solid lightgrey;}
@@ -69,6 +71,61 @@
 
 <script type="text/javascript">
 
+	$(document).ready(function(){
+		
+	});// end of $(document).ready()---------------
+	
+	
+	function goStatusEdit0(idx) { // 활동
+		var bool = confirm(idx+" 번 회원을 회원상태 활동으로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;		
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit0.ana";
+			frm.submit();
+		}
+	}
+	function goStatusEdit1(idx) { // 휴면해제
+		var bool = confirm(idx+" 번 회원을 회원상태 휴면해제(활동)으로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;		
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit1.ana";
+			frm.submit();
+		}
+	}
+	function goStatusEdit2(idx) { // 정지
+		var bool = confirm(idx+" 번 회원을 회원상태 정지로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;		
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit2.ana";
+			frm.submit();
+		}
+	}
+	function goStatusEdit3(idx) { // 탈퇴
+		var bool = confirm(idx+" 번 회원을 회원상태 탈퇴로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit3.ana";
+		//	frm.submit();
+		}
+	}
+
+	
 </script>
 
 
@@ -78,53 +135,85 @@
 	    <tbody>
 	        <tr>
 	          <th>회원번호</th>
-	            <td>12345</td>
+	            <td>${pmgMemberVO.idx }</td>
 	          <th>회원명</th>
-	          	<td>박민규</td>
+	          	<td>${pmgMemberVO.name }</td>
 	        </tr>
 	        <tr>
 	          <th>ID</th>
-	            <td>pmk7257</td>
+	            <td>${pmgMemberVO.memberid }</td>
 	          <th>E-mail</th>
-	          	<td>pmk7257@naver.com</td>
+	          	<td>${pmgMemberVO.email }</td>
 	        </tr>
 	        <tr>
-	          <th>주민번호</th>
-	            <td>19910704</td>
+	          <th>생년월일</th>
+	            <td>${pmgMemberVO.birth }</td>
+	            
 	          <th>나이</th>
-	            <td>18살(전체,아동,청소년,성인)</td>
+	           <c:if test="${pmgMemberVO.age <= 13}">
+	            <td>${pmgMemberVO.age }세 전체(<span style="color: #ffffcc">아동</span>)</td>
+			   </c:if>
+			   <c:if test="${pmgMemberVO.age > 13 && pmgMemberVO.age <= 19}">
+	            <td>${pmgMemberVO.age }세 전체(<span style="color: #80dfff">청소년</span>)</td>
+			   </c:if>
+			   <c:if test="${pmgMemberVO.age > 19}">
+	            <td>${pmgMemberVO.age }세 전체(<span style="color: #ff9999">성인</span>)</td>
+			   </c:if>
+			  
 	        </tr>
 	      	<tr>
 	          <th>연락처</th>
-	          	<td>010-3432-2323</td>
+	          	<td>${pmgMemberVO.phone }</td>
 	          <th>주소</th>
-	            <td>서울시 광진구 중곡동 30-14 1층</td>
+	            <td>${pmgMemberVO.address }</td>
 	        </tr>
 	        <tr>
 	          <th>성별</th>
-	          	<td>남자</td>	          
+	          	<td>${pmgMemberVO.gender }</td>	          
 	          <th>회원상태</th>
-	            <td>활동, 휴면, 정지, 탈퇴</td>
+	            <td>${pmgMemberVO.status }</td>
 	        </tr>
 	        <tr>
 	          <th>가입일자</th>
-	          	<td>2018-01-01</td>
+	          	<td>${pmgMemberVO.regDate }</td>
 	          <th>로그인 기록</th>
-	          	<td>마지막 로그인(2018-10-10 23:00:00) 로그아웃(2018-10-10 23:10:50)</td>	          
+	          	<td>마지막 로그인(${pmgMemberVO.lastDate }), 마지막 암호 변경일(${pmgMemberVO.pwDate })</td>	          
 	        </tr>
 	    </tbody>
 	</table>
 </div>
 
-<div class="container">	        
-	<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 활동</button>
-	<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>
-	<button type="button" class="btn btn-success btn-lg btn3d"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
-	<button type="button" class="btn btn-danger btn-lg btn3d"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>       	
-</div>
-
-
-
+<c:if test="${\"활동\".equals(pmgMemberVO.status)}">
+	<div class="container">	        
+		<button type="button" class="btn btn-success btn-lg btn3d" onClick="goStatusEdit2('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
+		<button type="button" class="btn btn-danger btn-lg btn3d" onClick="goStatusEdit3('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>       	
+	</div>
+</c:if>
+<c:if test="${\"휴면\".equals(pmgMemberVO.status)}">
+	<div class="container">
+		<button type="button" class="btn btn-primary btn-lg btn3d" onClick="goStatusEdit1('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>	               	
+	</div>
+</c:if>
+<c:if test="${\"정지\".equals(pmgMemberVO.status)}">
+	<div class="container">
+		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
+	</div>
+</c:if>
+<c:if test="${\"탈퇴\".equals(pmgMemberVO.status)}">
+	<div class="container">
+		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
+	</div>
+</c:if>
+<!-- 
+<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 활동</button>
+<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>
+<button type="button" class="btn btn-success btn-lg btn3d"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
+<button type="button" class="btn btn-danger btn-lg btn3d"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>
+ -->
+<form name="idxFrm">
+	<input type="hidden" name="idx" />
+</form>
+ 
 <br/>
 <br/>
 <br/>

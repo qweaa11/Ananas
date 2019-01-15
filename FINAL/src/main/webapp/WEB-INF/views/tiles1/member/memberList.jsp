@@ -22,23 +22,23 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+		searchKeep();
 	});
 	
-	function btnSearch() {
+	function search() {
 		var searchFrm = document.searchFrm;
 		searchFrm.method = "GET";
-		searchFrm.action = "searchEnd.ana";
+		searchFrm.action = "memberList.ana";
 		searchFrm.submit();
-	}
+	}// end of search
 	
-	function findAllMemberByName(name) {
-		
-	}// end of findAllMemberByName
+	function searchKeep() {
+		if(${searchWord != null && searchWord!= "" && searchWord != "null"}) {
+			$("#colname").val("${colname}");
+			$("#searchWord").val("${searchWord}");
+		}// end of if
+	}// end of searchKeep
 	
-	function findAllMemberById(id) {
-		
-	}// end of findAllMemberById
 </script>
 
 <div class="container">
@@ -46,12 +46,12 @@
 
 		<div class="container border" style="height: 50%; width: 80%; align-content: center;">
 			<form name="searchFrm">
-				<select id="colname" name="colname">
+				<select id="colname" name="colname" style="height: 25px;" >
 					<option value="name">이름</option>
 					<option value="memberid">아이디</option>
 				</select>
-				<input type="text" />
-				<button type="button" id="search" onclick="btnSearch();">검색</button>
+				<input type="text" id="searchWord" name="searchWord" />
+				<button type="button" class="btn btn-info" onclick="search();">검색</button>
 			</form>
 			<table class="table table-striped">
 				<thead>
@@ -69,7 +69,7 @@
 				<tbody align="center">
 					<c:if test="${empty memberList}">
 					<tr>
-						<td><span style="color: #ff0000; font-weight: bold;">회원이 존재하지 않습니다.</span></td>
+						<td colspan="8"><span style="color: #ff4d4d; font-weight: bold;">입력된 내용과 일치하는 회원이 존재하지 않습니다.</span></td>
 					</tr>
 					</c:if>
 					
