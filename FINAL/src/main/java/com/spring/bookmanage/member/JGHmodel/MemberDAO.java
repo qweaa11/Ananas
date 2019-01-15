@@ -28,7 +28,6 @@ public class MemberDAO implements MemberMapper {
 	@Override
 	public List<MemberVO> findAllMemberBySearchWord(HashMap<String, String> parameterMap) {
 		List<MemberVO> memberListBySearchWord = sqlsession.selectList("jgh.findAllMemberBySearchWord", parameterMap);
-		System.out.println("null인가? "+memberListBySearchWord.toString());
 
 		return memberListBySearchWord;
 	}// end of findAllMemberBySearchWord
