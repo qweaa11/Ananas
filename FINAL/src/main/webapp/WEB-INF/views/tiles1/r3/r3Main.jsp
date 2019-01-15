@@ -7,31 +7,133 @@
 <script type="text/javascript">
 
 	$(document).ready(function(e){
+		
+		// 회원 검색 카테고리
 	    $('.search-member').find('a').click(function(e) {
 			e.preventDefault();
 			var param = $(this).attr("href").replace("#","");
 			var concept = $(this).text();
 			$('.search-member span#search_concept').text(concept);
-			$('.input-member #search_param').val(param);
+			$('.input-member #membercategory').val(param);
 		});
 	    
+		// 책 검색 카테고리
 	    $('.search-book').find('a').click(function(e) {
 			e.preventDefault();
 			var param = $(this).attr("href").replace("#","");
 			var concept = $(this).text();
 			$('.search-book span#search_concept').text(concept);
-			$('.input-book #search_param').val(param);
+			$('.input-book #bookcategory').val(param);
 		});
 	    
-	    $(".hover").hover(function (e) {
-			
+	    // 회원 목록 스타일 부여
+	    $(document).on("mouseover", ".hover", function () {
 	    	$(this).addClass("hoverStyle");
+		});
+	    
+	    $(document).on("mouseout", ".hover", function () {
+	    	$(this).removeClass("hoverStyle");
+		});
+	    
+	    // 엔터 쳤을 시 회원 검색
+	    $("#search_member").keydown(function(event) {
+			if(event.keyCode == 13) {
+				searchMember();
+			}
+		});
+	    
+	    $(document).on("click", ".hover", function () {
 	    	
-		}, function (e) {
-			$(this).removeClass("hoverStyle");
-		})
+	    	var memberid = $(this).find(".memberid").text();
+	    	
+	    	var data_form = {"memberid":memberid}
+	    	
+	    	$.ajax({
+				
+				url:"r3findOneMember.ana",
+				type:"GET",
+				data:data_form,
+				dataType:"json",
+				success:function(json) {
+					
+					$("#memberid").text(json.MEMBERID);
+					$("#name").text(json.NAME);
+					$("#ages").text(json.AGES);
+					$("#addr1").text(json.ADDR1);
+					$("#addr2").text(json.ADDR2);
+					$("#phone").text(json.PHONE);
+					
+				},
+				error: function(request, status, error){
+					alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+				}
+				
+			});
+	    	
+		});
 	    
 	});
+	
+	
+	
+	function searchMember() {
+		
+		var cateogry = $("#membercategory").val();
+		var searchWord = $("#search_member").val();
+		
+		var data_form = {"searchWord":searchWord, "cateogry":cateogry}
+		
+		$.ajax({
+			
+			url:"r3searchMember.ana",
+			type:"GET",
+			data:data_form,
+			dataType:"json",
+			success:function(json) {
+				
+				var html = "";
+				
+				if(json.length > 0){
+					
+					$.each(json, function (entryIndex, entry) {
+					 	 
+						html += "<li class=\"list-group-item hover\">\n" + 
+								"	<div class=\"row\">\n" + 
+								"		<div class=\"col-xs-6 memberid text-left\" style=\" \">" + entry.MEMBERID + "</div>\n" + 
+								"		<div class=\"col-xs-6\" style=\"\">" + entry.NAME + "</div>\n" + 
+								"	</div>\n" + 
+								"</li>";
+						
+					});// end of $.each()---------------------------
+					
+				}
+				else {
+					html += "<li class=\"list-group-item\">\n" + 
+					"	<div class=\"row\">\n" + 
+					"		<div class=\"col-xs-12 memberid text-left\" style=\"text-align: center;\">검색 결과가 없습니다.</div>\n" + 
+					"	</div>\n" + 
+					"</li>";
+				}
+				
+				
+				$(".memberList").html(html);
+				
+				
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+			}
+			
+		});
+		
+	}
+	
+	function searchBook() {
+		
+		var cateogry = $("#bookcategory").val();
+		var searchWord = $("#search_book").val();
+		
+	}
 
 </script>
     
@@ -57,12 +159,12 @@
 	                        	
 	                        	
 	                        	<!-- 회원 부분 -->
-	                        	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="margin-top: 30px; margin-bottom: 30px;">  
+	                        	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 border-radius" style="margin-top: 30px; margin-bottom: 30px;">  
 	                        		
 						            <h2>회원 목록</h2>  
 								    <hr>
 	                        		
-	                        		<!-- 검색 -->
+	                        		<!-- 회원 검색 -->
 								    <div class="input-group input-member" style="margin-bottom: 30px;">
 						                <div class="input-group-btn search-panel search-member">
 						                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -73,10 +175,10 @@
 						                      <li><a href="#name">이름</a></li>
 						                    </ul>
 						                </div>
-						                <input type="hidden" name="search_param" value="memberid" id="search_param">      
-						                <input type="text" class="form-control" name="x" placeholder="검색어를 입력해주세요.">
+						                <input type="hidden" name="search_param" value="memberid" id="membercategory"/>      
+						                <input type="text" class="form-control" id="search_member" name="x" placeholder="검색어를 입력해주세요."/>
 						                <span class="input-group-btn">
-						                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+						                    <button class="btn btn-default" type="button" onclick="searchMember();"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /검색 -->
@@ -95,20 +197,9 @@
 								                            </div>
 								                        </li>
 								                    </ul>
-								                    
-								                    <ul class="list-group list-group-body" style="">
-								                        <li class="list-group-item hover">
-								                            <div class="row">
-								                                <div class="col-xs-6 text-left" style=" ">saram</div>
-								                                <div class="col-xs-6" style="">사람</div>
-								                            </div>
-								                        </li>
-								                        <li class="list-group-item hover">
-								                            <div class="row">
-								                                <div class="col-xs-6 text-left" style=" ">saram</div>
-								                                <div class="col-xs-6" style="">사람</div>
-								                            </div>
-								                        </li>
+								                    <div></div>
+								                    <ul class="list-group list-group-body memberList" style="overflow: auto; max-height: 300px;">   
+								                        
 								                    </ul>
 								                    
 								                </div>
@@ -132,32 +223,38 @@
 												<ul class="list-group list-group-body" style="">
 							                        <li class="list-group-item">
 							                            <div class="row">
-							                                <div class="col-xs-6 text-left">아이디</div>
-							                                <div class="col-xs-6" id="memberid" style=""></div>
+							                                <div class="col-xs-4 text-left">아이디</div>
+							                                <div class="col-xs-8" id="memberid" style="">dd</div>
 							                            </div>
 							                        </li>
 							                        <li class="list-group-item">
 							                            <div class="row">
-							                                <div class="col-xs-6 text-left">이름</div>
-							                                <div class="col-xs-6" id="name"></div>
+							                                <div class="col-xs-4 text-left">이름</div>
+							                                <div class="col-xs-8" id="name"></div>
 							                            </div>
 							                        </li>
 							                        <li class="list-group-item">
 							                            <div class="row">
-							                                <div class="col-xs-6 text-left">연령</div>
-							                                <div class="col-xs-6" id="ages"></div>
+							                                <div class="col-xs-4 text-left">연령</div>
+							                                <div class="col-xs-8" id="ages"></div>
 							                            </div>
 							                        </li>
 							                        <li class="list-group-item">
 							                            <div class="row">
-							                                <div class="col-xs-6 text-left">주소</div>
-							                                <div class="col-xs-6" id="addr"></div>
+							                                <div class="col-xs-4 text-left">주소</div>
+							                                <div class="col-xs-8" id="addr1"></div>
 							                            </div>
 							                        </li>
 							                        <li class="list-group-item">
 							                            <div class="row">
-							                                <div class="col-xs-6 text-left">전화번호</div>
-							                                <div class="col-xs-6" id="tel"></div>
+							                                <div class="col-xs-4 text-left">상세주소</div>
+							                                <div class="col-xs-8" id="addr2"></div>
+							                            </div>
+							                        </li>
+							                        <li class="list-group-item">
+							                            <div class="row">
+							                                <div class="col-xs-4 text-left">전화번호</div>
+							                                <div class="col-xs-8" id="phone"></div>
 							                            </div>
 							                        </li>
 							                    </ul>
@@ -174,7 +271,7 @@
 						        <!-- /회원 부분 -->
 						        
 						        <!-- 도서 부분 -->
-						        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="margin-top: 30px; margin-bottom: 30px;">
+						        <div class="col-lg-offset-1 col-lg-6 col-md-offset-1 col-md-6 col-sm-12 col-xs-12 border-radius" style="margin-top: 30px; margin-bottom: 30px;">
 						        	
 						            <h2>도서 목록</h2>  
 								    <hr>
@@ -186,14 +283,14 @@
 						                    	<span id="search_concept">일련번호</span> <span class="caret"></span>
 						                    </button>
 						                    <ul class="dropdown-menu" role="menu">
-						                      <li><a href="#bcode">일련번호</a></li>
-						                      <li><a href="#bookname">제목</a></li>
+						                      <li><a href="#bookid">일련번호</a></li>
+						                      <li><a href="#title">제목</a></li>
 						                    </ul>
 						                </div>
-						                <input type="hidden" name="search_param" value="bcode" id="search_param">      
-						                <input type="text" class="form-control" name="x" placeholder="검색어를 입력해주세요.">
+						                <input type="hidden" name="search_param" value="bookid" id="bookcategory">      
+						                <input type="text" class="form-control" id="search_book" name="x" placeholder="검색어를 입력해주세요.">
 						                <span class="input-group-btn">
-						                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+						                    <button class="btn btn-default" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /도서 검색 -->
@@ -240,7 +337,7 @@
 								    <hr>
 								    
 								    <div class="row">
-								        <div class="col-xs-12" style="">
+								        <div class="col-xs-12" >
 								            <div class="panel panel-default list-group-panel">
 								                <div class="panel-body">
 								                
@@ -281,7 +378,7 @@
 								            </div>
 								        </div>
 								    </div>
-								    <div style="float: right;">
+								    <div style="float: right; margin-bottom: 30px;">
 								    	<button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
 										<button type="button" class="btn btn-warning btn-circle btn-lg"><i class="glyphicon glyphicon-remove"></i></button>
 								    </div>
