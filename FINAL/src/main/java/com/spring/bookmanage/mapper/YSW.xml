@@ -23,23 +23,41 @@
 	</insert>
 	
 	
+	<resultMap type="com.spring.bookmanage.member.YSWmodel.YSWLibrarianVO" id="dataResultMap">
+		<!-- set 다음에 나오는 이름을 쓴다! -->
+		<result property="librarianIDX" column="librarianIDX" javaType="int"/>
+		<result property="libid" column="libid" javaType="String"/>
+		<result property="pwd" column="pwd" javaType="String"/>
+		<result property="libcode_fk" column="libcode_fk" javaType="String"/>
+		<result property="librarianName" column="librarianName" javaType="String"/>
+		<result property="librarianTel" column="librarianTel" javaType="String"/>
+		<result property="status" column="status" javaType="int"/>
+		<result property="imgfilename" column="imgfilename" javaType="String"/>
+		<result property="libName" column="libName" javaType="String"/>
+		<result property="libTel" column="libTel" javaType="String"/>
+		<result property="addr" column="addr" javaType="String"/>
+	</resultMap>
+	
+	
 	<!--  ===== 조건을 이용해서 사서 목록 가져오기. ===== -->
-	<select id="findListWithOption" parameterType="HashMap" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
+	<select id="findListWithOption" parameterType="HashMap" resultMap="dataResultMap">
 	
-		select idx, libid, pwd, libcode_fk, name, tel, status
-		from librarian
-		where status = 0 and 
-		${sort} like '%'||#{searchWord}||'%'
-	
+		select A.idx as librarianIDX, libid, pwd, libcode_fk, A.name as librarianName, A.tel as librarianTel, status, imgfilename
+		      ,B.name as libName, B.tel as libTel, addr
+		from librarian A JOIN library B
+		ON A.libcode_fk = B.libcode
+		where ${sort} like '%'||#{searchWord}||'%'	
 	
 	</select>
-
+	
 
 	<!--  ===== 조건이 없을 때 사서 목록 가져오기. ===== -->
-	<select id="findListNoneOption" resultType="com.spring.bookmanage.library.Yjkmodel.YjkVO">
+	<select id="findListNoneOption" resultMap="dataResultMap">
 	
-		select idx, libid, pwd, libcode_fk, name, tel, status
-		from librarian
+		select A.idx as librarianIDX, libid, pwd, libcode_fk, A.name as librarianName, A.tel as librarianTel, status, imgfilename
+		      ,B.name as libName, B.tel as libTel, addr
+		from librarian A JOIN library B
+		ON A.libcode_fk = B.libcode
 	
 	</select>
 

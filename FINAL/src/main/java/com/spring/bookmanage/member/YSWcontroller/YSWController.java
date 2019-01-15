@@ -23,6 +23,7 @@ import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.common.FileManager;
 import com.spring.bookmanage.common.SHA256;
 import com.spring.bookmanage.library.Yjkmodel.YjkVO;
+import com.spring.bookmanage.member.YSWmodel.YSWLibrarianVO;
 import com.spring.bookmanage.member.YSWmodel.YSWMemberVO;
 import com.spring.bookmanage.member.YSWservice.InterYSWService;
 
@@ -225,34 +226,45 @@ public class YSWController {
 			paraMap.put("sort", sort);
 			paraMap.put("searchWord", searchWord);
 			
-			List<YjkVO> yjkvo = service.findListWithOption(paraMap);
+			List<YSWLibrarianVO> yswlibvoList = service.findListWithOption(paraMap);
 			
-			for (YjkVO yjk : yjkvo) {
+			for (YSWLibrarianVO ysw : yswlibvoList) {
 				
 				 HashMap<String, Object> map = new HashMap<String, Object>();
 				 
-				 map.put("LIBID", yjk.getLibid());
-				 map.put("LIBCODE_FK", yjk.getLibcode_fk());
-				 map.put("IDX", yjk.getIdx());
-				 map.put("NAME", yjk.getName());
-				 map.put("TEL", yjk.getTel());
+				 map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
+				 map.put("LIBID", ysw.getLibid());
+				 map.put("LIBCODE_FK", ysw.getLibcode_fk());
+				 map.put("LIBRARIANNAME", ysw.getLibrarianName());
+				 map.put("LIBRARIANTEL", ysw.getLibrarianTel());
+				 map.put("STATUS", ysw.getStatus());
+				 map.put("IMGFILENAME", ysw.getImgfilename());
+				 map.put("LIBNAME", ysw.getLibName());
+				 map.put("LIBTEL", ysw.getLibTel());
+				 map.put("ADDR", ysw.getAddr());
+				 
 				 
 				 librarianList.add(map);
 			}
 		}
 		else {
 			
-			List<YjkVO> yjkvo = service.findListNoneOption();
+			List<YSWLibrarianVO> yswlibvoList = service.findListNoneOption();
 			
-			for(YjkVO yjk : yjkvo) {
+			for(YSWLibrarianVO ysw : yswlibvoList) {
 				
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
-				 map.put("LIBID", yjk.getLibid());
-				 map.put("LIBCODE_FK", yjk.getLibcode_fk());
-				 map.put("IDX", yjk.getIdx());
-				 map.put("NAME", yjk.getName());
-				 map.put("TEL", yjk.getTel());
+				map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
+				 map.put("LIBID", ysw.getLibid());
+				 map.put("LIBCODE_FK", ysw.getLibcode_fk());
+				 map.put("LIBRARIANNAME", ysw.getLibrarianName());
+				 map.put("LIBRARIANTEL", ysw.getLibrarianTel());
+				 map.put("STATUS", ysw.getStatus());
+				 map.put("IMGFILENAME", ysw.getImgfilename());
+				 map.put("LIBNAME", ysw.getLibName());
+				 map.put("LIBTEL", ysw.getLibTel());
+				 map.put("ADDR", ysw.getAddr());
 				
 				librarianList.add(map);
 			}
