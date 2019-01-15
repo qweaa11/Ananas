@@ -217,7 +217,7 @@ import com.spring.bookmanage.common.SHA256;
 		  	
 			 String msg = "로그아웃 되었습니다."; 
 			 String ctxPath = req.getContextPath();
-			 String loc = ctxPath+"/login.ana";
+			 String loc = "login.ana";
 				
 			 req.setAttribute("msg", msg);
 			 req.setAttribute("loc", loc);
