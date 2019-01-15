@@ -58,6 +58,24 @@ p{margin:3px;}
 .btn{border-radius:0px;}
 	 
 .btn-update {margin-left:15px;}
+
+.modal-dialog {
+  width: 45%;
+  height: 55%;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+}
+
+li {
+	list-style:none;
+	padding:2%;
+
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -71,9 +89,12 @@ p{margin:3px;}
 		
 		librarianList(sort, searchWord);
 		
+		var faceImg = $("#personalInfo6").val();
+		$("#faceImg").attr('src',faceImg);
+		
 	});
 	
-	
+	  
 	function searchList(){
 		
 		var searchWord = $("#searchWord").val();
@@ -195,38 +216,7 @@ p{margin:3px;}
     
       <!-- Modal -->
   <div class="modal fade" id="detailInfo" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title">사서  상세 정보</h2>
-        </div>
-        <div class="modal-body">
-          <input type="text" name="personalInfo0" id="personalInfo0" value=""/>
-          <input type="text" name="personalInfo1" id="personalInfo1" value=""/>
-          <input type="text" name="personalInfo2" id="personalInfo2" value=""/>
-          <input type="text" name="personalInfo3" id="personalInfo3" value=""/>
-          <input type="text" name="personalInfo4" id="personalInfo4" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo5" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo6" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo7" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo8" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo9" value=""/>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-  
-  
-  <div class="modal fade" id="updateInfo" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
@@ -235,22 +225,103 @@ p{margin:3px;}
           <h2 class="modal-title">사서 정보 수정</h2>
         </div>
         <div class="modal-body">
-          <input type="text" name="personalInfo0" id="personalInfo0" value=""/>
-          <input type="text" name="personalInfo1" id="personalInfo1" value=""/>
-          <input type="text" name="personalInfo2" id="personalInfo2" value=""/>
-          <input type="text" name="personalInfo3" id="personalInfo3" value=""/>
-          <input type="text" name="personalInfo4" id="personalInfo4" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo5" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo6" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo7" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo8" value=""/>
-          <input type="text" name="personalInfo5" id="personalInfo9" value=""/>
+        	<div class="modal-body">
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
+        			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
+	        	<div class="col-xs-6 col-sm-6 col-lg-4">
+	        		<ul>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 아이디</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 코드</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 성명</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 연락처</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 직책</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 이름</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 전화번호</span></li>
+						<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 주소</span></li>
+	          		</ul>
+	          	</div>
+	          	<div class="col-xs-6 col-sm-6 col-lg-4">
+	          		<ul>
+	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value=""/></li>
+	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value=""/></li>
+	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value=""/></li>
+	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value=""/></li>
+	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value=""/></li>
+	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value=""/></li>
+	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value=""/></li>
+	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value=""/></li>
+	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value=""/></li>
+	          		</ul>
+	          	</div>
+        	</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
+        
+       	<div>
+          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">확인</button>
+          <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>
+     	</div>
       </div>
       
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal fade" id="updateInfo" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">사서 정보 수정</h2>
+        </div>
+        <div class="modal-body">
+        	<div class="modal-body">
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
+        			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
+	        	<div class="col-xs-6 col-sm-6 col-lg-4">
+	        		<ul>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 아이디</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 코드</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 성명</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 연락처</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 직책</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 이름</span></li>
+	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 전화번호</span></li>
+						<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 주소</span></li>
+	          		</ul>
+	          	</div>
+	          	<div class="col-xs-6 col-sm-6 col-lg-4">
+	          		<ul>
+	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value=""/></li>
+	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value=""/></li>
+	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value=""/></li>
+	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value=""/></li>
+	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value=""/></li>
+	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value=""/></li>
+	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value=""/></li>
+	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value=""/></li>
+	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value=""/></li>
+	          		</ul>
+	          	</div>
+        	</div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+        
+       	<div>
+          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">확인</button>
+          <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>
+     	</div>
+      </div>
+    
     </div>  
   </div>
   
