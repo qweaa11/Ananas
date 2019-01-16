@@ -47,10 +47,27 @@ public class YSWDAO implements InterYSWDAO {
 	
 	//===== 조건이 없을 때 사서 목록 가져오기. =====
 	@Override
-	public List<YSWLibrarianVO> findListNoneOption() {
+	public List<YSWLibrarianVO> findListNoneOption(HashMap<String, String> paraMap) {
 
-		List<YSWLibrarianVO> yswlibvoList = sqlsession.selectList("YSW.findListNoneOption");
+		List<YSWLibrarianVO> yswlibvoList = sqlsession.selectList("YSW.findListNoneOption", paraMap);
 		return yswlibvoList;
+	}
+
+
+	// ===== 더보기를 위한 totalCount =====
+	@Override
+	public int totalCounttWithOption(HashMap<String, String> paraMap) {
+
+		int totalCount = sqlsession.selectOne("YSW.totalCounttWithOption", paraMap);
+		return totalCount;
+	}
+
+
+	@Override
+	public int totalNoneOption() {
+
+		int totalCount = sqlsession.selectOne("YSW.totalNoneOption");
+		return totalCount;
 	}
 
 }

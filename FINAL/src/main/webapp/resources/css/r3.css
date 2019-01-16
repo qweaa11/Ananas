@@ -288,3 +288,8 @@
   line-height: 1.33;
   border-radius: 35px;
 }
+
+.border-radius {
+	border-radius: 5px; 
+	border: 1px solid #000000;
+}

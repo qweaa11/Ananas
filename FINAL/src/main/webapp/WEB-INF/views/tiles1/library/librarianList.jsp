@@ -82,15 +82,39 @@ li {
 
 	$(document).ready(function(){
 		
-		//console.log("1234");
+		//console.log("${TOTALCOUNT}");
 		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
 		
-		librarianList(sort, searchWord);
+		librarianList(sort, searchWord, "1");
 		
+		// 프로필 사진 파일명을 보내주는 함수
 		var faceImg = $("#personalInfo6").val();
 		$("#faceImg").attr('src',faceImg);
+		
+		// 페이징 바를 위해서 가져온 총 사서수
+		var totalCount = ${TOTALCOUNT};
+		var itemNum = 9;
+		
+		if(totalCount <= itemNum) {
+			
+			$("#more").hide();
+		}
+		
+		// 더보기 버튼 설정
+		$("#more").click(function(){
+			
+			if($(this).text() == "처음으로"){
+				$("#resultList").empty();
+				librarianList(sort, searchWord, "1");
+				$(this).text("더보기");
+			}
+			else{
+				librarianList(sort, searchWord, $(this).val());
+			}
+			
+		});
 		
 	});
 	
@@ -100,19 +124,22 @@ li {
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
 		
-		librarianList(sort, searchWord);
+		librarianList(sort, searchWord, "1");
 	}
 	
 	
-	function librarianList(sort, searchWord) {
+	function librarianList(sort, searchWord, pageNum) {
 		
 		//console.log("으아");
 		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
+		var itemNum = 9;  
 		
 		var form_data = {"searchWord":searchWord,
-						 "sort":sort}
+						 "sort":sort,
+						 "pageNum":pageNum,
+						 "itemNum":itemNum}
 		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/findLibrarianList.ana",
@@ -126,32 +153,49 @@ li {
 				//console.log("xxxxxx");
 
 				$.each(json, function(entryIndex, entry){
-   
-					result += "<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>"+
-						        "<div class='thumbnail' style='background-color: #ffffff;'>"+
-					              "<div class='caption'>"+
-					                "<div class='col-lg-12' style='background-color: #ffffff;'>"+
-					                    "<span class='glyphicon glyphicon-credit-card'></span>"+
-					                    "<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
-					                "</div>"+
-					                "<div class='col-lg-12 well well-add-card'>"+
-					                    "<h4> <span style='color: #004080; font-weight: bold;'>사서명 : "+entry.LIBRARIANNAME+"</span></h4>"+
-					                "</div>"+
-					                "<div class='col-lg-12'>"+
-					                    "<p><span style='color: #004080; font-weight: bold;'>휴대폰 : "+ entry.LIBRARIANTEL+"</span></p>"+
-					                    "<p class'text-muted'><span style='color: #004080; font-weight: bold;'>아이디 : "+entry.LIBID+"</span></p>"+
-					                "</div>"+
-					                "<a class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#updateInfo'>Update Info.</a>"+
-					                "<a class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#detailInfo'>Detail Info.</a>"+
-					                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
-					            "</div>"+
-					          "</div>"+
-					        "</div>" 
+					
+					if(json.length != 0){
+						
+						result += "<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>"+
+							        "<div class='thumbnail' style='background-color: #ffffff;'>"+
+						              "<div class='caption'>"+
+						                "<div class='col-lg-12' style='background-color: #ffffff;'>"+
+						                    "<span class='glyphicon glyphicon-credit-card'></span>"+
+						                    "<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
+						                "</div>"+
+						                "<div class='col-lg-12 well well-add-card'>"+
+						                    "<h4> <span style='color: #004080; font-weight: bold;'>사서명 : "+entry.LIBRARIANNAME+"</span></h4>"+
+						                "</div>"+
+						                "<div class='col-lg-12'>"+
+						                    "<p><span style='color: #004080; font-weight: bold;'>휴대폰 : "+ entry.LIBRARIANTEL+"</span></p>"+
+						                    "<p class'text-muted'><span style='color: #004080; font-weight: bold;'>아이디 : "+entry.LIBID+"</span></p>"+
+						                "</div>"+
+						                "<a class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#updateInfo'>Update Info.</a>"+
+						                "<a class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#detailInfo'>Detail Info.</a>"+
+						                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
+						             "</div>"+
+						           "</div>"+
+						         "</div>"
+						         
+					}
+					else{
+						result += "<h1>가입 된 사서가 없습니다!<h1>"
+					}
 						
 				
 				});	
 			
 				$("#resultList").html(result);
+				$("#more").val(parseInt(pageNum) + itemNum);
+				var itemCount = $("#more").val();
+				
+				//console.log(itemCount);
+				var totalCount = ${TOTALCOUNT};
+				if((totalCount+1) <= itemCount) {
+					
+					console.log(itemCount);
+					$("#more").text("처음으로");
+				}
 				
 			},
 			error: function(request, status, error){
@@ -185,6 +229,17 @@ li {
 	     	$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
 	     }
 	});
+	
+	
+	
+	function goUpdate() {
+		
+		var frm = document.updateInfoFrm;
+		frm.action = "updatelibrarianInfo.ana";
+		frm.method = "POST";
+		frm.submit();
+		
+	}
 
 </script>
      
@@ -200,20 +255,22 @@ li {
         		</select>
         		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
         		<button type="button" onClick="searchList()">검색</button>
-
+        		<a style="margin-left: 5%;" href="#">삭제 된 사서카드</a>   
+  
         	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="adminRegist.ana">
         		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록
         	</a>
         </div>
        	
-         
+       	
         <div id="resultList">
         </div>
-        
-        <br/><div class="col-lg-12"><a href="#">삭제 된 사서카드</a></div>
+       
       </div><!-- End row -->
     </div><!-- End container -->
     
+     <button type="button" id="more" style="margin-left: 50%;" value="">더보기</button><br/>
+                
       <!-- Modal -->
   <div class="modal fade" id="detailInfo" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -222,9 +279,8 @@ li {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title">사서 정보 수정</h2>
+          <h2 class="modal-title">사서 상세 정보</h2>
         </div>
-        <div class="modal-body">
         	<div class="modal-body">
         			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
         			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
@@ -255,7 +311,6 @@ li {
 	          		</ul>
 	          	</div>
         	</div>
-        </div>
         <div class="modal-footer">
 
         </div>
@@ -280,7 +335,7 @@ li {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h2 class="modal-title">사서 정보 수정</h2>
         </div>
-        <div class="modal-body">
+        <form name="updateInfoFrm">
         	<div class="modal-body">
         			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
         			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
@@ -311,13 +366,13 @@ li {
 	          		</ul>
 	          	</div>
         	</div>
-        </div>
+        </form>
         <div class="modal-footer">
 
         </div>
         
        	<div>
-          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">확인</button>
+          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">수정</button>
           <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>
      	</div>
       </div>
