@@ -203,8 +203,29 @@ public class YSWController {
 	
 	
 	@RequestMapping(value="/librarianList.ana", method={RequestMethod.GET})
-	public String librarianList() {
+	public String librarianList(HttpServletRequest req) {
 
+		String sort = req.getParameter("sort");
+		String searchWord = req.getParameter("searchWord");
+		
+		int totalCount = 0;
+		
+		if(searchWord != null && !searchWord.trim().equals("") && !searchWord.equalsIgnoreCase("null")) {
+			
+			HashMap<String, String> paraMap = new HashMap<String, String>();
+			paraMap.put("sort", sort);
+			paraMap.put("searchWord", searchWord);
+			
+			totalCount = service.totalCounttWithOption(paraMap);
+		}
+		else {
+			
+			totalCount = service.totalNoneOption();
+			
+		}
+		
+		req.setAttribute("TOTALCOUNT", totalCount);
+		//System.out.println("TOTALCOUNT : " + totalCount);
 		
 		return "library/librarianList.tiles1";
 	}
@@ -217,6 +238,13 @@ public class YSWController {
 		
 		String sort = req.getParameter("sort");
 		String searchWord = req.getParameter("searchWord");
+		String pageNum = req.getParameter("pageNum"); // 현재 페이지
+		String itemNum = req.getParameter("itemNum"); // 한 페이지당 item 갯수
+		//System.out.println("pageNum : "+ pageNum);
+		//System.out.println("itemNum : "+ itemNum);
+		
+		int calNum = (Integer.parseInt(pageNum) + Integer.parseInt(itemNum)) -1;
+		String lastNum = String.valueOf(calNum);
 		
 		List<HashMap <String, Object>> librarianList = new ArrayList<HashMap<String, Object>>();
 		
@@ -225,8 +253,11 @@ public class YSWController {
 			HashMap<String, String> paraMap = new HashMap<String, String>();
 			paraMap.put("sort", sort);
 			paraMap.put("searchWord", searchWord);
+			paraMap.put("pageNum", pageNum);
+			paraMap.put("lastNum", lastNum);
 			
 			List<YSWLibrarianVO> yswlibvoList = service.findListWithOption(paraMap);
+			
 			
 			for (YSWLibrarianVO ysw : yswlibvoList) {
 				
@@ -249,13 +280,18 @@ public class YSWController {
 		}
 		else {
 			
-			List<YSWLibrarianVO> yswlibvoList = service.findListNoneOption();
+			HashMap<String, String> paraMap = new HashMap<String, String>();
+			paraMap.put("pageNum", pageNum);
+			paraMap.put("lastNum", lastNum);
+			
+			List<YSWLibrarianVO> yswlibvoList = service.findListNoneOption(paraMap);
 			
 			for(YSWLibrarianVO ysw : yswlibvoList) {
 				
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
-				map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
+				 map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
+				 map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
 				 map.put("LIBID", ysw.getLibid());
 				 map.put("LIBCODE_FK", ysw.getLibcode_fk());
 				 map.put("LIBRARIANNAME", ysw.getLibrarianName());
@@ -267,11 +303,21 @@ public class YSWController {
 				 map.put("ADDR", ysw.getAddr());
 				
 				librarianList.add(map);
+				
 			}
-			
 		}
 		
 		return librarianList;
+	}
+	
+	
+	
+	@RequestMapping(value="/updatelibrarianInfo.ana", method={RequestMethod.POST})
+	public int updatelibrarianInfo() {
+		
+		int result = 0;
+		
+		return result;
 	}
 
 

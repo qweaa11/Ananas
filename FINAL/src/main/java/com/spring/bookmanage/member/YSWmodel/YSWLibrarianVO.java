@@ -2,6 +2,7 @@ package com.spring.bookmanage.member.YSWmodel;
 
 public class YSWLibrarianVO {
 	
+	private int RNO;
 	private int librarianIDX;
 	private String libid;
 	private String pwd;
@@ -19,9 +20,10 @@ public class YSWLibrarianVO {
     public YSWLibrarianVO() {}
     
     
-	public YSWLibrarianVO(int librarianIDX, String libid, String pwd, String libcode_fk, String librarianName,
+	public YSWLibrarianVO(int RNO, int librarianIDX, String libid, String pwd, String libcode_fk, String librarianName,
 			String librarianTel, int status, String imgfilename, String libName, String libTel, String addr) {
 		super();
+		this.RNO = RNO;
 		this.librarianIDX = librarianIDX;
 		this.libid = libid;
 		this.pwd = pwd;
@@ -33,6 +35,18 @@ public class YSWLibrarianVO {
 		this.libName = libName;
 		this.libTel = libTel;
 		this.addr = addr;
+	}
+	
+	
+	
+
+	public int getRNO() {
+		return RNO;
+	}
+
+
+	public void setRNO(int rNO) {
+		RNO = rNO;
 	}
 
 
