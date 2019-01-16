@@ -41,5 +41,49 @@
 	</update>
 
 
+	<resultMap type="HashMap" id="rentalMap">
+		<result property="ROWNUM" column="rownum" javaType="String" />
+		<result property="MEMBERID" column="memberid" javaType="String" />
+		<result property="BOOKID" column="bookid" javaType="String" />
+		<result property="TITLE" column="title" javaType="String" />
+		<result property="AUTHOR" column="author" javaType="String" />
+		<result property="CATEGORYNAME" column="categoryName" javaType="String" />
+		<result property="PUBLISHERNAME" column="publisherName" javaType="String" />
+		<result property="LIBRARYNAME" column="libraryName" javaType="String" />
+		<result property="STATUS" column="status" javaType="String" />
+		<result property="RENTALDATE" column="rentalDate" javaType="String" />
+		<result property="DEADLINE" column="deadline" javaType="String" />
+		<result property="RENEW" column="renew" javaType="String" />
+		<result property="OVERDUE" column="overdue" javaType="int" />
+		<result property="LATEFEE" column="latefee" javaType="int" />		
+	</resultMap>
+	<select id="memberBookRentalList" parameterType="String" resultMap="rentalMap">
+		select rownum, memberid
+		     , bookid, title, author
+		     , C.cname AS categoryName
+		     , pubname AS publisherName
+		     , libname AS libraryName
+		     , B.status AS status
+		     , to_char(rentalDate, 'yyyy-mm-dd hh24:mi:ss') AS rentalDate
+		     , to_char(deadline, 'yyyy-mm-dd') AS deadline
+		     , case renew when 0 then 'X' else 'O' end AS renew
+		     , trunc(sysdate - rentaldate) AS overdue
+		     , trunc(sysdate - rentaldate) * 100 AS latefee
+		from member M join rental R
+		on M.memberid = R.memberid_fk
+		join book B
+		on R.bookid_fk = B.bookid
+		join category C
+		on B.ccode_fk = C.ccode
+		join publisher P
+		on B.pubcode_fk = P.pubcode
+		join library L
+		on B.libcode_fk = L.libcode
+		where M.memberid = #{memberid}
+		order by rownum desc	
+	</select>
+
+
+
 </mapper>
 

@@ -1,5 +1,8 @@
 package com.spring.bookmanage.member.PMGservice;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.spring.bookmanage.member.PMGmodel.PMGMemberVO;
 
 public interface InterPMGService {
@@ -13,5 +16,9 @@ public interface InterPMGService {
 	// idx로 회원상태 휴면해제(활동)으로 변경
 	int EditStopOneMemberByIdx(String idx);
 	// idx로 회원상태 정지로 변경
+	
+	
+	List<HashMap<String, String>> memberBookRentalList(String memberid);
+	
 	
 }
