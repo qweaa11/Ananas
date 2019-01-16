@@ -1,5 +1,8 @@
 package com.spring.bookmanage.member.PMGmodel;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,19 +25,25 @@ public class PMGMemberDAO implements InterPMGMemberDAO {
 		int n = sqlsession.update("PMG.EditActivityOneMemberByIdx", idx);
 		return n;
 	}
-
 	@Override
 	public int EditInactivityOneMemberByIdx(String idx) {
 		int n = sqlsession.update("PMG.EditInactivityOneMemberByIdx", idx);
 		return n;
 	}
-
 	@Override
 	public int EditStopOneMemberByIdx(String idx) {
 		int n = sqlsession.update("PMG.EditStopOneMemberByIdx", idx);
 		return n;
 	}
 
+	@Override
+	public List<HashMap<String, String>> memberBookRentalList(String memberid) {
+		List<HashMap<String, String>> rentalList = sqlsession.selectList("PMG.memberBookRentalList", memberid);
+		return rentalList;
+	}
+
+	
+	
 	
 	
 	

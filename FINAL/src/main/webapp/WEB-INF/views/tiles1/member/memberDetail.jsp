@@ -66,12 +66,15 @@
 	}
 	
 	
+	
 </style>
 
 
 <script type="text/javascript">
 
 	$(document).ready(function(){
+		
+		
 		
 	});// end of $(document).ready()---------------
 	
@@ -124,7 +127,10 @@
 		//	frm.submit();
 		}
 	}
-
+	
+	
+	
+	
 	
 </script>
 
@@ -213,34 +219,14 @@
 <form name="idxFrm">
 	<input type="hidden" name="idx" />
 </form>
+
+
  
 <br/>
 <br/>
 <br/>
 <div class="container">
-	<h1>도서 대여정보</h1>
-	<div class="col-sm-12 pull-center well">
-		<form class="form-inline" action="#" method="POST">				
-			<select class="form-control">
-				<option>도서명</option>
-				<option>저자</option>
-				<option>출판사</option>
-				<option>도서번호</option>
-			</select>
-	                  
-			<div class="input-group custom-search-form">
-				<input type="text" class="form-control" placeholder="Search..." />
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<i>search</i>
-						</button>
-					</span>
-			</div>				
-		</form>
-	</div>
-</div>
-
-<div class="container">
+ <h1>회원 도서정보</h1>
   <div class="row">
    <div class="col-md-4">
 	<table class="table">
@@ -264,7 +250,7 @@
 	    </tbody>
 	</table>
    </div>
-   <div class="col-md-4 col-md-offset-4">
+   <div class="col-md-4">
 	<table class="table">
 	    <tbody>
 	        <tr>
@@ -289,71 +275,171 @@
   </div>	
 </div>
 
+<form name="memberidFrm">
+	<input type="hidden" name="memberid" />
+</form>
+
 <div class="container">
-	<table class="table">
-		<thead>	    
-		<tr>
-			<th>번호</th>
-			<th>대여일</th>
-			<th>반납일</th>
-			<th>반납연장일</th>
-			<th>연체일</th>
-			<th>도서번호</th>
-			<th>도서명</th>
-			<th>저자</th>
-			<th>출판사</th>
-			<th>구분</th>
-			<th>상태</th>
-			<th>연체료</th>
-		</tr>
-		</thead>		
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>2018-12-24</td>
-				<td>2018-12-31</td>
-				<td>0</td>
-				<td>0</td>
-				<td>12345</td>
-				<td>자바의 정석</td>
-				<td>박민규</td>
-				<td>민후당</td>
-				<td>자기개발</td>
-				<td>대출</td>
-				<td>0원</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>2018-12-24</td>
-				<td>2018-12-31</td>
-				<td>0</td>
-				<td>0</td>
-				<td>23125</td>
-				<td>해리포터와 마법사의 돌</td>
-				<td>민후</td>
-				<td>서림</td>
-				<td>소설</td>
-				<td>대출</td>
-				<td>0원</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-			</tr>
-		</tbody>
-	</table>
+	<div>
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active">
+	    	<a href="#rental" aria-controls="rental" role="tab" data-toggle="tab">대여</a>
+	    </li>
+	    <li role="presentation">
+	    	<a href="#reservation" aria-controls="reservation" role="tab" data-toggle="tab">예약</a>
+	    </li>
+	    <li role="presentation">
+	    	<a href="#return" aria-controls="return" role="tab" data-toggle="tab">반납</a>
+	    </li>		    
+	  </ul>
+
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="rental">	    			    	
+	    	<div style="overflow: auto;">
+				<table class="table" style="width: 1500px;">
+					<thead>	    
+					<tr>
+						<th scope="col">번호</th>
+						<th scope="col">도서일련번호</th>
+						<th scope="col">도서명</th>
+						<th scope="col">저자명</th>
+						<th scope="col">종류</th>
+						<th scope="col">출판사</th>
+						<th scope="col">도서관명</th>
+						<th scope="col">상태</th>
+						<th scope="col">대여일</th>
+						<th scope="col">반납일</th>
+						<th scope="col">연장신청</th>
+						<th scope="col">연체일</th>
+						<th scope="col">연체료</th>
+					</tr>
+					</thead>		
+					<tbody>					
+						<c:if test="${not empty rentallist}">
+							<c:forEach var="map" items="${rentallist}">
+								<tr>													
+									<td>${map.ROWNUM}</td>							
+									<td>${map.BOOKID}</td>
+									<td>${map.TITLE}</td>
+									<td>${map.AUTHOR}</td>
+									<td>${map.CATEGORYNAME}</td>
+									<td>${map.PUBLISHERNAME}</td>
+									<td>${map.LIBRARYNAME}</td>
+									<td>
+								<c:if test="${map.STATUS == 1}">
+									대여중
+								</c:if>
+									</td>
+									<td>${map.RENTALDATE}</td>
+									<td>${map.DEADLINE}</td>
+									<td>${map.RENEW}</td>
+									<td>${map.OVERDUE}</td>
+									<td>${map.LATEFEE}</td>						
+								</tr>
+							</c:forEach>
+						</c:if>
+						
+						<c:if test="${empty rentallist}">
+							<tr>
+								<td>현재 대여중인 도서가 없습니다.</td>
+							</tr>
+						</c:if>					
+					</tbody>
+				</table>
+			</div>						    
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="reservation">
+	    	<table class="table">
+				<thead>	    
+				<tr>
+					<th>번호</th>
+					<th>도서일련번호</th>
+					<th>도서명</th>
+					<th>저자명</th>
+					<th>분야</th>
+					<th>출판사</th>
+					<th>도서관명</th>
+					<th>상태</th>
+					<th>반납일</th>
+					<th>연장신청</th>
+					<th>연체일</th>
+					<th>연체료</th>
+				</tr>
+				</thead>		
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>2018-12-24</td>
+						<td>2018-12-31</td>
+						<td>0</td>
+						<td>0</td>
+						<td>12345</td>
+						<td>자바의 정석</td>
+						<td>박민규</td>
+						<td>민후당</td>
+						<td>자기개발</td>
+						<td>대출</td>
+						<td>0원</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>2018-12-24</td>
+						<td>2018-12-31</td>
+						<td>0</td>
+						<td>0</td>
+						<td>23125</td>
+						<td>해리포터와 마법사의 돌</td>
+						<td>민후</td>
+						<td>서림</td>
+						<td>소설</td>
+						<td>대출</td>
+						<td>0원</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>a</td>
+						<td>A</td>
+						<td>1</td>
+						<td>1</td>
+						<td>a</td>
+						<td>A</td>
+						<td>1</td>
+						<td>1</td>
+						<td>a</td>
+						<td>A</td>
+						<td>1</td>
+					</tr>
+				</tbody>
+			</table>	    
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="return">	    
+	    	<div class="col-sm-12 pull-center well">
+				<form class="form-inline" action="#" method="POST">				
+					<select class="form-control">
+						<option>도서명</option>
+						<option>저자</option>
+						<option>출판사</option>
+						<option>도서번호</option>
+					</select>
+			                  
+					<div class="input-group custom-search-form">
+						<input type="text" class="form-control" placeholder="Search..." />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i>search</i>
+								</button>
+							</span>
+					</div>				
+				</form>
+			</div>
+	    
+	    </div>	    		    
+	  </div>
+	</div>
 </div>
 
+
+<!--  
 <div class="container" style="text-align: center;">
 	<ul class="pagination">
               <li class="disabled"><a href="#">«</a></li>
@@ -365,9 +451,32 @@
               <li><a href="#">»</a></li>
 	</ul>
 </div>
+-->
+<br/>
+<br/>
 
-<br/>
-<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

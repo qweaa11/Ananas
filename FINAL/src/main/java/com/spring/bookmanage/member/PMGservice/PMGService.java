@@ -1,5 +1,8 @@
 package com.spring.bookmanage.member.PMGservice;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,17 +32,21 @@ public class PMGService implements InterPMGService {
 		int n = dao.EditActivityOneMemberByIdx(idx);
 		return n;
 	}
-
 	@Override
 	public int EditInactivityOneMemberByIdx(String idx) {
 		int n = dao.EditInactivityOneMemberByIdx(idx);
 		return n;
 	}
-
 	@Override
 	public int EditStopOneMemberByIdx(String idx) {
 		int n = dao.EditStopOneMemberByIdx(idx);
 		return n;
+	}
+
+	@Override
+	public List<HashMap<String, String>> memberBookRentalList(String memberid) {
+		List<HashMap<String, String>> rentalList = dao.memberBookRentalList(memberid);
+		return rentalList;
 	}
 
 	
