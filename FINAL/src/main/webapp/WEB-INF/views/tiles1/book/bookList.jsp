@@ -148,34 +148,34 @@ div.search button:hover {
 		var library = "";
 			$(".library").each(function(i){
 				if($(this).prop("checked") == true){
-					library += $(this).val()+",";
+					library += $(this).val()+"','";
 				}
 			});
-			library = library.substring(0, library.length-1);
+			library = library.substring(0, library.length-3);
 			
 		var language = "";
 		$(".language").each(function(i){
 			if($(this).prop("checked") == true){
-				language += $(this).val()+",";
+				language += $(this).val()+"','";
 			}
 		});
-		language = language.substring(0, language.length-1);
+		language = language.substring(0, language.length-3);
 		
 		var category = "";
 		$(".category").each(function(i){
 			if($(this).prop("checked") == true){
-				category += $(this).val()+",";
+				category += $(this).val()+"','";
 			}
 		});
-		category = category.substring(0, category.length-1);
+		category = category.substring(0, category.length-3);
 		
 		var field = "";
 		$(".field").each(function(i){
 			if($(this).prop("checked") == true){
-				field += $(this).val()+",";
+				field += $(this).val()+"','";
 			}
 		});
-		field = field.substring(0, field.length-1);
+		field = field.substring(0, field.length-3);
 		
 		console.log("library ==>"+library);
 		console.log("language ==>"+language);
@@ -202,14 +202,14 @@ div.search button:hover {
 			
 			url:"findBookBySidebar.ana",
 			type:"GET",
-			data:data_from,
+			data:data_form,
 			dataType:"JSON",
 			success: function(json){
 				
-				var resultHtml = "";
+				var resultHTML = "";
 				
 				if(json.length <= 0){
-					html+="<tr>"+
+					resultHTML+="<tr>"+
 						"<td colspan='7'><h3  align='center'>조건에 맞는 상품이 없습니다</h3></td>"+
 						"</tr>";
 				}else{
@@ -218,7 +218,7 @@ div.search button:hover {
 						resultHTML = "<tr class='BookInfo' onClick='goBookDetail(\""+book.bookid+"\")'>"+
 						"<td>"+book.bookid+"</td>"+
 							"<td>"+book.title+"</td>"+
-							"<td>"+book.field+"-"+book.janre+"</td>"+
+							"<td>"+book.fname+"-"+book.gname+"</td>"+
 							"<td>"+book.ISBN+"</td>"+
 							"<td>"+book.author+"</td>"+       
 							"<td>"+book.pubname+"</td>"+
@@ -367,15 +367,12 @@ div.search button:hover {
 				<div class="sideHeader" style="">도서관</div>  
 			</div>    
 			<ul class="sideinfo">
-				<li><input type="checkbox"  class="library sideli" value="100"/><a onClick="findBookListbyLibrary('100');"  class="sideText">종로(도서권수)</a></li>
+				<li><input type="checkbox"  class="library sideli" value="L100"/><a onClick="findBookListbyLibrary('100');"  class="sideText">강남(도서권수)</a></li>
 				
-				<li><input type="checkbox" class="library sideli" value="200"/><a onClick="" class="sideText">마포</a></li>
+				<li><input type="checkbox" class="library sideli" value="L101"/><a onClick="" class="sideText">종각</a></li>
 				
-				<li><input type="checkbox"  class="library sideli" value="300"/><a onClick="" class="sideText">구리</a></li>
+				<li><input type="checkbox"  class="library sideli" value="L102"/><a onClick="" class="sideText">당산</a></li>
 				
-				<li><input type="checkbox"  class="library sideli" value="400"/><a onClick="" class="sideText">화정</a></li>
-				
-				<li><input type="checkbox"  class="library sideli" value="500"/><a onClick="" class="sideText">수유</a></li>
 			</ul>
 			
 		</div>
@@ -384,15 +381,16 @@ div.search button:hover {
 				<div class="sideHeader">언어</div>
 			</div>
 				<ul class="sideinfo">
-				<li><input type="checkbox"  class="language sideli" value="A1"/><a onClick="findBookListbyLanguage('언어코드');" class="sideText">한국어(도서권수)</a></li>
+				<li><input type="checkbox"  class="language sideli" value="KR"/><a onClick="findBookListbyLanguage('언어코드');" class="sideText">한국어(도서권수)</a></li>
 				
-				<li><input type="checkbox"  class="language sideli" value="A2"/><a onClick="" class="sideText">일본어</a></li>
+				<li><input type="checkbox"  class="language sideli" value="JP"/><a onClick="" class="sideText">일본어</a></li>
 				
-				<li><input type="checkbox"  class="language sideli" value="B1"/><a onClick="" class="sideText">영어</a></li>
+				<li><input type="checkbox"  class="language sideli" value="EN"/><a onClick="" class="sideText">영어</a></li>
 				
-				<li><input type="checkbox"  class="language sideli" value="B2"/><a onClick="" class="sideText">중국어</a></li>
+				<li><input type="checkbox"  class="language sideli" value="CH"/><a onClick="" class="sideText">중국어</a></li>
 				
-				<li><input type="checkbox"  class="language sideli" value="C3"/><a onClick="" class="sideText">프랑스어</a></li>
+				<li><input type="checkbox"  class="language sideli" value="FR"/><a onClick="" class="sideText">프랑스어</a></li>
+				<li><input type="checkbox"  class="language sideli" value="GM"/><a onClick="" class="sideText">독일어</a></li>
 			</ul>
 		</div>
 		<div>
@@ -400,18 +398,18 @@ div.search button:hover {
 				<div class="sideHeader">종류</div>
 			</div>
 				<ul class="sideinfo">
-				<li><input type="checkbox"  class="category sideli" value="A01"/><a onClick="findBookListbyCategory('카테고리코드');" class="sideText">소설(도서권수)</a></li>
+				<li><input type="checkbox"  class="category sideli" value="F02"/><a onClick="findBookListbyCategory('카테고리코드');" class="sideText">소설(도서권수)</a></li>
 				
-				<li><input type="checkbox"  class="category sideli" value="A02"/><a onClick="" class="sideText">수필</a></li>
-				<li><input type="checkbox"  class="category sideli" value="A03"/><a onClick="" class="sideText">에세이</a></li>				
-				<li><input type="checkbox"  class="category sideli" value="A04"/><a onClick="" class="sideText">시</a></li>
+				<li><input type="checkbox"  class="category sideli" value="E01"/><a onClick="" class="sideText">수필</a></li>
+				<li><input type="checkbox"  class="category sideli" value="E02"/><a onClick="" class="sideText">에세이</a></li>				
+				<li><input type="checkbox"  class="category sideli" value="P01"/><a onClick="" class="sideText">시</a></li>
 				
-				<li><input type="checkbox" class="category sideli" value="A05"/><a onClick="" class="sideText">사전/논문</a></li>
+				<li><input type="checkbox" class="category sideli" value="D01"/><a onClick="" class="sideText">사전/논문</a></li>
 				
-				<li><input type="checkbox"  class="category sideli" value="A06"/><a onClick="" class="sideText">동화책</a></li>
-				<li><input type="checkbox"  class="category sideli" value="A07"/><a onClick="" class="sideText">잡지</a></li>
-				<li><input type="checkbox"  class="category sideli" value="A08"/><a onClick="" class="sideText">만화책</a></li>
-				<li><input type="checkbox"  class="category sideli" value="A09"/><a onClick="" class="sideText">문제집</a></li>
+				<li><input type="checkbox"  class="category sideli" value="F01"/><a onClick="" class="sideText">동화책</a></li>
+				<li><input type="checkbox"  class="category sideli" value="M01"/><a onClick="" class="sideText">잡지</a></li>
+				<li><input type="checkbox"  class="category sideli" value="C01"/><a onClick="" class="sideText">만화책</a></li>
+				<li><input type="checkbox"  class="category sideli" value="S01"/><a onClick="" class="sideText">문제집</a></li>
 				
 			</ul>
 		</div>

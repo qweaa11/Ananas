@@ -108,7 +108,6 @@ th, td {
 								<th><input type="checkbox" style="float: left;"
 									id="totalck" value="total" /><label for="totalck">도서번호</label></th>
 								<th>ISBN</th>
-
 								<th>가격</th>
 								<th>무게</th>
 								<th>쪽수</th>
@@ -123,6 +122,7 @@ th, td {
 							<tr class="BookInfo">
 								<td><input type="checkbox" style="float: left;" />도서번호1</td>
 								<td>145281502</td>
+								
 								<td>30000</td>
 								<td>2.1kg</td>
 
