@@ -49,6 +49,14 @@ public class PMGService implements InterPMGService {
 		return rentalList;
 	}
 
+	@Override
+	public List<HashMap<String, String>> memberBookReservationList(String memberid) {
+		List<HashMap<String, String>> reservationList = dao.memberBookReservationList(memberid);
+		return reservationList;
+	}
+
+	
+	
 	
 	
 }

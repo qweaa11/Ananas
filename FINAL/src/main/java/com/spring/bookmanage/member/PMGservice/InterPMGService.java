@@ -20,5 +20,7 @@ public interface InterPMGService {
 	
 	List<HashMap<String, String>> memberBookRentalList(String memberid);
 	
+	List<HashMap<String, String>> memberBookReservationList(String memberid);
+	
 	
 }

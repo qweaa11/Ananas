@@ -42,6 +42,12 @@ public class PMGMemberDAO implements InterPMGMemberDAO {
 		return rentalList;
 	}
 
+	@Override
+	public List<HashMap<String, String>> memberBookReservationList(String memberid) {
+		List<HashMap<String, String>> reservationList = sqlsession.selectList("PMG.memberBookReservationList", memberid);
+		return reservationList;
+	}
+
 	
 	
 	

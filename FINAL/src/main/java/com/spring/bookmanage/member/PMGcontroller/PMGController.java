@@ -65,6 +65,10 @@ public class PMGController {
 		///////////////////////////////////////////////
 		
 		
+		List<HashMap<String, String>> reservationList = service.memberBookReservationList(memberid);
+		
+		request.setAttribute("reservationList", reservationList);		
+		
 		return "member/memberDetail.tiles1";
 	}// end of member
 	

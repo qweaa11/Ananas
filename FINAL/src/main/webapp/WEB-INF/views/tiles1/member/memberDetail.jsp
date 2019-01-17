@@ -288,9 +288,9 @@
 	    <li role="presentation">
 	    	<a href="#reservation" aria-controls="reservation" role="tab" data-toggle="tab">예약</a>
 	    </li>
-	    <li role="presentation">
+	    <!-- <li role="presentation">
 	    	<a href="#return" aria-controls="return" role="tab" data-toggle="tab">반납</a>
-	    </li>		    
+	    </li> -->		    
 	  </ul>
 
 	  <div class="tab-content">
@@ -299,22 +299,22 @@
 				<table class="table" style="width: 1500px;">
 					<thead>	    
 					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">도서일련번호</th>
-						<th scope="col">도서명</th>
-						<th scope="col">저자명</th>
-						<th scope="col">종류</th>
-						<th scope="col">출판사</th>
-						<th scope="col">도서관명</th>
-						<th scope="col">상태</th>
-						<th scope="col">대여일</th>
-						<th scope="col">반납일</th>
-						<th scope="col">연장신청</th>
-						<th scope="col">연체일</th>
-						<th scope="col">연체료</th>
+						<th>번호</th>
+						<th>도서일련번호</th>
+						<th>도서명</th>
+						<th>저자명</th>
+						<th>종류</th>
+						<th>출판사</th>
+						<th>도서관명</th>
+						<!-- <th>상태</th> -->
+						<th>대여일</th>
+						<th>반납일</th>
+						<th>연장신청</th>
+						<th>연체일</th>
+						<th>연체료</th>
 					</tr>
 					</thead>		
-					<tbody>					
+					<tbody style="text-align: center;">					
 						<c:if test="${not empty rentallist}">
 							<c:forEach var="map" items="${rentallist}">
 								<tr>													
@@ -325,16 +325,16 @@
 									<td>${map.CATEGORYNAME}</td>
 									<td>${map.PUBLISHERNAME}</td>
 									<td>${map.LIBRARYNAME}</td>
-									<td>
+									<%-- <td>
 								<c:if test="${map.STATUS == 1}">
 									대여중
 								</c:if>
-									</td>
+									</td> --%>
 									<td>${map.RENTALDATE}</td>
 									<td>${map.DEADLINE}</td>
 									<td>${map.RENEW}</td>
 									<td>${map.OVERDUE}</td>
-									<td>${map.LATEFEE}</td>						
+									<td>${map.LATEFEE}원</td>						
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -356,84 +356,39 @@
 					<th>도서일련번호</th>
 					<th>도서명</th>
 					<th>저자명</th>
-					<th>분야</th>
+					<th>종류</th>
 					<th>출판사</th>
 					<th>도서관명</th>
-					<th>상태</th>
-					<th>반납일</th>
-					<th>연장신청</th>
-					<th>연체일</th>
-					<th>연체료</th>
+					<!-- <th>상태</th> -->
+					<th>예약일</th>					
 				</tr>
 				</thead>		
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>2018-12-24</td>
-						<td>2018-12-31</td>
-						<td>0</td>
-						<td>0</td>
-						<td>12345</td>
-						<td>자바의 정석</td>
-						<td>박민규</td>
-						<td>민후당</td>
-						<td>자기개발</td>
-						<td>대출</td>
-						<td>0원</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2018-12-24</td>
-						<td>2018-12-31</td>
-						<td>0</td>
-						<td>0</td>
-						<td>23125</td>
-						<td>해리포터와 마법사의 돌</td>
-						<td>민후</td>
-						<td>서림</td>
-						<td>소설</td>
-						<td>대출</td>
-						<td>0원</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>a</td>
-						<td>A</td>
-						<td>1</td>
-						<td>1</td>
-						<td>a</td>
-						<td>A</td>
-						<td>1</td>
-						<td>1</td>
-						<td>a</td>
-						<td>A</td>
-						<td>1</td>
-					</tr>
+					<c:if test="${not empty reservationList}">
+						<c:forEach var="map" items="${reservationList}">
+							<tr>
+								<td>${map.ROWNUM}</td>
+								<td>${map.BOOKID}</td>
+								<td>${map.TITLE}</td>
+								<td>${map.AUTHOR}</td>
+								<td>${map.CATEGORYNAME}</td>
+								<td>${map.PUBLISHERNAME}</td>
+								<td>${map.LIBRARYNAME}</td>
+								<%-- <td>${map.STATUS}</td> --%>
+								<td>${map.RESERVEDATE}</td>						
+							</tr>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty reservationList}">
+						<tr>
+							<td>현재 예약중이 도서가 없습니다.</td>
+						</tr>
+					</c:if>					
 				</tbody>
 			</table>	    
 	    </div>
-	    <div role="tabpanel" class="tab-pane" id="return">	    
-	    	<div class="col-sm-12 pull-center well">
-				<form class="form-inline" action="#" method="POST">				
-					<select class="form-control">
-						<option>도서명</option>
-						<option>저자</option>
-						<option>출판사</option>
-						<option>도서번호</option>
-					</select>
-			                  
-					<div class="input-group custom-search-form">
-						<input type="text" class="form-control" placeholder="Search..." />
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<i>search</i>
-								</button>
-							</span>
-					</div>				
-				</form>
-			</div>
-	    
-	    </div>	    		    
+	    	    		    
 	  </div>
 	</div>
 </div>
