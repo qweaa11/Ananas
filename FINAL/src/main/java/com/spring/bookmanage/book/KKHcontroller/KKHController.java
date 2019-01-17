@@ -3,6 +3,7 @@ package com.spring.bookmanage.book.KKHcontroller;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,23 +52,49 @@ public class KKHController {
 		String category = request.getParameter("category");
 		String field = request.getParameter("field");
 		String sort = request.getParameter("sort");
+		ArrayList<String> libArr = null;
+		ArrayList<String> lanArr = null;
+		ArrayList<String> cateArr = null;
+		ArrayList<String> fieldArr = null;
 		
-		if(library != "") {
-			library = "'"+library+"'";
-		}if(language != "") {
-			language = "'"+language+"'";
-		}if(category != "") {
-			category = "'"+category+"'";
-		}if(field != "") {
-			field = "'"+field+"'";
+		if(library != "") library = "'"+library+"'";
+		if(language != "") language = "'"+language+"'";
+		if(category != "") category = "'"+category+"'";
+		if(field != "") field = "'"+field+"'";
+		
+		/*System.out.println("//////////////");
+		System.out.println(language);
+		System.out.println("/////////////");
+		if(library.indexOf(",") != -1) libArr = new ArrayList<String>(Arrays.asList(library.split(",")));
+		else if(library.indexOf(",") == -1 && library != "" ) {
+			libArr = new ArrayList<String>();
+			libArr.add(library);
 		}
+		if(language.indexOf(",") != -1) lanArr = new ArrayList<String>(Arrays.asList(language.split(",")));
+		else if(language.indexOf(",") == -1 && language != "") {
+			lanArr = new ArrayList<String>();
+			lanArr.add(language);
+		}
+		if(category.indexOf(",") != -1) cateArr = new ArrayList<String>(Arrays.asList(category.split(",")));
+		else if(category.indexOf(",") == -1 && category != "") {
+			cateArr = new ArrayList<String>();
+			cateArr.add(category);
+		}
+		if(field.indexOf(",") != -1) fieldArr = new ArrayList<String>(Arrays.asList(field.split(",")));
+		else if(field.indexOf(",") == -1 && field != "" ) {
+			fieldArr = new ArrayList<String>();
+			fieldArr.add(field);
+		}*/
+		
+	
 		System.out.println("library=>"+library+",  language=>"+language+",  category=>"+category+",  field=>"+field);
-		HashMap<String,String> parameterMap = new HashMap<String,String>();
+		HashMap<String,Object> parameterMap = new HashMap<String,Object>();
 		parameterMap.put("LIBRARY", library);
 		parameterMap.put("LANGUAGE", language);
 		parameterMap.put("CATEGORY", category);
 		parameterMap.put("FIELD", field);
 		parameterMap.put("SORT", sort);
+		System.out.println(parameterMap.get("LIBRARY"));
 		List<KKHBookVO> bookList = null;
 		bookList = service.findBookBysidebar(parameterMap);
 		

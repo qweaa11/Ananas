@@ -16,7 +16,8 @@ public class KKHBookDAO implements InterKKHBookDAO {
 	private SqlSessionTemplate sqlsession;
 
 	@Override
-	public List<KKHBookVO> findBookBysidebar(HashMap<String, String> parameterMap) {
+	public List<KKHBookVO> findBookBysidebar(HashMap<String, Object> parameterMap) {
+		System.out.println("library=>"+parameterMap.get("LIBRARY")+",  language=>"+parameterMap.get("LANGUAGE")+",  category=>"+parameterMap.get("CATEGORY")+",  field=>"+parameterMap.get("FIELD"));
 		List<KKHBookVO> bookList = sqlsession.selectList("KKH.findBookBysidebar", parameterMap);
 		return bookList;
 	}
