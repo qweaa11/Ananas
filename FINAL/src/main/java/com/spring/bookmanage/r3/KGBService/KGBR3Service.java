@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.member.JGHmodel.MemberVO;
 import com.spring.bookmanage.r3.KGBModel.InterKGBR3DAO;
+import com.spring.bookmanage.r3.KGBModel.KGBBookVO;
 
 @Service
 public class KGBR3Service implements InterKGBR3Service{
@@ -43,6 +44,18 @@ public class KGBR3Service implements InterKGBR3Service{
 		
 		return memberVO;
 	}// end of findOneMemberBymemberid()-----------------
+
+	
+	
+	@Override
+	public List<KGBBookVO> findAllBookBySearchWord(HashMap<String, String> paraMap) {
+		
+		List<KGBBookVO> bookList = r3DAO.findAllBookBySearchWord(paraMap);
+		
+		return bookList;
+	}// end of findAllBookBySearchWord()----------------------------
+
+	
 	
 	
 	

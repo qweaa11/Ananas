@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.bookmanage.member.JGHmodel.MemberVO;
+import com.spring.bookmanage.r3.KGBModel.KGBBookVO;
 import com.spring.bookmanage.r3.KGBService.InterKGBR3Service;
 
 @Controller
@@ -89,5 +90,47 @@ public class KGBR3Controller {
 		return json;
 		
 	}// end of r3findOneMember()------------------
+	
+	@RequestMapping(value="/r3searchBook.ana", method= {RequestMethod.GET})
+	@ResponseBody
+	public List<HashMap<String, String>> r3searchBook(HttpServletRequest request, HttpServletResponse response) {
+		
+		String searchWord = request.getParameter("searchWord");
+		String category = request.getParameter("cateogry");
+		
+		if(category == null) {
+			category = "bookid";
+		}
+		
+		if(searchWord == null) {
+			searchWord = "";
+		}
+		
+		HashMap<String, String> paraMap = new HashMap<String, String>();
+		
+		paraMap.put("SEARCHWORD", searchWord);
+		paraMap.put("CATEGORY", category);
+		
+		List<KGBBookVO> bookList = r3service.findAllBookBySearchWord(paraMap);
+		
+		List<HashMap<String, String>> jsonList = new ArrayList<HashMap<String, String>>();
+		
+		for(KGBBookVO bookVO : bookList) {
+			
+			HashMap<String, String> json = new HashMap<String, String>();
+			
+			json.put("BOOKID", bookVO.getBookid());
+			json.put("TITLE", bookVO.getTitle());
+			
+			jsonList.add(json);
+			
+			
+			
+		}
+		
+		return jsonList;
+		
+	}// end of r3searchBook()-----------------------------
+	
 	
 }

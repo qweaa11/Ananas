@@ -42,7 +42,8 @@
 			}
 		});
 	    
-	    $(document).on("click", ".hover", function () {
+	    // 회원 상세 정보 표시
+	    $(document).on("click", ".memberselect", function () {
 	    	
 	    	var memberid = $(this).find(".memberid").text();
 	    	
@@ -68,9 +69,73 @@
 					alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
 				}
 				
+			});// end of $.ajax()-------------------------
+	    	
+		});// end of $(document).on()--------------------------------------
+		
+		
+		// 대여 대기 창으로 옮기기
+		$(document).on("click", ".bookselect", function () {
+
+	    	var memberid = $("#memberid").text();
+	    	
+	    	if(memberid == null || memberid == "") {
+	    		alert("회원을 선택해주세요");
+	    		return;
+	    	}
+	    	
+	    	var bookid = $(this).find(".bookid").text();
+	    	
+	    	var title = $(this).find(".bookid").next().text();
+	    	
+	    	var flag = false;
+	    	
+	    	$(".bookid").each(function () {
+				if($(this).val() == bookid){
+					flag = true;
+					return false;
+				}
 			});
 	    	
-		});
+	    	if(flag) {
+	    		alert("이미 대여대기 목록에 들어있는 책 입니다.");
+	    		return;
+	    	}
+	    	
+	    	title = title.length > 10?title.substring(0, 10) + "...":title; 
+	    	
+	    	var name = $("#name").text();
+	    	
+	    	var today = new Date();
+	    	var deadline = new Date();
+	    	deadline.getDate(today.getDate() + 14);
+	    	
+	    	var dd = deadline.getDate();
+	    	var mm = deadline.getMonth()+1; //January is 0!
+	    	var yyyy = deadline.getFullYear();
+	    	
+	    	console.log(deadline);
+	    	
+	    	html = 	"<li class=\"list-group-item hover rentalredy\">\n" + 
+					"    <div class=\"row\">\n" + 
+					"        <div class=\"col-xs-2 text-left\">" + memberid + "</div>\n" + 
+					"        <div class=\"col-xs-2\">" + name + "</div>\n" + 
+					"        <div class=\"col-xs-4\">" + title + "</div>\n" + 
+					"        <div class=\"col-xs-2\">14일</div>\n" + 
+					"        <div class=\"col-xs-2\">" + yyyy + "/" + mm + "/" + dd + "</div>\n" +
+					"		 <input type='hidden' class='bookid' value='" + bookid + "'/>"
+					"    </div>\n" + 
+					"</li>";
+					
+			$(".rentalList").append(html);
+	    	
+		});// end of $(document).on()--------------------------------------
+		
+		
+		// 대여 대기창에서 지우기 
+		$(document).on("click", ".rentalredy", function () {
+			$(this).empty().hide();
+		});// end of $(document).on()----------------------------
 	    
 	});
 	
@@ -97,7 +162,7 @@
 					
 					$.each(json, function (entryIndex, entry) {
 					 	 
-						html += "<li class=\"list-group-item hover\">\n" + 
+						html += "<li class=\"list-group-item hover memberselect\">\n" + 
 								"	<div class=\"row\">\n" + 
 								"		<div class=\"col-xs-6 memberid text-left\" style=\" \">" + entry.MEMBERID + "</div>\n" + 
 								"		<div class=\"col-xs-6\" style=\"\">" + entry.NAME + "</div>\n" + 
@@ -124,7 +189,7 @@
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
 			}
 			
-		});
+		});// end of $.ajax()---------------------
 		
 	}
 	
@@ -132,6 +197,52 @@
 		
 		var cateogry = $("#bookcategory").val();
 		var searchWord = $("#search_book").val();
+		
+		var data_form = {"searchWord":searchWord, "cateogry":cateogry}
+		
+		$.ajax({
+			
+			url:"r3searchBook.ana",
+			type:"GET",
+			data:data_form,
+			dataType:"json",
+			success:function(json) {
+				
+				var html = "";
+				
+				if(json.length > 0){
+					
+					$.each(json, function (entryIndex, entry) {
+					 	 
+						html += "<li class=\"list-group-item hover bookselect\">\n" + 
+								"    <div class=\"row\">\n" + 
+								"        <div class=\"col-xs-6 bookid text-left\" style=\" \">" + entry.BOOKID + "</div>\n" + 
+								"        <div class=\"col-xs-6\" style=\"\">" + entry.TITLE + "</div>\n" + 
+								"    </div>\n" + 
+								"</li>";
+						
+					});// end of $.each()---------------------------
+					
+				}
+				else {
+					html += "<li class=\"list-group-item\">\n" + 
+					"	<div class=\"row\">\n" + 
+					"		<div class=\"col-xs-12 memberid text-left\" style=\"text-align: center;\">검색 결과가 없습니다.</div>\n" + 
+					"	</div>\n" + 
+					"</li>";
+				}
+				
+				
+				$(".bookList").html(html);
+				
+				
+				
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+			}
+			
+		});// end of $.ajax()---------------------
 		
 	}
 
@@ -186,22 +297,22 @@
 								    <!-- 회원 목록 -->
 								    <div class="row">
 								        <div class="col-xs-12">
-								            <div class="panel panel-default list-group-panel">
-								                <div class="panel-body">
-								                
-								                    <ul class="list-group list-group-header">
-								                        <li class="list-group-item list-group-body">
-								                            <div class="row">
-								                                <div class="col-xs-6 text-left">아이디</div>
-								                                <div class="col-xs-6">이름</div>
-								                            </div>
-								                        </li>
-								                    </ul>
-								                    <div></div>
-								                    <ul class="list-group list-group-body memberList" style="overflow: auto; max-height: 300px;">   
-								                        
-								                    </ul>
-								                    
+								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 300px; overflow: auto;">
+								                <div class="panel-body" style="overflow: auto; min-width: 600px;">
+								                	<div>
+									                    <ul class="list-group list-group-header">
+									                        <li class="list-group-item list-group-body">
+									                            <div class="row">
+									                                <div class="col-xs-6 text-left">아이디</div>
+									                                <div class="col-xs-6">이름</div>
+									                            </div>
+									                        </li>
+									                    </ul>
+									                    <div></div>
+									                    <ul class="list-group list-group-body memberList">   
+									                        
+									                    </ul>
+								                    </div>
 								                </div>
 								            </div>
 								        </div>
@@ -209,58 +320,58 @@
 								    <!-- /회원 목록 -->
 								    
 								    <!-- 회원정보 표시 -->
-								    <div class="alert" role="alert">
+								    <div class="alert" role="alert"> 
 								    
-										<div class="panel panel-primary">
+										<div class="panel panel-primary" >
 										       
 											<div class="panel-heading">
 												회원정보 
 											</div>
 											       
-											       
-											<div class="panel-body">
-												
-												<ul class="list-group list-group-body" style="">
-							                        <li class="list-group-item">
-							                            <div class="row">
-							                                <div class="col-xs-4 text-left">아이디</div>
-							                                <div class="col-xs-8" id="memberid" style="">dd</div>
-							                            </div>
-							                        </li>
-							                        <li class="list-group-item">
-							                            <div class="row">
-							                                <div class="col-xs-4 text-left">이름</div>
-							                                <div class="col-xs-8" id="name"></div>
-							                            </div>
-							                        </li>
-							                        <li class="list-group-item">
-							                            <div class="row">
-							                                <div class="col-xs-4 text-left">연령</div>
-							                                <div class="col-xs-8" id="ages"></div>
-							                            </div>
-							                        </li>
-							                        <li class="list-group-item">
-							                            <div class="row">
-							                                <div class="col-xs-4 text-left">주소</div>
-							                                <div class="col-xs-8" id="addr1"></div>
-							                            </div>
-							                        </li>
-							                        <li class="list-group-item">
-							                            <div class="row">
-							                                <div class="col-xs-4 text-left">상세주소</div>
-							                                <div class="col-xs-8" id="addr2"></div>
-							                            </div>
-							                        </li>
-							                        <li class="list-group-item">
-							                            <div class="row">
-							                                <div class="col-xs-4 text-left">전화번호</div>
-							                                <div class="col-xs-8" id="phone"></div>
-							                            </div>
-							                        </li>
-							                    </ul>
-											          
+											<div style="max-width: 100%; overflow: auto;">       
+												<div class="panel-body" style="overflow: auto; min-width: 600px;">
+													
+													<ul class="list-group list-group-body" style="">
+								                        <li class="list-group-item">
+								                            <div class="row">
+								                                <div class="col-xs-4 text-left">아이디</div>
+								                                <div class="col-xs-8" id="memberid" style=""></div>
+								                            </div>
+								                        </li>
+								                        <li class="list-group-item">
+								                            <div class="row">
+								                                <div class="col-xs-4 text-left">이름</div>
+								                                <div class="col-xs-8" id="name"></div>
+								                            </div>
+								                        </li>
+								                        <li class="list-group-item">
+								                            <div class="row">
+								                                <div class="col-xs-4 text-left">연령</div>
+								                                <div class="col-xs-8" id="ages"></div>
+								                            </div>
+								                        </li>
+								                        <li class="list-group-item">
+								                            <div class="row">
+								                                <div class="col-xs-4 text-left">주소</div>
+								                                <div class="col-xs-8" id="addr1"></div>
+								                            </div>
+								                        </li>
+								                        <li class="list-group-item">
+								                            <div class="row">
+								                                <div class="col-xs-4 text-left">상세주소</div>
+								                                <div class="col-xs-8" id="addr2"></div>
+								                            </div>
+								                        </li>
+								                        <li class="list-group-item">
+								                            <div class="row">
+								                                <div class="col-xs-4 text-left">전화번호</div>
+								                                <div class="col-xs-8" id="phone"></div>
+								                            </div>
+								                        </li>
+								                    </ul>
+												          
+												</div>
 											</div>
-										
 										</div>
 										
 									</div>
@@ -299,8 +410,8 @@
 								    <!-- 도서 목록 -->
 								    <div class="row">
 								        <div class="col-xs-12" style="">
-								            <div class="panel panel-default list-group-panel">
-								                <div class="panel-body">
+								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 200px; overflow: auto;">
+								                <div class="panel-body" style="min-width: 600px; overflow: auto;">
 								                
 								                    <ul class="list-group list-group-header">
 								                        <li class="list-group-item list-group-body">
@@ -311,19 +422,7 @@
 								                        </li>
 								                    </ul>
 								                    
-								                    <ul class="list-group list-group-body" style="">
-								                        <li class="list-group-item hover">
-								                            <div class="row">
-								                                <div class="col-xs-6 text-left" style=" ">chek</div>
-								                                <div class="col-xs-6" style="">책</div>
-								                            </div>
-								                        </li>
-								                        <li class="list-group-item hover">
-								                            <div class="row">
-								                                <div class="col-xs-6 text-left" style=" ">chek</div>
-								                                <div class="col-xs-6" style="">책</div>  
-								                            </div>
-								                        </li>
+								                    <ul class="list-group list-group-body bookList">
 								                    </ul>
 								                    
 								                </div>
@@ -338,8 +437,8 @@
 								    
 								    <div class="row">
 								        <div class="col-xs-12" >
-								            <div class="panel panel-default list-group-panel">
-								                <div class="panel-body">
+								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 300px; overflow: auto;">
+								                <div class="panel-body" style="min-width: 600px; overflow: auto;">
 								                
 								                    <ul class="list-group list-group-header">
 								                        <li class="list-group-item list-group-body">
@@ -347,31 +446,14 @@
 								                                <div class="col-xs-2 text-left">아이디</div>
 								                                <div class="col-xs-2">이름</div> 
 								                                <div class="col-xs-4">제목</div> 
-								                                <div class="col-xs-2">대여기간</div> 
+								                                <div class="col-xs-2">대여기간</div>  
 								                                <div class="col-xs-2">반납일자</div> 
 								                            </div>
 								                        </li>
 								                    </ul>
 								                    
-								                    <ul class="list-group list-group-body" style="">
-								                        <li class="list-group-item hover">
-								                            <div class="row">
-								                                <div class="col-xs-2 text-left">아이디</div>
-								                                <div class="col-xs-2">이름</div> 
-								                                <div class="col-xs-4">제목</div> 
-								                                <div class="col-xs-2">대여기간</div> 
-								                                <div class="col-xs-2">반납일자</div> 
-								                            </div>
-								                        </li>
-								                        <li class="list-group-item hover"> 
-								                            <div class="row">
-								                                <div class="col-xs-2 text-left">아이디</div>
-								                                <div class="col-xs-2">이름</div> 
-								                                <div class="col-xs-4">제목</div> 
-								                                <div class="col-xs-2">대여기간</div> 
-								                                <div class="col-xs-2">반납일자</div> 
-								                            </div>
-								                        </li>
+								                    <ul class="list-group list-group-body rentalList" style="">
+								                        
 								                    </ul>
 								                    
 								                </div>

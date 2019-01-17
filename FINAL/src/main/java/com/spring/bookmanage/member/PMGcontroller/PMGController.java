@@ -2,8 +2,12 @@ package com.spring.bookmanage.member.PMGcontroller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +30,9 @@ public class PMGController {
 	private AES256 aes;
 	
 	@RequestMapping(value="/memberDetail.ana", method= {RequestMethod.GET})
-	public String member(PMGMemberVO pmgMemberVO, HttpServletRequest req) {
+	public String member(PMGMemberVO pmgMemberVO, HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		
 		pmgMemberVO = service.findOneMemberByIdx(idx);
 		try {
@@ -50,15 +54,24 @@ public class PMGController {
 			e.printStackTrace();
 		}
 		
-		req.setAttribute("pmgMemberVO", pmgMemberVO);
+		request.setAttribute("pmgMemberVO", pmgMemberVO);
+		
+		////////////////////////////////////////////////
+		String memberid = pmgMemberVO.getMemberid();
+		
+		List<HashMap<String, String>> rentalList = service.memberBookRentalList(memberid);
+		
+		request.setAttribute("rentallist", rentalList);
+		///////////////////////////////////////////////
+		
 		
 		return "member/memberDetail.tiles1";
 	}// end of member
 	
 	@RequestMapping(value="/goStatusEdit0.ana", method= {RequestMethod.POST})
-	public String goStatusEdit0(HttpServletRequest req) {
+	public String goStatusEdit0(HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
@@ -72,16 +85,16 @@ public class PMGController {
 			loc = "javascript:history.back();";
 		}
 		
-		req.setAttribute("msg", msg);
-		req.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
 		return "msg";
 	}
 	
 	@RequestMapping(value="/goStatusEdit1.ana", method= {RequestMethod.POST})
-	public String goStatusEdit1(HttpServletRequest req) {
+	public String goStatusEdit1(HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
@@ -95,16 +108,16 @@ public class PMGController {
 			loc = "javascript:history.back();";
 		}
 		
-		req.setAttribute("msg", msg);
-		req.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
 		return "msg";
 	}
 	
 	@RequestMapping(value="/goStatusEdit2.ana", method= {RequestMethod.POST})
-	public String goStatusEdit2(HttpServletRequest req) {
+	public String goStatusEdit2(HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
@@ -118,9 +131,27 @@ public class PMGController {
 			loc = "javascript:history.back();";
 		}
 		
-		req.setAttribute("msg", msg);
-		req.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
 		return "msg";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

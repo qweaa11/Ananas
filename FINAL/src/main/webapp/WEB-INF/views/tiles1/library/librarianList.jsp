@@ -89,10 +89,6 @@ li {
 		
 		librarianList(sort, searchWord, "1");
 		
-		// 프로필 사진 파일명을 보내주는 함수
-		var faceImg = $("#personalInfo6").val();
-		$("#faceImg").attr('src',faceImg);
-		
 		// 페이징 바를 위해서 가져온 총 사서수
 		var totalCount = ${TOTALCOUNT};
 		var itemNum = 9;
@@ -115,6 +111,7 @@ li {
 			}
 			
 		});
+		
 		
 	});
 	
@@ -149,12 +146,15 @@ li {
 			success:function(json){
 				
 				var result = "";
+				var fileName = "";
 				
 				//console.log("xxxxxx");
 
 				$.each(json, function(entryIndex, entry){
 					
 					if(json.length != 0){
+						
+						fileName += entry.IMGFILENAME
 						
 						result += "<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>"+
 							        "<div class='thumbnail' style='background-color: #ffffff;'>"+
@@ -175,15 +175,19 @@ li {
 						                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
 						             "</div>"+
 						           "</div>"+
-						         "</div>"
+						         "</div>";
+							
+						         
 						         
 					}
 					else{
-						result += "<h1>가입 된 사서가 없습니다!<h1>"
+						result += "<h1>가입 된 사서가 없습니다!<h1>";
 					}
 						
 				
-				});	
+				});
+				
+				//console.log(fileName);
 			
 				$("#resultList").html(result);
 				$("#more").val(parseInt(pageNum) + itemNum);
@@ -206,31 +210,47 @@ li {
 	}
 	
 	
-	$(document).on("click", ".updateInfo", function () {
+	$(document).on("click", ".updateInfo", function() {
 		
 	     var personalInfo = $(this).data('personal');
 	     
-	     var infoSpliter = personalInfo.split(',');
+	     var infoSpliter = personalInfo.split(',');   
+	     
+	     var path = "<%=request.getContextPath()%>/resources/img/";
 	     
 	     for(var i in infoSpliter){
-	     	$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
+	    	if(i == 6){
+				$(".modal-body #faceImgInUpdate").attr("src", path+infoSpliter[i]);
+			}else{
+				$(".modal-body .personalInfo"+i+"").val(infoSpliter[i]);
+			}
+	     	
 	     }
+	     //console.log($(".modal-body #faceImg").attr("src"));
 	     
 	});
 	
 	
-	$(document).on("click", ".detailInfo", function () {
+	$(document).on("click", ".detailInfo", function() {
 		
 	     var personalInfo = $(this).data('personal');
 
 		 var infoSpliter = personalInfo.split(',');
-	     
-	     for(var i in infoSpliter){
-	     	$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
+		 
+		 for(var i in infoSpliter){
+			 
+			if(i == 6){
+				
+				$(".modal-body #faceImgInDetail").attr("src", infoSpliter[i]);
+				
+			}else{
+				
+				$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
+			}
 	     }
 	});
 	
-	
+
 	
 	function goUpdate() {
 		
@@ -240,6 +260,8 @@ li {
 		frm.submit();
 		
 	}
+	
+	
 
 </script>
      
@@ -282,8 +304,7 @@ li {
           <h2 class="modal-title">사서 상세 정보</h2>
         </div>
         	<div class="modal-body">
-        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
-        			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImgInDetail" style="cursor: pointer;" alt="이미지 없음" src=""></div>
 	        	<div class="col-xs-6 col-sm-6 col-lg-4">
 	        		<ul>
 	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
@@ -316,7 +337,7 @@ li {
         </div>
         
        	<div>
-          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">확인</button>
+          <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">확인</button>
           <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>
      	</div>
       </div>
@@ -337,8 +358,7 @@ li {
         </div>
         <form name="updateInfoFrm">
         	<div class="modal-body">
-        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImg" alt="이미지 없음" src=""></div>
-        			<input type="hidden" name="personalInfo6" id="personalInfo6" value=""/>
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImgInUpdate" alt="이미지 없음" src=""></div>
 	        	<div class="col-xs-6 col-sm-6 col-lg-4">
 	        		<ul>
 	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
@@ -354,15 +374,15 @@ li {
 	          	</div>
 	          	<div class="col-xs-6 col-sm-6 col-lg-4">
 	          		<ul>
-	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value=""/></li>
-	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value=""/></li>
-	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value=""/></li>
-	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value=""/></li>
-	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value=""/></li>
-	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value=""/></li>
-	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value=""/></li>
-	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value=""/></li>
-	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value=""/></li>
+	          			<li><input type="text" name="personalInfo0" class="personalInfo0" value=""/></li>
+	          			<li><input type="text" name="personalInfo1" class="personalInfo1" value=""/></li>
+	          			<li><input type="text" name="personalInfo2" class="personalInfo2" value=""/></li>
+	          			<li><input type="text" name="personalInfo3" class="personalInfo3" value=""/></li>
+	          			<li><input type="text" name="personalInfo4" class="personalInfo4" value=""/></li>
+	          			<li><input type="text" name="personalInfo5" class="personalInfo5" value=""/></li>
+	          			<li><input type="text" name="personalInfo7" class="personalInfo7" value=""/></li>
+	          			<li><input type="text" name="personalInfo8" class="personalInfo8" value=""/></li>
+	          			<li><input type="text" name="personalInfo9" class="personalInfo9" value=""/></li>
 	          		</ul>
 	          	</div>
         	</div>

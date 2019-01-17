@@ -13,4 +13,8 @@ public interface InterKGBR3DAO {
 	MemberVO findOneMemberBymemberid(String memberid);
 	// 아이디를 받아 한명의 회원을 조회해오는 메소드
 
+	List<KGBBookVO> findAllBookBySearchWord(HashMap<String, String> paraMap);
+	// 컬럼명과 검색어를 받아 도서를 조회해오는 메소드 
+
+
 }
