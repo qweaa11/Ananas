@@ -16,5 +16,8 @@ public interface InterKGBR3DAO {
 	List<KGBBookVO> findAllBookBySearchWord(HashMap<String, String> paraMap);
 	// 컬럼명과 검색어를 받아 도서를 조회해오는 메소드 
 
+	int addAllRentalById(HashMap<String, String> paraMap) throws Throwable;
+	// 도서대여를 등록해주는 메소드
+
 
 }
