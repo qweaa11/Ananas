@@ -31,4 +31,14 @@ public class KGBR3DAO implements InterKGBR3DAO {
 		return memberVO;
 	}// findOneMemberBymemberid()--------------------
 
+	
+	@Override
+	public List<KGBBookVO> findAllBookBySearchWord(HashMap<String, String> paraMap) {
+		
+		List<KGBBookVO> bookList = sqlsession.selectList("kgb.findAllBookBySearchWord", paraMap);
+		
+		return bookList;
+	}// end of findAllBookBySearchWord()-------------------
+
+
 }

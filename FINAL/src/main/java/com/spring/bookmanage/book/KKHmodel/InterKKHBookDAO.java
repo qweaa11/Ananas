@@ -6,6 +6,6 @@ import java.util.List;
 public interface InterKKHBookDAO {
 	
 
-	List<KKHBookVO> findBookBysidebar(HashMap<String, String> parameterMap);
+	List<KKHBookVO> findBookBysidebar(HashMap<String, Object> parameterMap);
 
 }

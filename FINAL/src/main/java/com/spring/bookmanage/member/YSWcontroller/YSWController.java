@@ -158,7 +158,7 @@ public class YSWController {
 			membervo.setPwd(SHA256.encrypt(pwd));
 			membervo.setName(name);		
 			membervo.setEmail(aes.encrypt(email));
-			membervo.setPhone(phone);
+			membervo.setPhone(aes.encrypt(phone));
 			membervo.setAddr1(addr1);
 			membervo.setAddr2(addr2);
 			membervo.setPost(post);
