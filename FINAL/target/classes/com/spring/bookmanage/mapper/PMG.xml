@@ -67,8 +67,8 @@
 		     , to_char(rentalDate, 'yyyy-mm-dd hh24:mi:ss') AS rentalDate
 		     , to_char(deadline, 'yyyy-mm-dd') AS deadline
 		     , case renew when 0 then 'X' else 'O' end AS renew
-		     , trunc(rentaldate - sysdate) AS overdue
-		     , trunc(rentaldate - sysdate) * 100 AS latefee
+		     , trunc(sysdate - deadline) AS overdue
+		     , trunc(sysdate - deadline) * 100 AS latefee
 		from member M join rental R
 		on M.memberid = R.memberid_fk
 		join book B

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -192,7 +193,7 @@
 <c:if test="${\"활동\".equals(pmgMemberVO.status)}">
 	<div class="container">	        
 		<button type="button" class="btn btn-success btn-lg btn3d" onClick="goStatusEdit2('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
-		<button type="button" class="btn btn-danger btn-lg btn3d" onClick="goStatusEdit3('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>       	
+		<%-- <button type="button" class="btn btn-danger btn-lg btn3d" onClick="goStatusEdit3('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button> --%>       	
 	</div>
 </c:if>
 <c:if test="${\"휴면\".equals(pmgMemberVO.status)}">
@@ -205,11 +206,11 @@
 		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
 	</div>
 </c:if>
-<c:if test="${\"탈퇴\".equals(pmgMemberVO.status)}">
+<%-- <c:if test="${\"탈퇴\".equals(pmgMemberVO.status)}">
 	<div class="container">
 		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
 	</div>
-</c:if>
+</c:if> --%>
 <!-- 
 <button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 활동</button>
 <button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>
@@ -225,6 +226,7 @@
 <br/>
 <br/>
 <br/>
+<%-- 
 <div class="container">
  <h1>회원 도서정보</h1>
   <div class="row">
@@ -274,12 +276,12 @@
    </div>
   </div>	
 </div>
+--%>
 
-<form name="memberidFrm">
-	<input type="hidden" name="memberid" />
-</form>
+
 
 <div class="container">
+	<h1>회원 도서정보</h1>
 	<div>
 	  <ul class="nav nav-tabs" role="tablist">
 	    <li role="presentation" class="active">
@@ -333,15 +335,21 @@
 									<td>${map.RENTALDATE}</td>
 									<td>${map.DEADLINE}</td>
 									<td>${map.RENEW}</td>
-									<td>${map.OVERDUE}</td>
-									<td>${map.LATEFEE}원</td>						
+								<c:if test="${map.OVERDUE <= 0}">
+									<td>0일</td>
+									<td>없음</td>
+								</c:if>
+								<c:if test="${map.OVERDUE > 0}">	
+									<td>${map.OVERDUE}일</td>
+									<td><fmt:formatNumber value="${map.LATEFEE}" pattern="###,###" />원</td>	
+								</c:if>					
 								</tr>
 							</c:forEach>
 						</c:if>
 						
 						<c:if test="${empty rentallist}">
 							<tr>
-								<td>현재 대여중인 도서가 없습니다.</td>
+								<td colspan="12" style="text-align: center;">현재 대여중인 도서가 없습니다.</td>
 							</tr>
 						</c:if>					
 					</tbody>
@@ -382,7 +390,7 @@
 					
 					<c:if test="${empty reservationList}">
 						<tr>
-							<td>현재 예약중이 도서가 없습니다.</td>
+							<td colspan="8" style="text-align: center;">현재 예약중이 도서가 없습니다.</td>
 						</tr>
 					</c:if>					
 				</tbody>
@@ -394,6 +402,29 @@
 </div>
 
 
+
+<!-- <div role="tabpanel" class="tab-pane" id="return">	    
+	    	<div class="col-sm-12 pull-center well">
+				<form class="form-inline" action="#" method="POST">				
+					<select class="form-control">
+						<option>도서명</option>
+						<option>저자</option>
+						<option>출판사</option>
+						<option>도서번호</option>
+					</select>
+			                  
+					<div class="input-group custom-search-form">
+						<input type="text" class="form-control" placeholder="Search..." />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i>search</i>
+								</button>
+							</span>
+					</div>				
+				</form>
+			</div>
+	    
+	    </div> -->
 <!--  
 <div class="container" style="text-align: center;">
 	<ul class="pagination">
