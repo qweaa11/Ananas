@@ -1,5 +1,6 @@
 package com.spring.bookmanage.r3.KGBController;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +25,11 @@ public class KGBR3Controller {
 	InterKGBR3Service r3service;
 
 	@RequestMapping(value="/r3.ana", method= {RequestMethod.GET})
-	public String r3Main() {
+	public String r3Main(HttpServletRequest request, HttpServletResponse response) {
+		
+		String bookid = request.getParameter("bookid");
+		
+		request.setAttribute("bookid", bookid);
 		
 		return "r3/r3Main.tiles1";
 		
@@ -149,21 +154,27 @@ public class KGBR3Controller {
 		paraMap.put("NAMES", names);
 		paraMap.put("DEADLINES", deadlines);
 		
+		String msg = "";
 		int n = 0;
 		
-		
-		
+		// 대여 테이블에 insert
 		try {
 			n = r3service.addAllRentalByIdAfterUpdate(paraMap);
+		} catch (SQLIntegrityConstraintViolationException e) {
+			
+			msg = "이미 대여된 책입니다.";
+			n = 0;
+			
 		} catch (Throwable e) {
 			e.printStackTrace();
+			msg = e.getMessage();
 			n = 0;
-		}
-		
+		} 
 		
 		HashMap<String, String> json = new HashMap<String, String>();
 		
-		json.put("result", String.valueOf(n));
+		json.put("MSG", msg);
+		json.put("RESULT", String.valueOf(n));
 		
 		return json;
 		

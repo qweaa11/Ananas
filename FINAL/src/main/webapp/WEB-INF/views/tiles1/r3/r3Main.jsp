@@ -108,7 +108,7 @@
 	    	
 	    	var today = new Date();
 	    	var deadline = new Date();
-	    	deadline.getDate(today.getDate() + 14);
+	    	deadline.setDate(today.getDate() + 14);
 	    	
 	    	var dd = deadline.getDate();
 	    	var mm = deadline.getMonth()+1; //January is 0!
@@ -134,6 +134,12 @@
 		$(document).on("click", ".rentalredy", function () {
 			$(this).empty().hide();
 		});// end of $(document).on()----------------------------
+		
+		
+		if(${bookid != null}) {
+			$("#search_book").val("${bookid}");
+			$(".booksearch").click();
+		}
 	    
 	});
 	
@@ -294,10 +300,14 @@
 			dataType:"json",
 			success:function(json) {
 				
-				console.log(json.result);
-				
-				if(json.result == "1"){
-					alert("하하하하하하하하하");
+				if(json.RESULT == "1"){
+					alert("대여가 되었습니다.");
+					$(".rentalList").empty();
+					$(".membersearch").click();
+					$(".booksearch").click();
+				}
+				else {
+					alert(json.MSG);
 				}
 				
 			},
@@ -360,7 +370,7 @@
 						                <input type="hidden" name="search_param" value="memberid" id="membercategory"/>      
 						                <input type="text" class="form-control" id="search_member" name="x" placeholder="검색어를 입력해주세요."/>
 						                <span class="input-group-btn">
-						                    <button class="btn btn-default" type="button" onclick="searchMember();"><span class="glyphicon glyphicon-search"></span></button>
+						                    <button class="btn btn-default membersearch" type="button" onclick="searchMember();"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /검색 -->
@@ -472,7 +482,7 @@
 						                <input type="hidden" name="search_param" value="bookid" id="bookcategory">      
 						                <input type="text" class="form-control" id="search_book" name="x" placeholder="검색어를 입력해주세요.">
 						                <span class="input-group-btn">
-						                    <button class="btn btn-default" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
+						                    <button class="btn btn-default booksearch" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /도서 검색 -->
@@ -481,7 +491,7 @@
 								    <!-- 도서 목록 -->
 								    <div class="row">
 								        <div class="col-xs-12" style="">
-								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 200px; overflow: auto;">
+								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 300px; overflow: auto;">
 								                <div class="panel-body" style="min-width: 600px; overflow: auto;">
 								                
 								                    <ul class="list-group list-group-header">
