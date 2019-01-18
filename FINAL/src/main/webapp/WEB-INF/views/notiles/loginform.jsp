@@ -104,12 +104,14 @@
   				func_Login1();
   			}
   			
-  			$("#pwd2").keydown(function(event){
-  	  			
-  	  			if(event.keyCode == 13) { // 엔터를 했을 경우
-  	  				func_Login2();
-  	  			}
-    	 }); // end of $("#pwd1").keydown();-----------------------	 
+    	 }); // end of $("#pwd1").keydown();-----------------------
+    	 
+    	 $("#pwd2").keydown(function(event){
+	  			
+	  			if(event.keyCode == 13) { // 엔터를 했을 경우
+	  				func_Login2();
+	  			}
+    	 });
     	 
     	 if(${flag1 == true}){
     		 $("#saveid1").prop("checked", true);
@@ -125,13 +127,13 @@
     
     function func_Login1() {
     	
-		 var libid = $("#libid").val(); 
-		 var pwd = $("#pwd").val(); 
+		 var libid = $("#libid1").val(); 
+		 var pwd = $("#pwd1").val(); 
 		
 		 if(libid.trim()=="") {
 		 	 alert("아이디를 입력하세요!!");
-			 $("#libid").val(""); 
-			 $("#libid").focus();
+			 $("#libid1").val(""); 
+			 $("#libid1").focus();
 			 return;
 		 }
 		
