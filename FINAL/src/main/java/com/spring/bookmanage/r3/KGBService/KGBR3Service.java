@@ -7,10 +7,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.member.JGHmodel.MemberVO;
 import com.spring.bookmanage.r3.KGBModel.InterKGBR3DAO;
+import com.spring.bookmanage.r3.KGBModel.KGBBookVO;
 
 @Service
 public class KGBR3Service implements InterKGBR3Service{
@@ -43,6 +47,28 @@ public class KGBR3Service implements InterKGBR3Service{
 		
 		return memberVO;
 	}// end of findOneMemberBymemberid()-----------------
+
+	
+	
+	@Override
+	public List<KGBBookVO> findAllBookBySearchWord(HashMap<String, String> paraMap) {
+		
+		List<KGBBookVO> bookList = r3DAO.findAllBookBySearchWord(paraMap);
+		
+		return bookList;
+	}// end of findAllBookBySearchWord()----------------------------
+
+	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
+	public int addAllRentalByIdAfterUpdate(HashMap<String, String> paraMap) throws Throwable {
+		
+		int n = r3DAO.addAllRentalById(paraMap);
+		
+		return n;
+	}// end of addAllRentalById()----------------------------------
+
+	
 	
 	
 	
