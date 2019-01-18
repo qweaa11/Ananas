@@ -421,12 +421,13 @@ public class YSWController {
 	
 	
 	// 사서 정보 삭제(Real Delete)
-	@RequestMapping(value="/deleteLibrarian.ana", method={RequestMethod.GET})
+	@RequestMapping(value="/deleteLibrarian.ana", method={RequestMethod.POST})
 	public String deleteLibrarian(HttpServletRequest req, YjkVO yjkvo) {
 		
 		int result = 0;
 		
-		String LIBRARIANIDX = req.getParameter("LIBRARIANIDX");
+		//String LIBID = req.getParameter("personalInfo1");
+		String LIBRARIANIDX = req.getParameter("idx");
 
 		System.out.println("LIBRARIANIDX : "+ LIBRARIANIDX);
 		

@@ -160,8 +160,8 @@ li {
 						              "<div class='caption'>"+
 						                 "<div class='col-lg-12' style='background-color: #ffffff;'>"+
 						                    "<span class='glyphicon glyphicon-credit-card'></span>"+
-						                    "<a class='glyphicon glyphicon-trash pull-right text-primary' style='cursor: pointer;' href='deleteLibrarian.ana'></a>"+
-						                "</div>"+ 
+						                    "<span class='glyphicon glyphicon-trash pull-right text-primary' style='cursor: pointer;' onClick='deleteLibrarian("+entry.LIBRARIANIDX+")'></span>"+				               
+						                   "</div>"+ 
 						                "<div class='col-lg-12 well well-add-card'>"+   
 						                    "<h4> <span style='color: #004080; font-weight: bold;'>사서명 : "+entry.LIBRARIANNAME+"</span></h4>"+
 						                "</div>"+
@@ -247,13 +247,13 @@ li {
 	
 	function goUpdate() {
 		
-		var finalconfirm = prompt( '수정 및 삭제 관리자 암호를 넣어주세요', '비밀번호' );
+		var finalconfirm = prompt( '관리자 암호를 넣어주세요', '비밀번호' );
 		
 		if(finalconfirm == "qwer1234") {
 			
-			confirm("정말 작업을 진행하시겠습니까?");
+			confirm("정말 정보 수정을 진행하시겠습니까?");
 			
-			if(confirm == "true") {
+			if(confirm) {
 				
 				var frm = document.updateInfoFrm;
 				frm.action = "updatelibrarianInfo.ana";
@@ -267,7 +267,33 @@ li {
 			alert("수정, 삭제는 관리자 비밀번호가 반드시 필요합니다.")
 		}
 		
+	}
+	
+	
+	function deleteLibrarian(idx) {
 		
+		var finalconfirm = prompt( '관리자 암호를 넣어주세요', '비밀번호' );
+		
+		if(finalconfirm == "qwer1234") {
+			
+			confirm("정말 사서 삭제를 진행하시겠습니까?");
+			
+			if(confirm) {
+				
+				var frm = document.deleteFrm;
+				frm.idx.value = idx;
+				frm.action = "deleteLibrarian.ana";
+				frm.method = "POST";
+				frm.submit();
+				
+				
+			}
+			
+		}
+		else {
+			
+			alert("수정, 삭제는 관리자 비밀번호가 반드시 필요합니다.")
+		}
 		
 	}
 	
@@ -364,37 +390,37 @@ li {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h2 class="modal-title">사서 정보 수정</h2>
         </div>
-        <form name="updateInfoFrm" enctype="multipart/form-data">
-        	<div class="modal-body">	
-        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img name="faceImgInUpdate" id="faceImgInUpdate" width="250" height="220" alt="이미지 없음" src=""></div>
-        			
-	        	<div class="col-xs-6 col-sm-6 col-lg-4">
-	        		<ul>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 아이디</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 코드</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 성명</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 연락처</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 직책</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 이름</span></li>
-	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 전화번호</span></li>
-						<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 주소</span></li>
-	          		</ul>
-	          	</div>
-	          	<div class="col-xs-6 col-sm-6 col-lg-4">
-	          		<ul>
-	          			<li><input type="text" name="personalInfo0" class="personalInfo0" value=""  readonly/></li>
-	          			<li><input type="text" name="personalInfo1" class="personalInfo1" value="" readonly/></li>
-	          			<li><input type="text" name="personalInfo2" class="personalInfo2" value=""/></li>
-	          			<li><input type="text" name="personalInfo3" class="personalInfo3" value=""/></li>
-	          			<li><input type="text" name="personalInfo4" class="personalInfo4" value=""/></li>
-	          			<li><input type="text" name="personalInfo5" class="personalInfo5" value=""/></li>
-	          			<li><input type="text" name="personalInfo7" class="personalInfo7" value="" readonly/></li>
-	          			<li><input type="text" name="personalInfo8" class="personalInfo8" value="" readonly/></li>
-	          			<li><input type="text" name="personalInfo9" class="personalInfo9" value="" readonly/></li>
-	          		</ul>
-	          	</div>
-        	</div>
+        	<form name="updateInfoFrm" enctype="multipart/form-data">
+        		<div class="modal-body">
+	        		<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img name="faceImgInUpdate" id="faceImgInUpdate" width="250" height="220" alt="이미지 없음" src=""></div>
+		        	<div class="col-xs-6 col-sm-6 col-lg-4">
+		        		<ul>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 아이디</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 코드</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 성명</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 연락처</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 직책</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 이름</span></li>
+		        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 전화번호</span></li>
+							<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">도서관 주소</span></li>
+		          		</ul>
+		          	</div>
+			          	
+		          	<div class="col-xs-6 col-sm-6 col-lg-4">
+		          		<ul>
+		          			<li><input type="text" name="personalInfo0" class="personalInfo0" value=""  readonly/></li>
+		          			<li><input type="text" name="personalInfo1" class="personalInfo1" value="" readonly/></li>
+		          			<li><input type="text" name="personalInfo2" class="personalInfo2" value=""/></li>
+		          			<li><input type="text" name="personalInfo3" class="personalInfo3" value=""/></li>
+		          			<li><input type="text" name="personalInfo4" class="personalInfo4" value=""/></li>
+		          			<li><input type="text" name="personalInfo5" class="personalInfo5" value=""/></li>
+		          			<li><input type="text" name="personalInfo7" class="personalInfo7" value="" readonly/></li>
+		          			<li><input type="text" name="personalInfo8" class="personalInfo8" value="" readonly/></li>
+		          			<li><input type="text" name="personalInfo9" class="personalInfo9" value="" readonly/></li>
+		          		</ul>
+		          	</div>
+        		</div>
         <div class="modal-footer">
 
         </div>
@@ -413,8 +439,8 @@ li {
     </div>  
   </div>
   
-  
-  
+  <form name="deleteFrm"><input type="hidden" id="idx" name="idx" value="" /></form>
+ 
 </body>
 
 
