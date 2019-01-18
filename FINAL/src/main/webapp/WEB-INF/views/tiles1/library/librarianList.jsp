@@ -114,16 +114,18 @@ li {
 		
 	});
 	
-	  
+	 
+	// ajax에 검색 조건 넣어주는 기능
 	function searchList(){
 		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
 		
 		librarianList(sort, searchWord, "1");
-	}
+	}// end of function searchList()
 	
 	
+	// 사서 리스트 보여주기
 	function librarianList(sort, searchWord, pageNum) {
 		
 		//console.log("으아");
@@ -206,6 +208,7 @@ li {
 	}
 	
 	
+	// 해당 사서의 카드에서 업데이트 버튼을 누르면 보여줄 상세 정보를 넘겨주기
 	$(document).on("click", ".updateInfo", function() {
 		
 	     var personalInfo = $(this).data('personal');
@@ -222,9 +225,11 @@ li {
 	     }
 	     //console.log($(".modal-body #faceImg").attr("src"));
 	     
-	});
+	});// end of $(document).on("click", ".updateInfo", function()
 	
 	
+	
+	// 해당 사서의 카드에서 상세정보 버튼을 누르면 보여줄 상세 정보를 넘겨주기
 	$(document).on("click", ".detailInfo", function() {
 		
 	     var personalInfo = $(this).data('personal');
@@ -242,8 +247,9 @@ li {
 				$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
 			}
 	     }
-	});
+	});// end of $(document).on("click", ".detailInfo", function()
 	  
+	
 	
 	function goUpdate() {
 		
@@ -270,6 +276,7 @@ li {
 	}
 	
 	
+	//해당 사서의 삭제를 진행하기
 	function deleteLibrarian(idx) {
 		
 		var finalconfirm = prompt( '관리자 암호를 넣어주세요', '비밀번호' );
@@ -356,7 +363,7 @@ li {
 	          		<ul>
 	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value="" readonly/></li>
 	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value="" readonly/></li>
-	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value="" readonly/></li>
+						<li><input type="text" name="personalInfo2" id="personalInfo2" value="" readonly/></li>
 	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value="" readonly/></li>
 	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value="" readonly/></li>
 	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value="" readonly/></li>
@@ -411,7 +418,7 @@ li {
 		          		<ul>
 		          			<li><input type="text" name="personalInfo0" class="personalInfo0" value=""  readonly/></li>
 		          			<li><input type="text" name="personalInfo1" class="personalInfo1" value="" readonly/></li>
-		          			<li><input type="text" name="personalInfo2" class="personalInfo2" value=""/></li>
+		          			<li><input type="text" name="personalInfo2" class="personalInfo2" value="" readonly/></li>
 		          			<li><input type="text" name="personalInfo3" class="personalInfo3" value=""/></li>
 		          			<li><input type="text" name="personalInfo4" class="personalInfo4" value=""/></li>
 		          			<li><input type="text" name="personalInfo5" class="personalInfo5" value=""/></li>

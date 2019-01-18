@@ -54,7 +54,7 @@ public class YSWService implements InterYSWService {
 	}
 
 
-	// ===== 더보기를 위한 totalCount =====
+	// ===== 조건이 있을때 페이징 처리(더보기)를 위한 totalCount =====
 	@Override
 	public int totalCounttWithOption(HashMap<String, String> paraMap) {
 		
@@ -63,6 +63,7 @@ public class YSWService implements InterYSWService {
 	}
 
 
+	// ===== 조건이 없을때 페이징 처리(더보기)를 위한 totalCount =====
 	@Override
 	public int totalNoneOption() {
 

@@ -54,7 +54,7 @@ public class YSWDAO implements InterYSWDAO {
 	}
 
 
-	// ===== 더보기를 위한 totalCount =====
+	// ===== 조건을 입력했을 때 페이징처리(더보기)를 위한 totalCount =====
 	@Override
 	public int totalCounttWithOption(HashMap<String, String> paraMap) {
 
@@ -63,6 +63,7 @@ public class YSWDAO implements InterYSWDAO {
 	}
 
 
+	// ===== 조건이 없을 때 페이징처리(더보기)를 위한 totalCount =====
 	@Override
 	public int totalNoneOption() {
 

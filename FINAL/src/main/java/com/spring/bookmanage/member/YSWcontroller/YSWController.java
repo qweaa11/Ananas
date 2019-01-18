@@ -48,7 +48,7 @@ public class YSWController {
 	public String registUser(HttpServletRequest req) {
 				
 		return "member/memberRegist.tiles1";  
-	}
+	}// end of public String registUser(HttpServletRequest req) 
 	
 	
 	//===== 아이디 중복 체크 요청. =====
@@ -68,7 +68,7 @@ public class YSWController {
 		resultMap.put("result", result);
 		
 		return resultMap;
-	}
+	}// end of public HashMap<String,Integer> idDuplicate(HttpServletRequest req)
 	
 	
 	//===== 회원등록 =====
@@ -204,6 +204,7 @@ public class YSWController {
 	
 	
 	
+	// 사서 리스트의 페이지
 	@RequestMapping(value="/librarianList.ana", method={RequestMethod.GET})
 	public String librarianList(HttpServletRequest req) {
 
@@ -230,10 +231,11 @@ public class YSWController {
 		//System.out.println("TOTALCOUNT : " + totalCount);
 		
 		return "library/librarianList.tiles1";
-	}
+	}// end of public String librarianList(HttpServletRequest req) 
 	
 	
 	
+	// 조건에 따른 특정 사서 검색
 	@RequestMapping(value="/findLibrarianList.ana", method={RequestMethod.GET})
 	@ResponseBody
 	public List<HashMap <String, Object>> findLibrarianList(HttpServletRequest req) {
@@ -309,7 +311,7 @@ public class YSWController {
 		}
 		
 		return librarianList;
-	}
+	}// end of public List<HashMap <String, Object>> findLibrarianList(HttpServletRequest req)
 	
 	
 	

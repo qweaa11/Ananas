@@ -207,6 +207,7 @@
 	});// end of $(document).ready(function()---------------
 			
 
+	// 아이디 중복체크 기능
 	function idDuplicate() {
 			
 			var memberid = $("#memberid").empty().val();
@@ -241,6 +242,7 @@
 	}// End of function idDuplicate(wishID)-------------
 
 		
+	// 멤버 등록가기
 	function memberRegist() {
 			
 		var frm = document.signupFrm;
