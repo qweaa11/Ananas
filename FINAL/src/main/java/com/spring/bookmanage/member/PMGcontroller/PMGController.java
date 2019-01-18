@@ -2,7 +2,6 @@ package com.spring.bookmanage.member.PMGcontroller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +18,11 @@ import com.spring.bookmanage.member.PMGmodel.PMGMemberVO;
 import com.spring.bookmanage.member.PMGservice.PMGService;
 
 @Controller
+/**
+ * <b>회원상세 controller</b>
+ * <pre>회원기본정보(활동,휴면해제,정지), 회원도서정보(대여,예약)</pre>
+ * @author 박민규
+ */
 public class PMGController {
 
 	// 의존객체 주입하기(DI : Dependency Injection)
@@ -29,6 +33,15 @@ public class PMGController {
 	@Autowired
 	private AES256 aes;
 	
+	/**
+	 * <b>회원상세 페이지</b>
+	 * @param pmgMemberVO
+	 * @param request
+	 * @param response
+	 * @return
+	 * idx를 받아 회원기본정보(VO를 이용)를 보여줌, 
+	 * memberid를 받아 회원도서정보(대여,예약) 대여,예약을 보여줌
+	 */
 	@RequestMapping(value="/memberDetail.ana", method= {RequestMethod.GET})
 	public String member(PMGMemberVO pmgMemberVO, HttpServletRequest request, HttpServletResponse response) {
 		
@@ -36,8 +49,9 @@ public class PMGController {
 		
 		pmgMemberVO = service.findOneMemberByIdx(idx);
 		try {
-			pmgMemberVO.setEmail(aes.decrypt(pmgMemberVO.getEmail()));
+			pmgMemberVO.setEmail(aes.decrypt(pmgMemberVO.getEmail())); // 복호화한 email
 			
+			// 복호화한 연락처 "-" 넣어주기
 			String phone = aes.decrypt(pmgMemberVO.getPhone());			
 			if(phone.length() == 10 || phone.length() == 11) {
 				if(phone.length() == 10) {
@@ -56,7 +70,7 @@ public class PMGController {
 		
 		request.setAttribute("pmgMemberVO", pmgMemberVO);
 		
-		////////////////////////////////////////////////
+		// memberid를 받아 한 회원의 대여정보를 보여줌
 		String memberid = pmgMemberVO.getMemberid();
 		
 		List<HashMap<String, String>> rentalList = service.memberBookRentalList(memberid);
@@ -64,10 +78,22 @@ public class PMGController {
 		request.setAttribute("rentallist", rentalList);
 		///////////////////////////////////////////////
 		
+		// memberid를 받아 한 회원의 예약정보를 보여줌
+		List<HashMap<String, String>> reservationList = service.memberBookReservationList(memberid);
+		
+		request.setAttribute("reservationList", reservationList);		
+		///////////////////////////////////////////////
 		
 		return "member/memberDetail.tiles1";
 	}// end of member
 	
+	/**
+	 * <b>회원상세 페이지(버튼)</b>
+	 * @param request
+	 * @param response
+	 * @return
+	 * idx를 입력받아 status 활동으로 변경 
+	 */
 	@RequestMapping(value="/goStatusEdit0.ana", method= {RequestMethod.POST})
 	public String goStatusEdit0(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -89,8 +115,15 @@ public class PMGController {
 		request.setAttribute("loc", loc);
 		
 		return "msg";
-	}
+	}// end of goStatusEdit0
 	
+	/**
+	 * <b>회원상세 페이지(버튼)</b>
+	 * @param request
+	 * @param response
+	 * @return
+	 * idx를 입력받아 휴면해제처리 status 활동으로 변경 
+	 */
 	@RequestMapping(value="/goStatusEdit1.ana", method= {RequestMethod.POST})
 	public String goStatusEdit1(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -112,8 +145,15 @@ public class PMGController {
 		request.setAttribute("loc", loc);
 		
 		return "msg";
-	}
+	}// end of goStatusEdit1
 	
+	/**
+	 * <b>회원상세 페이지(버튼)</b>
+	 * @param request
+	 * @param response
+	 * @return
+	 * idx를 입력받아 회원을 status 정지로 변경 
+	 */
 	@RequestMapping(value="/goStatusEdit2.ana", method= {RequestMethod.POST})
 	public String goStatusEdit2(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -135,23 +175,7 @@ public class PMGController {
 		request.setAttribute("loc", loc);
 		
 		return "msg";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}// end of goStatusEdit2
+
 	
 }

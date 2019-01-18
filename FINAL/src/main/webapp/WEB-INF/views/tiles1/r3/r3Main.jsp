@@ -90,7 +90,7 @@
 	    	
 	    	var flag = false;
 	    	
-	    	$(".bookid").each(function () {
+	    	$(".bookval").each(function () {
 				if($(this).val() == bookid){
 					flag = true;
 					return false;
@@ -102,28 +102,26 @@
 	    		return;
 	    	}
 	    	
-	    	title = title.length > 10?title.substring(0, 10) + "...":title; 
+	    	title = title.length > 15?title.substring(0, 15) + "...":title; 
 	    	
 	    	var name = $("#name").text();
 	    	
 	    	var today = new Date();
 	    	var deadline = new Date();
-	    	deadline.getDate(today.getDate() + 14);
+	    	deadline.setDate(today.getDate() + 14);
 	    	
 	    	var dd = deadline.getDate();
 	    	var mm = deadline.getMonth()+1; //January is 0!
 	    	var yyyy = deadline.getFullYear();
 	    	
-	    	console.log(deadline);
-	    	
 	    	html = 	"<li class=\"list-group-item hover rentalredy\">\n" + 
 					"    <div class=\"row\">\n" + 
-					"        <div class=\"col-xs-2 text-left\">" + memberid + "</div>\n" + 
-					"        <div class=\"col-xs-2\">" + name + "</div>\n" + 
-					"        <div class=\"col-xs-4\">" + title + "</div>\n" + 
-					"        <div class=\"col-xs-2\">14일</div>\n" + 
-					"        <div class=\"col-xs-2\">" + yyyy + "/" + mm + "/" + dd + "</div>\n" +
-					"		 <input type='hidden' class='bookid' value='" + bookid + "'/>"
+					"        <div class=\"col-xs-2 memberidval text-left\">" + memberid + "</div>\n" + 
+					"        <div class=\"col-xs-2 nameval\">" + name + "</div>\n" + 
+					"        <div class=\"col-xs-3 \">" + title + "</div>\n" + 
+					"        <div class=\"col-xs-2 \">14일</div>\n" + 
+					"        <div class=\"col-xs-3 deadlineval\">" + yyyy + "/" + mm + "/" + dd + "</div>\n" +
+					"		 <input type='hidden' class='bookval' value='" + bookid + "'/>" +
 					"    </div>\n" + 
 					"</li>";
 					
@@ -136,6 +134,12 @@
 		$(document).on("click", ".rentalredy", function () {
 			$(this).empty().hide();
 		});// end of $(document).on()----------------------------
+		
+		
+		if(${bookid != null}) {
+			$("#search_book").val("${bookid}");
+			$(".booksearch").click();
+		}
 	    
 	});
 	
@@ -245,6 +249,83 @@
 		});// end of $.ajax()---------------------
 		
 	}
+	
+	// 책 대여 기능
+	function rental() {
+		
+		var bookids = "";
+		
+		$(".bookval").each(function () {
+			bookids += $(this).val() + ","; 
+		});
+		
+		bookids = bookids.substring(0, bookids.length-1);
+		
+		var memberids = "";
+		
+		$(".memberidval").each(function () {
+			memberids += $(this).text() + ",";
+		});
+		
+		memberids = memberids.substring(0, memberids.length-1);
+		
+		if(bookids.trim() == "" || memberids.trim() == "") {
+			alert("목록에 등록해주세요");
+			return;
+		}
+		
+		var names = "";
+		
+		$(".nameval").each(function () {
+			names += $(this).text() + ","; 
+		});
+		
+		names = names.substring(0, names.length-1);
+		
+		var deadlines = "";
+		
+		$(".deadlineval").each(function () {
+			deadlines += $(this).text() + ","; 
+		});
+		
+		deadlines = deadlines.substring(0, deadlines.length-1);
+		
+		var data_form = {"bookids":bookids, "memberids":memberids, "names":names, "deadlines":deadlines}
+		
+		
+		$.ajax({
+			url:"rentalInsert.ana",
+			type:"POST",
+			data:data_form,
+			dataType:"json",
+			success:function(json) {
+				
+				if(json.RESULT == "1"){
+					alert("대여가 되었습니다.");
+					$(".rentalList").empty();
+					$(".membersearch").click();
+					$(".booksearch").click();
+				}
+				else {
+					alert(json.MSG);
+				}
+				
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+			}
+			
+		});// end of $.ajax()-------------------------
+		
+		
+	}// end of rental
+	
+	
+	// 대여 대기목록 리셋
+	function rentalReset() {
+		$(".rentalList").empty();
+	}
+	
 
 </script>
     
@@ -289,7 +370,7 @@
 						                <input type="hidden" name="search_param" value="memberid" id="membercategory"/>      
 						                <input type="text" class="form-control" id="search_member" name="x" placeholder="검색어를 입력해주세요."/>
 						                <span class="input-group-btn">
-						                    <button class="btn btn-default" type="button" onclick="searchMember();"><span class="glyphicon glyphicon-search"></span></button>
+						                    <button class="btn btn-default membersearch" type="button" onclick="searchMember();"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /검색 -->
@@ -384,7 +465,7 @@
 						        <!-- 도서 부분 -->
 						        <div class="col-lg-offset-1 col-lg-6 col-md-offset-1 col-md-6 col-sm-12 col-xs-12 border-radius" style="margin-top: 30px; margin-bottom: 30px;">
 						        	
-						            <h2>도서 목록</h2>  
+						            <h2>도서 목록</h2>
 								    <hr>
 								    
 								    <!-- 도서 검색 -->
@@ -401,7 +482,7 @@
 						                <input type="hidden" name="search_param" value="bookid" id="bookcategory">      
 						                <input type="text" class="form-control" id="search_book" name="x" placeholder="검색어를 입력해주세요.">
 						                <span class="input-group-btn">
-						                    <button class="btn btn-default" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
+						                    <button class="btn btn-default booksearch" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
 						                </span>
 						            </div>
 						            <!-- /도서 검색 -->
@@ -410,7 +491,7 @@
 								    <!-- 도서 목록 -->
 								    <div class="row">
 								        <div class="col-xs-12" style="">
-								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 200px; overflow: auto;">
+								            <div class="panel panel-default list-group-panel" style="max-width: 100%; max-height: 300px; overflow: auto;">
 								                <div class="panel-body" style="min-width: 600px; overflow: auto;">
 								                
 								                    <ul class="list-group list-group-header">
@@ -429,11 +510,12 @@
 								            </div>
 								        </div>
 								    </div>
+								    
+								    
 								    <!-- /도서 목록 -->
-								    
-								    
-								    <h2>대여 작업</h2>  
+									<h2>대여 작업</h2>
 								    <hr>
+									<div style="color: red; padding-bottom: 10px; text-align: right;">대여기간은 최대 14일 입니다.</div> 
 								    
 								    <div class="row">
 								        <div class="col-xs-12" >
@@ -445,9 +527,9 @@
 								                            <div class="row">
 								                                <div class="col-xs-2 text-left">아이디</div>
 								                                <div class="col-xs-2">이름</div> 
-								                                <div class="col-xs-4">제목</div> 
+								                                <div class="col-xs-3">제목</div> 
 								                                <div class="col-xs-2">대여기간</div>  
-								                                <div class="col-xs-2">반납일자</div> 
+								                                <div class="col-xs-3">반납예정일</div> 
 								                            </div>
 								                        </li>
 								                    </ul>
@@ -461,9 +543,10 @@
 								        </div>
 								    </div>
 								    <div style="float: right; margin-bottom: 30px;">
-								    	<button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-										<button type="button" class="btn btn-warning btn-circle btn-lg"><i class="glyphicon glyphicon-remove"></i></button>
+								    	<button type="button" class="btn btn-info btn-circle btn-lg" onclick="rental();"><i class="glyphicon glyphicon-ok"></i></button>
+										<button type="button" class="btn btn-warning btn-circle btn-lg" onclick="rentalReset();"><i class="glyphicon glyphicon-remove"></i></button>
 								    </div>
+								    
 									
 								    
 						        </div>

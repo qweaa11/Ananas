@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.member.JGHmodel.MemberVO;
@@ -54,6 +57,32 @@ public class KGBR3Service implements InterKGBR3Service{
 		
 		return bookList;
 	}// end of findAllBookBySearchWord()----------------------------
+
+	
+	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
+	public int addAllRentalByIdAfterUpdate(HashMap<String, String> paraMap) throws Throwable {
+		
+		int n = 0;
+		
+		String reservebookid = r3DAO.findAllReservationByBookid(paraMap);
+		System.out.println(reservebookid);
+		if(reservebookid.length() > 0)
+			r3DAO.deleteReservationByMemberid(reservebookid);
+		
+		int n1 = r3DAO.updateAllBookByBookid(paraMap);
+		int n2 = r3DAO.addAllRentalById(paraMap);
+		r3DAO.findAllRentalByMemberid(paraMap);
+		
+		if(n1*n2 == 1) {
+			n = 1;
+		}
+		
+		return n;
+	}// end of addAllRentalById()----------------------------------
+
+	
 
 	
 	

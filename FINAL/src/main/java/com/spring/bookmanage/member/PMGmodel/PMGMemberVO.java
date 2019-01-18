@@ -1,5 +1,10 @@
 package com.spring.bookmanage.member.PMGmodel;
 
+/**
+ * <b>member(회원)테이블 VO</b>
+ * <pre>회원상세정보 페이지에서 회원기본정보를 보여주는 VO</pre>
+ * @author 박민규
+ */
 public class PMGMemberVO {
 
 	private int idx;			// 인덱스(회원번호)
@@ -12,7 +17,7 @@ public class PMGMemberVO {
 	private String addr2;		// 상세주소
 	private String post;		// 우편번호	
 	private String birth;		// 생년월일
-	private String gender;			// 성별 (0:남자 1:여자)
+	private String gender;		// 성별 (0:남자 1:여자)
 	
 	private String regDate;		// 가입일자
 	private String lastDate;	// 최근접속일자

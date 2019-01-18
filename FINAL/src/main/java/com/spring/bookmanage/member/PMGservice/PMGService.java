@@ -11,6 +11,11 @@ import com.spring.bookmanage.member.PMGmodel.PMGMemberDAO;
 import com.spring.bookmanage.member.PMGmodel.PMGMemberVO;
 
 @Service
+/**
+ * <b>회원상세 service</b>
+ * <pre>회원기본정보(활동,휴면해제,정지), 회원도서정보(대여,예약)</pre>
+ * @author 박민규
+ */
 public class PMGService implements InterPMGService {
 
 	// 의존객체 주입하기(DI : Dependency Injection)
@@ -49,6 +54,14 @@ public class PMGService implements InterPMGService {
 		return rentalList;
 	}
 
+	@Override
+	public List<HashMap<String, String>> memberBookReservationList(String memberid) {
+		List<HashMap<String, String>> reservationList = dao.memberBookReservationList(memberid);
+		return reservationList;
+	}
+
+	
+	
 	
 	
 }

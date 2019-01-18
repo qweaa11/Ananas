@@ -11,6 +11,7 @@
 		select *
 		from member
 		where ${CATEGORY} like '%' || #{SEARCHWORD} || '%'
+		and status = 0
 	
 	</select>
 	
@@ -25,7 +26,6 @@
 	
 	</select>
 	
-	
 	<!-- 컬럼명과 검색어를 받아 도서를 조회해오는 메소드  -->
 	<select id="findAllBookBySearchWord" parameterType="HashMap" resultType="com.spring.bookmanage.r3.KGBModel.KGBBookVO">
 	
@@ -35,5 +35,47 @@
 		and status = 0
 	
 	</select>
+	
+	
+	<!-- 대여 최대갯수를 제한하기위한 메소드 -->
+	<select id="findAllRentalByMemberid" parameterType="String" resultType="int">
+	
+		select count(*)
+		from rental R join book B
+		on R.bookid_fk = B.bookid
+		where status = 1
+		and memberid_fk = #{memberid}
+		
+	</select>
+	
+	
+	<!-- 도서대여를 등록해주는 메소드 -->
+	<insert id="addAllRentalById" parameterType="HashMap">
+	
+		insert into rental(idx, bookid_fk, memberid_fk, rentaldate, deadline, renew)
+		values(rent_seq.nextval, #{BOOKID}, #{MEMBERID}, sysdate, #{DEADLINE}, default)
+	
+	</insert>
+	
+	
+	<!-- 도서를 대여상태로 업데이트 해주는 메소드 -->
+	<update id="updateAllBookByBookid" parameterType="String">
+		update book set status = 1
+		where bookid = #{bookid}
+		and status = 0
+	</update>
+	
+	
+	<select id="findAllReservationByBookid" parameterType="String" resultType="String">
+		select memberid_fk
+		from reservation
+		where bookid_fk = #{BOOKID}
+	</select>
+	
+	
+	<delete id="deleteReservationByMemberid" parameterType="String">
+		delete reservation
+		where bookid_fk = #{reservebookid}
+	</delete>
 
 </mapper>
