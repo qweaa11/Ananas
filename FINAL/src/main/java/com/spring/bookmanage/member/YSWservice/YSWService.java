@@ -70,4 +70,22 @@ public class YSWService implements InterYSWService {
 		return totalCount;
 	}
 
+
+	// 사서 정보 수정
+	@Override
+	public int updatelibrarianInfo(HashMap<String, String> paraMap) {
+
+		int result = dao.updatelibrarianInfo(paraMap);
+		return result;
+	}
+
+
+	// 사서 정보 삭제(Real Delete)
+	@Override
+	public int deleteLibrarian(String lIBRARIANIDX) {
+		
+		int result = dao.deleteLibrarian(lIBRARIANIDX);
+		return result;
+	}
+
 }

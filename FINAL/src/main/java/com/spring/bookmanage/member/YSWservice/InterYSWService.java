@@ -28,5 +28,11 @@ public interface InterYSWService {
 	int totalCounttWithOption(HashMap<String, String> paraMap);
 
 	int totalNoneOption();
+
+	// 사서 정보 수정
+	int updatelibrarianInfo(HashMap<String, String> paraMap);
+
+	// 사서 정보 삭제(Real Delete)
+	int deleteLibrarian(String lIBRARIANIDX);
 	
 }

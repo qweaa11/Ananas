@@ -76,13 +76,12 @@ li {
 }
 
 
+
 </style>
 
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		
-		//console.log("${TOTALCOUNT}");
 		
 		var searchWord = $("#searchWord").val();
 		var sort = $("#sort").val();
@@ -159,11 +158,11 @@ li {
 						result += "<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>"+
 							        "<div class='thumbnail' style='background-color: #ffffff;'>"+
 						              "<div class='caption'>"+
-						                "<div class='col-lg-12' style='background-color: #ffffff;'>"+
+						                 "<div class='col-lg-12' style='background-color: #ffffff;'>"+
 						                    "<span class='glyphicon glyphicon-credit-card'></span>"+
-						                    "<span class='glyphicon glyphicon-trash pull-right text-primary'></span>"+
-						                "</div>"+
-						                "<div class='col-lg-12 well well-add-card'>"+
+						                    "<a class='glyphicon glyphicon-trash pull-right text-primary' style='cursor: pointer;' href='deleteLibrarian.ana'></a>"+
+						                "</div>"+ 
+						                "<div class='col-lg-12 well well-add-card'>"+   
 						                    "<h4> <span style='color: #004080; font-weight: bold;'>사서명 : "+entry.LIBRARIANNAME+"</span></h4>"+
 						                "</div>"+
 						                "<div class='col-lg-12'>"+
@@ -171,14 +170,11 @@ li {
 						                    "<p class'text-muted'><span style='color: #004080; font-weight: bold;'>아이디 : "+entry.LIBID+"</span></p>"+
 						                "</div>"+
 						                "<a class='btn btn-primary btn-xs btn-update btn-add-card updateInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#updateInfo'>Update Info.</a>"+
-						                "<a class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#detailInfo'>Detail Info.</a>"+
-						                "<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>"+
+						                "<a class='btn btn-danger btn-xs btn-update btn-add-card detailInfo' data-toggle='modal' data-personal='"+entry.LIBRARIANIDX+","+entry.LIBID+","+entry.LIBCODE_FK+","+entry.LIBRARIANNAME+","+entry.LIBRARIANTEL+","+entry.STATUS+","+entry.IMGFILENAME+","+entry.LIBNAME+","+entry.LIBTEL+","+entry.ADDR+"' href='#detailInfo'>Detail Info.</a>"+						
 						             "</div>"+
 						           "</div>"+
 						         "</div>";
 							
-						         
-						         
 					}
 					else{
 						result += "<h1>가입 된 사서가 없습니다!<h1>";
@@ -216,11 +212,9 @@ li {
 	     
 	     var infoSpliter = personalInfo.split(',');   
 	     
-	     var path = "<%=request.getContextPath()%>/resources/img/";
-	     
 	     for(var i in infoSpliter){
 	    	if(i == 6){
-				$(".modal-body #faceImgInUpdate").attr("src", path+infoSpliter[i]);
+				$(".modal-body #faceImgInUpdate").attr("src", "resources/img/"+infoSpliter[i]);
 			}else{
 				$(".modal-body .personalInfo"+i+"").val(infoSpliter[i]);
 			}
@@ -241,26 +235,41 @@ li {
 			 
 			if(i == 6){
 				
-				$(".modal-body #faceImgInDetail").attr("src", infoSpliter[i]);
-				
+				$(".modal-body #faceImgInDetail").attr("src", "resources/img/"+infoSpliter[i]);
+				console.log($(".modal-body #faceImgInDetail").attr("src"));
 			}else{
 				
 				$(".modal-body #personalInfo"+i+"").val(infoSpliter[i]);
 			}
 	     }
 	});
-	
-
+	  
 	
 	function goUpdate() {
 		
-		var frm = document.updateInfoFrm;
-		frm.action = "updatelibrarianInfo.ana";
-		frm.method = "POST";
-		frm.submit();
+		var finalconfirm = prompt( '수정 및 삭제 관리자 암호를 넣어주세요', '비밀번호' );
+		
+		if(finalconfirm == "qwer1234") {
+			
+			confirm("정말 작업을 진행하시겠습니까?");
+			
+			if(confirm == "true") {
+				
+				var frm = document.updateInfoFrm;
+				frm.action = "updatelibrarianInfo.ana";
+				frm.method = "POST";
+				frm.submit();
+			}
+			
+		}
+		else {
+			
+			alert("수정, 삭제는 관리자 비밀번호가 반드시 필요합니다.")
+		}
+		
+		
 		
 	}
-	
 	
 
 </script>
@@ -277,7 +286,6 @@ li {
         		</select>
         		<input type="text" id="searchWord" name="searchWord" style="width: 30%; margin-left: 30px;" placeholder="검색 할 사서 정보" />
         		<button type="button" onClick="searchList()">검색</button>
-        		<a style="margin-left: 5%;" href="#">삭제 된 사서카드</a>   
   
         	<a class="btn icon-btn btn-primary pull-right" style="margin-bottom: 10px;" href="adminRegist.ana">
         		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span>새로운 사서 등록
@@ -304,7 +312,7 @@ li {
           <h2 class="modal-title">사서 상세 정보</h2>
         </div>
         	<div class="modal-body">
-        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImgInDetail" style="cursor: pointer;" alt="이미지 없음" src=""></div>
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img name="faceImgInDetail" id="faceImgInDetail" style="cursor: pointer;" width="250" height="220" alt="이미지 없음" src=""></div>
 	        	<div class="col-xs-6 col-sm-6 col-lg-4">
 	        		<ul>
 	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
@@ -320,15 +328,15 @@ li {
 	          	</div>
 	          	<div class="col-xs-6 col-sm-6 col-lg-4">
 	          		<ul>
-	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value=""/></li>
-	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value=""/></li>
-	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value=""/></li>
-	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value=""/></li>
-	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value=""/></li>
-	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value=""/></li>
-	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value=""/></li>
-	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value=""/></li>
-	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value=""/></li>
+	          			<li><input type="text" name="personalInfo0" id="personalInfo0" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo1" id="personalInfo1" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo2" id="personalInfo2" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo3" id="personalInfo3" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo4" id="personalInfo4" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo5" id="personalInfo5" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo7" id="personalInfo7" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo8" id="personalInfo8" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo9" id="personalInfo9" value="" readonly/></li>
 	          		</ul>
 	          	</div>
         	</div>
@@ -356,9 +364,10 @@ li {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h2 class="modal-title">사서 정보 수정</h2>
         </div>
-        <form name="updateInfoFrm">
-        	<div class="modal-body">
-        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img id="faceImgInUpdate" alt="이미지 없음" src=""></div>
+        <form name="updateInfoFrm" enctype="multipart/form-data">
+        	<div class="modal-body">	
+        			<div class="col-xs-6 col-sm-6 col-lg-3" style="float: left"><img name="faceImgInUpdate" id="faceImgInUpdate" width="250" height="220" alt="이미지 없음" src=""></div>
+        			
 	        	<div class="col-xs-6 col-sm-6 col-lg-4">
 	        		<ul>
 	        			<li><span style="font-size: 14pt; font-weight:bold; color: #666666;">사서 번호</span></li>
@@ -374,23 +383,27 @@ li {
 	          	</div>
 	          	<div class="col-xs-6 col-sm-6 col-lg-4">
 	          		<ul>
-	          			<li><input type="text" name="personalInfo0" class="personalInfo0" value=""/></li>
-	          			<li><input type="text" name="personalInfo1" class="personalInfo1" value=""/></li>
+	          			<li><input type="text" name="personalInfo0" class="personalInfo0" value=""  readonly/></li>
+	          			<li><input type="text" name="personalInfo1" class="personalInfo1" value="" readonly/></li>
 	          			<li><input type="text" name="personalInfo2" class="personalInfo2" value=""/></li>
 	          			<li><input type="text" name="personalInfo3" class="personalInfo3" value=""/></li>
 	          			<li><input type="text" name="personalInfo4" class="personalInfo4" value=""/></li>
 	          			<li><input type="text" name="personalInfo5" class="personalInfo5" value=""/></li>
-	          			<li><input type="text" name="personalInfo7" class="personalInfo7" value=""/></li>
-	          			<li><input type="text" name="personalInfo8" class="personalInfo8" value=""/></li>
-	          			<li><input type="text" name="personalInfo9" class="personalInfo9" value=""/></li>
+	          			<li><input type="text" name="personalInfo7" class="personalInfo7" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo8" class="personalInfo8" value="" readonly/></li>
+	          			<li><input type="text" name="personalInfo9" class="personalInfo9" value="" readonly/></li>
 	          		</ul>
 	          	</div>
         	</div>
-        </form>
         <div class="modal-footer">
 
         </div>
         
+         <div class="input-group" style="margin-left: 20%;"> <span class="input-group-addon" id="file_upload"><i class="glyphicon glyphicon-upload"></i></span>
+        	<input type="file" style="width: 70%;" name="attach" id="attach" class="form-control upload" value="" aria-describedby="file_upload">
+        </div>
+        </form>
+          
        	<div>
           <button type="button" style="align-content: center; margin-left: 40%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal" onclick="goUpdate()">수정</button>
           <button type="button" style="align-content: center; margin-left: 1%; margin-top: 2%;" class="btn btn-default" data-dismiss="modal">닫기</button>

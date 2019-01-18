@@ -70,4 +70,22 @@ public class YSWDAO implements InterYSWDAO {
 		return totalCount;
 	}
 
+
+	// 사서 정보 수정
+	@Override
+	public int updatelibrarianInfo(HashMap<String, String> paraMap) {
+
+		int result = sqlsession.update("YSW.updatelibrarianInfo", paraMap);
+		return result;
+	}
+
+
+	// 사서 정보 삭제(Real Delete)
+	@Override
+	public int deleteLibrarian(String lIBRARIANIDX) {
+
+		int result = sqlsession.delete("YSW.deleteLibrarian", lIBRARIANIDX);
+		return result;
+	}
+
 }

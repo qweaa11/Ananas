@@ -1,6 +1,7 @@
 package com.spring.bookmanage.member.YSWcontroller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -291,7 +293,6 @@ public class YSWController {
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				
 				 map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
-				 map.put("LIBRARIANIDX", ysw.getLibrarianIDX());
 				 map.put("LIBID", ysw.getLibid());
 				 map.put("LIBCODE_FK", ysw.getLibcode_fk());
 				 map.put("LIBRARIANNAME", ysw.getLibrarianName());
@@ -312,13 +313,148 @@ public class YSWController {
 	
 	
 	
+	// 사서 정보 수정
 	@RequestMapping(value="/updatelibrarianInfo.ana", method={RequestMethod.POST})
-	public int updatelibrarianInfo() {
+	public String updatelibrarianInfo(HttpServletRequest req, YjkVO yjkvo) {
 		
 		int result = 0;
 		
-		return result;
-	}
+		String LIBID = req.getParameter("personalInfo1");
+		String LIBCODE_FK = req.getParameter("personalInfo2");
+		String LIBRARIANNAME = req.getParameter("personalInfo3");
+		String LIBRARIANTEL = req.getParameter("personalInfo4");
+		String STATUS = req.getParameter("personalInfo5");
+		String IDX = req.getParameter("personalInfo0");
+
+		System.out.println("LIBID : "+ LIBID);
+		System.out.println("LIBCODE_FK : "+ LIBCODE_FK);
+		System.out.println("LIBRARIANNAME : "+ LIBRARIANNAME);
+		System.out.println("LIBRARIANTEL : "+ LIBRARIANTEL);
+		System.out.println("STATUS : "+ STATUS);
+		System.out.println("IDX : "+ IDX);
+		
+		MultipartFile attach = yjkvo.getAttach();
+		
+		String imgFileName = "";
+		if(attach.isEmpty()) {
+			yjkvo.setImgFileName("NONE");
+		}
+		else {
+			
+			long fileSize = attach.getSize();
+			
+			if(fileSize > 10485760) { //10485760 == 10mb
+				
+				String msg = "프로필 사진은 10mb 보다 작은 파일을 올려주세요";
+				String loc = "javascript:history.back()";
+				
+				req.setAttribute("msg", msg);
+				req.setAttribute("loc", loc);
+				
+				return "msg";
+				
+			}
+			else {
+				
+				byte[] bytes = null;
+				
+				HttpSession session = req.getSession();
+				String root = session.getServletContext().getRealPath("/");
+				
+				System.out.println("root : " + root);
+				
+				String path = root + "resources" + File.separator + "profilePicture";
+				System.out.println("path : "+ path);
+				
+				try {
+					bytes = attach.getBytes();
+				
+				
+				System.out.println("fileSize : " + fileSize);
+				imgFileName = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
+
+				System.out.println("recordPicName : " + imgFileName);
+				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}// End of Try ~ Catch
+			}
+			
+		}
+		
+		HashMap<String, String> paraMap = new HashMap<String, String>();
+		
+		paraMap.put("LIBID", LIBID);
+		paraMap.put("LIBCODE_FK", LIBCODE_FK);
+		paraMap.put("LIBRARIANNAME", LIBRARIANNAME);
+		paraMap.put("LIBRARIANTEL", LIBRARIANTEL);
+		paraMap.put("STATUS", STATUS);
+		paraMap.put("IMGFILENAME", imgFileName);
+		paraMap.put("IDX", IDX);
+		
+		result = service.updatelibrarianInfo(paraMap);
+		
+		if(result == 0) {
+			
+			String msg = "사서 정보 수정에 실패했습니다. 다시 시도해 주세요.";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg";
+			
+		}
+		else {
+			
+			String msg = "사서정보가 수정 되었습니다.";
+			String loc = "librarianList.ana";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg";
+
+		}
+	}// End of public String updatelibrarianInfo(HttpServletRequest req)
+
+	
+	
+	// 사서 정보 삭제(Real Delete)
+	@RequestMapping(value="/deleteLibrarian.ana", method={RequestMethod.GET})
+	public String deleteLibrarian(HttpServletRequest req, YjkVO yjkvo) {
+		
+		int result = 0;
+		
+		String LIBRARIANIDX = req.getParameter("LIBRARIANIDX");
+
+		System.out.println("LIBRARIANIDX : "+ LIBRARIANIDX);
+		
+		result = service.deleteLibrarian(LIBRARIANIDX);
+		
+		if(result == 0) {
+			
+			String msg = "사서 정보 삭제에 실패했습니다. 다시 시도해 주세요.";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg";
+			
+		}
+		else {
+			
+			String msg = "사서정보가 삭제 되었습니다.";
+			String loc = "librarianList.ana";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg";
+
+		}
+	}// public String deleteLibrarian(HttpServletRequest req, YjkVO yjkvo)
 
 
 }

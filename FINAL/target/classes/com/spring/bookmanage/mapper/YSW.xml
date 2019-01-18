@@ -96,4 +96,23 @@
 	</select>
 
 
+	<update id="updatelibrarianInfo" parameterType="HashMap">
+		
+		update librarian set LIBCODE_FK = #{LIBCODE_FK},
+		                     NAME = #{LIBRARIANNAME},
+		                     TEL = #{LIBRARIANTEL},
+		                     STATUS = #{STATUS},
+		                     IMGFILENAME = #{IMGFILENAME}
+		where idx = #{IDX}
+	
+	</update>
+	
+	
+	<delete id="deleteLibrarian" parameterType="String">
+	
+		delete from librarian
+		where idx = #{lIBRARIANIDX}
+	
+	</delete>
+
 </mapper>
