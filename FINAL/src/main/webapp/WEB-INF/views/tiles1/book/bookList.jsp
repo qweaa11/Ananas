@@ -95,8 +95,8 @@ div.search button:hover {
 		if(${sort != null && sort !=""}){
 			$(".sort").val("${sort}");
 		}
-			
-		
+		$("#sort").val($(".sort").val());	
+		goBook();
 	});
 	
 	function findBookbyLibrary(libcode){
@@ -215,14 +215,13 @@ div.search button:hover {
 				}else{
 					$.each(json,function(bookIndex,book){
 						
-						resultHTML = "<tr class='BookInfo' onClick='goBookDetail(\""+book.bookid+"\")'>"+
-						"<td>"+book.bookid+"</td>"+
-							"<td>"+book.title+"</td>"+
-							"<td>"+book.fname+"-"+book.gname+"</td>"+
-							"<td>"+book.ISBN+"</td>"+
-							"<td>"+book.author+"</td>"+       
-							"<td>"+book.pubname+"</td>"+
-							"<td>"+book.regDate+"</td>"+
+						resultHTML += "<tr class='BookInfo' onClick='goBookDetail(\""+book.BOOKID+"\")'>"+
+						"<td>"+book.BOOKID+"</td>"+
+							"<td>"+book.TITLE+"</td>"+
+							"<td>"+book.FNAME+"-"+book.GNAME+"</td>"+
+							"<td>"+book.AUTHOR+"</td>"+       
+							"<td>"+book.PUBNAME+"</td>"+
+							"<td>"+book.REGDATE+"</td>"+
 						"</tr>";
 							
 						});
@@ -260,7 +259,7 @@ div.search button:hover {
 			</div>
 			<select style="float: right; height: 15pt;" class="sort">
 				<option value="title">등록날짜</option>
-				<option value="count">권수</option>
+				<option value=""></option>
 				<option value="bookid">도서명</option>
 			</select>
 
@@ -272,87 +271,13 @@ div.search button:hover {
 				<th>도서번호</th>
 				<th>분류</th>
 				<th>도서명</th>      
-				<th>ISBN</th>
 				<th>저자/역자</th>
 				<th>출판사</th>
-				<th>최초 등록날짜</th>
+				<th>도서 연령</th>
+				<th>최초 등록일</th>
 			</tr>
 		</thead>
 		<tbody id="displayBookList">
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>제목1</td>
-				
-				<td>ISBN1</td>
-				<td>저자1</td>       
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>제목1</td>
-			
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>도서번호1</td>
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>도서번호1</td>
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>도서번호1</td>
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>도서번호1</td>
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-				<tr class="BookInfo">
-				<td>도서번호1</td>
-				<td>제목1</td>
-				<td>도서번호1</td>
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
-			<tr class="BookInfo">
-			<td>도서번호1</td>
-				<td>제목1</td>
-				<td>도서번호1</td>
-				<td>ISBN1</td>
-				<td>저자1</td>
-				<td>출판사1</td>
-				<td>등록날짜1</td>
-			</tr>
 			
 		</tbody>
 	</table>

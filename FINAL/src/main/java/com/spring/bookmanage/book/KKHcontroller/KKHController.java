@@ -98,12 +98,33 @@ public class KKHController {
 		List<KKHBookVO> bookList = null;
 		bookList = service.findBookBysidebar(parameterMap);
 		
+		
 		for(KKHBookVO bookvo : bookList) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
-			map.put("BOOKVO", bookvo);
+			map.put("BOOKID", bookvo.getBookid());
+			map.put("IDX", bookvo.getIdx());
+			map.put("TITLE", bookvo.getTitle());
+			map.put("AUTHOR", bookvo.getAuthor());
+			map.put("STATUS", bookvo.getStatus());
+			map.put("AGECODE", bookvo.getAgecode());
+			map.put("GCODE", bookvo.getGcode_fk());
+			map.put("GNAME", bookvo.getGname());
+			map.put("NCODE", bookvo.getNcode_fk());
+			map.put("NNAME", bookvo.getNname());
+			map.put("LCODE", bookvo.getLcode_fk());
+			map.put("LNAME", bookvo.getLname());
+			map.put("FCODE", bookvo.getFcode_fk());
+			map.put("FNAME", bookvo.getFname());
+			map.put("CCODE", bookvo.getCcode_fk());
+			map.put("CNAME", bookvo.getCname());
+			map.put("LIBCODE", bookvo.getLibcode_fk());
+			map.put("LIBNAME", bookvo.getLibname());
+			map.put("PUBCODE", bookvo.getPubcode_fk());
+			map.put("PUBNAME", bookvo.getPubname());
+			
 			resultList.add(map);
 		}
-		
+		System.out.println();
 		return resultList;
 	}
 	
