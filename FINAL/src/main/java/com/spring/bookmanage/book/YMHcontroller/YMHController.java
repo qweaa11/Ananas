@@ -174,7 +174,7 @@ public class YMHController
 		
 		
 		String loc = "";
-		if(p*q == 1) 
+		if(p*q > 1) 
 		{	// 등록에 성공하면
 			loc = request.getContextPath()+"/bookList.ana";
 		}
