@@ -44,4 +44,37 @@ public class JGHService {
 
 		return memberListByNoSearchWord;
 	}// end of noSearchList
+
+	/**
+	 * 회원 휴면상태 해제
+	 * @param idxArray
+	 * @return
+	 */
+	public int unlockMember(String[] idxArray) {
+		int row = mapper.unlockAllByStatus(idxArray);
+
+		return row;
+	}// end of unlockMember
+
+	/**
+	 * 회원 영구정지
+	 * @param idxArray
+	 * @return
+	 */
+	public int banMember(String[] idxArray) {
+		int row = mapper.banAllByStatus(idxArray);
+
+		return row;
+	}// end of banMember
+
+	/**
+	 * 회원 탈퇴처리
+	 * @param idxArray
+	 * @return
+	 */
+	public int removeMember(String[] idxArray) {
+		int row = mapper.removeAllByStatus(idxArray);
+
+		return row;
+	}// end of removeMember
 }
