@@ -3,6 +3,11 @@ package com.spring.bookmanage.member.PMGmodel;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * <b>회원상세 인터페이스 DAO</b>
+ * <pre>회원기본정보(활동,휴면해제,정지), 회원도서정보(대여,예약)</pre>
+ * @author 박민규
+ */
 public interface InterPMGMemberDAO {
 
 	PMGMemberVO findOneMemberByIdx(String idx);
@@ -17,5 +22,9 @@ public interface InterPMGMemberDAO {
 	
 	
 	List<HashMap<String, String>> memberBookRentalList(String memberid);
+	// memberid로 회원 대여 리스트를 가져옴.
+	
+	List<HashMap<String, String>> memberBookReservationList(String memberid);
+	// memberid로 회원 예약 리스트를 가져옴.
 	
 }

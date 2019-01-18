@@ -7,6 +7,6 @@ import com.spring.bookmanage.book.KKHmodel.KKHBookVO;
 
 public interface InterKKHBookService {
 
-	List<KKHBookVO> findBookBysidebar(HashMap<String, String> parameterMap);
+	List<KKHBookVO> findBookBysidebar(HashMap<String, Object> parameterMap);
 
 }

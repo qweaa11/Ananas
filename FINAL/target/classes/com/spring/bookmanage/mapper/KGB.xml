@@ -35,5 +35,13 @@
 		and status = 0
 	
 	</select>
+	
+	
+	<insert id="addAllRentalById" parameterType="HashMap">
+	
+		insert into rental(idx, bookid_fk, memberid_fk, rentaldate, deadline, renew)
+		values(rent_seq.nextval, #{BOOKID}, #{MEMBERID}, sysdate, #{DEADLINE}, default)
+	
+	</insert>
 
 </mapper>

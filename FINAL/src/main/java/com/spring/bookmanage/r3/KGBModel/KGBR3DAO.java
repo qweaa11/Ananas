@@ -40,5 +40,40 @@ public class KGBR3DAO implements InterKGBR3DAO {
 		return bookList;
 	}// end of findAllBookBySearchWord()-------------------
 
+	
+	@Override
+	public int addAllRentalById(HashMap<String, String> paraMap) throws Throwable{
+		
+		String[] memberidArr = paraMap.get("MEMBERIDS").split(",");
+		String[] bookidArr = paraMap.get("BOOKIDS").split(",");
+		String[] nameArr = paraMap.get("NAMES").split(",");
+		String[] deadlineArr = paraMap.get("DEADLINES").split(",");
+		
+		int result = 0;
+		
+		for(int i=0; i < memberidArr.length; i++) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("MEMBERID", memberidArr[i]);
+			map.put("BOOKID", bookidArr[i]);
+			map.put("NAME", nameArr[i]);
+			map.put("DEADLINE", deadlineArr[i]);
+			
+			int n = sqlsession.insert("kgb.addAllRentalById", map);
+			
+			result += n;
+			
+			
+			
+		}// end of for()------------------
+		
+		if(result != memberidArr.length) {
+			Throwable ex = new Throwable(); 
+			
+			throw ex;
+		}
+		
+		return 1;
+	}// end of addAllRentalById()--------------------
+
 
 }

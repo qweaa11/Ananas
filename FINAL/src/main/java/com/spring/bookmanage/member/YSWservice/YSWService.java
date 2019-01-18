@@ -54,7 +54,7 @@ public class YSWService implements InterYSWService {
 	}
 
 
-	// ===== 더보기를 위한 totalCount =====
+	// ===== 조건이 있을때 페이징 처리(더보기)를 위한 totalCount =====
 	@Override
 	public int totalCounttWithOption(HashMap<String, String> paraMap) {
 		
@@ -63,11 +63,30 @@ public class YSWService implements InterYSWService {
 	}
 
 
+	// ===== 조건이 없을때 페이징 처리(더보기)를 위한 totalCount =====
 	@Override
 	public int totalNoneOption() {
 
 		int totalCount = dao.totalNoneOption();
 		return totalCount;
+	}
+
+
+	// 사서 정보 수정
+	@Override
+	public int updatelibrarianInfo(HashMap<String, String> paraMap) {
+
+		int result = dao.updatelibrarianInfo(paraMap);
+		return result;
+	}
+
+
+	// 사서 정보 삭제(Real Delete)
+	@Override
+	public int deleteLibrarian(String lIBRARIANIDX) {
+		
+		int result = dao.deleteLibrarian(lIBRARIANIDX);
+		return result;
 	}
 
 }
