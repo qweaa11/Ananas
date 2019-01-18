@@ -38,19 +38,54 @@ public class YSWDAO implements InterYSWDAO {
 	
 	//===== 조건을 이용해서 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findListWithOption(HashMap<String, String> paraMap) {
+	public List<YSWLibrarianVO> findListWithOption(HashMap<String, String> paraMap) {
 		
-		List<YjkVO> librarianList = sqlsession.selectList("YSW.findListWithOption", paraMap);
-		return librarianList;
+		List<YSWLibrarianVO> yswlibvoList = sqlsession.selectList("YSW.findListWithOption", paraMap);
+		return yswlibvoList;
 	}
 
 	
 	//===== 조건이 없을 때 사서 목록 가져오기. =====
 	@Override
-	public List<YjkVO> findListNoneOption() {
+	public List<YSWLibrarianVO> findListNoneOption(HashMap<String, String> paraMap) {
 
-		List<YjkVO> librarianList = sqlsession.selectList("YSW.findListNoneOption");
-		return librarianList;
+		List<YSWLibrarianVO> yswlibvoList = sqlsession.selectList("YSW.findListNoneOption", paraMap);
+		return yswlibvoList;
+	}
+
+
+	// ===== 더보기를 위한 totalCount =====
+	@Override
+	public int totalCounttWithOption(HashMap<String, String> paraMap) {
+
+		int totalCount = sqlsession.selectOne("YSW.totalCounttWithOption", paraMap);
+		return totalCount;
+	}
+
+
+	@Override
+	public int totalNoneOption() {
+
+		int totalCount = sqlsession.selectOne("YSW.totalNoneOption");
+		return totalCount;
+	}
+
+
+	// 사서 정보 수정
+	@Override
+	public int updatelibrarianInfo(HashMap<String, String> paraMap) {
+
+		int result = sqlsession.update("YSW.updatelibrarianInfo", paraMap);
+		return result;
+	}
+
+
+	// 사서 정보 삭제(Real Delete)
+	@Override
+	public int deleteLibrarian(String lIBRARIANIDX) {
+
+		int result = sqlsession.delete("YSW.deleteLibrarian", lIBRARIANIDX);
+		return result;
 	}
 
 }

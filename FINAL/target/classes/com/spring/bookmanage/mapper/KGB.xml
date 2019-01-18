@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ===== #28. mapper 기본 설정 ===== -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ===== #29. 루트 엘리먼트 및 네임스페이스 설정하기(이 네임스페이스의 이름은 프로젝트 전체 내에서 반드시 고유해야만 한다.) ===== --> 
+<mapper namespace="kgb">
+
+	<!-- 컬럼명과 검색어를 받아 회원을 조회 -->
+	<select id="findAllMemberBySearchWord" parameterType="HashMap" resultType="com.spring.bookmanage.member.JGHmodel.MemberVO">
+	
+		select *
+		from member
+		where ${CATEGORY} like '%' || #{SEARCHWORD} || '%'
+	
+	</select>
+	
+	<!-- 아이디를 받아 한명의 회원을 조회해오는 메소드 -->
+	<select id="findOneMemberBymemberid" parameterType="String" resultType="com.spring.bookmanage.member.JGHmodel.MemberVO">
+	
+		select memberid, idx, pwd, name, email, phone, addr1, 
+		       addr2, post, birth, gender, regdate, lastdate, pwdate, status, imgfilename, filesize,
+		       func_age(birth) as ages
+		from member
+		where memberid = #{memberid}
+	
+	</select>
+	
+	
+	<!-- 컬럼명과 검색어를 받아 도서를 조회해오는 메소드  -->
+	<select id="findAllBookBySearchWord" parameterType="HashMap" resultType="com.spring.bookmanage.r3.KGBModel.KGBBookVO">
+	
+		select *
+		from book
+		where ${CATEGORY} like '%' || #{SEARCHWORD} || '%'
+		and status = 0
+	
+	</select>
+	
+	
+	<insert id="addAllRentalById" parameterType="HashMap">
+	
+		insert into rental(idx, bookid_fk, memberid_fk, rentaldate, deadline, renew)
+		values(rent_seq.nextval, #{BOOKID}, #{MEMBERID}, sysdate, #{DEADLINE}, default)
+	
+	</insert>
+
+</mapper>

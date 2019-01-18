@@ -165,6 +165,27 @@
 					$("#emailGuidLine").hide();
 				}
 				
+				// 휴대폰 번호 유효성 검사
+				var phone = $("#phone").val().trim();
+				
+				if(phone != null && phone != "") {
+					
+					var checkNumber = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/; 
+					var bool = checkNumber.test(phone);
+					
+					if(!bool){
+						
+						$("#phoneGuidLine").show();
+						$("#phone").val("");
+						$(":input").attr("disable", true).addClass("hold");
+						$(this).attr("disable", false).removeClass("hold");
+						$(this).focus();
+						return;
+					}
+					
+					$("#phoneGuidLine").hide();
+				}
+				
 			});//$(this).blur(function()---------
 		});// end of $(".form-control").each(function()-----------
 				
@@ -363,6 +384,7 @@
          	<div class="input-group">
              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
            <input type="text" class="form-control" name="phone" id="phone" placeholder="핸드폰 번호를 - 없이 입력해 주세요." value="">
+           <small class="showResult" id="phoneGuidLine" style="color: red; font-weight: bold;"> 올바른 핸드폰 번호를 입력해주세요.</small>
            </div>
          </div>
        </div>

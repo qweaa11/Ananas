@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <style type="text/css">
 	table, th, td {border: 1px solid lightgrey;}
@@ -64,11 +67,72 @@
 	}
 	
 	
+	
 </style>
 
 
 <script type="text/javascript">
 
+	$(document).ready(function(){
+		
+		
+		
+	});// end of $(document).ready()---------------
+	
+	
+	function goStatusEdit0(idx) { // 활동
+		var bool = confirm(idx+" 번 회원을 회원상태 활동으로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;		
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit0.ana";
+			frm.submit();
+		}
+	}
+	function goStatusEdit1(idx) { // 휴면해제
+		var bool = confirm(idx+" 번 회원을 회원상태 휴면해제(활동)으로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;		
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit1.ana";
+			frm.submit();
+		}
+	}
+	function goStatusEdit2(idx) { // 정지
+		var bool = confirm(idx+" 번 회원을 회원상태 정지로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;		
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit2.ana";
+			frm.submit();
+		}
+	}
+	function goStatusEdit3(idx) { // 탈퇴
+		var bool = confirm(idx+" 번 회원을 회원상태 탈퇴로 변경 하시겠습니까?");
+		
+		if(bool) {
+			var frm = document.idxFrm;
+			frm.idx.value = idx;
+			
+			frm.method = "POST";
+			frm.action = "goStatusEdit3.ana";
+		//	frm.submit();
+		}
+	}
+	
+	
+	
+	
+	
 </script>
 
 
@@ -78,80 +142,93 @@
 	    <tbody>
 	        <tr>
 	          <th>회원번호</th>
-	            <td>12345</td>
+	            <td>${pmgMemberVO.idx }</td>
 	          <th>회원명</th>
-	          	<td>박민규</td>
+	          	<td>${pmgMemberVO.name }</td>
 	        </tr>
 	        <tr>
 	          <th>ID</th>
-	            <td>pmk7257</td>
+	            <td>${pmgMemberVO.memberid }</td>
 	          <th>E-mail</th>
-	          	<td>pmk7257@naver.com</td>
+	          	<td>${pmgMemberVO.email }</td>
 	        </tr>
 	        <tr>
-	          <th>주민번호</th>
-	            <td>19910704</td>
+	          <th>생년월일</th>
+	            <td>${pmgMemberVO.birth }</td>
+	            
 	          <th>나이</th>
-	            <td>18살(전체,아동,청소년,성인)</td>
+	           <c:if test="${pmgMemberVO.age <= 13}">
+	            <td>${pmgMemberVO.age }세 전체(<span style="color: #ffffcc">아동</span>)</td>
+			   </c:if>
+			   <c:if test="${pmgMemberVO.age > 13 && pmgMemberVO.age <= 19}">
+	            <td>${pmgMemberVO.age }세 전체(<span style="color: #80dfff">청소년</span>)</td>
+			   </c:if>
+			   <c:if test="${pmgMemberVO.age > 19}">
+	            <td>${pmgMemberVO.age }세 전체(<span style="color: #ff9999">성인</span>)</td>
+			   </c:if>
+			  
 	        </tr>
 	      	<tr>
 	          <th>연락처</th>
-	          	<td>010-3432-2323</td>
+	          	<td>${pmgMemberVO.phone }</td>
 	          <th>주소</th>
-	            <td>서울시 광진구 중곡동 30-14 1층</td>
+	            <td>${pmgMemberVO.address }</td>
 	        </tr>
 	        <tr>
 	          <th>성별</th>
-	          	<td>남자</td>	          
+	          	<td>${pmgMemberVO.gender }</td>	          
 	          <th>회원상태</th>
-	            <td>활동, 휴면, 정지, 탈퇴</td>
+	            <td>${pmgMemberVO.status }</td>
 	        </tr>
 	        <tr>
 	          <th>가입일자</th>
-	          	<td>2018-01-01</td>
+	          	<td>${pmgMemberVO.regDate }</td>
 	          <th>로그인 기록</th>
-	          	<td>마지막 로그인(2018-10-10 23:00:00) 로그아웃(2018-10-10 23:10:50)</td>	          
+	          	<td>마지막 로그인(${pmgMemberVO.lastDate }), 마지막 암호 변경일(${pmgMemberVO.pwDate })</td>	          
 	        </tr>
 	    </tbody>
 	</table>
 </div>
 
-<div class="container">	        
-	<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 활동</button>
-	<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>
-	<button type="button" class="btn btn-success btn-lg btn3d"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
-	<button type="button" class="btn btn-danger btn-lg btn3d"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>       	
-</div>
-
-
-
-<br/>
-<br/>
-<br/>
-<div class="container">
-	<h1>도서 대여정보</h1>
-	<div class="col-sm-12 pull-center well">
-		<form class="form-inline" action="#" method="POST">				
-			<select class="form-control">
-				<option>도서명</option>
-				<option>저자</option>
-				<option>출판사</option>
-				<option>도서번호</option>
-			</select>
-	                  
-			<div class="input-group custom-search-form">
-				<input type="text" class="form-control" placeholder="Search..." />
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<i>search</i>
-						</button>
-					</span>
-			</div>				
-		</form>
+<c:if test="${\"활동\".equals(pmgMemberVO.status)}">
+	<div class="container">	        
+		<button type="button" class="btn btn-success btn-lg btn3d" onClick="goStatusEdit2('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
+		<%-- <button type="button" class="btn btn-danger btn-lg btn3d" onClick="goStatusEdit3('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button> --%>       	
 	</div>
-</div>
+</c:if>
+<c:if test="${\"휴면\".equals(pmgMemberVO.status)}">
+	<div class="container">
+		<button type="button" class="btn btn-primary btn-lg btn3d" onClick="goStatusEdit1('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>	               	
+	</div>
+</c:if>
+<c:if test="${\"정지\".equals(pmgMemberVO.status)}">
+	<div class="container">
+		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
+	</div>
+</c:if>
+<%-- <c:if test="${\"탈퇴\".equals(pmgMemberVO.status)}">
+	<div class="container">
+		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
+	</div>
+</c:if> --%>
+<!-- 
+<button type="button" class="btn3d btn btn-white btn-lg"><span class="glyphicon glyphicon-tag"></span> 활동</button>
+<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>
+<button type="button" class="btn btn-success btn-lg btn3d"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
+<button type="button" class="btn btn-danger btn-lg btn3d"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>
+ -->
+<form name="idxFrm">
+	<input type="hidden" name="idx" />
+</form>
 
+
+ 
+<br/>
+<br/>
+<br/>
+<%-- 
 <div class="container">
+ <h1>회원 도서정보</h1>
   <div class="row">
    <div class="col-md-4">
 	<table class="table">
@@ -175,7 +252,7 @@
 	    </tbody>
 	</table>
    </div>
-   <div class="col-md-4 col-md-offset-4">
+   <div class="col-md-4">
 	<table class="table">
 	    <tbody>
 	        <tr>
@@ -199,72 +276,156 @@
    </div>
   </div>	
 </div>
+--%>
+
+
 
 <div class="container">
-	<table class="table">
-		<thead>	    
-		<tr>
-			<th>번호</th>
-			<th>대여일</th>
-			<th>반납일</th>
-			<th>반납연장일</th>
-			<th>연체일</th>
-			<th>도서번호</th>
-			<th>도서명</th>
-			<th>저자</th>
-			<th>출판사</th>
-			<th>구분</th>
-			<th>상태</th>
-			<th>연체료</th>
-		</tr>
-		</thead>		
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>2018-12-24</td>
-				<td>2018-12-31</td>
-				<td>0</td>
-				<td>0</td>
-				<td>12345</td>
-				<td>자바의 정석</td>
-				<td>박민규</td>
-				<td>민후당</td>
-				<td>자기개발</td>
-				<td>대출</td>
-				<td>0원</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>2018-12-24</td>
-				<td>2018-12-31</td>
-				<td>0</td>
-				<td>0</td>
-				<td>23125</td>
-				<td>해리포터와 마법사의 돌</td>
-				<td>민후</td>
-				<td>서림</td>
-				<td>소설</td>
-				<td>대출</td>
-				<td>0원</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-				<td>1</td>
-				<td>a</td>
-				<td>A</td>
-				<td>1</td>
-			</tr>
-		</tbody>
-	</table>
+	<h1>회원 도서정보</h1>
+	<div>
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active">
+	    	<a href="#rental" aria-controls="rental" role="tab" data-toggle="tab">대여</a>
+	    </li>
+	    <li role="presentation">
+	    	<a href="#reservation" aria-controls="reservation" role="tab" data-toggle="tab">예약</a>
+	    </li>
+	    <!-- <li role="presentation">
+	    	<a href="#return" aria-controls="return" role="tab" data-toggle="tab">반납</a>
+	    </li> -->		    
+	  </ul>
+
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="rental">	    			    	
+	    	<div style="overflow: auto;">
+				<table class="table" style="width: 1500px;">
+					<thead>	    
+					<tr>
+						<th>번호</th>
+						<th>도서일련번호</th>
+						<th>도서명</th>
+						<th>저자명</th>
+						<th>종류</th>
+						<th>출판사</th>
+						<th>도서관명</th>
+						<!-- <th>상태</th> -->
+						<th>대여일</th>
+						<th>반납일</th>
+						<th>연장신청</th>
+						<th>연체일</th>
+						<th>연체료</th>
+					</tr>
+					</thead>		
+					<tbody style="text-align: center;">					
+						<c:if test="${not empty rentallist}">
+							<c:forEach var="map" items="${rentallist}">
+								<tr>													
+									<td>${map.ROWNUM}</td>							
+									<td>${map.BOOKID}</td>
+									<td>${map.TITLE}</td>
+									<td>${map.AUTHOR}</td>
+									<td>${map.CATEGORYNAME}</td>
+									<td>${map.PUBLISHERNAME}</td>
+									<td>${map.LIBRARYNAME}</td>
+									<%-- <td>
+								<c:if test="${map.STATUS == 1}">
+									대여중
+								</c:if>
+									</td> --%>
+									<td>${map.RENTALDATE}</td>
+									<td>${map.DEADLINE}</td>
+									<td>${map.RENEW}</td>
+								<c:if test="${map.OVERDUE <= 0}">
+									<td>0일</td>
+									<td>없음</td>
+								</c:if>
+								<c:if test="${map.OVERDUE > 0}">	
+									<td>${map.OVERDUE}일</td>
+									<td><fmt:formatNumber value="${map.LATEFEE}" pattern="###,###" />원</td>	
+								</c:if>					
+								</tr>
+							</c:forEach>
+						</c:if>
+						
+						<c:if test="${empty rentallist}">
+							<tr>
+								<td colspan="12" style="text-align: center;">현재 대여중인 도서가 없습니다.</td>
+							</tr>
+						</c:if>					
+					</tbody>
+				</table>
+			</div>						    
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="reservation">
+	    	<table class="table">
+				<thead>	    
+				<tr>
+					<th>번호</th>
+					<th>도서일련번호</th>
+					<th>도서명</th>
+					<th>저자명</th>
+					<th>종류</th>
+					<th>출판사</th>
+					<th>도서관명</th>
+					<!-- <th>상태</th> -->
+					<th>예약일</th>					
+				</tr>
+				</thead>		
+				<tbody>
+					<c:if test="${not empty reservationList}">
+						<c:forEach var="map" items="${reservationList}">
+							<tr>
+								<td>${map.ROWNUM}</td>
+								<td>${map.BOOKID}</td>
+								<td>${map.TITLE}</td>
+								<td>${map.AUTHOR}</td>
+								<td>${map.CATEGORYNAME}</td>
+								<td>${map.PUBLISHERNAME}</td>
+								<td>${map.LIBRARYNAME}</td>
+								<%-- <td>${map.STATUS}</td> --%>
+								<td>${map.RESERVEDATE}</td>						
+							</tr>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty reservationList}">
+						<tr>
+							<td colspan="8" style="text-align: center;">현재 예약중이 도서가 없습니다.</td>
+						</tr>
+					</c:if>					
+				</tbody>
+			</table>	    
+	    </div>
+	    	    		    
+	  </div>
+	</div>
 </div>
 
+
+
+<!-- <div role="tabpanel" class="tab-pane" id="return">	    
+	    	<div class="col-sm-12 pull-center well">
+				<form class="form-inline" action="#" method="POST">				
+					<select class="form-control">
+						<option>도서명</option>
+						<option>저자</option>
+						<option>출판사</option>
+						<option>도서번호</option>
+					</select>
+			                  
+					<div class="input-group custom-search-form">
+						<input type="text" class="form-control" placeholder="Search..." />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i>search</i>
+								</button>
+							</span>
+					</div>				
+				</form>
+			</div>
+	    
+	    </div> -->
+<!--  
 <div class="container" style="text-align: center;">
 	<ul class="pagination">
               <li class="disabled"><a href="#">«</a></li>
@@ -276,9 +437,32 @@
               <li><a href="#">»</a></li>
 	</ul>
 </div>
+-->
+<br/>
+<br/>
 
-<br/>
-<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

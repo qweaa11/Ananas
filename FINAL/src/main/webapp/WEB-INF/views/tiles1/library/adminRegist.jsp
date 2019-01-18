@@ -15,7 +15,7 @@
 		
 		$("#error_passwd").hide();
 		$(".error").hide();
-		$("#name").focus();
+		$("#libid").focus();
 		
 		$("#error_id").empty();
 	    $("#good_id").empty();
@@ -98,7 +98,7 @@
 		<div class="col-md-8"> 
 <h1 class="entry-title"><span>관리자 등록</span> </h1>
 <hr>
-<form class="form-horizontal" method="post" name="adimFrm">                
+<form class="form-horizontal" method="post" name="adimFrm" enctype="multipart/form-data">                
 
 <!-- 아이디 입력 -->
 <div class="form-group">
@@ -154,7 +154,7 @@
 			<select class="form-control requiredInfo"  name="libcode" style="width: 130px" >
 					<option value="">도서관 이름</option>
 				<c:forEach var="lib" items="${libInfo}">
-					<option value="${lib.libcode}">${lib.name}</option>
+					<option value="${lib.libcode}">${lib.libname}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -183,6 +183,17 @@
 				</select>
 			</div>
 		</div>
+</div>
+
+<!-- 사서 사진 등록하기 -->
+<div class="form-group">
+	<label class="control-label col-sm-3">사서 사진<br>
+	</label>
+	<div class="col-md-5 col-sm-8">  
+	  <div class="input-group"> <span class="input-group-addon" id="file_upload"><i class="glyphicon glyphicon-upload"></i></span>
+	    <input type="file" name="attach" id="attachs" class="form-control upload" value="" aria-describedby="file_upload">
+	  </div>
+	</div>
 </div>
 
 <!-- 등록하기 버튼 -->

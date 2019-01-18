@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.bookmanage.common.AES256;
 import com.spring.bookmanage.common.FileManager;
+import com.spring.bookmanage.common.SHA256;
 import com.spring.bookmanage.library.Yjkmodel.LibraryVO;
 import com.spring.bookmanage.library.Yjkmodel.YjkVO;
 import com.spring.bookmanage.library.Yjkservice.InterYjkService;
@@ -34,7 +36,7 @@ public class YjkController {
 	
 	// ==== 파일업로드 및 파일 다운로드를 해주는 FileManager 클래스 의존객체 주입하기 ====
 	@Autowired
-	private FileManager fileManger;
+	private FileManager fileManager;
 	
 	// ==== 관리자 등록 페이지 보여주기 ==== //
 	@RequestMapping(value="/adminRegist.ana",method= {RequestMethod.GET})
@@ -49,9 +51,11 @@ public class YjkController {
 	
 	// ==== 관리자 등록하기 ==== //
 	@RequestMapping(value="/adminRegistEnd.ana",method= {RequestMethod.POST})
-	public String adminRegistEnd(HttpServletRequest req) {
+	public String adminRegistEnd(YjkVO adminvo, MultipartHttpServletRequest req) {
 		
-		YjkVO adminvo = new YjkVO();
+		int n = 0;
+		
+		try {
 		
 		String libid = req.getParameter("libid");
 		String pwd = req.getParameter("pwd");
@@ -60,21 +64,55 @@ public class YjkController {
 		String libcode = req.getParameter("libcode");
 		String status = req.getParameter("status");
 
-		System.out.println(libid);
+		/*System.out.println(libid);
 		System.out.println(pwd);
 		System.out.println(name);
 		System.out.println(tel);
 		System.out.println(libcode);
-		System.out.println(status);
+		System.out.println(status);*/
+		
+		MultipartFile attach = adminvo.getAttach();
+		
+		if(attach.isEmpty()) {
+			adminvo.setImgFileName("NONE");
+		}
+		else {
+			
+			byte[] bytes = null;
+			String imgFileName = "";
+			
+			HttpSession session = req.getSession();
+			String root = session.getServletContext().getRealPath("/");
+			
+			System.out.println("root : " + root);
+			
+			String path = root + "resources" + File.separator + "profilePicture";
+			System.out.println("path : "+ path);
+			
+			bytes = attach.getBytes();
+			
+			imgFileName = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
+			
+			
+			
+			System.out.println("recordPicName : " + imgFileName);
+			
+			adminvo.setImgFileName(imgFileName);
+			
+		}
 		
 		adminvo.setLibid(libid);
-		adminvo.setPwd(pwd);
+		adminvo.setPwd(SHA256.encrypt(pwd));
 		adminvo.setName(name);
 		adminvo.setTel(tel);
 		adminvo.setLibcode_fk(libcode);
 		adminvo.setStatus(status);
 		
-		int n = service.adminRegistEnd(adminvo);
+		n = service.adminRegistEnd(adminvo);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		if(n == 1) {
 			
@@ -115,5 +153,5 @@ public class YjkController {
 		
 		return returnMap;
 	}
-
+	
 }
