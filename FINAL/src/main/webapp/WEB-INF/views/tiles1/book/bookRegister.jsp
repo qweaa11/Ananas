@@ -1,19 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String ctxPath = request.getContextPath();
+%>
+ 
+    
     
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<%
-	String ctxPath = request.getContextPath();
-%>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="<%= ctxPath %>/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script> 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 
 <style>
 
-	.border { border: solid 1px red; }
+	.border { border: solid 0px red; }
 
 </style>
 
@@ -25,33 +32,57 @@
 	$(document).ready(function(){
 		
 		
+		showLibrary();
+		
 		// field select 이후에 세부 필드 나타내주는 AJAX 만들기
 		$("#field").change(function(){
 			var fieldCode = $("#field").val();
 			$("#fieldDisplay").empty();
-			console.log(fieldCode);
+			
 			resultHTML = "";
 			showFieldDetail(fieldCode);
 			
 		});	// $("#field").change(function(){});	
 	
-		// 출판사 조회 버튼을 누룰때 새창으로 출판사 조회하기
+		// 출판사 조회등록 버튼을 누룰때 
 		$("#Submit").click(function(){
 			
-			var signup = document.signup;
-			signup.action = "<%= ctxPath%>/bookRegisterEnd.ana";
-			signup.method="POST";
-			signup.submit();
+			var signupFrm = document.signup;
+			signupFrm.action = "<%= ctxPath%>/bookRegisterEnd.ana";
+			signupFrm.method="POST";
 			
-		});
 		
-		// 출판사 등록 버튼을 누룰때 
+			 
+			signupFrm.submit();
+			
+		});// end of $("#Submit").click(function()---------------------------------------------------------
+		
+		
+		// 출판사 조회 버튼을 누룰때 새창으로 출판사 조회하기
 		$("#searchPublisher").click(function(){
 			
 			var url="findPublisher.ana";
 			window.open(url, "publisher", "left=500px, top=100px, width=1100px, height=600px");
 			
-		});
+		});// end of $("#searchPublisher").click(function()---------------------------------------------------------
+		
+		
+		$("#spinnerCount").spinner({
+			spin: function(event, ui){
+				if(ui.value > 100)
+				{
+					$(this).spinner("value", 100);
+					return false;
+				}
+				else if(ui.value<1)
+				{
+					$(this).spinner("value", 1);
+					return false;
+				}
+			}
+		});// end of spinner------------------------------------------------------------------------------------------------------------------
+		
+		
 		
 		
 	});  // end of $(document).ready(function(){});-------------------------------------------------------------------
@@ -66,10 +97,8 @@
 			type:"GET",
 			dataType:"JSON",
 			success:function(json){
-				resultHTML = "<select id='field_d' name='field_d' class='custom-select' style='width: 200px;'>"+
+				resultHTML = "<select id='fcode_fk' name='fcode_fk' class='custom-select' style='width: 200px;'>"+
 							 "<option selected> 세부 주제 </option>";
-				
-				console.log("AJAX 진입");
 				
 				$.each(json, function(entryIndex, entry){
 					
@@ -77,25 +106,43 @@
 									
 				}); // end of each()---------------------
 				 
-				
+				resultHTML += "</select>";
 				
 				$("#fieldDisplay").append(resultHTML);
 			},
 			error: function(request, status, error){
-			//	alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
+			}// end of error---------------------------------------------------------
+		});
+	}// end of showFieldDetail(fieldCode)-----------------------------------------------------------------------------------
+	
+	
+	
+	function showLibrary()
+	{
+		$.ajax({
+			url:"<%=request.getContextPath()%>/showLibrary.ana",
+			type:"GET",
+			dataType:"JSON",
+			success:function(json){
+				resultHTML = "";
+				
+				$.each(json, function(entryIndex, entry){
+					
+					resultHTML += "<option value=\""+entry.LIBCODE+"\">"+entry.LIBNAME+"</option>";
+								
+				}); // end of each()---------------------
+				
+				
+				$("#libCode").append(resultHTML);
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error );
 			}// end of error---------------------------------------------------------
 				
-			
-			
-			
-			
 		});
 		
-		
-	}
-	
-	
-	
+	}// end of showLibrary()-----------------------------------------------------------------------------------
 	
 	
 	
@@ -117,7 +164,8 @@
 	        <hr>
 	        
 	    <!-- 도서 등록시 필요한 도서 등록 폼 추가 -->    
-        <form class="form-horizontal" name="signup" id="signup" enctype="multipart/form-data" >        
+        <form class="form-horizontal" name="signup" enctype="multipart/form-data" >
+        
 	        <div class="form-group">
 	          <label class="control-label col-sm-3">도서명 <span class="text-danger">*</span></label>
 	          <div class="col-md-8 col-sm-9">
@@ -146,10 +194,10 @@
 	        	<label class="control-label col-sm-3">출판사 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
 	            	<span class=""><i class=""></i></span>
-	              	<input type="text" class="publisher"  id="publisher" placeholder="조회버튼을 클릭하세요" value="" style="width: 300px;" readonly>
-	            	<input type="hidden" class="addr"  id="addr" value="" style="width: 300px;">
-	            	<input type="hidden" class="tel"  id="tel" value="" style="width: 300px;">
-	            	<input type="hidden" class="pubCode_fk"  id="reg_num" value="" style="width: 300px;">
+	              	<input type="text"    name="pubName" 	id="pubName" 	placeholder="조회버튼을 클릭하세요" value="" style="width: 300px;" readonly>
+            		<input type="hidden"  name="addr" 	 	id="addr" 		value="" style="width: 300px;">
+	            	<input type="hidden"  name="tel" 	 	id="tel" 		value="" style="width: 300px;">
+	            	<input type="hidden"  name="pubCode_fk" id="pubCode_fk" value="" style="width: 300px;">
 	            	<!-- 출판사 등록을 위한 정보들을 담아오는 히든 타입 인풋 -->
 	            <button type="button" id="searchPublisher" name="searchPublisher">조회</button> 
 	          	</div>
@@ -161,7 +209,7 @@
 	          	<div class="col-md-8 col-sm-9">
 	            	<div class="input-group">
 			        	<span class="input-group-addon"><i class=""></i></span>
-			            <input type="text" class="form-control" name="ISBN " id="ISBN " placeholder="발급받은 ISBN을 적어주세요" value="">
+			            <input type="text" class="form-control" name="ISBN " id="ISBN" placeholder="발급받은 ISBN을 적어주세요" value="">
 	            	</div>  
 	          	</div>
 	        </div>
@@ -170,7 +218,7 @@
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">  언어  <span class="text-danger">*</span></label>
 					<div class="col-md-8 col-sm-9">
-					    <select id="language" name="language" class="custom-select" style="width: 200px;">
+					    <select id="lcode_fk" name="lcode_fk" class="custom-select" style="width: 200px;">
 						    <option selected>언어</option>
 						    <option value="KR">한국어</option>
 						    <option value="EN">영어</option>
@@ -188,16 +236,16 @@
 	          	<label class="control-label col-sm-3">국가분류 <span class="text-danger">*</span></label>
 	          
 	          	<div class="col-md-8 col-sm-9">
-		            <label> <input name="nation" type="radio" value="Korea" checked> 국내 </label>
-		            <label> <input name="nation" type="radio" value="abroad" > 해외 </label>
+		            <label> <input name="ncode_fk" id="ncode_fk" type="radio" value="0" checked> 국내 </label>
+		            <label> <input name="ncode_fk" id="ncode_fk" type="radio" value="1" > 해외 </label>
 	          	</div>
 	        </div>
 	        
 	        <!-- 도서 등록시 도서 종류 추가 -->
 	        <div class="form-group">
-	        	<label class="control-label col-sm-3">  분야  <span class="text-danger">*</span></label>
+	        	<label class="control-label col-sm-3">  종류  <span class="text-danger">*</span></label>
 					<div class="col-md-8 col-sm-9">
-					    <select id="category" name="category" class="custom-select" style="width: 200px;">
+					    <select id="ccode_fk" name="ccode_fk" class="custom-select" style="width: 200px;">
 						    <option selected>종류</option>
 						    <option value="E01">수필</option>
 						    <option value="E02">에세이</option>
@@ -214,10 +262,10 @@
         
         	<!-- 도서 등록시 도서 주제 추가 -->
 	        <div class="form-group">
-	        	<label class="control-label col-sm-3">  주제   <span class="text-danger">*</span></label>
+	        	<label class="control-label col-sm-3">  분야   <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
 	            	<select id="field" name="field" class="custom-select" style="width: 200px;">
-						<option selected>주제</option>
+						<option selected>분야</option>
 					    <option value="000">총류</option>
 					    <option value="100">철학</option>
 					    <option value="200">종교</option>
@@ -232,13 +280,7 @@
 					
 	          	</div>
 	          	
-					<div class="col-md-8 col-sm-9" id="fieldDisplay">
-					
-		            	
-		            	
-						</select>
-					
-	          		</div>
+					<div class="col-md-8 col-sm-9" id="fieldDisplay">	</div>
 					
 			
 	        </div>
@@ -247,7 +289,7 @@
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3"> 장르  <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
-	              	<select id="genre" name="genre" class="custom-select" style="width: 200px;">
+	              	<select id="gcode_fk" name="gcode_fk" class="custom-select" style="width: 200px;">
 					    <option selected>장르</option>
 					    <option value="UN">미분류</option>
 					    <option value="RM">로맨스</option>
@@ -269,12 +311,12 @@
 	        <div class="form-group">
 	        	<label class="control-label col-sm-3">연령대 <span class="text-danger">*</span></label>
 	          	<div class="col-md-8 col-sm-9">
-	              	<select id="category" name="category" class="custom-select" style="width: 200px;">
+	              	<select id="ageCode" name="ageCode" class="custom-select" style="width: 200px;">
 					    <option selected>연령대</option>
-					    <option value="1">전체</option>
-					    <option value="2">아동</option>
-					    <option value="3">청소년</option>
-					    <option value="4">성인</option>
+					    <option value="0">전체</option>
+					    <option value="1">아동</option>
+					    <option value="2">청소년</option>
+					    <option value="3">성인</option>
 					</select>
 	          	</div>
 	        </div>
@@ -307,10 +349,10 @@
 	          	<div class="col-md-8 col-sm-9">
 		            <div class="input-group">
 			        	<span class="input-group-addon"><i class=""></i></span>
-			            <input type="text" class="form-control" name="totalpage" id="totalpage" placeholder="도서총페이지수(쪽)" value="">
+			            <input type="text" class="form-control" name="totalPage" id="totalPage" placeholder="도서총페이지수(쪽)" value="">
 		            </div>  
 	          	</div>
-	        </div>
+	        </div> 
           	
           	<!-- 도서 등록시 도서 발행일자 추가 -->
 	        <div class="form-group">
@@ -337,14 +379,10 @@
       		<!-- 도서 등록시 도서관명 추가 -->
 	       	<div class="form-group">
 	       		<label class="control-label col-sm-3">도서관명 <span class="text-danger">*</span></label>
-	          	<div class="col-md-8 col-sm-9">
-	              	<select class="custom-select" name="libCode" id="libCode" style="width: 200px;">
-					    <option selected="">도서관명</option>
-					    <option value="1">서울 도서관</option>
-					    <option value="2">김포 도서관</option>
-					    <option value="3">광주 도서관</option>
-					    <option value="4">부산 도서관</option>
-					</select>
+	          	<div class="col-md-5 col-sm-8">
+	          	<select id='libCode' name='libCode' class='custom-select' style='width: 200px;'>
+	          		
+	          	</select>
 	          	</div>
 	        </div>
         	
@@ -352,17 +390,23 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">도서 이미지 <span class="text-danger">*</span> <br> </label>
 				<div class="col-md-5 col-sm-8">
-					<input type="file" name="image" id="image" class="upload" aria-describedby="file_upload">
+					<input type="file" name="attach" id="attach" class="upload" aria-describedby="file_upload">
 				</div>
 			</div>
+			
+			<!-- 도서 등록시 도서 권수 추가 -->
+	        <div class="form-group">
+	        	<label class="control-label col-sm-3">추가 권수 <span class="text-danger">*</span></label>
+	          	<div class="col-md-5 col-sm-8">
+            		<div class="input-group">
+	             		<input name="bookCount" id="spinnerCount" value="1" readonly>
+	            	</div>  
+	          	</div>
+	        </div>
 			
         	</form>
         	
         	
-        	<div class="form-group">
-	          	<div class="col-xs-offset-3 col-md-8 col-sm-9"><span class="text-muted"><span class="label label-danger">Note:</span><span class=""> 모든 항목이 채워져야 등록이 가능합니다.</span> </div>
-	        </div>
-        
         	<div class="form-group">
 	          	<div class="col-xs-offset-3 col-xs-10">
 	            	<button type="button" id="Submit" class="btn btn-primary">등록</button>  
