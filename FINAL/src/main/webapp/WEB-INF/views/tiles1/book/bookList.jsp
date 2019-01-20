@@ -54,7 +54,7 @@ input[type="checkbox"].sideli{
 	max-height: 1400px;
 }  
 	           
-div.search input[type=text] {
+div.searchbar input[type=text] {
   padding: 10px;
   font-size: 13px;
   border: 1px solid grey;
@@ -62,7 +62,7 @@ div.search input[type=text] {
   background: #f1f1f1;
 }
 
-div.search button {
+div.searchbar button {
   width: 30px;
   padding: 10px;
   background: #2196F3;
@@ -83,6 +83,53 @@ div.search button:hover {
 <script>
 	$(document).ready(function(){
 		         
+		
+		$(".search").click(function(){
+			
+			var searchType = $("#searchType").val();
+			var searchWord = $("#searchWord").val();
+			var form_data = {"searchType":searchType,
+							 "searchWord":searchWord};
+			$.ajax({
+				url:"KKHfindBookBySearchbar.ana",
+				type:"GET",
+				data:form_data,
+				dataType:"JSON",
+				success:function(json){
+					
+					var resultHTML = "";
+					
+					if(json.length <= 0){
+						resultHTML+="<tr>"+
+							"<td colspan='7'><h3  align='center'>조건에 맞는 상품이 없습니다</h3></td>"+
+							"</tr>";
+					}else{
+						$.each(json,function(bookIndex,book){
+							
+							resultHTML += "<tr class='BookInfo' onClick='goBookDetail(\""+book.BOOKID+"\")'>"+
+							"<td>"+book.BOOKID+"</td>"+
+								"<td>"+book.TITLE+"</td>"+
+								"<td>"+book.FNAME+"-"+book.GNAME+"</td>"+
+								"<td>"+book.AUTHOR+"</td>"+       
+								"<td>"+book.PUBNAME+"</td>"+
+								"<td>"+book.REGDATE+"</td>"+
+							"</tr>";
+								
+							});
+					}
+					
+			
+					$("#displayBookList").empty().html(resultHTML);
+					
+				},error:function(request,status,error){
+				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				   }
+
+				
+				
+			});
+			
+		});
 		
 		$(".sort").change(function(){
 			
@@ -196,13 +243,13 @@ div.search button:hover {
 	
 	function goBook(){
 		
-		var data_form = $("#sidebarFrm").serialize();
+		var form_data= $("#sidebarFrm").serialize();
 		
 		$.ajax({
 			
-			url:"findBookBySidebar.ana",
+			url:"KKHfindBookBySidebar.ana",
 			type:"GET",
-			data:data_form,
+			data:form_data,
 			dataType:"JSON",
 			success: function(json){
 				
@@ -240,20 +287,32 @@ div.search button:hover {
 		});
 	}
 	
+	
+	function goBookDetail(bookid){
+		
+		var frm = document.bookDetailFrm;
+		frm.bookid.value = bookid;
+		frm.method="GET";
+		frm.action="bookDetail.ana";
+		frm.submit();
+		
+	}
+	
+	
 </script>	
 <div class="container-fluid" style="padding-left:200px;">      
 <div class="row">
 <div class="col-lg-12 col-sm-12 "><span style="font-weight:bold; font-size: 24pt; margin-bottom:15px;">도서관리 > 도서목록</span></div>
 		<div class="col-lg-8 col-sm-8">
-			<div class="search col-lg-12"
+			<div class="searchbar col-lg-12"
 				style="margin-left: 20px; margin-top: 5px; float: left;">
-				<select
+				<select id="searchType"
 					style="padding: .2em .4em; font-size: 13pt; background-color: #2196F3; height: 29pt; color: #fff; border-radius: 3px;">
-					<option value="name">도서명</option>
-					<option value="bookid">도서번호</option>
-					<option value="publisher">출판사</option>
-				</select> <input type="text" placeholder="Search.." name="search2">
-				<button type="submit">
+					<option value="title">도서명</option>
+					<option value="A.bookid">도서번호</option>
+					<option value="pubname">출판사</option>
+				</select> <input id="searchWord" type="text" placeholder="Search.." name="search2">
+				<button type="button" class="search">
 					<i class="fa fa-search"></i>
 				</button>
 			</div>
@@ -371,4 +430,8 @@ div.search button:hover {
 	<input type="hidden" name="language" id="language" value=""/>
 	<input type="hidden" name="category" id="category" value=""/>
 	<input type="hidden" name="field" id="field" value=""/>
+</form>
+
+<form name="bookDetailFrm">
+	<input type="hidden" name="bookid"/>
 </form>

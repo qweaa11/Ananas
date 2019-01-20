@@ -36,7 +36,7 @@ public class KKHController {
 		return "book/bookList.tiles1";
 	}// end of bookList
 	
-	@RequestMapping(value="/findBookBySidebar.ana", method= {RequestMethod.GET})
+	@RequestMapping(value="/KKHfindBookBySidebar.ana", method= {RequestMethod.GET})
 	@ResponseBody
 	/**
 	 * ajax로 library,field,category,language, sort 값을 받아와서 조건을 검색해 책 목록을 가져오는 메소드
@@ -128,9 +128,56 @@ public class KKHController {
 		return resultList;
 	}
 	
+	@RequestMapping(value="/KKHfindBookBySearchbar.ana", method= {RequestMethod.GET})
+	@ResponseBody
+	public List<HashMap<String,Object>> findBookBySearchbar(HttpServletRequest request, HttpServletResponse response){
+		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
+		
+		String searchType = request.getParameter("searchType");
+		String searchWord = request.getParameter("searchWord");
+		
+		HashMap<String,String> parameterMap = new HashMap<String,String>();
+		parameterMap.put("SEARCHTYPE", searchType);
+		parameterMap.put("SEARCHWORD", searchWord);
+		
+		List<KKHBookVO> bookList = service.findBookBySearchbar(parameterMap);
+		
+		for(KKHBookVO bookvo : bookList) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("BOOKID", bookvo.getBookid());
+			map.put("IDX", bookvo.getIdx());
+			map.put("TITLE", bookvo.getTitle());
+			map.put("AUTHOR", bookvo.getAuthor());
+			map.put("STATUS", bookvo.getStatus());
+			map.put("AGECODE", bookvo.getAgecode());
+			map.put("GCODE", bookvo.getGcode_fk());
+			map.put("GNAME", bookvo.getGname());
+			map.put("NCODE", bookvo.getNcode_fk());
+			map.put("NNAME", bookvo.getNname());
+			map.put("LCODE", bookvo.getLcode_fk());
+			map.put("LNAME", bookvo.getLname());
+			map.put("FCODE", bookvo.getFcode_fk());
+			map.put("FNAME", bookvo.getFname());
+			map.put("CCODE", bookvo.getCcode_fk());
+			map.put("CNAME", bookvo.getCname());
+			map.put("LIBCODE", bookvo.getLibcode_fk());
+			map.put("LIBNAME", bookvo.getLibname());
+			map.put("PUBCODE", bookvo.getPubcode_fk());
+			map.put("PUBNAME", bookvo.getPubname());
+			
+			resultList.add(map);
+		}
+		return resultList;
+	}
+	
+	
 	@RequestMapping(value="/bookDetail.ana",method= {RequestMethod.GET})
 	public String bookDetail(HttpServletRequest request, HttpServletResponse response) {
+		String bookid = request.getParameter("bookid");
 		
+		List<KKHBookVO> bookDetailList = service.findBookDetail(bookid); 		
+		
+		request.setAttribute("bookDetailList", bookDetailList);
 		return "book/bookDetail.tiles1";
 	}
 }

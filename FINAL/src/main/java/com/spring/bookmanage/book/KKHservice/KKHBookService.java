@@ -21,4 +21,16 @@ public class KKHBookService implements InterKKHBookService{
 		return bookList;
 	}
 
+	@Override
+	public List<KKHBookVO> findBookBySearchbar(HashMap<String, String> parameterMap) {
+		List<KKHBookVO> bookList = bookdao.findBookBysearchbar(parameterMap);
+		return bookList;
+	}
+
+	@Override
+	public List<KKHBookVO> findBookDetail(String bookid) {
+		List<KKHBookVO> bookDetail = bookdao.findBookDetail(bookid);
+		return bookDetail;
+	}
+
 }

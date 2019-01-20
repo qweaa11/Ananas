@@ -9,4 +9,8 @@ public interface InterKKHBookService {
 
 	List<KKHBookVO> findBookBysidebar(HashMap<String, Object> parameterMap);
 
+	List<KKHBookVO> findBookBySearchbar(HashMap<String, String> parameterMap);
+
+	List<KKHBookVO> findBookDetail(String bookid);
+
 }

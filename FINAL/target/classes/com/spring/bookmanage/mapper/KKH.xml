@@ -31,7 +31,30 @@
 		</if> 
 		order by ${SORT}
 	</select>
-
-
+	
+	<select id="findBookBysearchbar" parameterType="HashMap" resultType="com.spring.bookmanage.book.KKHmodel.KKHBookVO">
+		select distinct substr(A.bookid,1, instr(A.bookid,'-',1,2)-1 ) as
+		bookid, title, author, agecode	,gcode_fk, gname,ncode_fk, nname,lcode_fk, lname,fcode_fk, fname,ccode_fk, cname
+		,libcode_fk, libname ,pubcode_fk, pubname  
+		from book A join genre G on A.gcode_fk = G.gcode join nation N on
+		A.ncode_fk = N.ncode join language L on A.lcode_fk = L.lcode
+		join field F on A.fcode_fk = F.fcode join category C on A.ccode_fk =
+		C.ccode join library LIB on A.libcode_fk = LIB.libcode join publisher
+		P on A.pubcode_fk = P.pubcode
+		where status != 4
+		 	and ${SEARCHTPYE} like '%'||${SEARCHWORD}||'%'
+	</select>
+	
+	
+	<select id="findBookDetail" parameterType="String" resultType="com.spring.bookmanage.book.KKHmodel.KKHBookVO">
+		select A.bookid, title, author, agecode	,gcode_fk, gname,ncode_fk, nname,lcode_fk, lname,fcode_fk, fname,ccode_fk, cname
+		,libcode_fk, libname ,pubcode_fk, pubname  ,ISBN, price, intro, image, size, weight, totalpage, pdate, regdate, A.status
+		from book A join genre G on A.gcode_fk = G.gcode join nation N on
+		A.ncode_fk = N.ncode join language L on A.lcode_fk = L.lcode
+		join field F on A.fcode_fk = F.fcode join category C on A.ccode_fk =
+		C.ccode join library LIB on A.libcode_fk = LIB.libcode join publisher
+		P on A.pubcode_fk = P.pubcode
+		where substr(A.bookid,1, instr(A.bookid,'-',1,2)-1 ) like '%'||${bookid}||'%'
+	</select>
 
 </mapper>
