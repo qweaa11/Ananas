@@ -14,9 +14,9 @@ public class YJKBoardVO {
 	private String regDate;			// 작성일자
 	private String status;			// 글상태(삭제 등)
 	
-	private String previousidx;      // 이전글번호
+	private String previousseq;      // 이전글번호
  	private String previoussubject;  // 이전글제목
- 	private String nextidx;          // 다음글번호
+ 	private String nextseq;          // 다음글번호
  	private String nextsubject;      // 다음글제목
 	
  	private String commentCount;	// 댓글수
@@ -54,7 +54,7 @@ public class YJKBoardVO {
 	public YJKBoardVO() {}
 	
 	public YJKBoardVO(String idx, String libid_fk, String name, String subject, String content, String pw,
-			String readCount, String regDate, String status, String previousidx, String previoussubject, String nextidx,
+			String readCount, String regDate, String status, String previousseq, String previoussubject, String nextseq,
 			String nextsubject, String commentCount, String groupno, String root, String depthno, String fileName,
 			String orgFileName, String fileSize, MultipartFile attach) {
 		super();
@@ -67,9 +67,9 @@ public class YJKBoardVO {
 		this.readCount = readCount;
 		this.regDate = regDate;
 		this.status = status;
-		this.previousidx = previousidx;
+		this.previousseq = previousseq;
 		this.previoussubject = previoussubject;
-		this.nextidx = nextidx;
+		this.nextseq = nextseq;
 		this.nextsubject = nextsubject;
 		this.commentCount = commentCount;
 		this.groupno = groupno;
@@ -153,12 +153,12 @@ public class YJKBoardVO {
 		this.status = status;
 	}
 
-	public String getPreviousidx() {
-		return previousidx;
+	public String getPreviousseq() {
+		return previousseq;
 	}
 
-	public void setPreviousidx(String previousidx) {
-		this.previousidx = previousidx;
+	public void setPreviousseq(String previousseq) {
+		this.previousseq = previousseq;
 	}
 
 	public String getPrevioussubject() {
@@ -169,12 +169,12 @@ public class YJKBoardVO {
 		this.previoussubject = previoussubject;
 	}
 
-	public String getNextidx() {
-		return nextidx;
+	public String getNextseq() {
+		return nextseq;
 	}
 
-	public void setNextidx(String nextidx) {
-		this.nextidx = nextidx;
+	public void setNextseq(String nextseq) {
+		this.nextseq = nextseq;
 	}
 
 	public String getNextsubject() {

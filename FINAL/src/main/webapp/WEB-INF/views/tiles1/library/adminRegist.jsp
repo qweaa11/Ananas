@@ -15,7 +15,7 @@
 		
 		$("#error_passwd").hide();
 		$(".error").hide();
-		$("#libid").focus();
+		$("#name").focus();
 		
 		$("#error_id").empty();
 	    $("#good_id").empty();
@@ -154,7 +154,7 @@
 			<select class="form-control requiredInfo"  name="libcode" style="width: 130px" >
 					<option value="">도서관 이름</option>
 				<c:forEach var="lib" items="${libInfo}">
-					<option value="${lib.libcode}">${lib.libname}</option>
+					<option value="${lib.libcode}">${lib.name}</option>
 				</c:forEach>
 			</select>
 		</div>

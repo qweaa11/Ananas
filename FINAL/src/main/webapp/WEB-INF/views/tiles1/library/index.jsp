@@ -37,14 +37,14 @@
 					
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
 						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='r3.ana'">
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
 							<div class="blog_image" style="padding: 15px;">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
 									<img src="resources/img/home-logo/home-logo4.png" style="width: 200px; margin: auto;"/>
 								</div> 
 							</div>
-							<div class="blog_text" style="text-align: center;">대여/반납/연장/예약</div> 
-							<div class="blog_button"><a href="r3.ana">이동하기</a></div>
+							<div class="blog_text" style="text-align: center;">대여</div> 
+							<div class="blog_button"><a href="#">이동하기</a></div>
 						</div>
 					</div>
 					

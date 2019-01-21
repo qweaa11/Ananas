@@ -12,7 +12,7 @@ public class MemberVO {
 	private String post;			// 신우편번호
 	private String birth;			// 생년월일
 	private String gender;			// 성별코드
-	private int revokeDate;			// 정지기간
+	private int stopDate;			// 정지기간
 	private String regDate;			// 가입일자
 	private String lastDate;		// 최근접속일자=마지막접속일자
 	private String pwDate;			// 최근 비밀번호변경일자=마지막 비밀번호 변경일자
@@ -25,9 +25,8 @@ public class MemberVO {
 	public MemberVO() { }// end of default constructor
 
 	public MemberVO(int idx, String memberid, String pwd, String name, String email, String phone, String addr1,
-			String addr2, String post, String birth, String gender, int revokeDate, String regDate, String lastDate,
-			String pwDate, String status, String imgFileName, int fileSize, String ages) {
-		super();
+			String addr2, String post, String birth, String gender, String regDate, String lastDate, String pwDate,
+			String status) {
 		this.idx = idx;
 		this.memberid = memberid;
 		this.pwd = pwd;
@@ -39,14 +38,10 @@ public class MemberVO {
 		this.post = post;
 		this.birth = birth;
 		this.gender = gender;
-		this.revokeDate = revokeDate;
 		this.regDate = regDate;
 		this.lastDate = lastDate;
 		this.pwDate = pwDate;
 		this.status = status;
-		this.imgFileName = imgFileName;
-		this.fileSize = fileSize;
-		this.ages = ages;
 	}// end of constructor
 
 	public int getIdx() {
@@ -140,12 +135,12 @@ public class MemberVO {
 			this.gender = "여자";
 	}
 
-	public int getRevokeDate() {
-		return revokeDate;
+	public int getStopDate() {
+		return stopDate;
 	}
 
-	public void setRevokeDate(int revokeDate) {
-		this.revokeDate = revokeDate;
+	public void setStopDate(int stopDate) {
+		this.stopDate = stopDate;
 	}
 
 	public String getRegDate() {
@@ -190,10 +185,7 @@ public class MemberVO {
 		case 3:
 			this.status="탈퇴";
 			break;
-		case 4:
-			this.status="영구정지";
-			break;
-		}// end of switch
+		}
 	}
 
 	public String getImgFileName() {

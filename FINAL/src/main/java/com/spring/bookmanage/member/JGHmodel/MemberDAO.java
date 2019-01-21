@@ -1,5 +1,6 @@
 package com.spring.bookmanage.member.JGHmodel;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,52 +28,8 @@ public class MemberDAO implements MemberMapper {
 	@Override
 	public List<MemberVO> findAllMemberBySearchWord(HashMap<String, String> parameterMap) {
 		List<MemberVO> memberListBySearchWord = sqlsession.selectList("jgh.findAllMemberBySearchWord", parameterMap);
+		System.out.println("null인가? "+memberListBySearchWord.toString());
 
 		return memberListBySearchWord;
 	}// end of findAllMemberBySearchWord
-
-	/**
-	 * 계정 활성화
-	 */
-	@Override
-	public int unlockAllByStatus(String[] idxArray) {
-		int row = 0;
-		String idx = "";
-		for(int i=0;i<idxArray.length;i++) {
-			idx = idxArray[i];
-			row = sqlsession.update("jgh.unlockAllByStatus", idx);
-		}// end of for
-
-		return row;
-	}// end of unlockAllByStatus
-
-	/**
-	 * 계정 이용정지
-	 */
-	@Override
-	public int banAllByStatus(String[] idxArray) {
-		int row = 0;
-		String idx = "";
-		for(int i=0;i<idxArray.length;i++) {
-			idx = idxArray[i];
-			row = sqlsession.update("jgh.banAllByStatus", idx);
-		}// end of for
-
-		return row;
-	}// end of banAllByStatus
-
-	/**
-	 * 계정 탈퇴
-	 */
-	@Override
-	public int removeAllByStatus(String[] idxArray) {
-		int row = 0;
-		String idx = "";
-		for(int i=0;i<idxArray.length;i++) {
-			idx = idxArray[i];
-			row = sqlsession.update("jgh.removeAllByStatus", idx);
-		}// end of for
-
-		return row;
-	}// end of removeAllMemberByStatus
 }

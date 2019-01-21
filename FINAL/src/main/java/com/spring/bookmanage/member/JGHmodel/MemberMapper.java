@@ -15,25 +15,4 @@ public interface MemberMapper {
 	 * @return
 	 */
 	List<MemberVO> findAllMemberBySearchWord(HashMap<String, String> parameterMap);
-
-	/**
-	 * 선택한 계정 활성화(휴면해제)
-	 * @param idxArray
-	 * @return
-	 */
-	int unlockAllByStatus(String[] idxArray);
-
-	/**
-	 * 선택한 계정목록 영구정지
-	 * @param idxArray
-	 * @return
-	 */
-	int banAllByStatus(String[] idxArray);
-
-	/**
-	 * 계정 탈퇴처리
-	 * @param idxArray
-	 * @return
-	 */
-	int removeAllByStatus(String[] idxArray);
 }
