@@ -38,7 +38,148 @@
 			$("#searchWord").val("${searchWord}");
 		}// end of if
 	}// end of searchKeep
+
+	function allCheckFalse() {
+		var flag = $("input:checkbox[name=check]").prop("checked",false);
+	}// end of allCheck
 	
+	function unlock() {// 계정 휴면해제 함수(활성화)
+		var frm = searchFrm;
+		frm.method = "POST";
+		frm.action = "unlock.ana";
+	
+		var flag = false;
+		var count = 0;
+		$(".tr-row").each(function() {
+			flag = $(this).find(".check").is(":checked");
+			
+			if(!flag) {
+				$(this).find(".idx").attr("disabled", true);
+			} else {
+				count++;
+			}// end of if~else
+		});
+
+		var choice = confirm(count+"명의 회원을 모두 활성화(휴면해제) 하시겠습니까?");
+		var status = "";
+		if(choice) {
+			var breakPoint = false;// continue or break
+			$(".tr-row").each(function() {
+				flag = $(this).find(".check").is(":checked");
+				if(flag) {
+					status = $(this).find(".status").text();
+					if(status != "휴면") {
+						console.log(status);
+						breakPoint = true;
+						return false;
+					}// end of inner deep if
+				}// end of if
+
+			});
+
+			if(breakPoint) {
+				alert("선택하신 회원중 휴면상태가 아니거나 탈퇴, 영구정지된 회원이 존재합니다.");
+			} else {
+				frm.submit();
+				return ;
+			}// end of inner if~else
+
+		}// end of outer if
+
+		$(".tr-row").find(".idx").attr("disabled", false);
+	}// end of unlock
+	
+	function remove() {// 계정 탈퇴처리
+		var frm = searchFrm;
+		frm.method = "POST";
+		frm.action = "remove.ana";
+	
+		var flag = false;
+		var count = 0;
+		$(".tr-row").each(function() {
+			flag = $(this).find(".check").is(":checked");
+			
+			if(!flag) {
+				$(this).find(".idx").attr("disabled", true);
+			} else {
+				count++;
+			}// end of if~else
+		});
+
+		var choice = confirm(count+"명의 회원을 모두 탈퇴처리 하시겠습니까?");
+		var status = "";
+		if(choice) {
+			var breakPoint = false;// continue or break
+			$(".tr-row").each(function() {
+				flag = $(this).find(".check").is(":checked");
+				if(flag) {
+					status = $(this).find(".status").text();
+					if(status == "탈퇴") {
+						console.log(status);
+						breakPoint = true;
+						return false;
+					}// end of inner deep if
+				}// end of if
+
+			});
+
+			if(breakPoint) {
+				alert("선택하신 회원중 이미 탈퇴한 회원이 존재합니다.");
+			} else {
+				frm.submit();
+				return ;
+			}// end of inner if~else
+
+		}// end of outer if
+
+		$(".tr-row").find(".idx").attr("disabled", false);
+	}// end of remove
+	
+	function ban() {// 계정 영구정지
+		var frm = searchFrm;
+		frm.method = "POST";
+		frm.action = "ban.ana";
+	
+		var flag = false;
+		var count = 0;
+		$(".tr-row").each(function() {
+			flag = $(this).find(".check").is(":checked");
+			
+			if(!flag) {
+				$(this).find(".idx").attr("disabled", true);
+			} else {
+				count++;
+			}// end of if~else
+		});
+
+		var choice = confirm(count+"명의 회원을 모두 영구정지 처리하시겠습니까?");
+		var status = "";
+		if(choice) {
+			var breakPoint = false;// continue or break
+			$(".tr-row").each(function() {
+				flag = $(this).find(".check").is(":checked");
+				if(flag) {
+					status = $(this).find(".status").text();
+					if(status == "영구정지") {
+						console.log(status);
+						breakPoint = true;
+						return false;
+					}// end of inner deep if
+				}// end of if
+
+			});
+
+			if(breakPoint) {
+				alert("선택하신 회원중 이미 영구정지상태인 회원이 존재합니다.");
+			} else {
+				frm.submit();
+				return ;
+			}// end of inner if~else
+
+		}// end of outer if
+
+		$(".tr-row").find(".idx").attr("disabled", false);
+	}// end of ban
 </script>
 
 <div class="container">

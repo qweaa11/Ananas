@@ -24,4 +24,23 @@
 		from member
 		where ${colname} like '%'||#{searchWord}||'%'
 	</select>
+	
+	<!-- 선택한 회원목록에 따른 계정 활성화(휴면해제) -->
+	<update id="unlockAllByStatus" parameterType="String">
+		update member set status = 0, lastDate = SYSDATE
+		where idx = #{idx}
+	</update>
+	
+	<!-- 선택한 회원목록에 따른 계정 영구정지 -->
+	<update id="banAllByStatus" parameterType="String">
+		update member set status = 4
+		where idx = #{idx}
+	</update>
+	
+	<!-- 선택한 회원목록에 따른 계정 탈퇴 -->
+	<update id="removeAllByStatus" parameterType="String">
+		update member set status = 3
+		where idx = #{idx}
+	</update>
+
 </mapper>
