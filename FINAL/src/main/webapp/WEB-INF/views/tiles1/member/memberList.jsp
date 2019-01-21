@@ -180,8 +180,6 @@
 
 		$(".tr-row").find(".idx").attr("disabled", false);
 	}// end of ban
-=======
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 </script>
 
 <div class="container">
