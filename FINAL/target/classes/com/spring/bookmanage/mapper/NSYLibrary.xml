@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ==== mapper 기본 설정 ==== -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ==== mapper 이름 설정 ==== -->
+<mapper namespace="NSYLibrary">
+	<!-- 도서관등록 완료 하기 -->
+	<insert id="resisterLibraryEnd" parameterType="com.spring.bookmanage.library.model.NSYLibraryVO">
+		insert into library(libcode, idx, libname, tel, addr, fileName, orgFilename, fileSize, regDate, y, x) 
+		values(L+libcode_seq.nextval, library_seq.nextval, #{libname}, #{tel}, #{addr}, #{fileName}, #{orgFilename}, #{fileSize}, default, #{y}, #{x})
+	</insert>
+
+	<select id="getLibraryList" parameterType="HashMap" resultType="com.spring.bookmanage.library.model.NSYLibraryVO">
+		select RNO, libcode, idx, libname, tel, addr, fileName, orgFilename, fileSize, regDate, y, x
+		from
+		(
+			select rownum as RNO, libcode, idx, libname, tel, addr, fileName, orgFilename, fileSize, regDate, y, x
+			from
+				(		
+				select libcode, idx, libname, tel, addr, fileName, orgFilename, fileSize, regDate, y, x
+				from library
+				<if test='searchWord != null and searchWord != "" and searchWord != "null" '>
+				where ${colname} like '%'||#{searchWord}||'%'
+				</if>
+				order by idx	
+				)v
+			)t
+		where RNO between #{rno1} and #{rno2}	
+	</select>
+	
+	<select id = "getLibraryTotalList" parameterType="HashMap" resultType="int">
+		select count(*)
+		from library
+		<if test='searchWord != null and searchWord != "" and searchWord != "null" '>
+		where ${colname} like '%'||#{searchWord}||'%'
+		</if>
+			
+	</select>
+	
+	<select id="getLibraryDetailInfo" parameterType="String" resultType="com.spring.bookmanage.library.model.NSYLibraryVO">
+		select libcode, idx, libname, tel, addr, fileName, orgFilename, fileSize, regDate, y, x
+		from library
+		where idx = #{idx}
+	</select>
+	
+	
+	
+</mapper>

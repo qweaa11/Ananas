@@ -19,13 +19,13 @@
 	$(document).ready(function(){
 		
 		// ==== 지도에 표시할 좌표값 ====
-		var locationy = ${libraryDetailInfo.locationy};
-		var locationx = ${libraryDetailInfo.locationx};
+		var y = ${libraryDetailInfo.y};
+		var x = ${libraryDetailInfo.x};
 		
 		// ==== DAUM MAP ======================================================
 	    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = {
-	        center: new daum.maps.LatLng(locationy, locationx), // 지도의 중심좌표
+	        center: new daum.maps.LatLng(y, x), // 지도의 중심좌표
 	        level: 5 // 지도의 확대 레벨
 	    };
 	    //지도를 미리 생성
@@ -34,17 +34,12 @@
 	    var geocoder = new daum.maps.services.Geocoder();
 	    //마커를 미리 생성
 	    var marker = new daum.maps.Marker({
-	        position: new daum.maps.LatLng(locationy, locationx),
+	        position: new daum.maps.LatLng(y, x),
 	        map: map
 	    });
 	 	// ==== DAUM MAP ======================================================
 		
 	});
-	
-	function close(){
-		
-		self.close();
-	}
 	
 	function goLibraryInfoEdit(){
 		
@@ -60,7 +55,7 @@
 <div class="w3-display-container">
 	<img src="<%=request.getContextPath()%>/resources/img/img_lights.jpg"  style="width:100%;height:200px">
 	<div class="w3-display-middle w3-large">
-		<h1 class="w3-jumbo w3-text-white w3-wide"><b>${libraryDetailInfo.name}</b></h1>
+		<h1 class="w3-jumbo w3-text-white w3-wide"><b>${libraryDetailInfo.libname}</b></h1>
 	</div>
 	<div class="w3-display-bottomright w3-container">
 		<p class="w3-text-white w3-large">도서관번호 : ${libraryDetailInfo.idx} / 도서관코드 : ${libraryDetailInfo.libcode}</p>
@@ -97,8 +92,8 @@
 <br>
 
 <div align="center" style="margin-bottom:10%; color:black;" >
-	<button type="button" onClick="close();" value="">닫기</button>
-	<button type="button" onClick="goLibraryInfoEdit();">수정</button>
+	<button type="button" style="cursor:pointer;" onClick="self.close();" value="">닫기</button>
+	<button type="button" style="cursor:pointer;" onClick="goLibraryInfoEdit();" value="">수정</button>
 </div>
 
 </body>

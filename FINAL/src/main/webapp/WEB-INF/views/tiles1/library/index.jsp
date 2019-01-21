@@ -9,7 +9,7 @@
 			<div class="col">
 				<div class="blog_posts d-flex flex-row align-items-start justify-content-between">
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
 						<!-- Blog post -->
 						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='bookList.ana'">
 							<div class="blog_image" style="padding: 15px;">
@@ -22,7 +22,7 @@
 						</div>
 					</div>
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
 						<!-- Blog post -->
 						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='memberList.ana'">
 							<div class="blog_image" style="padding: 15px;">
@@ -35,7 +35,7 @@
 						</div>
 					</div>
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
 						<!-- Blog post -->
 						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
 							<div class="blog_image" style="padding: 15px;">
@@ -48,9 +48,9 @@
 						</div>
 					</div>
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
 						<!-- Blog post -->
-						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
+						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='libraryList.ana'">
 							<div class="blog_image" style="padding: 15px;">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center" style="margin-bottom: 15px;">
 									<img src="resources/img/home-logo/home-logo1.png" style="width: 200px; margin: auto;"/>
@@ -61,7 +61,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
 						<!-- Blog post -->
 						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
 							<div class="blog_image" style="padding: 15px;">
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 					
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"" style="padding: 0px;">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding: 0px;">
 						<!-- Blog post -->
 						<div class="blog_post" style="cursor: pointer;" onclick="javascript:location.href='#'">
 							<div class="blog_image" style="padding: 15px;">

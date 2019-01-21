@@ -39,33 +39,31 @@ public class NSYLibraryController {
 	private FileManager fileManager;
 	
 	//==== 도서관등록 페이지 요청하기 ====
-	@RequestMapping(value="/ResisterLibrary.ana", method={RequestMethod.GET})
+	@RequestMapping(value="/resisterLibrary.ana", method={RequestMethod.GET})
 	public String resisterLibrary(HttpServletRequest req) {
 		
-		return "NSYresisterLibrary.notiles";
+		return "library/NSYresisterLibrary.tiles1";
 		
 	}// end of resisterLibrary()
 	
 	
-	//==== 도서관등록 완료 ====
-	@RequestMapping(value="/ResisterLibraryEnd.ana", method={RequestMethod.POST})
+	//==== 도서관등록 완료하기 ====
+	@RequestMapping(value="/resisterLibraryEnd.ana", method={RequestMethod.POST})
 	public String resisterLibraryEnd(NSYLibraryVO libraryvo, MultipartHttpServletRequest req) {
 		
-		String name = req.getParameter("name");
+		String libname = req.getParameter("libname");
 		String tel = req.getParameter("tel");
 		String post = req.getParameter("post");
 		String addr = req.getParameter("addr");
 		String addrDetail = req.getParameter("addrDetail");
-		String location = req.getParameter("location");
-		String locationy = req.getParameter("locationy");
-		String locationx = req.getParameter("locationx");
+		String y = req.getParameter("y");
+		String x = req.getParameter("x");
 		
-		libraryvo.setName(name);
+		libraryvo.setLibname(libname);
 		libraryvo.setTel(tel);
-		libraryvo.setAddr(post+" "+addr+" "+addrDetail);
-		libraryvo.setLocation(location);
-		libraryvo.setLocationy(locationy);
-		libraryvo.setLocationx(locationx);
+		libraryvo.setAddr("["+post+"]"+" "+addr+" "+addrDetail);
+		libraryvo.setY(y);
+		libraryvo.setX(x);
 		
 		MultipartFile imgFile = libraryvo.getImgFile();
 		
@@ -82,11 +80,6 @@ public class NSYLibraryController {
 			//String root = session.getServletContext().getRealPath("/");
 			//String path = root+"resources"+File.separator+"NSYfiles";
 			String path = "C:\\FinalProject1\\git\\Ananas\\FINAL\\src\\main\\webapp\\resources\\NSYfiles";
-			// /FINAL/src/main/webapp/resources
-			// resources/NSYfiles/
-			//System.out.println("경로 확인용 : "+ contextpath);
-			//System.out.println("경로 확인용 : "+ path);
-			//System.out.println("경로 확인용 : " + root);
 			
 			try {
 				bytes = imgFile.getBytes();
@@ -94,7 +87,7 @@ public class NSYLibraryController {
 				newFileName = fileManager.doFileUpload(bytes, imgFile.getOriginalFilename(), path);
 				// 첨부된 파일을 WAS의 디스크로 파일올리기를 하는 것이다.
 				// 파일을 올린 후 예를 들어 ,201901270293123123
-				//3. BoardVO boardvor에 fileNmae 값과 orgFilename 값과 filesize값을 넣어준ㄷ
+				
 				libraryvo.setFileName(newFileName);
 				libraryvo.setOrgFilename(imgFile.getOriginalFilename());
 				fileSize = imgFile.getSize();
@@ -121,10 +114,10 @@ public class NSYLibraryController {
 		String loc = "";
 		
 		if(result==1) {
-			loc = req.getContextPath()+"/LibraryList.ana";
+			loc = req.getContextPath()+"/libraryList.ana";
 		}
 		else{
-			loc = req.getContextPath()+"/ResisterLibrary.ana";
+			loc = req.getContextPath()+"/resisterLibrary.ana";
 		}
 		
 		req.setAttribute("n", result);
@@ -134,14 +127,15 @@ public class NSYLibraryController {
 		
 	}// end of resisterLibrary()
 	
-	@RequestMapping(value="/LibraryList.ana", method={RequestMethod.GET})
+	//==== 도서관목록페이지 보여주기 (페이징,검색 가능) ====
+	@RequestMapping(value="/libraryList.ana", method={RequestMethod.GET})
 	public String libraryList(HttpServletRequest req) {
 		
-		return "NSYlibraryList.notiles";
+		return "library/NSYlibraryList.tiles1";
 		
 	}// end of resisterLibrary()
 	
-	
+	//==== 도서관목록 가져오기 ====
 	@RequestMapping(value="/getLibraryList.ana", method={RequestMethod.GET})
 	@ResponseBody
 	public List<HashMap<String, Object>> getLibraryList(HttpServletRequest req){
@@ -160,12 +154,6 @@ public class NSYLibraryController {
 		int rno1 = Integer.parseInt(currentShowPageNo) * Integer.parseInt(sizePerPage) - (Integer.parseInt(sizePerPage)-1); // 공식 !!!
 		int rno2 = Integer.parseInt(currentShowPageNo) * Integer.parseInt(sizePerPage); // 공식 !!!
 		
-		//System.out.println("Controller단 currentShowPageNo : "+ currentShowPageNo);
-		//System.out.println("Controller단 sizePerPage : "+ sizePerPage);
-		//System.out.println("Controller단 colname : "+ colname);
-		//System.out.println("Controller단 searchWord : "+ searchWord);
-		
-		
 		HashMap<String,String> paraMap =new HashMap<String,String>();
 		paraMap.put("rno1", String.valueOf(rno1));
 		paraMap.put("rno2", String.valueOf(rno2));
@@ -180,17 +168,15 @@ public class NSYLibraryController {
 			
 			resultMap.put("libcode", librarMap.getLibcode());
 			resultMap.put("idx", librarMap.getIdx());
-			resultMap.put("name", librarMap.getName());
+			resultMap.put("libname", librarMap.getLibname());
 			resultMap.put("addr", librarMap.getAddr());
 			resultMap.put("tel", librarMap.getTel());
 			resultMap.put("fileName", librarMap.getFileName());
 			resultMap.put("fileSize", librarMap.getFileSize());
 			resultMap.put("imgFile", librarMap.getImgFile());
 			resultMap.put("regDate", librarMap.getRegDate());
-			resultMap.put("location", librarMap.getLocation());
-			resultMap.put("locationy", librarMap.getLocationy());
-			resultMap.put("locationx", librarMap.getLocationx());
-			
+			resultMap.put("y", librarMap.getY());
+			resultMap.put("x", librarMap.getX());
 			
 			resultMapList.add(resultMap);
 		}
@@ -198,6 +184,7 @@ public class NSYLibraryController {
 		return resultMapList;
 	}
 	
+	//==== 도서관목록 페이지바 만들기 기능 ====
 	@RequestMapping(value="/getMakeBarPage", method={RequestMethod.GET})
 	@ResponseBody
 	public HashMap<String, Integer> getMakeBarPage(HttpServletRequest req){
@@ -209,10 +196,6 @@ public class NSYLibraryController {
 		String sizePerPage = req.getParameter("sizePerPage");
 		String currentShowPageNo = req.getParameter("currentShowPageNo");
 		
-		//System.out.println("getMakeBarPage단 colname : "+ colname);
-		//System.out.println("getMakeBarPage단 searchWord : "+ searchWord);
-		
-		
 		if(currentShowPageNo==null || "".equals(currentShowPageNo)) {
 			currentShowPageNo= "1";
 		}
@@ -222,6 +205,7 @@ public class NSYLibraryController {
 		paraMap.put("colname", colname);
 		paraMap.put("searchWord", searchWord);
 		
+		// ==== 도서관 전체 갯수를 구해오기 ====
 		int totalCount = service.getLibraryTotalList(paraMap);
 		
 		int totalPage = (int)Math.ceil((double)totalCount/Integer.parseInt(sizePerPage));
@@ -231,7 +215,8 @@ public class NSYLibraryController {
 		return returnMap;
 	}
 	
-	@RequestMapping(value="/LibraryDetailInfo.ana", method={RequestMethod.GET})
+	// ==== 파업창을 이용한 도서관상세정보 보기 ====
+	@RequestMapping(value="/libraryDetailInfo.ana", method={RequestMethod.GET})
 	public String getLibraryDetailInfo(HttpServletRequest req) {
 		
 		String idx = req.getParameter("idx");
@@ -243,7 +228,5 @@ public class NSYLibraryController {
 		
 		return "NSYlibraryDetailInfo.notiles";
 	}
-	
-	
 	
 }//end of class NSYLibraryController

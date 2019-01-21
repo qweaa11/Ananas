@@ -7,7 +7,7 @@ public class NSYLibraryVO {
 	
 	private String libcode; // 도서관번호
 	private int idx;		// 인덱스
-	private String name;	// 도서관명
+	private String libname;	// 도서관명
 	private String tel;		// 연락처
 	private String addr;	// 주소지
 	private String regDate; // 등록일자
@@ -16,31 +16,30 @@ public class NSYLibraryVO {
 	private String orgFilename; //저장되는 원래 이름
 	private String fileSize; //파일 크기
 	
-	private String location;
-	private String locationy;
-	private String locationx;
+	
+	private String y; // 지도에 표시할 좌표값 Y
+	private String x; // 지도에 표시할 좌표값 X
 	
 	private MultipartFile imgFile; // 진짜 파일 ==> WAS(톰캣) 디스크에 저장됨.
 	
 	
 	public NSYLibraryVO() {}
 	
-	public NSYLibraryVO(String libcode, int idx, String name, String tel, String addr
-			, String fileName, String orgFilename, String fileSize, String regDate, String location, String locationy, String locationx) {
+	public NSYLibraryVO(String libcode, int idx, String libname, String tel, String addr
+			, String fileName, String orgFilename, String fileSize, String regDate, String y, String x) {
 		super();
 		
 		this.libcode = libcode;
 		this.idx = idx;
-		this.name = name;
+		this.libname = libname;
 		this.tel = tel;
 		this.addr = addr;
 		this.fileName = fileName;
 		this.orgFilename = orgFilename;
 		this.fileSize = fileSize;
 		this.regDate = regDate;
-		this.location = location;
-		this.location = locationy;
-		this.location = locationx;
+		this.y = y;
+		this.x = x;
 		
 		
 	}//end of NSYLibraryVO
@@ -61,12 +60,12 @@ public class NSYLibraryVO {
 		this.idx = idx;
 	}
 
-	public String getName() {
-		return name;
+	public String getLibname() {
+		return libname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLibname(String libname) {
+		this.libname = libname;
 	}
 
 	public String getTel() {
@@ -125,30 +124,20 @@ public class NSYLibraryVO {
 		this.imgFile = imgFile;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getY() {
+		return y;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setY(String y) {
+		this.y = y;
 	}
 
-	public String getLocationy() {
-		return locationy;
+	public String getX() {
+		return x;
 	}
 
-	public void setLocationy(String locationy) {
-		this.locationy = locationy;
-	}
-
-	public String getLocationx() {
-		return locationx;
-	}
-
-	public void setLocationx(String locationx) {
-		this.locationx = locationx;
+	public void setX(String x) {
+		this.x = x;
 	}
 	
-	
-
 }// end of class NSYLibraryVO
