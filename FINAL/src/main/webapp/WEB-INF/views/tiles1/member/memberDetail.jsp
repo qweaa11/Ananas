@@ -2,12 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<<<<<<< HEAD
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
-=======
-    
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -117,7 +113,6 @@
 			frm.submit();
 		}
 	}
-<<<<<<< HEAD
 	function goStatusEdit4(idx) { // 영구정지
 		var bool = confirm(idx+" 번 회원을 회원상태 영구정지로 변경 하시겠습니까?");
 		
@@ -130,9 +125,6 @@
 			frm.submit();
 		}
 	}
-=======
-
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 	
 </script>
 
@@ -192,15 +184,9 @@
 </div>
 
 <c:if test="${\"활동\".equals(pmgMemberVO.status)}">
-<<<<<<< HEAD
 	<div class="container">	        		        
 		<button type="button" class="btn btn-danger btn-lg btn3d" onClick="goStatusEdit3('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>
-		<button type="button" class="btn btn-success btn-lg btn3d" onClick="goStatusEdit4('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-ok"></span> 영구정지</button>       	
-=======
-	<div class="container">	        
-		<button type="button" class="btn btn-success btn-lg btn3d" onClick="goStatusEdit2('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-ok"></span> 정지</button>        
-		<button type="button" class="btn btn-danger btn-lg btn3d" onClick="goStatusEdit3('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-remove"></span> 탈퇴</button>       	
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
+		<button type="button" class="btn btn-success btn-lg btn3d" onClick="goStatusEdit4('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-ok"></span> 영구정지</button>       
 	</div>
 </c:if>
 <c:if test="${\"휴면\".equals(pmgMemberVO.status)}">
@@ -208,16 +194,12 @@
 		<button type="button" class="btn btn-primary btn-lg btn3d" onClick="goStatusEdit1('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-cloud"></span> 휴면해제</button>	               	
 	</div>
 </c:if>
-<c:if test="${\"탈퇴\".equals(pmgMemberVO.status) || \"영구정지\".equals(pmgMemberVO.status)}">
+<c:if test="${\"탈퇴\".equals(pmgMemberVO.status)}">
 	<div class="container">
 		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
 	</div>
 </c:if>
-<<<<<<< HEAD
-<%-- <c:if test="${\"영구정지\".equals(pmgMemberVO.status)}">
-=======
-<c:if test="${\"탈퇴\".equals(pmgMemberVO.status)}">
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
+<c:if test="${\"영구정지\".equals(pmgMemberVO.status)}">
 	<div class="container">
 		<button type="button" class="btn3d btn btn-white btn-lg" onClick="goStatusEdit0('${pmgMemberVO.idx }')"><span class="glyphicon glyphicon-tag"></span> 활동</button>	               	
 	</div>
@@ -235,6 +217,7 @@
 <br/>
 <br/>
 <br/>
+<%-- 
 <div class="container">
 	<h1>도서 대여정보</h1>
 	<div class="col-sm-12 pull-center well">
@@ -257,7 +240,9 @@
 		</form>
 	</div>
 </div>
+--%>
 
+<%-- 
 <div class="container">
   <div class="row">
    <div class="col-md-4">
@@ -306,9 +291,9 @@
    </div>
   </div>	
 </div>
+--%>
 
 <div class="container">
-<<<<<<< HEAD
 	<h1>회원 도서정보</h1>
 	<div>
 	  <ul class="nav nav-tabs" role="tablist">
@@ -405,7 +390,7 @@
 								<td>${map.CATEGORYNAME}</td>
 								<td>${map.PUBLISHERNAME}</td>
 								<td>${map.LIBRARYNAME}</td>
-								<%-- <td>${map.STATUS}</td> --%>
+								<td>${map.STATUS}</td>
 								<td>${map.RESERVEDATE}</td>													
 							</tr>
 						</c:forEach>
@@ -422,7 +407,7 @@
 	    	    		    
 	  </div>
 	</div>
-=======
+	<%-- 
 	<table class="table">
 		<thead>	    
 		<tr>
@@ -485,7 +470,6 @@
 			</tr>
 		</tbody>
 	</table>
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 </div>
 
 <div class="container" style="text-align: center;">
@@ -499,7 +483,7 @@
               <li><a href="#">»</a></li>
 	</ul>
 </div>
-
+--%>
 <br/>
 <br/>
 

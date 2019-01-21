@@ -1,5 +1,8 @@
 package com.spring.bookmanage.member.PMGservice;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +37,8 @@ public class PMGService implements InterPMGService {
 	public int EditInactivityOneMemberByIdx(String idx) {
 		int n = dao.EditInactivityOneMemberByIdx(idx);
 		return n;
-<<<<<<< HEAD
-	}	
-=======
-	}
 
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
+	}	
 	@Override
 	public int EditWithdrawalOneMemberByIdx(String idx) {
 		int n = dao.EditWithdrawalOneMemberByIdx(idx);
@@ -52,7 +51,7 @@ public class PMGService implements InterPMGService {
 	}
 	
 
-<<<<<<< HEAD
+
 	@Override
 	public List<HashMap<String, String>> memberBookRentalList(String memberid) {
 		List<HashMap<String, String>> rentalList = dao.memberBookRentalList(memberid);
@@ -65,12 +64,6 @@ public class PMGService implements InterPMGService {
 		return reservationList;
 	}
 
-	
-
-	
-	
-=======
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 	
 	
 }

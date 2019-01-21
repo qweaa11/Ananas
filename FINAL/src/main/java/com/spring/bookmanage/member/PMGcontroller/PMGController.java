@@ -2,8 +2,11 @@ package com.spring.bookmanage.member.PMGcontroller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +29,9 @@ public class PMGController {
 	private AES256 aes;
 	
 	@RequestMapping(value="/memberDetail.ana", method= {RequestMethod.GET})
-	public String member(PMGMemberVO pmgMemberVO, HttpServletRequest req) {
+	public String member(PMGMemberVO pmgMemberVO, HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		
 		pmgMemberVO = service.findOneMemberByIdx(idx);
 		try {
@@ -50,7 +53,6 @@ public class PMGController {
 			e.printStackTrace();
 		}
 		
-<<<<<<< HEAD
 		request.setAttribute("pmgMemberVO", pmgMemberVO);
 		
 		// memberid를 받아 한 회원의 대여정보를 보여줌
@@ -66,15 +68,13 @@ public class PMGController {
 		
 	//	request.setAttribute("reservationList", reservationList);		
 		///////////////////////////////////////////////
-=======
-		req.setAttribute("pmgMemberVO", pmgMemberVO);
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
-		
+
+		request.setAttribute("pmgMemberVO", pmgMemberVO);
+
 		return "member/memberDetail.tiles1";
 	}// end of member
 	
-<<<<<<< HEAD
-	
+
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
 	 * @param request
@@ -82,12 +82,10 @@ public class PMGController {
 	 * @return
 	 * idx를 입력받아 status(=>0) 활동으로 변경 
 	 */
-=======
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 	@RequestMapping(value="/goStatusEdit0.ana", method= {RequestMethod.POST})
-	public String goStatusEdit0(HttpServletRequest req) {
+	public String goStatusEdit0(HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
@@ -101,11 +99,10 @@ public class PMGController {
 			loc = "javascript:history.back();";
 		}
 		
-		req.setAttribute("msg", msg);
-		req.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
 		return "msg";
-<<<<<<< HEAD
 	}// end of goStatusEdit0
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
@@ -114,14 +111,10 @@ public class PMGController {
 	 * @return
 	 * idx를 입력받아 휴면해제처리 status 활동으로 변경 
 	 */
-=======
-	}
-	
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 	@RequestMapping(value="/goStatusEdit1.ana", method= {RequestMethod.POST})
-	public String goStatusEdit1(HttpServletRequest req) {
+	public String goStatusEdit1(HttpServletRequest request, HttpServletResponse response) {
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
@@ -135,11 +128,10 @@ public class PMGController {
 			loc = "javascript:history.back();";
 		}
 		
-		req.setAttribute("msg", msg);
-		req.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
 		return "msg";
-<<<<<<< HEAD
 	}// end of goStatusEdit1
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
@@ -150,14 +142,8 @@ public class PMGController {
 	 */
 	@RequestMapping(value="/goStatusEdit3.ana", method= {RequestMethod.POST})
 	public String goStatusEdit3(HttpServletRequest request, HttpServletResponse response) {
-=======
-	}
-	
-	@RequestMapping(value="/goStatusEdit2.ana", method= {RequestMethod.POST})
-	public String goStatusEdit2(HttpServletRequest req) {
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 		
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
@@ -171,12 +157,11 @@ public class PMGController {
 			loc = "javascript:history.back();";
 		}
 		
-		req.setAttribute("msg", msg);
-		req.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
 		return "msg";
-<<<<<<< HEAD
-	}// end of goStatusEdit4
+	}// end of goStatusEdit3
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
 	 * @param request
@@ -185,7 +170,7 @@ public class PMGController {
 	 * idx를 입력받아 회원을 status(=>4) 영구정지로 변경 
 	 */
 	@RequestMapping(value="/goStatusEdit4.ana", method= {RequestMethod.POST})
-	public String goStatusEdit2(HttpServletRequest request, HttpServletResponse response) {
+	public String goStatusEdit4(HttpServletRequest request, HttpServletResponse response) {
 		
 		String idx = request.getParameter("idx");
 		String msg = "";
@@ -208,7 +193,4 @@ public class PMGController {
 	}// end of goStatusEdit4
 
 	
-=======
-	}
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 }
