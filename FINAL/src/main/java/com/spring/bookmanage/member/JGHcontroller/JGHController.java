@@ -23,8 +23,9 @@ public class JGHController {
 	@Autowired AES256 aes;
 
 	@RequestMapping(value = "memberList.ana", method = {RequestMethod.GET})
-	public String list(HttpServletRequest request, HttpServletRequest response)
+	public String list(HttpServletRequest request)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+
 		List<MemberVO> memberList = null;
 		String colname = request.getParameter("colname");
 		String searchWord = request.getParameter("searchWord");
@@ -34,6 +35,7 @@ public class JGHController {
 		parameterMap.put("searchWord", searchWord);
 
 		if(searchWord != null && !searchWord.trim().isEmpty()) {
+			System.out.println("여기 찍혀야함");
 			memberList = service.searchList(parameterMap);
 			request.setAttribute("colname", colname);
 			request.setAttribute("searchWord", searchWord);

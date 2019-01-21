@@ -45,6 +45,7 @@
 		where idx = #{idx}
 	</update>
 
+<<<<<<< HEAD
 	  
 	<resultMap type="HashMap" id="rentalMap">
 		<result property="ROWNUM" column="rownum" javaType="String" />
@@ -123,6 +124,8 @@
 		order by rownum desc
 	</select> -->
 	
+=======
+>>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
 
 </mapper>
 

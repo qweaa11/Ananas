@@ -4,17 +4,17 @@ public class LibraryVO {
 	
 	private String libcode;
 	private String idx;
-	private String libname;
+	private String name;
 	private String tel;
 	private String addr;
 	
 	public LibraryVO() {}
 	
-	public LibraryVO(String libcode, String idx, String libname, String tel, String addr) {
+	public LibraryVO(String libcode, String idx, String name, String tel, String addr) {
 		super();
 		this.libcode = libcode;
 		this.idx = idx;
-		this.libname = libname;
+		this.name = name;
 		this.tel = tel;
 		this.addr = addr;
 	}
@@ -35,12 +35,12 @@ public class LibraryVO {
 		this.idx = idx;
 	}
 
-	public String getLibname() {
-		return libname;
+	public String getName() {
+		return name;
 	}
 
-	public void setLibname(String libname) {
-		this.libname = libname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTel() {

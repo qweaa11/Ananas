@@ -9,5 +9,6 @@
 	}
 	
 	location.href="${loc}"; // 스크립트에서 페이지이동
+	location.href="${loc}"; // 스크립트에서 페이지이동
 
 </script>
