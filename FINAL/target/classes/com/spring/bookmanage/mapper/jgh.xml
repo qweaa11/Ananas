@@ -24,7 +24,6 @@
 		from member
 		where ${colname} like '%'||#{searchWord}||'%'
 	</select>
-<<<<<<< HEAD
 	
 	<!-- 선택한 회원목록에 따른 계정 활성화(휴면해제) -->
 	<update id="unlockAllByStatus" parameterType="String">
@@ -43,6 +42,5 @@
 		update member set status = 3
 		where idx = #{idx}
 	</update>
-=======
->>>>>>> branch 'master' of https://github.com/qweaa11/Ananas.git
+
 </mapper>
