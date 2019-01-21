@@ -41,12 +41,18 @@ public class PMGService implements InterPMGService {
 	public int EditInactivityOneMemberByIdx(String idx) {
 		int n = dao.EditInactivityOneMemberByIdx(idx);
 		return n;
-	}
+	}	
 	@Override
-	public int EditStopOneMemberByIdx(String idx) {
-		int n = dao.EditStopOneMemberByIdx(idx);
+	public int EditWithdrawalOneMemberByIdx(String idx) {
+		int n = dao.EditWithdrawalOneMemberByIdx(idx);
 		return n;
 	}
+	@Override
+	public int EditShutdownOneMemberByIdx(String idx) {
+		int n = dao.EditShutdownOneMemberByIdx(idx);
+		return n;
+	}
+	
 
 	@Override
 	public List<HashMap<String, String>> memberBookRentalList(String memberid) {
@@ -59,6 +65,8 @@ public class PMGService implements InterPMGService {
 		List<HashMap<String, String>> reservationList = dao.memberBookReservationList(memberid);
 		return reservationList;
 	}
+
+	
 
 	
 	

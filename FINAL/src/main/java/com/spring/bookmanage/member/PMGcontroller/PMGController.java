@@ -75,24 +75,25 @@ public class PMGController {
 		
 		List<HashMap<String, String>> rentalList = service.memberBookRentalList(memberid);
 		
-		request.setAttribute("rentallist", rentalList);
+		request.setAttribute("rentalList", rentalList);		
 		///////////////////////////////////////////////
 		
 		// memberid를 받아 한 회원의 예약정보를 보여줌
-		List<HashMap<String, String>> reservationList = service.memberBookReservationList(memberid);
+	//	List<HashMap<String, String>> reservationList = service.memberBookReservationList(memberid);
 		
-		request.setAttribute("reservationList", reservationList);		
+	//	request.setAttribute("reservationList", reservationList);		
 		///////////////////////////////////////////////
 		
 		return "member/memberDetail.tiles1";
 	}// end of member
+	
 	
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
 	 * @param request
 	 * @param response
 	 * @return
-	 * idx를 입력받아 status 활동으로 변경 
+	 * idx를 입력받아 status(=>0) 활동으로 변경 
 	 */
 	@RequestMapping(value="/goStatusEdit0.ana", method= {RequestMethod.POST})
 	public String goStatusEdit0(HttpServletRequest request, HttpServletResponse response) {
@@ -116,7 +117,6 @@ public class PMGController {
 		
 		return "msg";
 	}// end of goStatusEdit0
-	
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
 	 * @param request
@@ -146,28 +146,27 @@ public class PMGController {
 		
 		return "msg";
 	}// end of goStatusEdit1
-	
 	/**
 	 * <b>회원상세 페이지(버튼)</b>
 	 * @param request
 	 * @param response
 	 * @return
-	 * idx를 입력받아 회원을 status 정지로 변경 
+	 * idx를 입력받아 회원을 status(=>3) 탈퇴로 변경 
 	 */
-	@RequestMapping(value="/goStatusEdit2.ana", method= {RequestMethod.POST})
-	public String goStatusEdit2(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value="/goStatusEdit3.ana", method= {RequestMethod.POST})
+	public String goStatusEdit3(HttpServletRequest request, HttpServletResponse response) {
 		
 		String idx = request.getParameter("idx");
 		String msg = "";
 		String loc = "";
 		
-		int n = service.EditStopOneMemberByIdx(idx);
+		int n = service.EditWithdrawalOneMemberByIdx(idx);
 		
 		if(n == 1) {
-			msg = "회원번호 " +idx+ "번 정지로 변경이 성공 되었습니다.";
+			msg = "회원번호 " +idx+ "번 탈퇴로 변경이 성공 되었습니다.";
 			loc = "memberDetail.ana?idx="+idx;
 		}else {
-			msg = "회원번호 " +idx+ "의 정지로 변경이 실패 되었습니다.";
+			msg = "회원번호 " +idx+ "의 탈퇴로 변경이 실패 되었습니다.";
 			loc = "javascript:history.back();";
 		}
 		
@@ -175,7 +174,36 @@ public class PMGController {
 		request.setAttribute("loc", loc);
 		
 		return "msg";
-	}// end of goStatusEdit2
+	}// end of goStatusEdit4
+	/**
+	 * <b>회원상세 페이지(버튼)</b>
+	 * @param request
+	 * @param response
+	 * @return
+	 * idx를 입력받아 회원을 status(=>4) 영구정지로 변경 
+	 */
+	@RequestMapping(value="/goStatusEdit4.ana", method= {RequestMethod.POST})
+	public String goStatusEdit2(HttpServletRequest request, HttpServletResponse response) {
+		
+		String idx = request.getParameter("idx");
+		String msg = "";
+		String loc = "";
+		
+		int n = service.EditShutdownOneMemberByIdx(idx);
+		
+		if(n == 1) {
+			msg = "회원번호 " +idx+ "번 영구정지로 변경이 성공 되었습니다.";
+			loc = "memberDetail.ana?idx="+idx;
+		}else {
+			msg = "회원번호 " +idx+ "의 영구정지로 변경이 실패 되었습니다.";
+			loc = "javascript:history.back();";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		return "msg";
+	}// end of goStatusEdit4
 
 	
 }
